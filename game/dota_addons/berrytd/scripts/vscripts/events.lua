@@ -248,7 +248,7 @@ function GameMode:OnEntityKilled( keys )
 
     --if killed unit has an owner then someone is selling a tower
     if killedUnit:GetOwner() ~= nil then 
-        Notifications:Top(killedUnit:GetPlayerOwner():GetPlayerID(), {text = "Sold tower", duration = 5})
+        
 
     --if creep reaches the ancient, then suicide and remove a life
     elseif(killedUnit == killerEntity) then

@@ -34,6 +34,9 @@
 	    //-------------------------------------------------------------------------------------------------------------
 	    "AbilityManaCost"               "0" 
 	    "AbilityGoldCost"               "100"
+	
+	    "AbilityCastRange"              "500"
+	
 	  
 	
 	    // Special
@@ -52,6 +55,222 @@
 	    }
 	}
 	
+	"ability_upgrade_sniper_1"
+	{
+	    "BaseClass"             "ability_datadriven"
+	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+	    "AbilityType"           "DOTA_ABILITY_TYPE_BASIC"
+	    "AbilityTextureName"    "sniper_headshot"
+	
+	    "AbilityGoldCost"       "50"
+	
+	    "AbilitySpecial"
+	    {
+	        "01"
+	        {
+	            "var_type"            "FIELD_INTEGER"
+	            "gold_cost"            "50"
+	        }       
+	    }
+	
+	    "OnSpellStart"
+	    {
+	
+	        "RunScript"
+	        {
+	            "ScriptFile"    "scripts/vscripts/addon_game_mode.lua"
+	            "Function"      "upgradeTower"
+	
+	
+	            "AddAbility1"
+	            {
+	                "Ability"   "sniper_headshot"
+	                "Level"     "4"
+	            }
+	        }
+	    }
+	}
+	
+	"ability_upgrade_sniper_2"
+	{
+	    "BaseClass"             "ability_datadriven"
+	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+	    "AbilityType"           "DOTA_ABILITY_TYPE_BASIC"
+	    "AbilityTextureName"    "sniper_take_aim"
+	
+	    "AbilityGoldCost"       "50"
+	
+	    "AbilitySpecial"
+	    {
+	        "01"
+	        {
+	            "var_type"            "FIELD_INTEGER"
+	            "gold_cost"            "50"
+	        }       
+	    }
+	
+	    "OnSpellStart"
+	    {
+	
+	        "RunScript"
+	        {
+	            "ScriptFile"    "scripts/vscripts/addon_game_mode.lua"
+	            "Function"      "upgradeTower"
+	
+	
+	            "AddAbility1"
+	            {
+	                "Ability"   "sniper_take_aim"
+	                "Level"     "4"
+	            }
+	        }
+	    }
+	}
+	
+	"ability_upgrade_sniper_3"
+	{
+	    "BaseClass"             "ability_datadriven"
+	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+	    "AbilityType"           "DOTA_ABILITY_TYPE_BASIC"
+	    "AbilityTextureName"    "sniper_assassinate"
+	
+	    "AbilityGoldCost"       "50"
+	
+	    "AbilitySpecial"
+	    {
+	        "01"
+	        {
+	            "var_type"            "FIELD_INTEGER"
+	            "gold_cost"            "50"
+	        }       
+	    }
+	
+	    "OnSpellStart"
+	    {
+	
+	        "RunScript"
+	        {
+	            "ScriptFile"    "scripts/vscripts/addon_game_mode.lua"
+	            "Function"      "upgradeTower"
+	
+	
+	            "AddAbility1"
+	            {
+	                "Ability"   "sniper_assassinate"
+	                "Level"     "3"
+	            }
+	        }
+	    }
+	}
+	
+	"ability_upgrade_sniper_4"
+	{
+	    "BaseClass"             "ability_datadriven"
+	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+	    "AbilityType"           "DOTA_ABILITY_TYPE_BASIC"
+	    "AbilityTextureName"    "venomancer_poison_sting"
+	
+	    "AbilityGoldCost"       "50"
+	
+	    "AbilitySpecial"
+	    {
+	        "01"
+	        {
+	            "var_type"            "FIELD_INTEGER"
+	            "gold_cost"            "50"
+	        }       
+	    }
+	
+	    "OnSpellStart"
+	    {
+	
+	        "RunScript"
+	        {
+	            "ScriptFile"    "scripts/vscripts/addon_game_mode.lua"
+	            "Function"      "upgradeTower"
+	
+	
+	            "AddAbility1"
+	            {
+	                "Ability"   "venomancer_poison_sting"
+	                "Level"     "4"
+	            }
+	        }
+	    }
+	}
+	
+	"ability_upgrade_sniper_5"
+	{
+	    "BaseClass"             "ability_datadriven"
+	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+	    "AbilityType"           "DOTA_ABILITY_TYPE_BASIC"
+	    "AbilityTextureName"    "sven_gods_strength"
+	
+	    "AbilityGoldCost"       "50"
+	
+	    "AbilitySpecial"
+	    {
+	        "01"
+	        {
+	            "var_type"            "FIELD_INTEGER"
+	            "gold_cost"            "50"
+	        }       
+	    }
+	
+	    "OnSpellStart"
+	    {
+	
+	        "RunScript"
+	        {
+	            "ScriptFile"    "scripts/vscripts/addon_game_mode.lua"
+	            "Function"      "upgradeTower"
+	
+	
+	            "AddAbility1"
+	            {
+	                "Ability"   "sven_gods_strength"
+	                "Level"     "3"
+	            }
+	        }
+	    }
+	}
+	
+	"ability_upgrade_sniper_6"
+	{
+	    "BaseClass"             "ability_datadriven"
+	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+	    "AbilityType"           "DOTA_ABILITY_TYPE_BASIC"
+	    "AbilityTextureName"    "ogre_magi_bloodlust"
+	
+	    "AbilityGoldCost"       "50"
+	
+	    "AbilitySpecial"
+	    {
+	        "01"
+	        {
+	            "var_type"            "FIELD_INTEGER"
+	            "gold_cost"            "50"
+	        }       
+	    }
+	
+	    "OnSpellStart"
+	    {
+	
+	        "RunScript"
+	        {
+	            "ScriptFile"    "scripts/vscripts/addon_game_mode.lua"
+	            "Function"      "upgradeTower"
+	
+	
+	            "AddAbility1"
+	            {
+	                "Ability"   "ogre_magi_bloodlust"
+	                "Level"     "4"
+	                "AutoCast"  "true"
+	            }
+	        }
+	    }
+	}
 	"barebones_empty1"
 	{
 	    // General
