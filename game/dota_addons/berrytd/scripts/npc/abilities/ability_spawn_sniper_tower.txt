@@ -1,0 +1,36 @@
+"ability_spawn_sniper_tower"
+{
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "BaseClass"             "ability_datadriven"
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+    "AbilityType"           "DOTA_ABILITY_TYPE_BASIC"
+    "AbilityTextureName"    "sniper_take_aim"
+
+
+    // Time     
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityCooldown"               "2.0"
+
+    // Cost
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityManaCost"               "0" 
+    "AbilityGoldCost"               "100"
+  
+
+    // Special
+    //-------------------------------------------------------------------------------------------------------------
+
+
+    "OnSpellStart"
+    {      
+        "SpawnUnit"
+        {
+            "UnitName"      "npc_sniper_tower"
+            "UnitCount"     "1"
+            "SpawnRadius"   "0"
+            "Target"        "POINT"
+        }
+    }
+}
+

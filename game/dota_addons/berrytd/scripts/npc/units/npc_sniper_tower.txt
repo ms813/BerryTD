@@ -1,0 +1,63 @@
+"npc_sniper_tower"
+{
+  "BaseClass"             "npc_dota_creature"
+  "Model"                 "models/heroes/sniper/sniper.vmdl"
+  "ModelScale"            "1"
+  "SoundSet"              "Hero_Sniper"
+  "GameSoundsFile"        "soundevents/game_sounds_heroes/game_sounds_sniper.vsndevts"
+  
+
+  "HasInventory"          "1"
+  "ConsideredHero"        "1"
+  "AutoAttacksByDefault"  "1"
+  "SelectOnSpawn"         "1"
+
+  
+  //Abilities  
+  "AbilityLayout"         "4"
+  "Ability1"              ""
+  "Ability2"              ""
+  "Ability3"              ""
+  "Ability4"              "ability_sell_tower"
+
+  "AttackCapabilities"    "DOTA_UNIT_CAP_RANGED_ATTACK"
+
+  "AttackDamageMin"       "10"
+  "AttackDamageMax"       "10"
+  "AttackRate"            "1"
+  "AttackRange"           "1000"
+  "AttackAcquisitionRange"    "1200"
+  "AttackAnimationPoint"  "1"
+
+  "ProjectileModel"       "particles/units/heroes/hero_sniper/sniper_base_attack.vpcf"
+  "ProjectileSpeed"       "1000"
+
+  "AttackDamageType"      "DAMAGE_TYPE_ArmorPhysical"
+
+  "BoundsHullName"        "DOTA_HULL_SIZE_HERO"
+
+  "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_NONE"
+
+  "StatusHealth"          "1000" 
+
+  //this is a dirty hack - set this equal to the sell price of the tower
+  "StatusManaRegen"       "50" 
+  "BountyGoldMax"         "50"
+  "BountyGoldMin"         "50"
+
+
+  "VisionDaytimeRange"    "1500"       
+  "VisionNighttimeRange"  "1100"       
+
+  "Creature"  
+  {
+    "AttachWearables"
+    {
+     "Wearable1"  {"ItemDef"  "281"}
+     "Wearable2"  {"ItemDef"  "282"}
+     "Wearable3"  {"ItemDef"  "283"}
+     "Wearable4"  {"ItemDef"  "284"}
+     "Wearable5"  {"ItemDef"  "285"}
+   }
+ }
+}

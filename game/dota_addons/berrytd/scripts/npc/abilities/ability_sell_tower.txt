@@ -1,0 +1,16 @@
+"ability_sell_tower"
+{
+	"BaseClass"             "ability_datadriven"
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+    "AbilityType"           "DOTA_ABILITY_TYPE_BASIC"
+    "AbilityTextureName"    "alchemist_goblins_greed"
+
+    "OnSpellStart"
+    {
+    	"RunScript"
+    	{
+    		"ScriptFile"	"scripts/vscripts/addon_game_mode.lua"
+    		"Function"		"sellTower"
+    	}
+    }
+}
