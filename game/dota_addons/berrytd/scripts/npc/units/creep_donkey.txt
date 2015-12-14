@@ -13,8 +13,8 @@
     "BoundsHullName"        "DOTA_HULL_SIZE_SMALL"
 
     "BountyXP"              "0"
-    "BountyGoldMin"         "1"
-    "BountyGoldMax"         "2"
+    "BountyGoldMin"         "3"
+    "BountyGoldMax"         "3"
 
     "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_GROUND"
     "MovementSpeed"         "300"

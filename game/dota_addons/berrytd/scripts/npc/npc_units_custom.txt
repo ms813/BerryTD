@@ -15,14 +15,14 @@
 	    "BoundsHullName"        "DOTA_HULL_SIZE_SMALL"
 	
 	    "BountyXP"              "0"
-	    "BountyGoldMin"         "1"
-	    "BountyGoldMax"         "2"
+	    "BountyGoldMin"         "4"
+	    "BountyGoldMax"         "4"
 	
 	    "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_GROUND"
 	    "MovementSpeed"         "300"
 	
 	    "StatusHealth"          "10"
-	    "StatusHealthRegen"     "1"
+	    "StatusHealthRegen"     "0"
 	    "StatusMana"            "0"
 	    "StatusManaRegen"       "0.0"
 	    "ArmorPhysical"         "1"
@@ -49,14 +49,14 @@
 	    "BoundsHullName"        "DOTA_HULL_SIZE_REGULAR"
 	
 	    "BountyXP"              "0"
-	    "BountyGoldMin"         "1"
+	    "BountyGoldMin"         "2"
 	    "BountyGoldMax"         "2"
 	
 	    "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_GROUND"
 	    "MovementSpeed"         "200"
 	
 	    "StatusHealth"          "100"
-	    "StatusHealthRegen"     "1"
+	    "StatusHealthRegen"     "0"
 	    "StatusMana"            "0"
 	    "StatusManaRegen"       "0.0"
 	    "ArmorPhysical"         "5"
@@ -74,7 +74,7 @@
 	    "Model"                 "models/courier/sw_donkey/sw_donkey.vmdl"
 	    "BaseClass"             "npc_dota_creature"
 	    "Level"                 "1"
-	    "ModelScale"            "8.0"
+	    "ModelScale"            "1"
 	
 	    "Ability1"              ""
 	    "Ability2"              ""    
@@ -84,13 +84,48 @@
 	    "BoundsHullName"        "DOTA_HULL_SIZE_SMALL"
 	
 	    "BountyXP"              "0"
-	    "BountyGoldMin"         "1"
-	    "BountyGoldMax"         "2"
+	    "BountyGoldMin"         "3"
+	    "BountyGoldMax"         "3"
 	
 	    "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_GROUND"
 	    "MovementSpeed"         "300"
 	
 	    "StatusHealth"          "10"
+	    "StatusHealthRegen"     "0"
+	    "StatusMana"            "0"
+	    "StatusManaRegen"       "0.0"
+	    "ArmorPhysical"         "1"
+	
+	    "AttackCapabilities"    "DOTA_UNIT_CAP_NO_ATTACK"
+	
+	    "Creature"
+	    {
+	        "DisableClumpingBehavior"   "1"
+	    }
+	 
+	}
+	"creep_facerex"
+	   {                                       
+	    "Model"                 "models/items/courier/faceless_rex.vdml"
+	    "BaseClass"             "npc_dota_creature"
+	    "Level"                 "1"
+	    "ModelScale"            "1.7"
+	
+	    "Ability1"              "faceless_void_backtrack"
+	    "Ability2"              ""    
+	
+	    "RingRadius"            "40"
+	    "HealthBarOffset"       "170"
+	    "BoundsHullName"        "DOTA_HULL_SIZE_SMALL"
+	
+	    "BountyXP"              "0"
+	    "BountyGoldMin"         "5"
+	    "BountyGoldMax"         "5"
+	
+	    "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_GROUND"
+	    "MovementSpeed"         "300"
+	
+	    "StatusHealth"          "500"
 	    "StatusHealthRegen"     "1"
 	    "StatusMana"            "0"
 	    "StatusManaRegen"       "0.0"
@@ -120,13 +155,13 @@
 	
 	    "BountyXP"              "0"
 	    "BountyGoldMin"         "1"
-	    "BountyGoldMax"         "2"
+	    "BountyGoldMax"         "1"
 	
 	    "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_GROUND"
 	    "MovementSpeed"         "300"
 	
 	    "StatusHealth"          "10"
-	    "StatusHealthRegen"     "1"
+	    "StatusHealthRegen"     "0"
 	    "StatusMana"            "0"
 	    "StatusManaRegen"       "0.0"
 	    "ArmorPhysical"         "1"

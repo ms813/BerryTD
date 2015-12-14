@@ -1,6 +1,6 @@
 _CommonRedist
 bin
-D2ModKit
+D2ModKit.exe
 dota
 EmptySteamDepot
 platform
@@ -19,3 +19,5 @@ steam_appid.txt
 
 *tools_thumbnail_cache*
 *tools_asset_info*
+*.mdmp
+*debug*

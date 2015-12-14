@@ -1,11 +1,11 @@
-"creep_sheep"
+"creep_facerex"
    {                                       
-    "Model"                 "models/items/hex/sheep_hex/sheep_hex.vmdl"
+    "Model"                 "models/items/courier/faceless_rex.vdml"
     "BaseClass"             "npc_dota_creature"
     "Level"                 "1"
-    "ModelScale"            "1"
+    "ModelScale"            "1.7"
 
-    "Ability1"              ""
+    "Ability1"              "faceless_void_backtrack"
     "Ability2"              ""    
 
     "RingRadius"            "40"
@@ -13,14 +13,14 @@
     "BoundsHullName"        "DOTA_HULL_SIZE_SMALL"
 
     "BountyXP"              "0"
-    "BountyGoldMin"         "1"
-    "BountyGoldMax"         "1"
+    "BountyGoldMin"         "5"
+    "BountyGoldMax"         "5"
 
     "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_GROUND"
     "MovementSpeed"         "300"
 
-    "StatusHealth"          "10"
-    "StatusHealthRegen"     "0"
+    "StatusHealth"          "500"
+    "StatusHealthRegen"     "1"
     "StatusMana"            "0"
     "StatusManaRegen"       "0.0"
     "ArmorPhysical"         "1"

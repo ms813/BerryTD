@@ -1,5 +1,125 @@
 "DOTAAbilities"
 {
+	"ability_open_page_one"
+	{
+	    "BaseClass"                 "ability_datadriven"
+	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+	    "AbilityTextureName"        "invoker_quas"
+	    "AbilityType"               "DOTA_ABILITY_TYPE_BASIC"
+	    "MaxLevel"                  "1"
+	    "LevelsBetweenUpgrades"     "1"
+	    "AbilityCastPoint"        "0.0 0.0 0.0 0.0"
+	    "AbilityCooldown"       "0.0 0.0 0.0 0.0"
+	    "AbilityManaCost"       "0"
+	    "AbilityGoldCost"             "0"
+	
+	    "OnSpellStart"
+	    {
+	        "RunScript"
+	        {
+	            "Target"        "POINT"
+	            "ScriptFile"      "scripts/vscripts/addon_game_mode.lua"
+	            "Function"        "goToPage"
+	        }
+	    }
+	}
+	
+	
+	"ability_open_page_two"
+	{
+	    "BaseClass"                 "ability_datadriven"
+	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+	    "AbilityTextureName"        "invoker_wex"
+	    "AbilityType"               "DOTA_ABILITY_TYPE_BASIC"
+	    "MaxLevel"                  "1"
+	    "LevelsBetweenUpgrades"     "1"
+	    "AbilityCastPoint"        "0.0 0.0 0.0 0.0"
+	    "AbilityCooldown"       "0.0 0.0 0.0 0.0"
+	    "AbilityManaCost"       "0"
+	    "AbilityGoldCost"             "0"
+	
+	    "OnSpellStart"
+	    {
+	        "RunScript"
+	        {
+	            "Target"        "POINT"
+	            "ScriptFile"      "scripts/vscripts/addon_game_mode.lua"
+	            "Function"        "goToPage"
+	        }
+	    }
+	}
+	
+	"ability_open_page_three"
+	{
+	    "BaseClass"                 "ability_datadriven"
+	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+	    "AbilityTextureName"        "invoker_exort"
+	    "AbilityType"               "DOTA_ABILITY_TYPE_BASIC"
+	    "MaxLevel"                  "1"
+	    "LevelsBetweenUpgrades"     "1"
+	    "AbilityCastPoint"        "0.0 0.0 0.0 0.0"
+	    "AbilityCooldown"       "0.0 0.0 0.0 0.0"
+	    "AbilityManaCost"       "0"
+	    "AbilityGoldCost"             "0"
+	
+	    "OnSpellStart"
+	    {
+	        "RunScript"
+	        {
+	            "Target"        "POINT"
+	            "ScriptFile"      "scripts/vscripts/addon_game_mode.lua"
+	            "Function"        "goToPage"
+	        }
+	    }
+	}
+	
+	"ability_open_page_four"
+	{
+	    "BaseClass"                 "ability_datadriven"
+	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+	    "AbilityTextureName"        "spectre_dispersion"
+	    "AbilityType"               "DOTA_ABILITY_TYPE_BASIC"
+	    "MaxLevel"                  "1"
+	    "LevelsBetweenUpgrades"     "1"
+	    "AbilityCastPoint"        "0.0 0.0 0.0 0.0"
+	    "AbilityCooldown"       "0.0 0.0 0.0 0.0"
+	    "AbilityManaCost"       "0"
+	    "AbilityGoldCost"             "0"
+	
+	    "OnSpellStart"
+	    {
+	        "RunScript"
+	        {
+	            "Target"        "POINT"
+	            "ScriptFile"      "scripts/vscripts/addon_game_mode.lua"
+	            "Function"        "goToPage"
+	        }
+	    }
+	}
+	
+	"ability_return_to_start_page"
+	{
+	   "BaseClass"                 "ability_datadriven"
+	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+	    "AbilityTextureName"        "invoker_invoke"
+	    "AbilityType"               "DOTA_ABILITY_TYPE_BASIC"
+	    "MaxLevel"                  "1"
+	    "LevelsBetweenUpgrades"     "1"
+	    "AbilityCastPoint"        "0.0 0.0 0.0 0.0"
+	    "AbilityCooldown"       "0.0 0.0 0.0 0.0"
+	    "AbilityManaCost"       "0"
+	    "AbilityGoldCost"             "0"
+	
+	    "OnSpellStart"
+	    {
+	        "RunScript"
+	        {
+	            "Target"        "POINT"
+	            "ScriptFile"      "scripts/vscripts/addon_game_mode.lua"
+	            "Function"        "returnToStartPage"
+	        }
+	    } 
+	}
 	"ability_sell_tower"
 	{
 		"BaseClass"             "ability_datadriven"
