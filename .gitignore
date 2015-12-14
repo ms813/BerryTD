@@ -1,5 +1,6 @@
-*
+/*
+/*/
 
 !.gitignore
-!content/dota_addons/berrytd/*
-!game/dota_addons/berrytd/*
+!/content/dota_addons/berrytd/
+!/game/dota_addons/berrytd/
