@@ -91,8 +91,10 @@ end
   hero:SetGold(500, false)
 
   -- These lines will create an item and add it to the player, effectively ensuring they start with the item
-  local item = CreateItem("item_example_item", hero, hero)
-  hero:AddItem(item)
+  --local item = CreateItem("item_example_item", hero, hero)
+  --hero:AddItem("item_blink")
+  hero:AddItemByName("item_blink")
+
 
   --[[ --These lines if uncommented will replace the W ability of any hero that loads into the game
     --with the "example_ability" ability
@@ -100,6 +102,9 @@ end
   local abil = hero:GetAbilityByIndex(1)
   hero:RemoveAbility(abil:GetAbilityName())
   hero:AddAbility("example_ability")]]
+
+  lvlUpUnitAbilities(hero)
+  hero:SetAbilityPoints(0)
 end
 
 --[[

@@ -3,13 +3,13 @@
 
     "AbilityLayout"     "1"    
     "override_hero"     "npc_dota_hero_alchemist"
-    "url"   "Berry"
+    "model"             "models/creeps/neutral_creeps/n_creep_furbolg/n_creep_furbolg_disrupter.vmdl"
 
     "SoundSet"          "0"
-    "Ability1"          "ability_spawn_sniper_tower"
-    "Ability2"          ""
-    "Ability3"          ""
-    "Ability4"          ""
+    "Ability1"          "ability_open_page_one"
+    "Ability2"          "ability_open_page_two"
+    "Ability3"          "ability_open_page_three"
+    "Ability4"          "ability_open_page_four"
 
     "ArmorPhysical"     "0"
     "MagicalResistance" "0"

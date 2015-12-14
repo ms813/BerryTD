@@ -102,3 +102,67 @@ function upgradeTower(keys)
 
 	end
 end
+
+function goToPage(keys)
+	GameMode:goToPage(keys)
+end
+
+function GameMode:goToPage(keys)
+	local caster = keys.caster
+	local ability = keys.ability
+	local ability_name = ability:GetAbilityName()
+
+	clearUnitAbilities(caster)
+
+	caster:AddAbility("ability_return_to_start_page")
+
+	if ability_name == "ability_open_page_one" then
+		caster:AddAbility("ability_spawn_sniper_tower")
+	elseif ability_name == "ability_open_page_two" then
+
+	elseif ability_name == "ability_open_page_three" then
+
+	elseif ability_name == "ability_open_page_four" then
+
+	end
+
+	lvlUpUnitAbilities(caster)
+end
+
+function returnToStartPage(keys)
+	GameMode:returnToStartPage(keys)
+end
+
+function GameMode:returnToStartPage(keys)
+	local caster = keys.caster
+	local ability = keys.ability
+
+	clearUnitAbilities(caster)
+	
+	caster:AddAbility("ability_open_page_one")
+	caster:AddAbility("ability_open_page_two")
+	caster:AddAbility("ability_open_page_three")
+	caster:AddAbility("ability_open_page_four")
+
+	lvlUpUnitAbilities(caster)
+end
+
+function clearUnitAbilities(unit)
+  	for i = 0, unit:GetAbilityCount()-1 do
+    	local a = unit:GetAbilityByIndex(i)
+
+    	if a ~= nil then
+      	unit:RemoveAbility(a:GetAbilityName())
+  		end
+	end
+end
+
+function lvlUpUnitAbilities(unit)
+ 	for i = 0, unit:GetAbilityCount()-1 do
+    	local a = unit:GetAbilityByIndex(i)
+
+    	if a ~= nil then
+      	a:SetLevel(1)
+  		end
+	end
+end
