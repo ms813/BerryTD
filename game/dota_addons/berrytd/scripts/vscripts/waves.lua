@@ -15,3 +15,4 @@ waveTable = {}
 
 waveTable[1] = Wave("creep_sheep", 10, 5, 100)
 waveTable[2] = Wave("creep_cluckles", 10, 10, 100)
+waveTable[5] = Wave("creep_facerex", 10, 40, 100)
