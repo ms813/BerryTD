@@ -1,6 +1,6 @@
-"creep_sheep"
+"creep_donkey"
    {                                       
-    "Model"                 "models/items/hex/sheep_hex/sheep_hex.vmdl"
+    "Model"                 "models/courier/sw_donkey/sw_donkey.vmdl"
     "BaseClass"             "npc_dota_creature"
     "Level"                 "1"
     "ModelScale"            "1"

@@ -17,3 +17,5 @@ steam_appid.txt
 /game/dota_addons/*
 !game/dota_addons/berrytd
 
+*tools_thumbnail_cache*
+

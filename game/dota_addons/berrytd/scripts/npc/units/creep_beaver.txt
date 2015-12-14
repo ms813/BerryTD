@@ -1,9 +1,9 @@
-"creep_sheep"
-   {                                       
-    "Model"                 "models/items/hex/sheep_hex/sheep_hex.vmdl"
+"creep_beaver"
+{                                       
+    "Model"                 "models/items/courier/beaverknight_s2/beaverknight_s2.vmdl"
     "BaseClass"             "npc_dota_creature"
     "Level"                 "1"
-    "ModelScale"            "1"
+    "ModelScale"            "1.0"
 
     "Ability1"              ""
     "Ability2"              ""    
@@ -30,6 +30,5 @@
     "Creature"
     {
         "DisableClumpingBehavior"   "1"
-    }
- 
+    } 
 }
