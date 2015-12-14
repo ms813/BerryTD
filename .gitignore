@@ -1,6 +1,19 @@
-/*
-/*/
+_CommonRedist
+bin
+D2ModKit
+dota
+EmptySteamDepot
+platform
+gcfscape185.exe
+steam_appid.txt
 
-!.gitignore
-!/content/dota_addons/berrytd/
-!/game/dota_addons/berrytd/
+/content/*
+!content/dota_addons
+/content/dota_addons/*
+!content/dota_addons/berrytd
+
+/game/*
+!game/dota_addons
+/game/dota_addons/*
+!game/dota_addons/berrytd
+
