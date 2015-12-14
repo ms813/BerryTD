@@ -61,7 +61,8 @@
 	
 	    "AbilityLayout"     "1"    
 	    "override_hero"     "npc_dota_hero_alchemist"
-	    "url"   "Berry"
+	    "model"				"models/creeps/neutral_creeps/n_creep_furbolg/n_creep_furbolg_disrupter.vmdl"
+	    "LoadoutScale"       "0.0"
 	
 	    "SoundSet"          "0"
 	    "Ability1"          "ability_spawn_sniper_tower"

@@ -172,6 +172,7 @@ function GameMode:PopulateWayPoints()
 end
 
 function GameMode:SpawnWave(waveIndex)
+  Notifications:TopToAll({text="Starting wave "..waveIndex, duration=5.0, color="yellow"})   
 	local SpawnLocation = Entities:FindByName(nil, "creep_spawner")
 	self.numCreepsSpawned = 0	
 
@@ -179,7 +180,7 @@ function GameMode:SpawnWave(waveIndex)
 
     for i = 0, waveTable[waveIndex].numTotal - 1 do
     	local creature = CreateUnitByName(waveTable[waveIndex].creep, SpawnLocation:GetAbsOrigin() + RandomVector(RandomFloat(200,200)), true, nil, nil, DOTA_TEAM_NEUTRALS)
-    	creature:SetHullRadius(2)       
+    	creature:SetHullRadius(8)       
     	creature.currentWaypoint = 0
 
     	creature:SetBaseMaxHealth(creature:GetBaseMaxHealth())

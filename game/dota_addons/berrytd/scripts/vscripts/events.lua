@@ -264,6 +264,8 @@ function GameMode:OnEntityKilled( keys )
             Timers:RemoveTimers(true)
         end
 
+        self.numCreepsAlive = self.numCreepsAlive - 1
+
     --creep was killed by a tower
     else
         self.numCreepsAlive = self.numCreepsAlive - 1
