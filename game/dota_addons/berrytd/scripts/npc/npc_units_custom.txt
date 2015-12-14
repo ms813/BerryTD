@@ -1,5 +1,39 @@
 "DOTAUnits"
 {
+	"creep_beaver"
+	{                                       
+	    "Model"                 "models/items/courier/beaverknight_s2/beaverknight_s2.vmdl"
+	    "BaseClass"             "npc_dota_creature"
+	    "Level"                 "1"
+	    "ModelScale"            "1.0"
+	
+	    "Ability1"              ""
+	    "Ability2"              ""    
+	
+	    "RingRadius"            "40"
+	    "HealthBarOffset"       "170"
+	    "BoundsHullName"        "DOTA_HULL_SIZE_SMALL"
+	
+	    "BountyXP"              "0"
+	    "BountyGoldMin"         "1"
+	    "BountyGoldMax"         "2"
+	
+	    "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_GROUND"
+	    "MovementSpeed"         "300"
+	
+	    "StatusHealth"          "10"
+	    "StatusHealthRegen"     "1"
+	    "StatusMana"            "0"
+	    "StatusManaRegen"       "0.0"
+	    "ArmorPhysical"         "1"
+	
+	    "AttackCapabilities"    "DOTA_UNIT_CAP_NO_ATTACK"
+	
+	    "Creature"
+	    {
+	        "DisableClumpingBehavior"   "1"
+	    } 
+	}
 	"creep_cluckles"
 	   {                                       
 	    "Model"                 "models/items/courier/mighty_chicken/mighty_chicken.vmdl"
@@ -28,6 +62,41 @@
 	    "ArmorPhysical"         "5"
 	
 	    "AttackCapabilities"    "DOTA_UNIT_CAP_NO_ATTACK"    
+	
+	    "Creature"
+	    {
+	        "DisableClumpingBehavior"   "1"
+	    }
+	 
+	}
+	"creep_donkey"
+	   {                                       
+	    "Model"                 "models/courier/sw_donkey/sw_donkey.vmdl"
+	    "BaseClass"             "npc_dota_creature"
+	    "Level"                 "1"
+	    "ModelScale"            "8.0"
+	
+	    "Ability1"              ""
+	    "Ability2"              ""    
+	
+	    "RingRadius"            "40"
+	    "HealthBarOffset"       "170"
+	    "BoundsHullName"        "DOTA_HULL_SIZE_SMALL"
+	
+	    "BountyXP"              "0"
+	    "BountyGoldMin"         "1"
+	    "BountyGoldMax"         "2"
+	
+	    "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_GROUND"
+	    "MovementSpeed"         "300"
+	
+	    "StatusHealth"          "10"
+	    "StatusHealthRegen"     "1"
+	    "StatusMana"            "0"
+	    "StatusManaRegen"       "0.0"
+	    "ArmorPhysical"         "1"
+	
+	    "AttackCapabilities"    "DOTA_UNIT_CAP_NO_ATTACK"
 	
 	    "Creature"
 	    {

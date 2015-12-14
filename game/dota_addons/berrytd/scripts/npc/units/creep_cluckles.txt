@@ -20,7 +20,7 @@
     "MovementSpeed"         "200"
 
     "StatusHealth"          "100"
-    "StatusHealthRegen"     "1"
+    "StatusHealthRegen"     "0"
     "StatusMana"            "0"
     "StatusManaRegen"       "0.0"
     "ArmorPhysical"         "5"
