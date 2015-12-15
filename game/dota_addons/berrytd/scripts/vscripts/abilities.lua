@@ -50,7 +50,28 @@ function upgradeTower(keys)
 		local new_ability = caster:FindAbilityByName(keys.AddAbility1.Ability)
 
 		--take a note that we've purchased this number
-		caster.upgradePath[upgrade_number] = "purchased";		
+		caster.upgradePath[upgrade_number] = "purchased";	
+
+
+		--if upgrade 3 is picked, block 4 and 6 and remove 4 from the bar
+		if upgrade_number == 3 then
+			caster.upgradePath[4] = "blocked"
+			caster.upgradePath[6] = "blocked"
+
+			local check4 = caster:FindAbilityByName(string.sub(ability_name,0,-2).."4")
+			if check4 ~= nil then
+				caster:RemoveAbility(check4:GetAbilityName())
+			end
+		--if upgrade 4 is picked, block 3 and 5 and remove 3 from the bar
+		elseif	upgrade_number == 4 then
+			caster.upgradePath[3] = "blocked"
+			caster.upgradePath[5] = "blocked"
+
+			local check3 = caster:FindAbilityByName(string.sub(ability_name,0,-2).."3")
+			if check3 ~= nil then
+				caster:RemoveAbility(check3:GetAbilityName())
+			end
+		end
 
 		--upgrade the new ability to the level specified in the ability file
 		new_ability:SetLevel(keys.AddAbility1.Level)
@@ -60,19 +81,30 @@ function upgradeTower(keys)
 			new_ability:ToggleAutoCast()
 		end
 
+		--cache the level of the next upgrade
 		local next_upgrade_number = upgrade_number + 1
+
+		--this block adds the ability to purchase the next upgrade
 		if upgrade_number < 5 and caster.upgradePath[next_upgrade_number] == "available" then		
 
-			--get the name of the next upgrade in the tree
+			--get the name of the next upgrade in the path
+			--by trimming the start of the current ability and adding the next upgrade number
 			local next_upgrade_name = string.sub(ability_name,0,-2)..next_upgrade_number
 			
-			--add the ability to purchase the next upgrade in the tree	
+			--add the ability to purchase the next upgrade in the path	
 			caster:AddAbility(next_upgrade_name)
 
-			local next_upgrade = caster:FindAbilityByName(next_upgrade_name)
-			next_upgrade:SetLevel(1)
+			--set the new upgrade to level 1 so that it can actually be clicked on
+			caster:FindAbilityByName(next_upgrade_name):SetLevel(1)
+			
+			--display upgrades 3 and 4 at the same time, only let the user pick one
+			if upgrade_number == 2 then
+				local lvl4_upgrade = string.sub(ability_name, 0, -2)..(next_upgrade_number+1)
+				caster:AddAbility(lvl4_upgrade)
+				caster:FindAbilityByName(lvl4_upgrade):SetLevel(1)
+			end
 
-			--put logic here to branch at ability 3/4
+
 		end				
 
 		--this adds half the upgrade cost to the sell value using the mana regen hack

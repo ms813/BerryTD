@@ -26,10 +26,10 @@
     "AttackRate"            "1"
     "AttackRange"           "1000"
     "AttackAcquisitionRange"    "1200"
-    "AttackAnimationPoint"  "1"
+    "AttackAnimationPoint"  "0.17"
 
     "ProjectileModel"       "particles/units/heroes/hero_sniper/sniper_base_attack.vpcf"
-    "ProjectileSpeed"       "1000"
+    "ProjectileSpeed"       "3000"
 
     "AttackDamageType"      "DAMAGE_TYPE_ArmorPhysical"
 

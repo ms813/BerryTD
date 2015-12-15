@@ -17,7 +17,8 @@
     "AbilityManaCost"               "0" 
     "AbilityGoldCost"               "100"
 
-    "AbilityCastRange"              "500"
+    "AbilityCastRange"              "%range"
+    "AbilityDamage"                 "%damage"
 
   
 
@@ -33,6 +34,20 @@
             "UnitCount"     "1"
             "SpawnRadius"   "0"
             "Target"        "POINT"
+        }
+    }
+
+    "AbilitySpecial"
+    {
+        "01"
+        {
+            "var_type"            "FIELD_INTEGER"
+            "damage"            "10"
+        }
+        "02"
+        {
+            "var_type"            "FIELD_FLOAT"
+            "range"        "1000"
         }
     }
 }

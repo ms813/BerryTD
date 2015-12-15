@@ -7,6 +7,9 @@
 
     "AbilityGoldCost"       "50"
 
+    //this is added to the tooltip
+    "AbilityDamage"         "%damage_bonus"
+
     "AbilitySpecial"
     {
         "01"
@@ -31,6 +34,51 @@
                 "Level"     "1"
             }
         }
+    }
+
+    "AbilitySpecial"
+    {
+        "01"
+        {
+            "var_type"         "FIELD_INTEGER"
+            "%damage_bonus"            "10"
+        }        
+    }
+}
+
+//this is the ability provided by upgrade 1
+"ability_sniper_damage_buff"
+{
+    "BaseClass"             "ability_datadriven"
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"  
+    "AbilityTextureName"    "phantom_assassin_coup_de_grace"                       
+    
+    "AbilityUnitDamageType" "DAMAGE_TYPE_PHYSICAL"
+
+
+    "Modifiers"
+    {
+        "BonusDamage"
+        {
+            "Passive"   "1"            
+          
+            "IsPurgable"        "0"
+            "IsBuff"            "1"  
+
+            "Properties"
+            {
+                "MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE" "%damage_bonus"        
+            }  
+        }           
+    }
+
+    "AbilitySpecial"
+    {
+        "01"
+        {
+            "var_type"            "FIELD_INTEGER"
+            "damage_bonus"            "10"
+        }        
     }
 }
 
@@ -63,12 +111,13 @@
 
             "AddAbility1"
             {
-                "Ability"   "ability_sniper_custom_headshot"
-                "Level"     "1"
+                "Ability"   "sniper_headshot"
+                "Level"     "2"
             }
         }
     }
 }
+
 
 "ability_upgrade_sniper_3"
 {
@@ -99,11 +148,54 @@
 
             "AddAbility1"
             {
-                "Ability"   "sniper_assassinate"
-                "Level"     "3"
+                "Ability"   "ability_sniper_long_range"
+                "Level"     "1"
             }
         }
     }
+}
+
+"ability_sniper_long_range"
+{
+    "BaseClass"                     "ability_datadriven"
+    "AbilityTextureName"            "sniper_assassinate"
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"  
+
+    "Modifiers"
+    {
+        "range_buff"
+        {
+            "Passive"            "1"            
+            "IsBuff"             "1"
+            
+            "Properties"
+            {
+                "MODIFIER_PROPERTY_ATTACK_RANGE_BONUS"  "%range_bonus"     
+                "MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "%attackspeed_reduction" 
+                "MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE"  "%damage_bonus"
+            }
+                   
+        }
+    }  
+
+    "AbilitySpecial"
+      {
+          "01"
+          {
+              "var_type"            "FIELD_INTEGER"
+              "range_bonus"            "2000"
+          }
+          "02"
+          {
+              "var_type"            "FIELD_FLOAT"
+              "attackspeed_reduction" "-70"
+          }
+          "03"
+          {
+              "var_type"            "FIELD_FLOAT"
+              "damage_bonus"        "980"
+          }
+      }  
 }
 
 "ability_upgrade_sniper_4"
@@ -215,42 +307,5 @@
     }
 }
 
-"ability_sniper_damage_buff"
-{
-    "BaseClass"             "ability_datadriven"
-    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"  
-    "AbilityTextureName"    "phantom_assassin_coup_de_grace"                       
-    //"IsCastableWhileHidden" "1"      
 
-    "Modifiers"
-    {
-        "BonusDamage"
-        {
-            "Passive"   "1"            
-          
-            "IsPurgable"        "0"
-            "IsBuff"            "1"  
 
-            "Properties"
-            {
-                "MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE" "%damage_bonus"        
-            }  
-        }           
-    }
-
-    "AbilitySpecial"
-    {
-        "01"
-        {
-            "var_type"            "FIELD_INTEGER"
-            "damage_bonus"            "10"
-        }        
-    }
-}
-
-"ability_sniper_custom_headshot"
-{
-    "BaseClass"                     "ability_datadriven"
-    "AbilityTextureName"            "sniper_headshot"
-    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-}
