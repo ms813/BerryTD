@@ -247,11 +247,7 @@
 	    //Abilities  
 	    "AbilityLayout"         "6"
 	    "Ability1"              "ability_sell_tower"
-	    "Ability2"              "ability_upgrade_sniper_1"
-	    "Ability3"              "ability_upgrade_sniper_2"
-	    "Ability4"              ""
-	    "Ability5"              ""
-	    "Ability6"              ""
+	    "Ability2"              "ability_upgrade_sniper_1"  
 	
 	
 	    "AttackCapabilities"    "DOTA_UNIT_CAP_RANGED_ATTACK"

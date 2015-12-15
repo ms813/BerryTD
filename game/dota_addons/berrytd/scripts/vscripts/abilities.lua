@@ -47,20 +47,20 @@ function upgradeTower(keys)
 	if keys.AddAbility1 ~= nil and caster.upgradePath[upgrade_number] == "available" then
 		
 		caster:AddAbility(keys.AddAbility1.Ability)
-		ability_to_add = caster:FindAbilityByName(keys.AddAbility1.Ability)
+		local new_ability = caster:FindAbilityByName(keys.AddAbility1.Ability)
 
 		--take a note that we've purchased this number
 		caster.upgradePath[upgrade_number] = "purchased";		
 
 		--upgrade the new ability to the level specified in the ability file
-		ability_to_add:SetLevel(keys.AddAbility1.Level)
+		new_ability:SetLevel(keys.AddAbility1.Level)
 
 		--toggle autocast on if specified in the ability file
 		if keys.AddAbility1.AutoCast ~= nil and keys.AddAbility1.AutoCast == "true" then
-			ability_to_add:ToggleAutoCast()
+			new_ability:ToggleAutoCast()
 		end
 
-		local next_upgrade_number = upgrade_number + 2
+		local next_upgrade_number = upgrade_number + 1
 		if upgrade_number < 5 and caster.upgradePath[next_upgrade_number] == "available" then		
 
 			--get the name of the next upgrade in the tree
@@ -70,31 +70,9 @@ function upgradeTower(keys)
 			caster:AddAbility(next_upgrade_name)
 
 			local next_upgrade = caster:FindAbilityByName(next_upgrade_name)
-			next_upgrade:SetLevel(1)	
+			next_upgrade:SetLevel(1)
 
-			--for upgrades 3 or 4, block 4 & 6 or 3 & 5 respectively
-			
-			if upgrade_number == 3 then
-				caster.upgradePath[4] = "blocked" 
-				caster.upgradePath[6] = "blocked"
-
-				local ability_4 = caster:FindAbilityByName(string.sub(ability_name, 0, -2).."4")
-				if  ability_4 == nil then				
-					caster:AddAbility(string.sub(ability_name, 0, -2).."4")
-					ability_4 = caster:FindAbilityByName(string.sub(ability_name, 0, -2).."4")
-				end
-				ability_4:SetLevel(0)
-			elseif upgrade_number == 4 then
-					caster.upgradePath[3] = "blocked" 
-					caster.upgradePath[5] = "blocked"
-
-					local ability_3 = caster:FindAbilityByName(string.sub(ability_name, 0, -2).."3")
-					if  ability_3 == nil then				
-						caster:AddAbility(string.sub(ability_name, 0, -2).."3")
-						ability_3 = caster:FindAbilityByName(string.sub(ability_name, 0, -2).."3")
-					end
-					ability_3:SetLevel(0)
-			end
+			--put logic here to branch at ability 3/4
 		end				
 
 		--this adds half the upgrade cost to the sell value using the mana regen hack
