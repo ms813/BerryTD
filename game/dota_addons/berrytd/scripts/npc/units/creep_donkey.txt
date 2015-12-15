@@ -19,11 +19,11 @@
     "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_GROUND"
     "MovementSpeed"         "300"
 
-    "StatusHealth"          "10"
+    "StatusHealth"          "65"
     "StatusHealthRegen"     "0"
     "StatusMana"            "0"
     "StatusManaRegen"       "0.0"
-    "ArmorPhysical"         "1"
+    "ArmorPhysical"         "2"
 
     "AttackCapabilities"    "DOTA_UNIT_CAP_NO_ATTACK"
 

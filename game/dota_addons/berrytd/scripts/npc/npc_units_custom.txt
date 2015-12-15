@@ -21,7 +21,7 @@
 	    "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_GROUND"
 	    "MovementSpeed"         "300"
 	
-	    "StatusHealth"          "10"
+	    "StatusHealth"          "75"
 	    "StatusHealthRegen"     "0"
 	    "StatusMana"            "0"
 	    "StatusManaRegen"       "0.0"
@@ -39,7 +39,7 @@
 	    "Model"                 "models/items/courier/mighty_chicken/mighty_chicken.vmdl"
 	    "BaseClass"             "npc_dota_creature"
 	    "Level"                 "1"
-	    "ModelScale"            "1"
+	    "ModelScale"            "2"
 	
 	    "Ability1"              ""
 	    "Ability2"              ""    
@@ -53,9 +53,9 @@
 	    "BountyGoldMax"         "2"
 	
 	    "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_GROUND"
-	    "MovementSpeed"         "200"
+	    "MovementSpeed"         "170"
 	
-	    "StatusHealth"          "100"
+	    "StatusHealth"          "85"
 	    "StatusHealthRegen"     "0"
 	    "StatusMana"            "0"
 	    "StatusManaRegen"       "0.0"
@@ -90,11 +90,11 @@
 	    "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_GROUND"
 	    "MovementSpeed"         "300"
 	
-	    "StatusHealth"          "10"
+	    "StatusHealth"          "65"
 	    "StatusHealthRegen"     "0"
 	    "StatusMana"            "0"
 	    "StatusManaRegen"       "0.0"
-	    "ArmorPhysical"         "1"
+	    "ArmorPhysical"         "2"
 	
 	    "AttackCapabilities"    "DOTA_UNIT_CAP_NO_ATTACK"
 	
@@ -109,9 +109,9 @@
 	    "Model"                 "models/items/courier/faceless_rex/faceless_rex_flying.vmdl"
 	    "BaseClass"             "npc_dota_creature"
 	    "Level"                 "1"
-	    "ModelScale"            "2.8"
+	    "ModelScale"            "4.2"
 	
-	    "Ability1"              ""
+	    "Ability1"              "faceless_void_backtrack"
 	    "Ability2"              ""    
 	
 	    "RingRadius"            "40"
@@ -123,13 +123,13 @@
 	    "BountyGoldMax"         "5"
 	
 	    "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_GROUND"
-	    "MovementSpeed"         "300"
+	    "MovementSpeed"         "200"
 	
-	    "StatusHealth"          "300"
+	    "StatusHealth"          "750"
 	    "StatusHealthRegen"     "1"
 	    "StatusMana"            "0"
 	    "StatusManaRegen"       "0.0"
-	    "ArmorPhysical"         "1"
+	    "ArmorPhysical"         "4"
 	
 	    "AttackCapabilities"    "DOTA_UNIT_CAP_NO_ATTACK"
 	
@@ -160,7 +160,7 @@
 	    "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_GROUND"
 	    "MovementSpeed"         "300"
 	
-	    "StatusHealth"          "10"
+	    "StatusHealth"          "23"
 	    "StatusHealthRegen"     "0"
 	    "StatusMana"            "0"
 	    "StatusManaRegen"       "0.0"
