@@ -22,7 +22,7 @@
 	    "MovementSpeed"         "300"
 	
 	    "StatusHealth"          "10"
-	    "StatusHealthRegen"     "1"
+	    "StatusHealthRegen"     "0"
 	    "StatusMana"            "0"
 	    "StatusManaRegen"       "0.0"
 	    "ArmorPhysical"         "1"
@@ -56,7 +56,7 @@
 	    "MovementSpeed"         "200"
 	
 	    "StatusHealth"          "100"
-	    "StatusHealthRegen"     "1"
+	    "StatusHealthRegen"     "0"
 	    "StatusMana"            "0"
 	    "StatusManaRegen"       "0.0"
 	    "ArmorPhysical"         "5"
@@ -74,7 +74,7 @@
 	    "Model"                 "models/courier/sw_donkey/sw_donkey.vmdl"
 	    "BaseClass"             "npc_dota_creature"
 	    "Level"                 "1"
-	    "ModelScale"            "8.0"
+	    "ModelScale"            "1"
 	
 	    "Ability1"              ""
 	    "Ability2"              ""    
@@ -91,7 +91,7 @@
 	    "MovementSpeed"         "300"
 	
 	    "StatusHealth"          "10"
-	    "StatusHealthRegen"     "1"
+	    "StatusHealthRegen"     "0"
 	    "StatusMana"            "0"
 	    "StatusManaRegen"       "0.0"
 	    "ArmorPhysical"         "1"
@@ -126,7 +126,7 @@
 	    "MovementSpeed"         "300"
 	
 	    "StatusHealth"          "10"
-	    "StatusHealthRegen"     "1"
+	    "StatusHealthRegen"     "0"
 	    "StatusMana"            "0"
 	    "StatusManaRegen"       "0.0"
 	    "ArmorPhysical"         "1"

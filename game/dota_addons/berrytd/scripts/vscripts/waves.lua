@@ -16,4 +16,4 @@ waveTable[1] = Wave("creep_sheep", 10, 100)
 waveTable[2] = Wave("creep_cluckles", 10, 100)
 waveTable[3] = Wave("creep_donkey", 10, 100)
 waveTable[4] = Wave("creep_beaver", 10, 100)
-waveTable[5] = Wave("creep_facerex", 10, 40, 100)
+
