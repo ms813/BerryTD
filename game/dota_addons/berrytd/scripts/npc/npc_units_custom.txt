@@ -387,11 +387,7 @@
 	    //Abilities  
 	    "AbilityLayout"         "6"
 	    "Ability1"              "ability_sell_tower"
-	    "Ability2"              "ability_upgrade_sniper_1"
-	    "Ability3"              "ability_upgrade_sniper_2"
-	    "Ability4"              ""
-	    "Ability5"              ""
-	    "Ability6"              ""
+	    "Ability2"              "ability_upgrade_sniper_1"  
 	
 	
 	    "AttackCapabilities"    "DOTA_UNIT_CAP_RANGED_ATTACK"
@@ -401,10 +397,10 @@
 	    "AttackRate"            "1"
 	    "AttackRange"           "1000"
 	    "AttackAcquisitionRange"    "1200"
-	    "AttackAnimationPoint"  "1"
+	    "AttackAnimationPoint"  "0.17"
 	
 	    "ProjectileModel"       "particles/units/heroes/hero_sniper/sniper_base_attack.vpcf"
-	    "ProjectileSpeed"       "1000"
+	    "ProjectileSpeed"       "3000"
 	
 	    "AttackDamageType"      "DAMAGE_TYPE_ArmorPhysical"
 	
