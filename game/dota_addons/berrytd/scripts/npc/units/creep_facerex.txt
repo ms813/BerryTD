@@ -8,18 +8,18 @@
     "Ability1"              "faceless_void_backtrack"
     "Ability2"              ""    
 
-    "RingRadius"            "40"
+    "RingRadius"            "90"
     "HealthBarOffset"       "170"
     "BoundsHullName"        "DOTA_HULL_SIZE_SMALL"
 
     "BountyXP"              "0"
-    "BountyGoldMin"         "5"
-    "BountyGoldMax"         "5"
+    "BountyGoldMin"         "50"
+    "BountyGoldMax"         "50"
 
     "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_GROUND"
     "MovementSpeed"         "200"
 
-    "StatusHealth"          "750"
+    "StatusHealth"          "770"
     "StatusHealthRegen"     "1"
     "StatusMana"            "0"
     "StatusManaRegen"       "0.0"
