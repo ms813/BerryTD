@@ -1,0 +1,35 @@
+"creep_geodesic"
+   {                                       
+    "Model"                 "models/items/enigma/eidolon/geodesic/geodesic.vmdl"
+    "BaseClass"             "npc_dota_creature"
+    "Level"                 "1"
+    "ModelScale"            "3"
+
+    "Ability1"              "templar_assassin_refraction"
+    "Ability2"              ""    
+
+    "RingRadius"            "60"
+    "HealthBarOffset"       "170"
+    "BoundsHullName"        "DOTA_HULL_SIZE_SMALL"
+
+    "BountyXP"              "0"
+    "BountyGoldMin"         "15"
+    "BountyGoldMax"         "15"
+
+    "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_GROUND"
+    "MovementSpeed"         "300"
+
+    "StatusHealth"          "250"
+    "StatusHealthRegen"     "0"
+    "StatusMana"            "1000"
+    "StatusManaRegen"       "30.0"
+    "ArmorPhysical"         "1"
+
+    "AttackCapabilities"    "DOTA_UNIT_CAP_NO_ATTACK"
+
+    "Creature"
+    {
+        "DisableClumpingBehavior"   "1"
+    }
+ 
+}

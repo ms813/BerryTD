@@ -1,0 +1,35 @@
+"creep_facerex"
+   {                                       
+    "Model"                 "models/items/courier/faceless_rex/faceless_rex_flying.vmdl"
+    "BaseClass"             "npc_dota_creature"
+    "Level"                 "1"
+    "ModelScale"            "4.2"
+
+    "Ability1"              "faceless_void_backtrack"
+    "Ability2"              ""    
+
+    "RingRadius"            "90"
+    "HealthBarOffset"       "170"
+    "BoundsHullName"        "DOTA_HULL_SIZE_SMALL"
+
+    "BountyXP"              "0"
+    "BountyGoldMin"         "50"
+    "BountyGoldMax"         "50"
+
+    "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_GROUND"
+    "MovementSpeed"         "200"
+
+    "StatusHealth"          "770"
+    "StatusHealthRegen"     "1"
+    "StatusMana"            "0"
+    "StatusManaRegen"       "0.0"
+    "ArmorPhysical"         "4"
+
+    "AttackCapabilities"    "DOTA_UNIT_CAP_NO_ATTACK"
+
+    "Creature"
+    {
+        "DisableClumpingBehavior"   "1"
+    }
+}
+ 

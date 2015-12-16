@@ -1,0 +1,35 @@
+"creep_crab"
+   {                                       
+    "Model"                 "models/courier/smeevil_crab/smeevil_crab.vmdl"
+    "BaseClass"             "npc_dota_creature"
+    "Level"                 "1"
+    "ModelScale"            "2"
+
+    "Ability1"              "tidehunter_kraken_shell"
+    "Ability2"              ""    
+
+    "RingRadius"            "50"
+    "HealthBarOffset"       "170"
+    "BoundsHullName"        "DOTA_HULL_SIZE_SMALL"
+
+    "BountyXP"              "0"
+    "BountyGoldMin"         "8"
+    "BountyGoldMax"         "8"
+
+    "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_GROUND"
+    "MovementSpeed"         "300"
+
+    "StatusHealth"          "170"
+    "StatusHealthRegen"     "0"
+    "StatusMana"            "0"
+    "StatusManaRegen"       "0.0"
+    "ArmorPhysical"         "2"
+
+    "AttackCapabilities"    "DOTA_UNIT_CAP_NO_ATTACK"
+
+    "Creature"
+    {
+        "DisableClumpingBehavior"   "1"
+    }
+ 
+}

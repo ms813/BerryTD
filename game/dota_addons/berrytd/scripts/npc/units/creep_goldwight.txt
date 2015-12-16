@@ -1,0 +1,35 @@
+"creep_goldwight"
+   {                                       
+    "Model"                 "models/items/undying/idol_of_ruination/ruin_wight_minion_torso_gold.vmdl"
+    "BaseClass"             "npc_dota_creature"
+    "Level"                 "1"
+    "ModelScale"            "1"
+
+    "Ability1"              ""
+    "Ability2"              ""    
+
+    "RingRadius"            "40"
+    "HealthBarOffset"       "170"
+    "BoundsHullName"        "DOTA_HULL_SIZE_SMALL"
+
+    "BountyXP"              "0"
+    "BountyGoldMin"         "6"
+    "BountyGoldMax"         "6"
+
+    "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_GROUND"
+    "MovementSpeed"         "370"
+
+    "StatusHealth"          "62"
+    "StatusHealthRegen"     "0"
+    "StatusMana"            "0"
+    "StatusManaRegen"       "0.0"
+    "ArmorPhysical"         "1"
+
+    "AttackCapabilities"    "DOTA_UNIT_CAP_NO_ATTACK"
+
+    "Creature"
+    {
+        "DisableClumpingBehavior"   "1"
+    }
+ 
+}

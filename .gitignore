@@ -1,6 +1,6 @@
 _CommonRedist
 bin
-D2ModKit
+D2ModKit*
 dota
 EmptySteamDepot
 platform
@@ -18,4 +18,10 @@ steam_appid.txt
 !game/dota_addons/berrytd
 
 *tools_thumbnail_cache*
+
 *tools_asset_info.bin
+
+/game/dota_addons/berrytd/panorama/*
+/game/dota_addons/berrytd/materials/*
+
+*.vpk
