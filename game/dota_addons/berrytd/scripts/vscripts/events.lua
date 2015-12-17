@@ -241,10 +241,7 @@ function GameMode:OnEntityKilled( keys )
 
     local damagebits = keys.damagebits -- This might always be 0 and therefore useless
 
-    -- Put code here to handle when an entity gets killed
-
-    
-    
+    -- Put code here to handle when an entity gets killed    
 
     --if killed unit has an owner then someone is selling a tower
     if killedUnit:GetOwner() ~= nil then 
@@ -271,6 +268,25 @@ function GameMode:OnEntityKilled( keys )
         self.numCreepsAlive = self.numCreepsAlive - 1
         print("Creep killed," , self.numCreepsAlive , "remaining")  
     end
+
+    if self.numCreepsAlive == 0 then  
+    --no creeps are on the map, so lets give the reward for completing the wave
+      for i, player in pairs(self.players) do
+        player:ModifyGold(waveTable[self.currentWave].bonusEndGold, true, DOTA_ModifyGold_Unspecified)
+      end
+
+    --increment the wave number by one
+    self.currentWave = self.currentWave + 1                 
+    print("Starting wave", self.currentWave)
+
+    --check we are not on the last wave
+    if self.currentWave <= self.maxWave then        
+      --spawn the nextwave
+      self:SpawnWave(self.currentWave)                
+    else
+      GameRules:SetGameWinner( DOTA_TEAM_GOODGUYS )
+    end
+  end  
 end
 
 

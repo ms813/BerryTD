@@ -105,6 +105,8 @@ end
 
   lvlUpUnitAbilities(hero)
   hero:SetAbilityPoints(0)
+
+  table.insert(self.players, hero)
 end
 
 --[[
@@ -116,12 +118,14 @@ end
   	DebugPrint("[BAREBONES] The game has officially begun")
   	GameMode:PopulateWayPoints()
 
-   local repeat_interval = 30 -- Rerun this timer every *repeat_interval* game-time seconds
-   local start_after = 5 -- Start this timer *start_after* game-time seconds later
+   local repeat_interval = 30 -- Rerun this timer every *repeat_interval* game-time seconds   
 
-   Timers:CreateTimer(start_after, function()
+   Timers:CreateTimer(5, function()
    	return GameMode:TimedTick()
    	end)
+
+   self.currentWave = 1
+   GameMode:SpawnWave(self.currentWave)
 end
 
 -- This function initializes the game mode and is called before anyone loads into the game
@@ -142,7 +146,8 @@ function GameMode:InitGameMode()
   self.numCreepsSpawned = 0
   self.currentWave = 0
   self.maxWave = #waveTable;
-  self.currentLives = 50
+  self.currentLives = 50 
+  self.players = {}
 
   DebugPrint('[BAREBONES] Done loading Barebones gamemode!\n\n')
 end
@@ -183,42 +188,35 @@ function GameMode:SpawnWave(waveIndex)
 
     --waveTable is defined in waves.lua
 
-    for i = 0, waveTable[waveIndex].numTotal - 1 do
-    	local creature = CreateUnitByName(waveTable[waveIndex].creep, SpawnLocation:GetAbsOrigin() + RandomVector(RandomFloat(200,200)), true, nil, nil, DOTA_TEAM_NEUTRALS)
-    	creature:SetHullRadius(8)       
-    	creature.currentWaypoint = 0
+    local waveGroupCount = 0
+    local totalCreeps = waveTable[waveIndex].numTotal
+    local groupSize = waveTable[waveIndex].spawnGroupSize
 
-    	creature:SetBaseMaxHealth(creature:GetBaseMaxHealth())
-    	creature:SetHealth(creature:GetMaxHealth())
-    	creature:SetPhysicalArmorBaseValue(creature:GetPhysicalArmorBaseValue())
+    Timers:CreateTimer(function()
+          for i = 0, groupSize - 1 do
+              local creep = CreateUnitByName(waveTable[waveIndex].creep, SpawnLocation:GetAbsOrigin() + RandomVector(RandomFloat(200,200)), true, nil, nil, DOTA_TEAM_NEUTRALS)
+              self.numCreepsAlive = self.numCreepsAlive + 1
+              self.numCreepsSpawned = self.numCreepsSpawned + 1
 
-    	creature:SetMaximumGoldBounty(creature:GetMaximumGoldBounty())
-    	creature:SetMinimumGoldBounty(creature:GetMinimumGoldBounty())
+              local waypoint = Entities:FindByName(nil, "creep_waypoint_0")    
 
-    	self.numCreepsAlive = self.numCreepsAlive + 1
-    	self.numCreepsSpawned = self.numCreepsSpawned + 1
+              creep:SetInitialGoalEntity(waypoint) 
+          end
 
-        local waypoint = Entities:FindByName(nil, "creep_waypoint_0")    
+          waveGroupCount = waveGroupCount + 1
 
-    	creature:SetInitialGoalEntity(waypoint)        
-
-    end	
+          if (waveGroupCount * groupSize) >= totalCreeps then             
+              return nil
+          else
+              return waveTable[waveIndex].spawnGroupInterval 
+          end     
+        end   
+    )
 
 end
 
 function GameMode:TimedTick()
-	--print("timed tick, current wave:",self.currentWave, ", numCreepsSpawned:", self.numCreepsSpawned, ", numCreepsAlive:" , self.numCreepsAlive)
-
-	if self.numCreepsAlive == 0 then	
-		self.currentWave = self.currentWave + 1									
-		print("Starting wave", self.currentWave)
-
-		if self.currentWave <= self.maxWave then				
-			self:SpawnWave(self.currentWave)								
-		else
-			GameRules:SetGameWinner( DOTA_TEAM_GOODGUYS )
-		end
-	end
+	print("timed tick, current wave:",self.currentWave, ", numCreepsSpawned:", self.numCreepsSpawned, ", numCreepsAlive:" , self.numCreepsAlive)	
 
     local unitsAtEnd = GameMode:checkCreepsReachedEnd()
 
@@ -226,7 +224,7 @@ function GameMode:TimedTick()
         unit:Kill(nil, unit)
     end
 	
-	return 1
+	return 0.5
 end
 
 function GameMode:checkCreepsReachedEnd()
