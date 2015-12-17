@@ -25,7 +25,7 @@
     "StatusManaRegen"       "0.0"
     "ArmorPhysical"         "2"
 
-    "AttackCapabilities"    "DOTA_UNIT_CAP_NO_ATTACK"
+    "AttackCapabilities"    "DOTA_UNIT_CAP_NO_ATTACK"  
 
     "Creature"
     {

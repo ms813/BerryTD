@@ -96,7 +96,7 @@
 	    "StatusManaRegen"       "0.0"
 	    "ArmorPhysical"         "2"
 	
-	    "AttackCapabilities"    "DOTA_UNIT_CAP_NO_ATTACK"
+	    "AttackCapabilities"    "DOTA_UNIT_CAP_NO_ATTACK"  
 	
 	    "Creature"
 	    {
@@ -202,6 +202,8 @@
 	    "ArmorPhysical"         "1"
 	
 	    "AttackCapabilities"    "DOTA_UNIT_CAP_NO_ATTACK"
+	
+	      "vscripts"  "scripts/vscripts/unit_scripts/creeps/ai_geodesic.lua"
 	
 	    "Creature"
 	    {
@@ -369,7 +371,56 @@
 	        //----------------------------------------------------------------
 	        "AttackDesire"        "1.5"   // How much bots want to attack them vs other non-hero things
 	    } 
-	"npc_sniper_tower"
+	"tower_dragon"
+	{
+		"BaseClass"             "npc_dota_creature"
+		"Model"                 "models/props_structures/statue_dragon003.vmdl"
+		"ModelScale"			"1"
+		"SoundSet"              "Hero_Jakiro"
+		"GameSoundsFile"		"soundevents/game_sounds_heroes/game_sounds_jakiro.vsndevts"
+	
+		"HasInventory"          "1"
+	    "ConsideredHero"        "1"
+	    "AutoAttacksByDefault"  "1"
+	    "SelectOnSpawn"         "1"
+	
+		//Abilities  
+	    "AbilityLayout"         "6"
+	    "Ability1"              "ability_sell_tower"
+	    "Ability2"              "ability_upgrade_dragon_1"  
+	
+		"AttackCapabilities"    "DOTA_UNIT_CAP_RANGED_ATTACK"
+	
+		"AttackDamageMin"       "10"
+	    "AttackDamageMax"       "10"
+	    "AttackRate"            "1"
+	    "AttackRange"           "750"
+	    "AttackAcquisitionRange"    "1200"
+	    "AttackAnimationPoint"  "0.1"
+	
+	    "ProjectileModel"		"particles/units/heroes/hero_jakiro/jakiro_base_attack_fire.vpcf"
+	
+	    //same as jakiro's projectile speed
+	    "ProjectileSpeed"		"1100"	
+	
+	    "AttackDamageType"      "DAMAGE_TYPE_MAGICAL"
+	
+	    "BoundsHullName"        "DOTA_HULL_SIZE_HERO"
+	    "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_NONE"
+	
+	    "StatusHealth"          "1000" 
+	
+	    //this is a dirty hack - set this equal to the sell price of the tower
+	    "StatusManaRegen"       "50" 
+	
+	    //I tried using these as hooks to get the sell gold but they arent picked up by ability:GetGoldBountyMax()
+	    "BountyGoldMax"         "50"
+	    "BountyGoldMin"         "50"
+	
+	    "VisionDaytimeRange"    "1000"       
+	    "VisionNighttimeRange"  "750"  
+	}
+	"tower_sniper"
 	{
 	    "BaseClass"             "npc_dota_creature"
 	    "Model"                 "models/heroes/sniper/sniper.vmdl"
@@ -377,18 +428,15 @@
 	    "SoundSet"              "Hero_Sniper"
 	    "GameSoundsFile"        "soundevents/game_sounds_heroes/game_sounds_sniper.vsndevts"
 	
-	
 	    "HasInventory"          "1"
 	    "ConsideredHero"        "1"
 	    "AutoAttacksByDefault"  "1"
 	    "SelectOnSpawn"         "1"
 	
-	
 	    //Abilities  
 	    "AbilityLayout"         "6"
 	    "Ability1"              "ability_sell_tower"
 	    "Ability2"              "ability_upgrade_sniper_1"  
-	
 	
 	    "AttackCapabilities"    "DOTA_UNIT_CAP_RANGED_ATTACK"
 	
@@ -400,9 +448,9 @@
 	    "AttackAnimationPoint"  "0.17"
 	
 	    "ProjectileModel"       "particles/units/heroes/hero_sniper/sniper_base_attack.vpcf"
-	    "ProjectileSpeed"       "3000"
 	
-	    "AttackDamageType"      "DAMAGE_TYPE_ArmorPhysical"
+	    //same as sniper's projectile speed
+	    "ProjectileSpeed"       "3000"
 	
 	    "BoundsHullName"        "DOTA_HULL_SIZE_HERO"
 	

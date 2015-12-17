@@ -216,7 +216,7 @@ function GameMode:SpawnWave(waveIndex)
 end
 
 function GameMode:TimedTick()
-	print("timed tick, current wave:",self.currentWave, ", numCreepsSpawned:", self.numCreepsSpawned, ", numCreepsAlive:" , self.numCreepsAlive)	
+	--print("timed tick, current wave:",self.currentWave, ", numCreepsSpawned:", self.numCreepsSpawned, ", numCreepsAlive:" , self.numCreepsAlive)	
 
     local unitsAtEnd = GameMode:checkCreepsReachedEnd()
 

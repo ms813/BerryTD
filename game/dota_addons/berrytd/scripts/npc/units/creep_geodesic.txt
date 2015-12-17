@@ -27,6 +27,8 @@
 
     "AttackCapabilities"    "DOTA_UNIT_CAP_NO_ATTACK"
 
+      "vscripts"  "scripts/vscripts/unit_scripts/creeps/ai_geodesic.lua"
+
     "Creature"
     {
         "DisableClumpingBehavior"   "1"
