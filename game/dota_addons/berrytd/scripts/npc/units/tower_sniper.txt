@@ -1,4 +1,4 @@
-"npc_sniper_tower"
+"tower_sniper"
 {
     "BaseClass"             "npc_dota_creature"
     "Model"                 "models/heroes/sniper/sniper.vmdl"
@@ -6,18 +6,15 @@
     "SoundSet"              "Hero_Sniper"
     "GameSoundsFile"        "soundevents/game_sounds_heroes/game_sounds_sniper.vsndevts"
 
-
     "HasInventory"          "1"
     "ConsideredHero"        "1"
     "AutoAttacksByDefault"  "1"
     "SelectOnSpawn"         "1"
 
-
     //Abilities  
     "AbilityLayout"         "6"
     "Ability1"              "ability_sell_tower"
     "Ability2"              "ability_upgrade_sniper_1"  
-
 
     "AttackCapabilities"    "DOTA_UNIT_CAP_RANGED_ATTACK"
 
@@ -29,9 +26,9 @@
     "AttackAnimationPoint"  "0.17"
 
     "ProjectileModel"       "particles/units/heroes/hero_sniper/sniper_base_attack.vpcf"
-    "ProjectileSpeed"       "3000"
 
-    "AttackDamageType"      "DAMAGE_TYPE_ArmorPhysical"
+    //same as sniper's projectile speed
+    "ProjectileSpeed"       "3000"
 
     "BoundsHullName"        "DOTA_HULL_SIZE_HERO"
 

@@ -1,11 +1,11 @@
-"ability_spawn_sniper_tower"
+"ability_spawn_dragon_tower"
 {
     // General
     //-------------------------------------------------------------------------------------------------------------
     "BaseClass"             "ability_datadriven"
     "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
     "AbilityType"           "DOTA_ABILITY_TYPE_BASIC"
-    "AbilityTextureName"    "sniper_take_aim"
+    "AbilityTextureName"    "dragon_knight_elder_dragon_form"
 
 
     // Time     
@@ -25,7 +25,7 @@
     {      
         "SpawnUnit"
         {
-            "UnitName"      "tower_sniper"
+            "UnitName"      "tower_dragon"
             "UnitCount"     "1"
             "SpawnRadius"   "0"
             "Target"        "POINT"
@@ -42,7 +42,7 @@
         "02"
         {
             "var_type"            "FIELD_FLOAT"
-            "range"        "1000"
+            "range"        "750"
         }
     }
 }

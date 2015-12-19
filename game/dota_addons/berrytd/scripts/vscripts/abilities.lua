@@ -94,8 +94,10 @@ function upgradeTower(keys)
 			--add the ability to purchase the next upgrade in the path	
 			caster:AddAbility(next_upgrade_name)
 
-			--set the new upgrade to level 1 so that it can actually be clicked on
-			caster:FindAbilityByName(next_upgrade_name):SetLevel(1)
+			--set the new upgrade to level 1 so that it can actually be clicked on			
+			if caster:FindAbilityByName(next_upgrade_name) ~= nil then
+				caster:FindAbilityByName(next_upgrade_name):SetLevel(1)
+			end
 			
 			--display upgrades 3 and 4 at the same time, only let the user pick one
 			if upgrade_number == 2 then
@@ -128,6 +130,7 @@ function GameMode:goToPage(keys)
 
 	if ability_name == "ability_open_page_one" then
 		caster:AddAbility("ability_spawn_sniper_tower")
+		caster:AddAbility("ability_spawn_dragon_tower")
 	elseif ability_name == "ability_open_page_two" then
 
 	elseif ability_name == "ability_open_page_three" then

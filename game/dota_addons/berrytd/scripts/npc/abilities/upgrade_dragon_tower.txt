@@ -1,0 +1,42 @@
+"ability_upgrade_dragon_1"
+{
+    "BaseClass"             "ability_datadriven"
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+    "AbilityType"           "DOTA_ABILITY_TYPE_BASIC"
+    "AbilityTextureName"    "jakiro_liquid_fire"
+
+    "AbilityGoldCost"       "50"
+   
+    "OnSpellStart"
+    {
+
+        "RunScript"
+        {
+            "ScriptFile"    "scripts/vscripts/addon_game_mode.lua"
+            "Function"      "upgradeTower"
+
+
+            "AddAbility1"
+            {
+                "Ability"   "jakiro_liquid_fire"
+                "Level"     "4"
+            }
+        }
+    }
+
+    //this value appears in the tooltip
+    "AbilitySpecial"
+    {
+        "01"
+        {
+            "var_type"  "FIELD_INTEGER"
+            "damage"    "10"
+        }
+
+        "02"
+        {
+            "var_type"            "FIELD_INTEGER"
+            "gold_cost"            "50"
+        } 
+    }
+}
