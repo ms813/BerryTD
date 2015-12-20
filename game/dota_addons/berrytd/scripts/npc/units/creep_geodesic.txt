@@ -2,7 +2,7 @@
    {                                       
     "Model"                 "models/items/enigma/eidolon/geodesic/geodesic.vmdl"
     "BaseClass"             "npc_dota_creature"
-    "Level"                 "1"
+    "Level"                 "6"
     "ModelScale"            "3"
 
     "Ability1"              "templar_assassin_refraction"

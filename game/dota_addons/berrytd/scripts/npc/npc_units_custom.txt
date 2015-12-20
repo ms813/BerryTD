@@ -21,7 +21,7 @@
 	    "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_GROUND"
 	    "MovementSpeed"         "320"
 	
-	    "StatusHealth"          "75"
+	    "StatusHealth"          "100"
 	    "StatusHealthRegen"     "0"
 	    "StatusMana"            "0"
 	    "StatusManaRegen"       "0.0"
@@ -55,13 +55,48 @@
 	    "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_GROUND"
 	    "MovementSpeed"         "170"
 	
-	    "StatusHealth"          "100"
+	    "StatusHealth"          "110"
 	    "StatusHealthRegen"     "0"
 	    "StatusMana"            "0"
 	    "StatusManaRegen"       "0.0"
 	    "ArmorPhysical"         "5"
 	
 	    "AttackCapabilities"    "DOTA_UNIT_CAP_NO_ATTACK"    
+	
+	    "Creature"
+	    {
+	        "DisableClumpingBehavior"   "1"
+	    }
+	 
+	}
+	"creep_constructradiant"
+	   {                                       
+	    "Model"                 "models/items/courier/vaal_the_animated_constructradiant/vaal_the_animated_constructradiant.vmdl"
+	    "BaseClass"             "npc_dota_creature"
+	    "Level"                 "1"
+	    "ModelScale"            "5"
+	
+	    "Ability1"              "shredder_reactive_armor"
+	    "Ability2"              ""    
+	
+	    "RingRadius"            "60"
+	    "HealthBarOffset"       "170"
+	    "BoundsHullName"        "DOTA_HULL_SIZE_SMALL"
+	
+	    "BountyXP"              "0"
+	    "BountyGoldMin"         "1"
+	    "BountyGoldMax"         "1"
+	
+	    "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_GROUND"
+	    "MovementSpeed"         "300"
+	
+	    "StatusHealth"          "600"
+	    "StatusHealthRegen"     "0"
+	    "StatusMana"            "0"
+	    "StatusManaRegen"       "0.0"
+	    "ArmorPhysical"         "5"
+	
+	    "AttackCapabilities"    "DOTA_UNIT_CAP_NO_ATTACK"
 	
 	    "Creature"
 	    {
@@ -90,7 +125,7 @@
 	    "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_GROUND"
 	    "MovementSpeed"         "300"
 	
-	    "StatusHealth"          "170"
+	    "StatusHealth"          "220"
 	    "StatusHealthRegen"     "0"
 	    "StatusMana"            "0"
 	    "StatusManaRegen"       "0.0"
@@ -125,7 +160,7 @@
 	    "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_GROUND"
 	    "MovementSpeed"         "300"
 	
-	    "StatusHealth"          "80"
+	    "StatusHealth"          "100"
 	    "StatusHealthRegen"     "0"
 	    "StatusMana"            "0"
 	    "StatusManaRegen"       "0.0"
@@ -160,7 +195,7 @@
 	    "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_GROUND"
 	    "MovementSpeed"         "200"
 	
-	    "StatusHealth"          "770"
+	    "StatusHealth"          "1000"
 	    "StatusHealthRegen"     "1"
 	    "StatusMana"            "0"
 	    "StatusManaRegen"       "0.0"
@@ -178,7 +213,7 @@
 	   {                                       
 	    "Model"                 "models/items/enigma/eidolon/geodesic/geodesic.vmdl"
 	    "BaseClass"             "npc_dota_creature"
-	    "Level"                 "1"
+	    "Level"                 "6"
 	    "ModelScale"            "3"
 	
 	    "Ability1"              "templar_assassin_refraction"
@@ -232,7 +267,7 @@
 	    "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_GROUND"
 	    "MovementSpeed"         "370"
 	
-	    "StatusHealth"          "62"
+	    "StatusHealth"          "80"
 	    "StatusHealthRegen"     "0"
 	    "StatusMana"            "0"
 	    "StatusManaRegen"       "0.0"
@@ -267,7 +302,7 @@
 	    "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_GROUND"
 	    "MovementSpeed"         "300"
 	
-	    "StatusHealth"          "23"
+	    "StatusHealth"          "30"
 	    "StatusHealthRegen"     "0"
 	    "StatusMana"            "0"
 	    "StatusManaRegen"       "0.0"

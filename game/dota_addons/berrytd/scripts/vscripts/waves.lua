@@ -21,5 +21,5 @@ waveTable[4] = Wave("creep_beaver", 10, 130, 1, 0.5)
 waveTable[5] = Wave("creep_facerex", 2, 140, 1, 0.5)
 waveTable[6] = Wave("creep_goldwight", 25, 150, 1, 0.5)
 waveTable[7] = Wave("creep_geodesic", 5, 150, 1, 0.5)
-waveTable[8] = Wave("creep_crab", 10, 150, 1, 0.5)
-
+waveTable[8] = Wave("creep_crab", 10, 200, 1, 0.5)
+waveTable[9] = Wave("creep_constructradiant", 10, 200, 1, 0.5)

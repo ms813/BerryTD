@@ -1,34 +1,35 @@
-"creep_beaver"
-{                                       
-    "Model"                 "models/items/courier/beaverknight_s2/beaverknight_s2.vmdl"
+"creep_constructradiant"
+   {                                       
+    "Model"                 "models/items/courier/vaal_the_animated_constructradiant/vaal_the_animated_constructradiant.vmdl"
     "BaseClass"             "npc_dota_creature"
     "Level"                 "1"
-    "ModelScale"            "1.0"
+    "ModelScale"            "5"
 
-    "Ability1"              ""
+    "Ability1"              "shredder_reactive_armor"
     "Ability2"              ""    
 
-    "RingRadius"            "40"
+    "RingRadius"            "60"
     "HealthBarOffset"       "170"
     "BoundsHullName"        "DOTA_HULL_SIZE_SMALL"
 
     "BountyXP"              "0"
-    "BountyGoldMin"         "4"
-    "BountyGoldMax"         "4"
+    "BountyGoldMin"         "1"
+    "BountyGoldMax"         "1"
 
     "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_GROUND"
-    "MovementSpeed"         "320"
+    "MovementSpeed"         "300"
 
-    "StatusHealth"          "100"
+    "StatusHealth"          "600"
     "StatusHealthRegen"     "0"
     "StatusMana"            "0"
     "StatusManaRegen"       "0.0"
-    "ArmorPhysical"         "1"
+    "ArmorPhysical"         "5"
 
     "AttackCapabilities"    "DOTA_UNIT_CAP_NO_ATTACK"
 
     "Creature"
     {
         "DisableClumpingBehavior"   "1"
-    } 
+    }
+ 
 }

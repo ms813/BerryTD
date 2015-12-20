@@ -202,7 +202,7 @@
 	    // Cost
 	    //-------------------------------------------------------------------------------------------------------------
 	    "AbilityManaCost"               "0" 
-	    "AbilityGoldCost"               "100"
+	    "AbilityGoldCost"               "40"
 	 
 	    // Special
 	    //-------------------------------------------------------------------------------------------------------------
@@ -600,7 +600,7 @@
 	    "AbilityType"           "DOTA_ABILITY_TYPE_BASIC"
 	    "AbilityTextureName"    "phantom_assassin_coup_de_grace"
 	
-	    "AbilityGoldCost"       "50"
+	    "AbilityGoldCost"       "70"
 	   
 	    "OnSpellStart"
 	    {
@@ -679,7 +679,7 @@
 	    "AbilityType"           "DOTA_ABILITY_TYPE_BASIC"
 	    "AbilityTextureName"    "sniper_headshot"
 	
-	    "AbilityGoldCost"       "50"
+	    "AbilityGoldCost"       "80"
 	
 	    "AbilitySpecial"
 	    {
