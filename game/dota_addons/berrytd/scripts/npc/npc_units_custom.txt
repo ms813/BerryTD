@@ -1,5 +1,40 @@
 "DOTAUnits"
 {
+	"creep_ancestralspirit"
+	   {                                       
+	    "Model"                 "models/heroes/elder_titan/ancestral_spirit.vmdl"
+	    "BaseClass"             "npc_dota_creature"
+	    "Level"                 "1"
+	    "ModelScale"            "3"
+	
+	    "Ability1"              "satyr_hellcaller_unholy_aura"
+	    "Ability2"              ""    
+	
+	    "RingRadius"            "70"
+	    "HealthBarOffset"       "170"
+	    "BoundsHullName"        "DOTA_HULL_SIZE_SMALL"
+	
+	    "BountyXP"              "0"
+	    "BountyGoldMin"         "1"
+	    "BountyGoldMax"         "1"
+	
+	    "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_GROUND"
+	    "MovementSpeed"         "150"
+	
+	    "StatusHealth"          "7000"
+	    "StatusHealthRegen"     "0"
+	    "StatusMana"            "0"
+	    "StatusManaRegen"       "0.0"
+	    "ArmorPhysical"         "5"
+	
+	    "AttackCapabilities"    "DOTA_UNIT_CAP_NO_ATTACK"
+	
+	    "Creature"
+	    {
+	        "DisableClumpingBehavior"   "1"
+	    }
+	 
+	}
 	"creep_beaver"
 	{                                       
 	    "Model"                 "models/items/courier/beaverknight_s2/beaverknight_s2.vmdl"
@@ -21,7 +56,7 @@
 	    "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_GROUND"
 	    "MovementSpeed"         "320"
 	
-	    "StatusHealth"          "100"
+	    "StatusHealth"          "130"
 	    "StatusHealthRegen"     "0"
 	    "StatusMana"            "0"
 	    "StatusManaRegen"       "0.0"
@@ -55,7 +90,7 @@
 	    "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_GROUND"
 	    "MovementSpeed"         "170"
 	
-	    "StatusHealth"          "110"
+	    "StatusHealth"          "100"
 	    "StatusHealthRegen"     "0"
 	    "StatusMana"            "0"
 	    "StatusManaRegen"       "0.0"
@@ -74,7 +109,7 @@
 	    "Model"                 "models/items/courier/vaal_the_animated_constructradiant/vaal_the_animated_constructradiant.vmdl"
 	    "BaseClass"             "npc_dota_creature"
 	    "Level"                 "1"
-	    "ModelScale"            "5"
+	    "ModelScale"            "4"
 	
 	    "Ability1"              "shredder_reactive_armor"
 	    "Ability2"              ""    
@@ -90,11 +125,11 @@
 	    "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_GROUND"
 	    "MovementSpeed"         "300"
 	
-	    "StatusHealth"          "600"
+	    "StatusHealth"          "375"
 	    "StatusHealthRegen"     "0"
 	    "StatusMana"            "0"
 	    "StatusManaRegen"       "0.0"
-	    "ArmorPhysical"         "5"
+	    "ArmorPhysical"         "10"
 	
 	    "AttackCapabilities"    "DOTA_UNIT_CAP_NO_ATTACK"
 	
@@ -125,11 +160,11 @@
 	    "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_GROUND"
 	    "MovementSpeed"         "300"
 	
-	    "StatusHealth"          "220"
+	    "StatusHealth"          "275"
 	    "StatusHealthRegen"     "0"
 	    "StatusMana"            "0"
 	    "StatusManaRegen"       "0.0"
-	    "ArmorPhysical"         "2"
+	    "ArmorPhysical"         "3"
 	
 	    "AttackCapabilities"    "DOTA_UNIT_CAP_NO_ATTACK"  
 	
@@ -160,7 +195,7 @@
 	    "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_GROUND"
 	    "MovementSpeed"         "300"
 	
-	    "StatusHealth"          "100"
+	    "StatusHealth"          "130"
 	    "StatusHealthRegen"     "0"
 	    "StatusMana"            "0"
 	    "StatusManaRegen"       "0.0"
@@ -195,7 +230,7 @@
 	    "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_GROUND"
 	    "MovementSpeed"         "200"
 	
-	    "StatusHealth"          "1000"
+	    "StatusHealth"          "1100"
 	    "StatusHealthRegen"     "1"
 	    "StatusMana"            "0"
 	    "StatusManaRegen"       "0.0"
@@ -230,11 +265,11 @@
 	    "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_GROUND"
 	    "MovementSpeed"         "300"
 	
-	    "StatusHealth"          "250"
+	    "StatusHealth"          "300"
 	    "StatusHealthRegen"     "0"
 	    "StatusMana"            "1000"
 	    "StatusManaRegen"       "30.0"
-	    "ArmorPhysical"         "1"
+	    "ArmorPhysical"         "3"
 	
 	    "AttackCapabilities"    "DOTA_UNIT_CAP_NO_ATTACK"
 	
@@ -267,7 +302,7 @@
 	    "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_GROUND"
 	    "MovementSpeed"         "370"
 	
-	    "StatusHealth"          "80"
+	    "StatusHealth"          "120"
 	    "StatusHealthRegen"     "0"
 	    "StatusMana"            "0"
 	    "StatusManaRegen"       "0.0"
