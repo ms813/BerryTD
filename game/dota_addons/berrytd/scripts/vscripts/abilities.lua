@@ -42,13 +42,13 @@ function upgradeTower(keys)
 
 	--remove the upgrade button
 	caster:RemoveAbility(ability_name)
-	
+
 	--check an upgrade is specified in the ability file and that we haven't already upgraded it
 	if keys.AddAbility1 ~= nil and caster.upgradePath[upgrade_number] == "available" then
 		
 		caster:AddAbility(keys.AddAbility1.Ability)
 		local new_ability = caster:FindAbilityByName(keys.AddAbility1.Ability)
-
+	
 		--take a note that we've purchased this number
 		caster.upgradePath[upgrade_number] = "purchased";	
 
@@ -101,9 +101,11 @@ function upgradeTower(keys)
 			
 			--display upgrades 3 and 4 at the same time, only let the user pick one
 			if upgrade_number == 2 then
-				local lvl4_upgrade = string.sub(ability_name, 0, -2)..(next_upgrade_number+1)
-				caster:AddAbility(lvl4_upgrade)
-				caster:FindAbilityByName(lvl4_upgrade):SetLevel(1)
+				local lvl4_upgrade = string.sub(ability_name, 0, -2)..(next_upgrade_number+1)				
+				if caster:FindAbilityByName(lvl) ~= nil then
+					caster:AddAbility(lvl4_upgrade)
+					caster:FindAbilityByName(lvl4_upgrade):SetLevel(1)
+				end
 			end
 
 
@@ -131,6 +133,7 @@ function GameMode:goToPage(keys)
 	if ability_name == "ability_open_page_one" then
 		caster:AddAbility("ability_spawn_sniper_tower")
 		caster:AddAbility("ability_spawn_dragon_tower")
+		caster:AddAbility("ability_spawn_tackshooter_tower")
 	elseif ability_name == "ability_open_page_two" then
 
 	elseif ability_name == "ability_open_page_three" then

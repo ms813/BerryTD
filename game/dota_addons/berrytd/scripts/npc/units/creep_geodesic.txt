@@ -26,8 +26,8 @@
     "ArmorPhysical"         "1"
 
     "AttackCapabilities"    "DOTA_UNIT_CAP_NO_ATTACK"
-
-      "vscripts"  "scripts/vscripts/unit_scripts/creeps/ai_geodesic.lua"
+      
+    "vscripts"              "scripts/vscripts/unit_scripts/creeps/ai_geodesic.lua"
 
     "Creature"
     {

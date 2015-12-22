@@ -1,11 +1,11 @@
-"ability_spawn_dragon_tower"
+"ability_spawn_tackshooter_tower"
 {
     // General
     //-------------------------------------------------------------------------------------------------------------
     "BaseClass"             "ability_datadriven"
     "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
     "AbilityType"           "DOTA_ABILITY_TYPE_BASIC"
-    "AbilityTextureName"    "dragon_knight_elder_dragon_form"
+    "AbilityTextureName"    "shredder_chakram"
 
 
     // Time     
@@ -20,13 +20,12 @@
     // Special
     //-------------------------------------------------------------------------------------------------------------
 
-    "vscripts"              "scripts/vscripts/unit_scripts/towers/ai_dragon.lua"
 
     "OnSpellStart"
     {      
         "SpawnUnit"
         {
-            "UnitName"      "tower_dragon"
+            "UnitName"      "tower_tackshooter"
             "UnitCount"     "1"
             "SpawnRadius"   "0"
             "Target"        "POINT"
@@ -43,7 +42,7 @@
         "02"
         {
             "var_type"            "FIELD_FLOAT"
-            "range"        "750"
+            "range"        "1000"
         }
     }
 }

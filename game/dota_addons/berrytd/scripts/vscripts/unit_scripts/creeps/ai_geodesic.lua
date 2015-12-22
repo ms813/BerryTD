@@ -5,6 +5,7 @@ function Spawn(entityKeyValues)
 end
 
 function GeodesicThink(creep)
+	--stop the timer if the creep dies
 	if creep:IsNull() or not creep:IsAlive() then
 		return nil
 	end

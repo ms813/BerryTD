@@ -158,6 +158,7 @@
 	    // Special
 	    //-------------------------------------------------------------------------------------------------------------
 	
+	    "vscripts"              "scripts/vscripts/unit_scripts/towers/ai_dragon.lua"
 	
 	    "OnSpellStart"
 	    {      
@@ -213,6 +214,55 @@
 	        "SpawnUnit"
 	        {
 	            "UnitName"      "tower_sniper"
+	            "UnitCount"     "1"
+	            "SpawnRadius"   "0"
+	            "Target"        "POINT"
+	        }
+	    }
+	
+	    "AbilitySpecial"
+	    {
+	        "01"
+	        {
+	            "var_type"            "FIELD_INTEGER"
+	            "damage"            "10"
+	        }
+	        "02"
+	        {
+	            "var_type"            "FIELD_FLOAT"
+	            "range"        "1000"
+	        }
+	    }
+	}
+	
+	"ability_spawn_tackshooter_tower"
+	{
+	    // General
+	    //-------------------------------------------------------------------------------------------------------------
+	    "BaseClass"             "ability_datadriven"
+	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+	    "AbilityType"           "DOTA_ABILITY_TYPE_BASIC"
+	    "AbilityTextureName"    "shredder_chakram"
+	
+	
+	    // Time     
+	    //-------------------------------------------------------------------------------------------------------------
+	    "AbilityCooldown"               "2.0"
+	
+	    // Cost
+	    //-------------------------------------------------------------------------------------------------------------
+	    "AbilityManaCost"               "0" 
+	    "AbilityGoldCost"               "100"
+	 
+	    // Special
+	    //-------------------------------------------------------------------------------------------------------------
+	
+	
+	    "OnSpellStart"
+	    {      
+	        "SpawnUnit"
+	        {
+	            "UnitName"      "tower_tackshooter"
 	            "UnitCount"     "1"
 	            "SpawnRadius"   "0"
 	            "Target"        "POINT"
@@ -985,4 +1035,48 @@
 	
 	
 	
+	"ability_shoot_tacks"
+	{
+	    "BaseClass"                     "ability_datadriven"
+	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+	    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"    
+	    "AbilityTextureName"            "bristleback_quill_spray"
+	
+	    "AbilityCooldown"                "2.0"
+	    "AbilityManaCost"                "0"
+	    "AbilityDamage"                  "%damage"
+	
+	    "OnSpellStart"
+	    {  
+	        "RunScript"
+	        {
+	            "ScriptFile"        "scripts/vscripts/unit_scripts/towers/tack_shooter.lua"
+	            "Function"          "launchTacks"
+	        }
+	    } 
+	
+	    "AbilitySpecial"
+	    {
+	        "01"
+	        {
+	            "var_type"              "FIELD_FLOAT"
+	            "speed"      "900"
+	        }
+	        "02"
+	        {
+	            "var_type"              "FIELD_INTEGER"
+	            "radius"      "100"
+	        }
+	        "03"
+	        {
+	            "var_type"              "FIELD_INTEGER"
+	            "distance"      "750"
+	        }  
+	        "04"
+	        {
+	            "var_type"              "FIELD_INTEGER"
+	            "damage"      "20"
+	        }       
+	    }    
+	}
 }

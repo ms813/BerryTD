@@ -28,9 +28,7 @@
     "ProjectileModel"		"particles/units/heroes/hero_jakiro/jakiro_base_attack_fire.vpcf"
 
     //same as jakiro's projectile speed
-    "ProjectileSpeed"		"1100"	
-
-    "AttackDamageType"      "DAMAGE_TYPE_MAGICAL"
+    "ProjectileSpeed"		"1100"	  
 
     "BoundsHullName"        "DOTA_HULL_SIZE_HERO"
     "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_NONE"
@@ -46,4 +44,6 @@
 
     "VisionDaytimeRange"    "1000"       
     "VisionNighttimeRange"  "750"  
+
+    "vscripts"              "scripts/vscripts/unit_scripts/towers/ai_dragon.lua"
 }

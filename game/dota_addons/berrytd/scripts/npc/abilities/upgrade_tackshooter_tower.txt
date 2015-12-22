@@ -1,0 +1,44 @@
+"ability_shoot_tacks"
+{
+    "BaseClass"                     "ability_datadriven"
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"    
+    "AbilityTextureName"            "bristleback_quill_spray"
+
+    "AbilityCooldown"                "2.0"
+    "AbilityManaCost"                "0"
+    "AbilityDamage"                  "%damage"
+
+    "OnSpellStart"
+    {  
+        "RunScript"
+        {
+            "ScriptFile"        "scripts/vscripts/unit_scripts/towers/tack_shooter.lua"
+            "Function"          "launchTacks"
+        }
+    } 
+
+    "AbilitySpecial"
+    {
+        "01"
+        {
+            "var_type"              "FIELD_FLOAT"
+            "speed"      "900"
+        }
+        "02"
+        {
+            "var_type"              "FIELD_INTEGER"
+            "radius"      "100"
+        }
+        "03"
+        {
+            "var_type"              "FIELD_INTEGER"
+            "distance"      "750"
+        }  
+        "04"
+        {
+            "var_type"              "FIELD_INTEGER"
+            "damage"      "20"
+        }       
+    }    
+}
