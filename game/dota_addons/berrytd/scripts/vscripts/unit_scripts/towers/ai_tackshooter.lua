@@ -1,20 +1,16 @@
 function Spawn(entityKeyValues)	
 
-	print("start origin", thisEntity:GetAbsOrigin())
-	local newpos = thisEntity:GetAbsOrigin() + Vector(0,0, 1000)
-	print("newpos", newpos)
+	for i = 0, thisEntity:GetAbilityCount()-1 do
+    	local a = thisEntity:GetAbilityByIndex(i)
 
-	thisEntity:MoveToPosition(newpos)
-
-	print("new abs origin", thisEntity:GetAbsOrigin())
-
-	
+    	if a ~= nil then
+      	a:SetLevel(1)
+  		end
+	end
 
 	Timers:CreateTimer(function()
 			return TackShooterThink(thisEntity)
 		end)
-
-	print("Tackshooter tower AI initiated")
 end
 
 function TackShooterThink(tower)
@@ -42,10 +38,6 @@ function TackShooterThink(tower)
 					FIND_ANY_ORDER,
 					false
 				)
-
-		for k,v in pairs(targets) do
-			print("targets", k, v)
-		end
 
 		if #targets > 0 then
 			shoot_tacks:CastAbility()

@@ -10,17 +10,35 @@ function launchTacks(keys)
 
     local directions = {
         --Vector(x, y, z)
-        Vector( 1,  0,  0),  --E
-        Vector( 1,  1,  0),  --SE
-        Vector( 0,  1,  0),  --S
-        Vector(-1,  1,  0),  --SW
-        Vector(-1,  0,  0),  --W
-        Vector(-1, -1,  0),  --NW
-        Vector( 0, -1,  0),  --N
-        Vector( 1, -1,  0)  --NE
+        Vector( 1,  0,  0):Normalized(),  --E
+        Vector( 1,  1,  0):Normalized(),  --SE
+        Vector( 0,  1,  0):Normalized(),  --S
+        Vector(-1,  1,  0):Normalized(),  --SW
+        Vector(-1,  0,  0):Normalized(),  --W
+        Vector(-1, -1,  0):Normalized(),  --NW
+        Vector( 0, -1,  0):Normalized(),  --N
+        Vector( 1, -1,  0):Normalized()   --NE
     }
 
+    if caster.fire16Ways == true then       
+        local newDirections = {
+        Vector( 2.415,  1,  0):Normalized(),  --SEE
+        Vector( 1,  2.415,  0):Normalized(),  --SSE
+        Vector(-1,  2.415,  0):Normalized(),  --SSW
+        Vector(-2.415,  1,  0):Normalized(),  --SWW
+        Vector(-2.415, -1,  0):Normalized(),  --NWW
+        Vector(-1, -2.415,  0):Normalized(),  --NNW
+        Vector( 1, -2.415,  0):Normalized(),  --NNE
+        Vector( 2.415, -1,  0):Normalized()   --NEE
+        }
+
+        for i = 1, #newDirections do
+            directions[#directions + 1] = newDirections[i]
+        end
+    end
+
     for i = 1, #directions do
+
         local projectile = {
             bGroundLock = true,
             bZCheck = false,
@@ -41,7 +59,7 @@ function launchTacks(keys)
                 return unit:GetUnitName() ~= "npc_dummy_unit" and unit:GetTeamNumber() ~= caster:GetTeamNumber()
             end,
             OnUnitHit = function(self, unit)
-            print("hit unit", unit:GetUnitName())
+            --print("hit unit", unit:GetUnitName())
                 local dmgTable = {
                     victim = unit,
                     attacker = self.Source,
@@ -50,14 +68,28 @@ function launchTacks(keys)
                 }
 
                 ApplyDamage(dmgTable)
+            end,
+
+            OnFinish = function(self, position)
+               self:Destroy() 
             end
         }
 
         Projectiles:CreateProjectile(projectile)
+    end    
+end
+
+function tackshooterUpgrade1(keys)
+    local caster = keys.caster
+    local shoot_tacks = caster:FindAbilityByName("ability_shoot_tacks")
+
+    if shoot_tacks ~= nil then
+        shoot_tacks:SetLevel(2)        
+        print("level", shoot_tacks:GetLevel())
     end
+end
 
-    
-
-    
-     
+function tackshooterUpgrade2(keys)
+    local caster = keys.caster
+    caster.fire16Ways = true   
 end

@@ -156,9 +156,7 @@
 	    "AbilityGoldCost"               "100"
 	 
 	    // Special
-	    //-------------------------------------------------------------------------------------------------------------
-	
-	    "vscripts"              "scripts/vscripts/unit_scripts/towers/ai_dragon.lua"
+	    //------------------------------------------------------------------------------------------------------------
 	
 	    "OnSpellStart"
 	    {      
@@ -700,7 +698,7 @@
 	    {
 	        "sniper_damage_buff"
 	        {
-	            "Passive"   "1"            
+	            "Passive"           "1"            
 	          
 	            "IsPurgable"        "0"
 	            "IsBuff"            "1"  
@@ -1042,9 +1040,11 @@
 	    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"    
 	    "AbilityTextureName"            "bristleback_quill_spray"
 	
-	    "AbilityCooldown"                "2.0"
+	    "AbilityCooldown"                "2 1"
 	    "AbilityManaCost"                "0"
-	    "AbilityDamage"                  "%damage"
+	    "AbilityDamage"                  "%damage" 
+	
+	    "MaxLevel"                       "2"   
 	
 	    "OnSpellStart"
 	    {  
@@ -1059,24 +1059,126 @@
 	    {
 	        "01"
 	        {
-	            "var_type"              "FIELD_FLOAT"
-	            "speed"      "900"
+	            "var_type"    "FIELD_INTEGER"
+	            "speed"       "900"
 	        }
 	        "02"
 	        {
-	            "var_type"              "FIELD_INTEGER"
+	            "var_type"    "FIELD_INTEGER"
 	            "radius"      "100"
 	        }
 	        "03"
 	        {
-	            "var_type"              "FIELD_INTEGER"
-	            "distance"      "750"
+	            "var_type"    "FIELD_INTEGER"
+	            "distance"    "650"
 	        }  
 	        "04"
 	        {
-	            "var_type"              "FIELD_INTEGER"
+	            "var_type"    "FIELD_INTEGER"
 	            "damage"      "20"
 	        }       
 	    }    
+	}
+	
+	"ability_upgrade_tackshooter_1"
+	{
+	    "BaseClass"                     "ability_datadriven"
+	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+	    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"    
+	    "AbilityTextureName"            "holdout_focusfire"
+	
+	    "AbilityGoldCost"       "50"
+	
+	    "OnSpellStart"
+	    {
+	
+	        "RunScript"
+	        {
+	            "ScriptFile"    "scripts/vscripts/addon_game_mode.lua"
+	            "Function"      "upgradeTower"
+	
+	
+	            "AddAbility1"
+	            {
+	                "Ability"   "ability_tackshooter_speed_up"
+	                "Level"     "1"
+	            }
+	        }
+	
+	        "RunScript"
+	        {
+	            "ScriptFile"        "scripts/vscripts/unit_scripts/towers/tack_shooter.lua"
+	            "Function"          "tackshooterUpgrade1"
+	        }
+	         
+	    }
+	}
+	
+	"ability_tackshooter_speed_up"
+	{
+	    "BaseClass"             "ability_datadriven"
+	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"  
+	    "AbilityTextureName"    "holdout_focusfire" 
+	
+	    "Modifiers"
+	    {
+	        "tackshooter_range_up"
+	        {
+	            "Passive"           "1"         
+	            "IsPurgable"        "0"
+	            "IsBuff"            "1"
+	        }               
+	    }      
+	}
+	
+	"ability_upgrade_tackshooter_2"
+	{
+	    "BaseClass"                     "ability_datadriven"
+	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+	    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"    
+	    "AbilityTextureName"            "windrunner_focusfire"
+	
+	    "AbilityGoldCost"       "50"
+	
+	    "OnSpellStart"
+	    {
+	
+	        "RunScript"
+	        {
+	            "ScriptFile"    "scripts/vscripts/addon_game_mode.lua"
+	            "Function"      "upgradeTower"
+	
+	
+	            "AddAbility1"
+	            {
+	                "Ability"   "ability_tackshooter_16_shots"
+	                "Level"     "1"
+	            }
+	        }
+	
+	        "RunScript"
+	        {
+	            "ScriptFile"        "scripts/vscripts/unit_scripts/towers/tack_shooter.lua"
+	            "Function"          "tackshooterUpgrade2"
+	        }
+	         
+	    }
+	}
+	
+	"ability_tackshooter_16_shots"
+	{
+	    "BaseClass"             "ability_datadriven"
+	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"  
+	    "AbilityTextureName"    "windrunner_focusfire" 
+	
+	    "Modifiers"
+	    {
+	        "tackshooter_16_shots"
+	        {
+	            "Passive"           "1"         
+	            "IsPurgable"        "0"
+	            "IsBuff"            "1"
+	        }               
+	    }      
 	}
 }

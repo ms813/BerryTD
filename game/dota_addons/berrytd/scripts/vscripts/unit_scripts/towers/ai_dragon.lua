@@ -2,8 +2,6 @@ function Spawn(entityKeyValues)
 	Timers:CreateTimer(function()
 			return DragonThink(thisEntity)
 		end)
-
-	print("Dragon tower AI initiated")
 end
 
 function DragonThink(tower)

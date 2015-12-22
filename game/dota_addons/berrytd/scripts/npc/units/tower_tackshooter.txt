@@ -6,6 +6,8 @@
 	"SoundSet"              "Hero_Rubick"
 	"GameSoundsFile"		""
 
+    "Level"                 "0"
+
 	"HasInventory"          "1"
     "ConsideredHero"        "1"
     "AutoAttacksByDefault"  "1"

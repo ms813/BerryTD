@@ -29,13 +29,13 @@ function upgradeTower(keys)
 
 	--[[
 		upgrade_number is used to check the upgrade paths by trimming the number off the end of the ability name:
-			e.g. ability_sniper_upgrade_1 
-		towers can upgrade 1 & 2  but only 3 & 5 or 4 & 6
+			e.g. ability_sniper_upgrade_1 		
 	Upgrade paths:
 
-		1 -> 3 -> 5
-		2 -> 4 -> 6
-		]]
+				     ---> 3 ---> 5
+		1 ---> 2 ---|
+				     ---> 4 ---> 6
+		]] 
 
 	--grab the upgrade number from the ability name
 	local upgrade_number = tonumber(string.sub(ability_name, -1))	

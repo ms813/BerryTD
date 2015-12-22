@@ -55,7 +55,7 @@
     {
         "sniper_damage_buff"
         {
-            "Passive"   "1"            
+            "Passive"           "1"            
           
             "IsPurgable"        "0"
             "IsBuff"            "1"  
