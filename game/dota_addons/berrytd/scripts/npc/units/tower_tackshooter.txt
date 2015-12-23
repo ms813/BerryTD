@@ -1,8 +1,8 @@
 "tower_tackshooter"
 {
 	"BaseClass"             "npc_dota_creature"
-	"Model"                 "models/items/rubick/force_staff/fs_puzzle.vmdl"
-	"ModelScale"			"3"
+	"Model"                 "models/heroes/disruptor/disruptor_thunderator.vmdl"
+	"ModelScale"			"8"
 	"SoundSet"              "Hero_Rubick"
 	"GameSoundsFile"		""
 

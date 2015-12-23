@@ -184,6 +184,54 @@
 	    }
 	}
 	
+	"ability_spawn_iceberg_tower"
+	{
+	    // General
+	    //-------------------------------------------------------------------------------------------------------------
+	    "BaseClass"             "ability_datadriven"
+	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+	    "AbilityType"           "DOTA_ABILITY_TYPE_BASIC"
+	    "AbilityTextureName"    "winter_wyvern_cold_embrace"
+	
+	
+	    // Time     
+	    //-------------------------------------------------------------------------------------------------------------
+	    "AbilityCooldown"       "2.0"
+	
+	    // Cost
+	    //-------------------------------------------------------------------------------------------------------------
+	    "AbilityManaCost"       "0" 
+	    "AbilityGoldCost"       "100"
+	 
+	    // Special
+	    //------------------------------------------------------------------------------------------------------------
+	
+	    "OnSpellStart"
+	    {      
+	        "SpawnUnit"
+	        {
+	            "UnitName"      "tower_iceberg"
+	            "UnitCount"     "1"
+	            "SpawnRadius"   "0"
+	            "Target"        "POINT"
+	        }
+	    }
+	
+	    "AbilitySpecial"
+	    {
+	        "01"
+	        {
+	            "var_type"      "FIELD_INTEGER"
+	            "damage"        "10"
+	        }
+	        "02"
+	        {
+	            "var_type"      "FIELD_FLOAT"
+	            "range"         "750"
+	        }
+	    }
+	}
+	
 	"ability_spawn_sniper_tower"
 	{
 	    // General
@@ -641,6 +689,218 @@
 	        } 
 	    }
 	}
+	"ability_iceberg_aoe_slow"
+	{
+	    "BaseClass"                     "ability_datadriven"
+	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+	    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"    
+	    "AbilityTextureName"            "lich_frost_nova"
+	
+	    "AbilityCooldown"                "5 5 3"
+	    "AbilityManaCost"                "0"
+	    "AbilityDamage"                  "%damage" 
+	
+	    "MaxLevel"                       "3"   
+	
+	    "AbilitySpecial"
+	    {
+	        "01"
+	        {
+	            "var_type"   "FIELD_INTEGER"
+	            "slow"       "-25 -25 -50"
+	        }
+	        "02"
+	        {
+	            "var_type"    "FIELD_INTEGER"
+	            "radius"      "500 800 800"
+	        }      
+	        "03"
+	        {
+	            "var_type"    "FIELD_INTEGER"
+	            "damage"      "0"
+	        }  
+	        "04"
+	        {
+	            "var_type"    "FIELD_FLOAT"
+	            "duration"    "2 3 3"
+	        }  
+	
+	    }
+	
+	    "OnSpellStart"
+	    { 
+	       
+	
+	        "FireEffect"
+	        {
+	            "TargetPoint"           "CASTER"
+	            "EffectName"            "particles/units/heroes/hero_crystalmaiden/maiden_crystal_nova.vpcf"
+	            "EffectAttachType"      "world_origin"
+	            "ControlPoints"
+	            {
+	                "01"                "%radius 2 %radius*2"
+	            }
+	        }
+	
+	        "FireSound"
+	        {
+	            "EffectName"            "Hero_Crystal.CrystalNova"
+	            "Target"                "CASTER"
+	        }
+	
+	        "ActOnTargets"
+	        {
+	            "Target"
+	            {
+	                "Center"        "CASTER"
+	                "Radius"        "%radius"
+	                "Teams"         "DOTA_UNIT_TARGET_TEAM_ENEMY" 
+	                "Type"          "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+	            }
+	            
+	            "Action"
+	            {
+	                "Damage"
+	                {
+	                    "Target"    "TARGET"
+	                    "Damage"    "%damage"
+	                    "Type"      "DAMAGE_TYPE_MAGICAL"
+	                }
+	                
+	                "ApplyModifier"
+	                {
+	                    "Target"        "TARGET"
+	                    "ModifierName"  "modifier_iceberg_aoe_slow"
+	                }
+	            }
+	        }
+	    } 
+	
+	    "precache"
+	    {
+	        "soundfile"             "soundevents/game_sounds_heroes/game_sounds_crystalmaiden.vsndevts"
+	        "particle"              "particles/units/heroes/hero_crystalmaiden/maiden_crystal_nova.vpcf"
+	        "particle"              "particles/generic_gameplay/generic_slowed_cold.vpcf"
+	    }      
+	
+	    "Modifiers"
+	    {
+	        "modifier_iceberg_aoe_slow"
+	        {
+	            "Duration"              "%duration"
+	            "EffectName"            "particles/generic_gameplay/generic_slowed_cold.vpcf"
+	            "StatusEffectName"      "particles/status_fx/status_effect_frost_lich.vpcf"
+	            "StatusEffectPriority"  "10"
+	        
+	            "Properties"
+	            {                
+	                "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"  "%slow"
+	            }
+	        }
+	    } 
+	}
+	
+	"ability_upgrade_iceberg_1"
+	{
+	    "BaseClass"                     "ability_datadriven"
+	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+	    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"    
+	    "AbilityTextureName"            "lich_chain_frost"
+	
+	    "AbilityGoldCost"       "50"
+	
+	    "OnSpellStart"
+	    {
+	
+	        "RunScript"
+	        {
+	            "ScriptFile"    "scripts/vscripts/addon_game_mode.lua"
+	            "Function"      "upgradeTower"
+	
+	
+	            "AddAbility1"
+	            {
+	                "Ability"   "ability_iceberg_range_up"
+	                "Level"     "1"
+	            }
+	        }
+	
+	        "RunScript"
+	        {
+	            "ScriptFile"        "scripts/vscripts/unit_scripts/towers/ai_iceberg.lua"
+	            "Function"          "icebergUpgrade1"
+	        }
+	         
+	    }
+	}
+	
+	"ability_iceberg_range_up"
+	{
+	    "BaseClass"             "ability_datadriven"
+	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"  
+	    "AbilityTextureName"    "lich_chain_frost" 
+	
+	    "Modifiers"
+	    {
+	        "tackshooter_range_up"
+	        {
+	            "Passive"           "1"         
+	            "IsPurgable"        "0"
+	            "IsBuff"            "1"
+	        }               
+	    }      
+	}
+	
+	"ability_upgrade_iceberg_2"
+	{
+	    "BaseClass"                     "ability_datadriven"
+	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+	    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"    
+	    "AbilityTextureName"            "crystal_maiden_crystal_nova"
+	
+	    "AbilityGoldCost"       "50"
+	
+	    "OnSpellStart"
+	    {
+	
+	        "RunScript"
+	        {
+	            "ScriptFile"    "scripts/vscripts/addon_game_mode.lua"
+	            "Function"      "upgradeTower"
+	
+	
+	            "AddAbility1"
+	            {
+	                "Ability"   "ability_iceberg_slow_up"
+	                "Level"     "1"
+	            }
+	        }
+	
+	        "RunScript"
+	        {
+	            "ScriptFile"        "scripts/vscripts/unit_scripts/towers/ai_iceberg.lua"
+	            "Function"          "icebergUpgrade2"
+	        }
+	         
+	    }
+	}
+	
+	"ability_iceberg_slow_up"
+	{
+	    "BaseClass"             "ability_datadriven"
+	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"  
+	    "AbilityTextureName"    "crystal_maiden_crystal_nova" 
+	
+	    "Modifiers"
+	    {
+	        "tackshooter_range_up"
+	        {
+	            "Passive"           "1"         
+	            "IsPurgable"        "0"
+	            "IsBuff"            "1"
+	        }               
+	    }      
+	}
 	"ability_upgrade_sniper_1"
 	{
 	    "BaseClass"             "ability_datadriven"
@@ -1050,7 +1310,7 @@
 	    {  
 	        "RunScript"
 	        {
-	            "ScriptFile"        "scripts/vscripts/unit_scripts/towers/tack_shooter.lua"
+	            "ScriptFile"        "scripts/vscripts/unit_scripts/towers/shoot_tacks.lua"
 	            "Function"          "launchTacks"
 	        }
 	    } 
@@ -1107,7 +1367,7 @@
 	
 	        "RunScript"
 	        {
-	            "ScriptFile"        "scripts/vscripts/unit_scripts/towers/tack_shooter.lua"
+	            "ScriptFile"        "scripts/vscripts/unit_scripts/towers/shoot_tacks.lua"
 	            "Function"          "tackshooterUpgrade1"
 	        }
 	         
@@ -1158,7 +1418,7 @@
 	
 	        "RunScript"
 	        {
-	            "ScriptFile"        "scripts/vscripts/unit_scripts/towers/tack_shooter.lua"
+	            "ScriptFile"        "scripts/vscripts/unit_scripts/towers/shoot_tacks.lua"
 	            "Function"          "tackshooterUpgrade2"
 	        }
 	         

@@ -131,10 +131,15 @@ function GameMode:goToPage(keys)
 	caster:AddAbility("ability_return_to_start_page")
 
 	if ability_name == "ability_open_page_one" then
+
 		caster:AddAbility("ability_spawn_sniper_tower")
 		caster:AddAbility("ability_spawn_dragon_tower")
 		caster:AddAbility("ability_spawn_tackshooter_tower")
+		caster:AddAbility("ability_spawn_iceberg_tower")
+
 	elseif ability_name == "ability_open_page_two" then
+
+		
 
 	elseif ability_name == "ability_open_page_three" then
 

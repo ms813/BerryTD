@@ -1,44 +1,45 @@
 "npc_dota_hero_berry"
   {
 
-    "AbilityLayout"     "1"    
-    "override_hero"     "npc_dota_hero_alchemist"
-    "model"             "models/creeps/neutral_creeps/n_creep_furbolg/n_creep_furbolg_disrupter.vmdl"
+    "AbilityLayout"             "1"    
+    "override_hero"             "npc_dota_hero_alchemist"
+    "model"                     "models/creeps/neutral_creeps/n_creep_furbolg/n_creep_furbolg_disrupter.vmdl"
+    "SoundSet"                  "0"
 
-    "SoundSet"          "0"
-    "Ability1"          "ability_open_page_one"
-    "Ability2"          "ability_open_page_two"
-    "Ability3"          "ability_open_page_three"
-    "Ability4"          "ability_open_page_four"
+    "AbilityLayout"             "6"
+    "Ability1"                  "ability_open_page_one"
+    "Ability2"                  "ability_open_page_two"
+    "Ability3"                  "ability_open_page_three"
+    "Ability4"                  "ability_open_page_four"
 
-    "ArmorPhysical"     "0"
-    "MagicalResistance" "0"
+    "ArmorPhysical"             "0"
+    "MagicalResistance"         "0"
 
-    "AttackCapabilities" "DOTA_UNIT_CAP_NO_ATTACK"
-    "AttackDamageMin"    "1"                   
-    "AttackDamageMax"    "1" 
+    "AttackCapabilities"        "DOTA_UNIT_CAP_NO_ATTACK"
+    "AttackDamageMin"           "1"                   
+    "AttackDamageMax"           "1" 
 
-    //"AttributePrimary"      "DOTA_ATTRIBUTE_STRENGTH"
-    "AttributeBaseStrength"   "0"                   // Base strength
-    "AttributeStrengthGain"   "0"                   // Strength bonus per level.
+    //"AttributePrimary"        "DOTA_ATTRIBUTE_STRENGTH"
+    "AttributeBaseStrength"     "0"                   // Base strength
+    "AttributeStrengthGain"     "0"                   // Strength bonus per level.
     "AttributeBaseIntelligence" "0"                   // Base intelligence
     "AttributeIntelligenceGain" "0"                   // Intelligence bonus per level.
-    "AttributeBaseAgility"    "0"                   // Base agility
-    "AttributeAgilityGain"    "0"                   // Agility bonus per level.
+    "AttributeBaseAgility"      "0"                   // Base agility
+    "AttributeAgilityGain"      "0"                   // Agility bonus per level.
 
-    "BountyXP"          "0"                 // Experience earn.
-    "BountyGoldMin"       "0"                   // Gold earned min.
-    "BountyGoldMax"       "0"                   // Gold earned max.
+    "BountyXP"                  "0"                   // Experience earn.
+    "BountyGoldMin"             "0"                   // Gold earned min.
+    "BountyGoldMax"             "0"                   // Gold earned max.
 
-    "MovementCapabilities"    "DOTA_UNIT_CAP_MOVE_GROUND"
-    "MovementSpeed"       "500"                 // Speed.
-    "MovementTurnRate"      "2.0"                 // Turning rate.
+    "MovementCapabilities"      "DOTA_UNIT_CAP_MOVE_GROUND"
+    "MovementSpeed"             "500"                 // Speed.
+    "MovementTurnRate"          "2.0"                 // Turning rate.
 
-    "StatusHealth"        "100"                 // Base health.
-    "StatusHealthRegen"     "0.0"                 // Health regeneration rate.
-    "StatusMana"        "100"                   // Base mana.
-    "StatusManaRegen"     "1.0"                 // Mana regeneration rate.
+    "StatusHealth"              "100"                 // Base health.
+    "StatusHealthRegen"         "0.0"                 // Health regeneration rate.
+    "StatusMana"                "100"                   // Base mana.
+    "StatusManaRegen"           "1.0"                 // Mana regeneration rate.
 
-    "VisionDaytimeRange"    "1800"                  // Range of vision at night time.
-    "VisionNighttimeRange"    "1800"                  // Range of vision at night time.
+    "VisionDaytimeRange"        "1800"                  // Range of vision at night time.
+    "VisionNighttimeRange"      "1800"                  // Range of vision at night time.
   }
