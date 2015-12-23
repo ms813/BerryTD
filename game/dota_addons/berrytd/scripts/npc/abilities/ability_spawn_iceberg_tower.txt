@@ -1,0 +1,48 @@
+"ability_spawn_iceberg_tower"
+{
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "BaseClass"             "ability_datadriven"
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+    "AbilityType"           "DOTA_ABILITY_TYPE_BASIC"
+    "AbilityTextureName"    "winter_wyvern_cold_embrace"
+
+
+    // Time     
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityCooldown"       "2.0"
+
+    // Cost
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityManaCost"       "0" 
+    "AbilityGoldCost"       "100"
+ 
+    // Special
+    //------------------------------------------------------------------------------------------------------------
+
+    "OnSpellStart"
+    {      
+        "SpawnUnit"
+        {
+            "UnitName"      "tower_iceberg"
+            "UnitCount"     "1"
+            "SpawnRadius"   "0"
+            "Target"        "POINT"
+        }
+    }
+
+    "AbilitySpecial"
+    {
+        "01"
+        {
+            "var_type"      "FIELD_INTEGER"
+            "damage"        "10"
+        }
+        "02"
+        {
+            "var_type"      "FIELD_FLOAT"
+            "range"         "750"
+        }
+    }
+}
+
