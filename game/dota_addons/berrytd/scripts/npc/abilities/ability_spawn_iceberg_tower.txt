@@ -6,6 +6,7 @@
     "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
     "AbilityType"           "DOTA_ABILITY_TYPE_BASIC"
     "AbilityTextureName"    "winter_wyvern_cold_embrace"
+    "MaxLevel"              "1"
 
 
     // Time     

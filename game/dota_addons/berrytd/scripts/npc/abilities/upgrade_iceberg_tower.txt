@@ -202,7 +202,7 @@
 
     "Modifiers"
     {
-        "tackshooter_range_up"
+        "tackshooter_slow_up"
         {
             "Passive"           "1"         
             "IsPurgable"        "0"

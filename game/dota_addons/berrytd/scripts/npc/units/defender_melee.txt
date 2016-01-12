@@ -1,0 +1,40 @@
+"defender_melee"
+{                                       
+    "Model"                 "models/creeps/lane_creeps/creep_radiant_melee/radiant_melee.vmdl"
+    "BaseClass"             "npc_dota_creature"
+    "Level"                 "1"
+    "ModelScale"            "1.0"
+
+    "Ability1"              ""
+    "Ability2"              ""    
+
+    "RingRadius"            "40"
+    "HealthBarOffset"       "170"
+    "BoundsHullName"        "DOTA_HULL_SIZE_SMALL"
+
+    "BountyXP"              "0"
+    "BountyGoldMin"         "4"
+    "BountyGoldMax"         "4"
+
+    "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_GROUND"
+    "MovementSpeed"         "320"
+
+    "StatusHealth"          "50"
+    "StatusHealthRegen"     "0"
+    "StatusMana"            "0"
+    "StatusManaRegen"       "0"
+    "ArmorPhysical"         "0"
+
+    "AttackCapabilities"    "DOTA_UNIT_CAP_MELEE_ATTACK"
+    "AttackDamageMin"       "7"
+    "AttackDamageMax"       "4"
+    "AttackRate"            "1"
+    "AttackRange"           "125"
+    "AttackAcquisitionRange"    "300"
+    "AttackAnimationPoint"  "0.1"
+
+    "Creature"
+    {
+        "DisableClumpingBehavior"   "1"
+    } 
+}

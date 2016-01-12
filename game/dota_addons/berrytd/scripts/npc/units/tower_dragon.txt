@@ -15,6 +15,7 @@
     "AbilityLayout"         "6"
     "Ability1"              "ability_sell_tower"
     "Ability2"              "ability_upgrade_dragon_1"  
+    "Ability6"              "tower_immunity"
 
 	"AttackCapabilities"    "DOTA_UNIT_CAP_RANGED_ATTACK"
 

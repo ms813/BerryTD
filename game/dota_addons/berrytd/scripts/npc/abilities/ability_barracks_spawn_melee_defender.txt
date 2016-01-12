@@ -1,0 +1,48 @@
+"ability_barracks_spawn_melee_defender"
+{
+	// General
+    //-------------------------------------------------------------------------------------------------------------
+    "BaseClass"             "ability_datadriven"
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+    "AbilityType"           "DOTA_ABILITY_TYPE_BASIC"
+    "AbilityTextureName"    "holdout_battle_rage"
+    "MaxLevel"              "1"
+
+    // Time     
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityCooldown"		"20.0"
+
+    // Cost
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityManaCost"		"0" 
+    "AbilityGoldCost"		"0"
+ 
+    // Special
+    //-------------------------------------------------------------------------------------------------------------
+
+
+    "OnSpellStart"
+    {      
+        "SpawnUnit"
+        {
+            "UnitName"      "melee_defender"
+            "UnitCount"     "1"
+            "SpawnRadius"   "0"
+            "Target"        "POINT"
+        }
+    }
+
+    "AbilitySpecial"
+    {
+        "01"
+        {
+            "var_type"      "FIELD_INTEGER"
+            "damage"        "5"
+        }
+        "02"
+        {
+            "var_type"      "FIELD_FLOAT"
+            "health"        "100"
+        }
+    }
+}

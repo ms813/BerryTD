@@ -1,5 +1,80 @@
 "DOTAUnits"
 {
+	"barracks_melee"
+	{
+	    "BaseClass"             "npc_dota_creature"
+	    "Model"                 "models/props_structures/good_barracks_ranged002.vmdl"
+	    "ModelScale"            "0.5"  
+	
+	    "Level"                 "1"
+	
+	    "HasInventory"          "1"
+	    "ConsideredHero"        "1"
+	    "AutoAttacksByDefault"  "0"
+	    "SelectOnSpawn"         "1"
+	    "WakesNeutrals"         "0"
+	
+	    //Abilities  
+	    "AbilityLayout"         "6"
+	    "Ability1"              "ability_sell_tower"
+	    "Ability2"              "ability_barracks_spawn_melee_defender"  
+	    //"Ability3"              "ability_upgrade_melee_barracks_1"
+	    "Ability6"              "tower_immunity"   
+	
+	    "AttackCapabilities"    "DOTA_UNIT_CAP_NO_ATTACK"  
+	
+	    "BoundsHullName"        "DOTA_HULL_SIZE_HERO"
+	    "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_NONE"
+	
+	    "StatusHealth"          "1000" 
+	
+	    //this is a dirty hack - set this equal to the sell price of the tower
+	    "StatusManaRegen"       "100" 
+	
+	    //I tried using these as hooks to get the sell gold but they arent picked up by ability:GetGoldBountyMax()
+	    "BountyGoldMax"         "100"
+	    "BountyGoldMin"         "100"
+	
+	    "VisionDaytimeRange"    "1000"       
+	    "VisionNighttimeRange"  "750"  
+	
+	    "vscripts"              "scripts/vscripts/unit_scripts/towers/ai_melee_barracks.lua"
+	}
+	"creep_ancestralspirit"
+	   {                                       
+	    "Model"                 "models/heroes/elder_titan/ancestral_spirit.vmdl"
+	    "BaseClass"             "npc_dota_creature"
+	    "Level"                 "1"
+	    "ModelScale"            "3"
+	
+	    "Ability1"              "satyr_hellcaller_unholy_aura"
+	    "Ability2"              ""    
+	
+	    "RingRadius"            "70"
+	    "HealthBarOffset"       "170"
+	    "BoundsHullName"        "DOTA_HULL_SIZE_SMALL"
+	
+	    "BountyXP"              "0"
+	    "BountyGoldMin"         "1"
+	    "BountyGoldMax"         "1"
+	
+	    "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_GROUND"
+	    "MovementSpeed"         "150"
+	
+	    "StatusHealth"          "7000"
+	    "StatusHealthRegen"     "0"
+	    "StatusMana"            "0"
+	    "StatusManaRegen"       "0.0"
+	    "ArmorPhysical"         "5"
+	
+	    "AttackCapabilities"    "DOTA_UNIT_CAP_NO_ATTACK"
+	
+	    "Creature"
+	    {
+	        "DisableClumpingBehavior"   "1"
+	    }
+	 
+	}
 	"creep_beaver"
 	{                                       
 	    "Model"                 "models/items/courier/beaverknight_s2/beaverknight_s2.vmdl"
@@ -21,7 +96,7 @@
 	    "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_GROUND"
 	    "MovementSpeed"         "320"
 	
-	    "StatusHealth"          "75"
+	    "StatusHealth"          "130"
 	    "StatusHealthRegen"     "0"
 	    "StatusMana"            "0"
 	    "StatusManaRegen"       "0.0"
@@ -69,6 +144,41 @@
 	    }
 	 
 	}
+	"creep_constructradiant"
+	   {                                       
+	    "Model"                 "models/items/courier/vaal_the_animated_constructradiant/vaal_the_animated_constructradiant.vmdl"
+	    "BaseClass"             "npc_dota_creature"
+	    "Level"                 "1"
+	    "ModelScale"            "4"
+	
+	    "Ability1"              "shredder_reactive_armor"
+	    "Ability2"              ""    
+	
+	    "RingRadius"            "60"
+	    "HealthBarOffset"       "170"
+	    "BoundsHullName"        "DOTA_HULL_SIZE_SMALL"
+	
+	    "BountyXP"              "0"
+	    "BountyGoldMin"         "1"
+	    "BountyGoldMax"         "1"
+	
+	    "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_GROUND"
+	    "MovementSpeed"         "300"
+	
+	    "StatusHealth"          "375"
+	    "StatusHealthRegen"     "0"
+	    "StatusMana"            "0"
+	    "StatusManaRegen"       "0.0"
+	    "ArmorPhysical"         "10"
+	
+	    "AttackCapabilities"    "DOTA_UNIT_CAP_NO_ATTACK"
+	
+	    "Creature"
+	    {
+	        "DisableClumpingBehavior"   "1"
+	    }
+	 
+	}
 	"creep_crab"
 	   {                                       
 	    "Model"                 "models/courier/smeevil_crab/smeevil_crab.vmdl"
@@ -90,11 +200,11 @@
 	    "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_GROUND"
 	    "MovementSpeed"         "300"
 	
-	    "StatusHealth"          "170"
+	    "StatusHealth"          "275"
 	    "StatusHealthRegen"     "0"
 	    "StatusMana"            "0"
 	    "StatusManaRegen"       "0.0"
-	    "ArmorPhysical"         "2"
+	    "ArmorPhysical"         "3"
 	
 	    "AttackCapabilities"    "DOTA_UNIT_CAP_NO_ATTACK"  
 	
@@ -125,13 +235,20 @@
 	    "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_GROUND"
 	    "MovementSpeed"         "300"
 	
-	    "StatusHealth"          "80"
+	    "StatusHealth"          "130"
 	    "StatusHealthRegen"     "0"
 	    "StatusMana"            "0"
 	    "StatusManaRegen"       "0.0"
 	    "ArmorPhysical"         "2"
 	
-	    "AttackCapabilities"    "DOTA_UNIT_CAP_NO_ATTACK"
+	    "AttackCapabilities"    "DOTA_UNIT_CAP_MELEE_ATTACK"
+	    "AttackAcquisitionRange"     "125"
+	    "AttackRange"                "125"  
+	    "AttackDamageMin"       "8"
+	    "AttackDamageMax"       "5"
+	    "AttackRate"            "1"    
+	    "AttackAnimationPoint"  "0.1"
+	
 	
 	    "Creature"
 	    {
@@ -160,7 +277,7 @@
 	    "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_GROUND"
 	    "MovementSpeed"         "200"
 	
-	    "StatusHealth"          "770"
+	    "StatusHealth"          "1100"
 	    "StatusHealthRegen"     "1"
 	    "StatusMana"            "0"
 	    "StatusManaRegen"       "0.0"
@@ -178,7 +295,7 @@
 	   {                                       
 	    "Model"                 "models/items/enigma/eidolon/geodesic/geodesic.vmdl"
 	    "BaseClass"             "npc_dota_creature"
-	    "Level"                 "1"
+	    "Level"                 "6"
 	    "ModelScale"            "3"
 	
 	    "Ability1"              "templar_assassin_refraction"
@@ -195,15 +312,17 @@
 	    "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_GROUND"
 	    "MovementSpeed"         "300"
 	
-	    "StatusHealth"          "250"
+	    "StatusHealth"          "300"
 	    "StatusHealthRegen"     "0"
 	    "StatusMana"            "1000"
 	    "StatusManaRegen"       "30.0"
-	    "ArmorPhysical"         "1"
+	    "ArmorPhysical"         "3"
 	
 	    "AttackCapabilities"    "DOTA_UNIT_CAP_NO_ATTACK"
 	      
 	    "vscripts"              "scripts/vscripts/unit_scripts/creeps/ai_geodesic.lua"
+	
+	      "vscripts"  "scripts/vscripts/unit_scripts/creeps/ai_geodesic.lua"
 	
 	    "Creature"
 	    {
@@ -232,7 +351,7 @@
 	    "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_GROUND"
 	    "MovementSpeed"         "370"
 	
-	    "StatusHealth"          "62"
+	    "StatusHealth"          "120"
 	    "StatusHealthRegen"     "0"
 	    "StatusMana"            "0"
 	    "StatusManaRegen"       "0.0"
@@ -267,19 +386,61 @@
 	    "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_GROUND"
 	    "MovementSpeed"         "300"
 	
-	    "StatusHealth"          "23"
+	    "StatusHealth"          "30"
 	    "StatusHealthRegen"     "0"
 	    "StatusMana"            "0"
 	    "StatusManaRegen"       "0.0"
 	    "ArmorPhysical"         "1"
 	
-	    "AttackCapabilities"    "DOTA_UNIT_CAP_NO_ATTACK"
+	    "AttackCapabilities"    "DOTA_UNIT_CAP_MELEE_ATTACK"
+	    "AttackAcquisitionRange"     "125"
+	    "AttackRange"                "125"  
 	
 	    "Creature"
 	    {
 	        "DisableClumpingBehavior"   "1"
 	    }
 	 
+	}
+	"defender_melee"
+	{                                       
+	    "Model"                 "models/creeps/lane_creeps/creep_radiant_melee/radiant_melee.vmdl"
+	    "BaseClass"             "npc_dota_creature"
+	    "Level"                 "1"
+	    "ModelScale"            "1.0"
+	
+	    "Ability1"              ""
+	    "Ability2"              ""    
+	
+	    "RingRadius"            "40"
+	    "HealthBarOffset"       "170"
+	    "BoundsHullName"        "DOTA_HULL_SIZE_SMALL"
+	
+	    "BountyXP"              "0"
+	    "BountyGoldMin"         "4"
+	    "BountyGoldMax"         "4"
+	
+	    "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_GROUND"
+	    "MovementSpeed"         "320"
+	
+	    "StatusHealth"          "50"
+	    "StatusHealthRegen"     "0"
+	    "StatusMana"            "0"
+	    "StatusManaRegen"       "0"
+	    "ArmorPhysical"         "0"
+	
+	    "AttackCapabilities"    "DOTA_UNIT_CAP_MELEE_ATTACK"
+	    "AttackDamageMin"       "7"
+	    "AttackDamageMax"       "4"
+	    "AttackRate"            "1"
+	    "AttackRange"           "125"
+	    "AttackAcquisitionRange"    "300"
+	    "AttackAnimationPoint"  "0.1"
+	
+	    "Creature"
+	    {
+	        "DisableClumpingBehavior"   "1"
+	    } 
 	}
 	"npc_dummy_unit"
 	      {
@@ -388,6 +549,7 @@
 	    "AbilityLayout"         "6"
 	    "Ability1"              "ability_sell_tower"
 	    "Ability2"              "ability_upgrade_dragon_1"  
+	    "Ability6"              "tower_immunity"
 	
 		"AttackCapabilities"    "DOTA_UNIT_CAP_RANGED_ATTACK"
 	
@@ -434,17 +596,16 @@
 	    "ConsideredHero"        "1"
 	    "AutoAttacksByDefault"  "1"
 	    "SelectOnSpawn"         "1"
+	    "WakesNeutrals"         "0"
 	
 		//Abilities  
 	    "AbilityLayout"         "6"
 	    "Ability1"              "ability_sell_tower"
 	    "Ability2"              "ability_iceberg_aoe_slow"  
 	    "Ability3"              "ability_upgrade_iceberg_1"
+	    "Ability6"              "tower_immunity"   
 	
-		"AttackCapabilities"    "Dota_UNIT_CAP_NO_ATTACK"
-	
-	    "AttackAcquisitionRange"    "750"
-	  
+		"AttackCapabilities"    "Dota_UNIT_CAP_NO_ATTACK"  
 	
 	    "BoundsHullName"        "DOTA_HULL_SIZE_HERO"
 	    "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_NONE"

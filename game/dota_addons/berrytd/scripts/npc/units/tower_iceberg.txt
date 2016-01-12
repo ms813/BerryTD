@@ -12,17 +12,16 @@
     "ConsideredHero"        "1"
     "AutoAttacksByDefault"  "1"
     "SelectOnSpawn"         "1"
+    "WakesNeutrals"         "0"
 
 	//Abilities  
     "AbilityLayout"         "6"
     "Ability1"              "ability_sell_tower"
     "Ability2"              "ability_iceberg_aoe_slow"  
     "Ability3"              "ability_upgrade_iceberg_1"
+    "Ability6"              "tower_immunity"   
 
-	"AttackCapabilities"    "Dota_UNIT_CAP_NO_ATTACK"
-
-    "AttackAcquisitionRange"    "750"
-  
+	"AttackCapabilities"    "Dota_UNIT_CAP_NO_ATTACK"  
 
     "BoundsHullName"        "DOTA_HULL_SIZE_HERO"
     "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_NONE"

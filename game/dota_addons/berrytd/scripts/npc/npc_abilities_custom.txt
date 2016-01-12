@@ -1,5 +1,53 @@
 "DOTAAbilities"
 {
+	"ability_barracks_spawn_melee_defender"
+	{
+		// General
+	    //-------------------------------------------------------------------------------------------------------------
+	    "BaseClass"             "ability_datadriven"
+	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+	    "AbilityType"           "DOTA_ABILITY_TYPE_BASIC"
+	    "AbilityTextureName"    "holdout_battle_rage"
+	    "MaxLevel"              "1"
+	
+	    // Time     
+	    //-------------------------------------------------------------------------------------------------------------
+	    "AbilityCooldown"		"20.0"
+	
+	    // Cost
+	    //-------------------------------------------------------------------------------------------------------------
+	    "AbilityManaCost"		"0" 
+	    "AbilityGoldCost"		"0"
+	 
+	    // Special
+	    //-------------------------------------------------------------------------------------------------------------
+	
+	
+	    "OnSpellStart"
+	    {      
+	        "SpawnUnit"
+	        {
+	            "UnitName"      "melee_defender"
+	            "UnitCount"     "1"
+	            "SpawnRadius"   "0"
+	            "Target"        "POINT"
+	        }
+	    }
+	
+	    "AbilitySpecial"
+	    {
+	        "01"
+	        {
+	            "var_type"      "FIELD_INTEGER"
+	            "damage"        "5"
+	        }
+	        "02"
+	        {
+	            "var_type"      "FIELD_FLOAT"
+	            "health"        "100"
+	        }
+	    }
+	}
 	"ability_open_page_one"
 	{
 	    "BaseClass"                 "ability_datadriven"
@@ -144,6 +192,7 @@
 	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 	    "AbilityType"           "DOTA_ABILITY_TYPE_BASIC"
 	    "AbilityTextureName"    "dragon_knight_elder_dragon_form"
+	    "MaxLevel"              "1"
 	
 	
 	    // Time     
@@ -156,7 +205,7 @@
 	    "AbilityGoldCost"               "100"
 	 
 	    // Special
-	    //------------------------------------------------------------------------------------------------------------
+	    //-------------------------------------------------------------------------------------------------------------
 	
 	    "OnSpellStart"
 	    {      
@@ -192,6 +241,7 @@
 	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 	    "AbilityType"           "DOTA_ABILITY_TYPE_BASIC"
 	    "AbilityTextureName"    "winter_wyvern_cold_embrace"
+	    "MaxLevel"              "1"
 	
 	
 	    // Time     
@@ -232,6 +282,56 @@
 	    }
 	}
 	
+	"ability_spawn_melee_barracks"
+	{
+	    // General
+	    //-------------------------------------------------------------------------------------------------------------
+	    "BaseClass"             "ability_datadriven"
+	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+	    "AbilityType"           "DOTA_ABILITY_TYPE_BASIC"
+	    "AbilityTextureName"    "holdout_battle_rage"
+	    "MaxLevel"              "1"
+	    "AbilityCastRange"      "0"
+	
+	    // Time     
+	    //-------------------------------------------------------------------------------------------------------------
+	    "AbilityCooldown"       "1.0"
+	
+	    // Cost
+	    //-------------------------------------------------------------------------------------------------------------
+	    "AbilityManaCost"       "0" 
+	    "AbilityGoldCost"       "200"
+	 
+	    // Special
+	    //-------------------------------------------------------------------------------------------------------------
+	
+	
+	    "OnSpellStart"
+	    {      
+	        "SpawnUnit"
+	        {
+	            "UnitName"      "barracks_melee"
+	            "UnitCount"     "1"
+	            "SpawnRadius"   "0"
+	            "Target"        "POINT"
+	        }
+	    }
+	
+	    "AbilitySpecial"
+	    {
+	        "01"
+	        {
+	            "var_type"      "FIELD_INTEGER"
+	            "damage"        "5"
+	        }
+	        "02"
+	        {
+	            "var_type"      "FIELD_FLOAT"
+	            "health"        "100"
+	        }
+	    }
+	}
+	
 	"ability_spawn_sniper_tower"
 	{
 	    // General
@@ -240,16 +340,16 @@
 	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 	    "AbilityType"           "DOTA_ABILITY_TYPE_BASIC"
 	    "AbilityTextureName"    "sniper_take_aim"
-	
+	    "MaxLevel"              "1"
 	
 	    // Time     
 	    //-------------------------------------------------------------------------------------------------------------
-	    "AbilityCooldown"               "2.0"
+	    "AbilityCooldown"               "1.0"
 	
 	    // Cost
 	    //-------------------------------------------------------------------------------------------------------------
 	    "AbilityManaCost"               "0" 
-	    "AbilityGoldCost"               "100"
+	    "AbilityGoldCost"               "40"
 	 
 	    // Special
 	    //-------------------------------------------------------------------------------------------------------------
@@ -289,7 +389,7 @@
 	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 	    "AbilityType"           "DOTA_ABILITY_TYPE_BASIC"
 	    "AbilityTextureName"    "shredder_chakram"
-	
+	    "MaxLevel"              "1"
 	
 	    // Time     
 	    //-------------------------------------------------------------------------------------------------------------
@@ -330,66 +430,6 @@
 	    }
 	}
 	
-	"barebones_empty1"
-	{
-	    // General
-	    //-------------------------------------------------------------------------------------------------------------
-	    //"ID"              "5343"                            // unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
-	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
-	    "MaxLevel"            "0"
-	    "BaseClass"           "ability_datadriven"
-	    "AbilityTextureName"            "rubick_empty1"
-	}
-	"barebones_empty2"
-	{
-	    // General
-	    //-------------------------------------------------------------------------------------------------------------
-	    //"ID"              "5343"                            // unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
-	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
-	    "MaxLevel"            "0"
-	    "BaseClass"           "ability_datadriven"
-	    "AbilityTextureName"            "rubick_empty1"
-	}
-	"barebones_empty3"
-	{
-	    // General
-	    //-------------------------------------------------------------------------------------------------------------
-	    //"ID"              "5343"                            // unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
-	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
-	    "MaxLevel"            "0"
-	    "BaseClass"           "ability_datadriven"
-	    "AbilityTextureName"            "rubick_empty1"
-	}
-	"barebones_empty4"
-	{
-	    // General
-	    //-------------------------------------------------------------------------------------------------------------
-	    //"ID"              "5343"                            // unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
-	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
-	    "MaxLevel"            "0"
-	    "BaseClass"           "ability_datadriven"
-	    "AbilityTextureName"            "rubick_empty1"
-	}
-	"barebones_empty5"
-	{
-	    // General
-	    //-------------------------------------------------------------------------------------------------------------
-	    //"ID"              "5343"                            // unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
-	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
-	    "MaxLevel"            "0"
-	    "BaseClass"           "ability_datadriven"
-	    "AbilityTextureName"            "rubick_empty1"
-	}
-	"barebones_empty6"
-	{
-	    // General
-	    //-------------------------------------------------------------------------------------------------------------
-	    //"ID"              "5343"                            // unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
-	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
-	    "MaxLevel"            "0"
-	    "BaseClass"           "ability_datadriven"
-	    "AbilityTextureName"            "rubick_empty1"
-	}
 	"containers_lua_targeting"
 	  {
 	    // General
@@ -647,6 +687,30 @@
 	}
 	}
 	}
+	"tower_immunity"
+	{
+		"BaseClass"             "ability_datadriven"
+	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"  
+	    "AbilityTextureName"    "holdout_guardian_angel" 
+	
+		"Modifiers"
+		{
+			"tower_immunity_buff"
+			{
+				"Passive"			"1"
+				"IsBuff"			"1"
+				"IsPurgable"		"0"			
+			
+				"States"
+				{
+					"MODIFIER_STATE_ATTACK_IMMUNE" 	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_MAGIC_IMMUNE"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NO_HEALTH_BAR"	"MODIFIER_STATE_VALUE_ENABLED"
+					//"MODIFIER_STATE_INVULNERABLE"	"MODIFIER_STATE_VALUE_ENABLED"	
+				}			
+			}
+		}
+	}
 	"ability_upgrade_dragon_1"
 	{
 	    "BaseClass"             "ability_datadriven"
@@ -689,6 +753,7 @@
 	        } 
 	    }
 	}
+	
 	"ability_iceberg_aoe_slow"
 	{
 	    "BaseClass"                     "ability_datadriven"
@@ -893,7 +958,7 @@
 	
 	    "Modifiers"
 	    {
-	        "tackshooter_range_up"
+	        "tackshooter_slow_up"
 	        {
 	            "Passive"           "1"         
 	            "IsPurgable"        "0"
@@ -908,7 +973,7 @@
 	    "AbilityType"           "DOTA_ABILITY_TYPE_BASIC"
 	    "AbilityTextureName"    "phantom_assassin_coup_de_grace"
 	
-	    "AbilityGoldCost"       "50"
+	    "AbilityGoldCost"       "70"
 	   
 	    "OnSpellStart"
 	    {
@@ -987,7 +1052,7 @@
 	    "AbilityType"           "DOTA_ABILITY_TYPE_BASIC"
 	    "AbilityTextureName"    "sniper_headshot"
 	
-	    "AbilityGoldCost"       "50"
+	    "AbilityGoldCost"       "80"
 	
 	    "AbilitySpecial"
 	    {

@@ -1,0 +1,40 @@
+"barracks_melee"
+{
+    "BaseClass"             "npc_dota_creature"
+    "Model"                 "models/props_structures/good_barracks_ranged002.vmdl"
+    "ModelScale"            "0.5"  
+
+    "Level"                 "1"
+
+    "HasInventory"          "1"
+    "ConsideredHero"        "1"
+    "AutoAttacksByDefault"  "0"
+    "SelectOnSpawn"         "1"
+    "WakesNeutrals"         "0"
+
+    //Abilities  
+    "AbilityLayout"         "6"
+    "Ability1"              "ability_sell_tower"
+    "Ability2"              "ability_barracks_spawn_melee_defender"  
+    //"Ability3"              "ability_upgrade_melee_barracks_1"
+    "Ability6"              "tower_immunity"   
+
+    "AttackCapabilities"    "DOTA_UNIT_CAP_NO_ATTACK"  
+
+    "BoundsHullName"        "DOTA_HULL_SIZE_HERO"
+    "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_NONE"
+
+    "StatusHealth"          "1000" 
+
+    //this is a dirty hack - set this equal to the sell price of the tower
+    "StatusManaRegen"       "100" 
+
+    //I tried using these as hooks to get the sell gold but they arent picked up by ability:GetGoldBountyMax()
+    "BountyGoldMax"         "100"
+    "BountyGoldMin"         "100"
+
+    "VisionDaytimeRange"    "1000"       
+    "VisionNighttimeRange"  "750"  
+
+    "vscripts"              "scripts/vscripts/unit_scripts/towers/ai_melee_barracks.lua"
+}

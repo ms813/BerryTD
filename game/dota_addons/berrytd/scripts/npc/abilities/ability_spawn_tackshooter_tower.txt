@@ -6,7 +6,7 @@
     "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
     "AbilityType"           "DOTA_ABILITY_TYPE_BASIC"
     "AbilityTextureName"    "shredder_chakram"
-
+    "MaxLevel"              "1"
 
     // Time     
     //-------------------------------------------------------------------------------------------------------------
