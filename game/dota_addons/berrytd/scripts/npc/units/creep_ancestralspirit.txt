@@ -1,0 +1,35 @@
+"creep_ancestralspirit"
+   {                                       
+    "Model"                 "models/heroes/elder_titan/ancestral_spirit.vmdl"
+    "BaseClass"             "npc_dota_creature"
+    "Level"                 "1"
+    "ModelScale"            "3"
+
+    "Ability1"              "satyr_hellcaller_unholy_aura"
+    "Ability2"              ""    
+
+    "RingRadius"            "70"
+    "HealthBarOffset"       "170"
+    "BoundsHullName"        "DOTA_HULL_SIZE_SMALL"
+
+    "BountyXP"              "0"
+    "BountyGoldMin"         "1"
+    "BountyGoldMax"         "1"
+
+    "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_GROUND"
+    "MovementSpeed"         "150"
+
+    "StatusHealth"          "7000"
+    "StatusHealthRegen"     "0"
+    "StatusMana"            "0"
+    "StatusManaRegen"       "0.0"
+    "ArmorPhysical"         "5"
+
+    "AttackCapabilities"    "DOTA_UNIT_CAP_NO_ATTACK"
+
+    "Creature"
+    {
+        "DisableClumpingBehavior"   "1"
+    }
+ 
+}

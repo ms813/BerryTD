@@ -134,9 +134,12 @@ function GameMode:goToPage(keys)
 
 		caster:AddAbility("ability_spawn_sniper_tower")
 		caster:AddAbility("ability_spawn_dragon_tower")
+<<<<<<< HEAD
 		caster:AddAbility("ability_spawn_tackshooter_tower")
 		caster:AddAbility("ability_spawn_iceberg_tower")
 
+=======
+>>>>>>> remotes/origin/new_waves_and_balance
 	elseif ability_name == "ability_open_page_two" then
 
 		
