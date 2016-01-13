@@ -13,6 +13,7 @@
 	    // Time     
 	    //-------------------------------------------------------------------------------------------------------------
 	    "AbilityCooldown"		"20.0"
+	    "AbilityCastRange"		"300"    
 	
 	    // Cost
 	    //-------------------------------------------------------------------------------------------------------------
@@ -25,12 +26,10 @@
 	
 	    "OnSpellStart"
 	    {      
-	        "SpawnUnit"
+	        "RunScript"
 	        {
-	            "UnitName"      "melee_defender"
-	            "UnitCount"     "1"
-	            "SpawnRadius"   "0"
-	            "Target"        "POINT"
+	            "ScriptFile"    "scripts/vscripts/unit_scripts/towers/ai_melee_barracks.lua"
+	            "Function"      "SpawnDefender" 
 	        }
 	    }
 	
@@ -43,9 +42,14 @@
 	        }
 	        "02"
 	        {
-	            "var_type"      "FIELD_FLOAT"
+	            "var_type"      "FIELD_INTEGER"
 	            "health"        "100"
 	        }
+	        "03"
+	        {
+	            "var_type"      "FIELD_INTEGER"
+	            "defender_cap"  "4"
+	        }        
 	    }
 	}
 	"ability_open_page_one"
@@ -291,7 +295,7 @@
 	    "AbilityType"           "DOTA_ABILITY_TYPE_BASIC"
 	    "AbilityTextureName"    "holdout_battle_rage"
 	    "MaxLevel"              "1"
-	    "AbilityCastRange"      "0"
+	    
 	
 	    // Time     
 	    //-------------------------------------------------------------------------------------------------------------

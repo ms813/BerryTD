@@ -8,8 +8,7 @@
 
     "Level"                 "0"
 
-	"HasInventory"          "1"
-    "ConsideredHero"        "1"
+	"HasInventory"          "1"    
     "AutoAttacksByDefault"  "1"
     "SelectOnSpawn"         "1"
 
@@ -18,6 +17,7 @@
     "Ability1"              "ability_sell_tower"
     "Ability2"              "ability_shoot_tacks"  
     "Ability3"              "ability_upgrade_tackshooter_1"
+    "Ability6"              "tower_immunity"
 
 	"AttackCapabilities"    "Dota_UNIT_CAP_NO_ATTACK"
 

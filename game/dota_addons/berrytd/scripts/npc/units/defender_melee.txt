@@ -3,7 +3,8 @@
     "Model"                 "models/creeps/lane_creeps/creep_radiant_melee/radiant_melee.vmdl"
     "BaseClass"             "npc_dota_creature"
     "Level"                 "1"
-    "ModelScale"            "1.0"
+    "ModelScale"            "1.0"    
+    "ConsideredHero"        "1"
 
     "Ability1"              ""
     "Ability2"              ""    

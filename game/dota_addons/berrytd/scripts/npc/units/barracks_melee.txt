@@ -2,12 +2,12 @@
 {
     "BaseClass"             "npc_dota_creature"
     "Model"                 "models/props_structures/good_barracks_ranged002.vmdl"
-    "ModelScale"            "0.5"  
+    "ModelScale"            "0.8"  
+    "UnitLabel"             "barracks"
 
     "Level"                 "1"
 
-    "HasInventory"          "1"
-    "ConsideredHero"        "1"
+    "HasInventory"          "1"    
     "AutoAttacksByDefault"  "0"
     "SelectOnSpawn"         "1"
     "WakesNeutrals"         "0"

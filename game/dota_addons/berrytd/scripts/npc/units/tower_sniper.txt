@@ -6,8 +6,7 @@
     "SoundSet"              "Hero_Sniper"
     "GameSoundsFile"        "soundevents/game_sounds_heroes/game_sounds_sniper.vsndevts"
 
-    "HasInventory"          "1"
-    "ConsideredHero"        "1"
+    "HasInventory"          "1"    
     "AutoAttacksByDefault"  "1"
     "SelectOnSpawn"         "1"
 
@@ -15,6 +14,7 @@
     "AbilityLayout"         "6"
     "Ability1"              "ability_sell_tower"
     "Ability2"              "ability_upgrade_sniper_1"  
+    "Ability6"              "tower_immunity"
 
     "AttackCapabilities"    "DOTA_UNIT_CAP_RANGED_ATTACK"
 

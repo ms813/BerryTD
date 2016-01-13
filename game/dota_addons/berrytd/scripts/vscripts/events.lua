@@ -243,9 +243,15 @@ function GameMode:OnEntityKilled( keys )
 
     -- Put code here to handle when an entity gets killed    
 
-    --if killed unit has an owner then someone is selling a tower
+    --if killed unit has an owner then someone is selling a tower, or a barracks has died
     if killedUnit:GetOwner() ~= nil then 
-        
+      local owner = killedUnit:GetOwner()
+        if owner:GetUnitLabel() == "barracks" then
+          print (owner:GetName())
+          owner.defender_count = owner.defender_count - 1
+
+          print("Defender died", owner.defender_count)
+        end
 
     --if creep reaches the ancient, then suicide and remove a life
     elseif(killedUnit == killerEntity) then

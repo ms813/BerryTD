@@ -8,8 +8,7 @@
 
     "Level"                 "0"
 
-	"HasInventory"          "1"
-    "ConsideredHero"        "1"
+	"HasInventory"          "1"    
     "AutoAttacksByDefault"  "1"
     "SelectOnSpawn"         "1"
     "WakesNeutrals"         "0"

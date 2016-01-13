@@ -6,8 +6,7 @@
 	"SoundSet"              "Hero_Jakiro"
 	"GameSoundsFile"		"soundevents/game_sounds_heroes/game_sounds_jakiro.vsndevts"
 
-	"HasInventory"          "1"
-    "ConsideredHero"        "1"
+	"HasInventory"          "1"    
     "AutoAttacksByDefault"  "1"
     "SelectOnSpawn"         "1"
 

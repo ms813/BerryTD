@@ -4,12 +4,12 @@
 	{
 	    "BaseClass"             "npc_dota_creature"
 	    "Model"                 "models/props_structures/good_barracks_ranged002.vmdl"
-	    "ModelScale"            "0.5"  
+	    "ModelScale"            "0.8"  
+	    "UnitLabel"             "barracks"
 	
 	    "Level"                 "1"
 	
-	    "HasInventory"          "1"
-	    "ConsideredHero"        "1"
+	    "HasInventory"          "1"    
 	    "AutoAttacksByDefault"  "0"
 	    "SelectOnSpawn"         "1"
 	    "WakesNeutrals"         "0"
@@ -407,7 +407,8 @@
 	    "Model"                 "models/creeps/lane_creeps/creep_radiant_melee/radiant_melee.vmdl"
 	    "BaseClass"             "npc_dota_creature"
 	    "Level"                 "1"
-	    "ModelScale"            "1.0"
+	    "ModelScale"            "1.0"    
+	    "ConsideredHero"        "1"
 	
 	    "Ability1"              ""
 	    "Ability2"              ""    
@@ -540,8 +541,7 @@
 		"SoundSet"              "Hero_Jakiro"
 		"GameSoundsFile"		"soundevents/game_sounds_heroes/game_sounds_jakiro.vsndevts"
 	
-		"HasInventory"          "1"
-	    "ConsideredHero"        "1"
+		"HasInventory"          "1"    
 	    "AutoAttacksByDefault"  "1"
 	    "SelectOnSpawn"         "1"
 	
@@ -592,8 +592,7 @@
 	
 	    "Level"                 "0"
 	
-		"HasInventory"          "1"
-	    "ConsideredHero"        "1"
+		"HasInventory"          "1"    
 	    "AutoAttacksByDefault"  "1"
 	    "SelectOnSpawn"         "1"
 	    "WakesNeutrals"         "0"
@@ -632,8 +631,7 @@
 	    "SoundSet"              "Hero_Sniper"
 	    "GameSoundsFile"        "soundevents/game_sounds_heroes/game_sounds_sniper.vsndevts"
 	
-	    "HasInventory"          "1"
-	    "ConsideredHero"        "1"
+	    "HasInventory"          "1"    
 	    "AutoAttacksByDefault"  "1"
 	    "SelectOnSpawn"         "1"
 	
@@ -641,6 +639,7 @@
 	    "AbilityLayout"         "6"
 	    "Ability1"              "ability_sell_tower"
 	    "Ability2"              "ability_upgrade_sniper_1"  
+	    "Ability6"              "tower_immunity"
 	
 	    "AttackCapabilities"    "DOTA_UNIT_CAP_RANGED_ATTACK"
 	
@@ -695,8 +694,7 @@
 	
 	    "Level"                 "0"
 	
-		"HasInventory"          "1"
-	    "ConsideredHero"        "1"
+		"HasInventory"          "1"    
 	    "AutoAttacksByDefault"  "1"
 	    "SelectOnSpawn"         "1"
 	
@@ -705,6 +703,7 @@
 	    "Ability1"              "ability_sell_tower"
 	    "Ability2"              "ability_shoot_tacks"  
 	    "Ability3"              "ability_upgrade_tackshooter_1"
+	    "Ability6"              "tower_immunity"
 	
 		"AttackCapabilities"    "Dota_UNIT_CAP_NO_ATTACK"
 	

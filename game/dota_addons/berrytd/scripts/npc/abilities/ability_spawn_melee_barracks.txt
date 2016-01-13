@@ -7,7 +7,7 @@
     "AbilityType"           "DOTA_ABILITY_TYPE_BASIC"
     "AbilityTextureName"    "holdout_battle_rage"
     "MaxLevel"              "1"
-    "AbilityCastRange"      "0"
+    
 
     // Time     
     //-------------------------------------------------------------------------------------------------------------
