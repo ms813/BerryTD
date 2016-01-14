@@ -1,0 +1,179 @@
+"ability_barracks_spawn_melee_defender"
+{
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "BaseClass"             "ability_datadriven"
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+    "AbilityType"           "DOTA_ABILITY_TYPE_BASIC"
+    "AbilityTextureName"    "holdout_battle_rage"
+    "MaxLevel"              "1"
+
+    // Time     
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityCooldown"       "20.0"
+    "AbilityCastRange"      "300"    
+
+    // Cost
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityManaCost"       "0" 
+    "AbilityGoldCost"       "0"
+ 
+    // Special
+    //-------------------------------------------------------------------------------------------------------------
+
+
+    "OnSpellStart"
+    {      
+        "RunScript"
+        {
+            "ScriptFile"    "scripts/vscripts/unit_scripts/towers/ai_melee_barracks.lua"
+            "Function"      "SpawnDefender" 
+        }
+    }
+
+    "AbilitySpecial"
+    {
+        "01"
+        {
+            "var_type"      "FIELD_INTEGER"
+            "damage"        "5"
+        }
+        "02"
+        {
+            "var_type"      "FIELD_INTEGER"
+            "health"        "100"
+        }
+        "03"
+        {
+            "var_type"      "FIELD_INTEGER"
+            "defender_cap"  "4"
+        }        
+    }
+}
+
+
+"ability_barracks_set_spawn"
+{
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "BaseClass"             "ability_datadriven"    
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"    
+    "AbilityTextureName"    "legion_commander_duel"
+    "MaxLevel"              "1"
+
+    // Time     
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityCooldown"       "1"
+    "AbilityCastRange"      "%cast_range"    
+
+    // Cost
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityManaCost"       "0" 
+    "AbilityGoldCost"       "0"
+ 
+    // Special
+    //-------------------------------------------------------------------------------------------------------------
+
+
+
+    "OnSpellStart"
+    {      
+        "RunScript"
+        {
+            "ScriptFile"    "unit_scripts/towers/ai_melee_barracks.lua"
+            "Function"      "SetDefenderSpawn"
+            "Target"        "POINT"           
+        }        
+    }
+
+    "AbilitySpecial"
+    {
+        "01"
+        {
+            "var_type"      "FIELD_INTEGER"
+            "cast_range"    "500"
+        }             
+    }
+}
+
+
+"ability_upgrade_melee_barracks_1"
+{
+    "BaseClass"                     "ability_datadriven"
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"    
+    "AbilityTextureName"            "dragon_knight_dragon_blood"
+
+    "AbilityGoldCost"       "50"
+
+    "OnSpellStart"
+    {
+
+        "RunScript"
+        {
+            "ScriptFile"    "scripts/vscripts/addon_game_mode.lua"
+            "Function"      "upgradeTower"
+
+
+            "AddAbility1"
+            {
+                "Ability"   "ability_melee_defender_buff_1"
+                "Level"     "1"
+            }
+        }         
+    }
+}
+
+
+"ability_melee_defender_buff_1"
+{
+    "BaseClass"             "ability_datadriven"
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"  
+    "AbilityTextureName"    "dragon_knight_dragon_blood" 
+
+    "Modifiers"
+    {
+        "modifier_melee_defender_buff_1"
+        {
+            "Passive"           "1"         
+            "IsPurgable"        "0"
+            "IsBuff"            "1"
+            "IsHidden"          "0"
+
+            "Properties"
+            {
+                "MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE"  "%dmg_increase"
+                "MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"    "%armour_increase"
+                "MODIFIER_PROPERTY_HEALTH_BONUS"            "%hp_increase"
+                "MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT"   "%regen_increase"
+            }
+        }               
+    }  
+
+    "AbilitySpecial"
+    {
+        "01"
+        {
+            "var_type"          "FIELD_INTEGER"
+            "dmg_increase"      "5"
+        }
+
+        "02"
+        {
+            "var_type"          "FIELD_INTEGER"
+            "hp_increase"       "50"
+        }
+
+        "03"
+        {
+            "var_type"          "FIELD_INTEGER"
+            "armour_increase"   "5"
+        }
+
+        "04"
+        {
+            "var_type"          "FIELD_INTEGER"
+            "regen_increase"    "2"
+        }
+    }   
+}
