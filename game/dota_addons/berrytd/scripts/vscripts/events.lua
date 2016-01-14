@@ -36,6 +36,7 @@ end
 
 -- An entity somewhere has been hurt.  This event fires very often with many units so don't do too many expensive
 -- operations here
+--[[
 function GameMode:OnEntityHurt(keys)
   --DebugPrint("[BAREBONES] Entity Hurt")
   --DebugPrintTable(keys)
@@ -53,6 +54,7 @@ function GameMode:OnEntityHurt(keys)
     end
   end
 end
+]]
 
 -- An item was picked up off the ground
 function GameMode:OnItemPickedUp(keys)
@@ -225,16 +227,15 @@ function GameMode:OnEntityKilled( keys )
 
     -- The Unit that was Killed
     local killedUnit = EntIndexToHScript( keys.entindex_killed )
+    
     -- The Killing entity
     local killerEntity = nil
-
     if keys.entindex_attacker ~= nil then
         killerEntity = EntIndexToHScript( keys.entindex_attacker )
     end
 
     -- The ability/item used to kill, or nil if not killed by an item/ability
     local killerAbility = nil
-
     if keys.entindex_inflictor ~= nil then
         killerAbility = EntIndexToHScript( keys.entindex_inflictor )
     end
@@ -243,37 +244,42 @@ function GameMode:OnEntityKilled( keys )
 
     -- Put code here to handle when an entity gets killed    
 
+
+    local base = Entities:FindByName(nil, "dota_goodguys_fort")
     --if killed unit has an owner then someone is selling a tower, 
-    --or a defender has died
+    --or a defender has died    
     if killedUnit:GetOwner() ~= nil then 
-      local owner = killedUnit:GetOwner()
+        local owner = killedUnit:GetOwner()
 
         --this is used to make sure barracks can only spawn up to their unit cap
         --see ai_melee_barracks.lua for example
         if owner:GetUnitLabel() == "barracks" then          
-          owner.defender_count = owner.defender_count - 1          
+            owner.defender_count = owner.defender_count - 1          
         end
 
-    --if creep reaches the ancient, then suicide and remove a life
-    elseif(killedUnit == killerEntity) then
+    --if creep has been killed by the ancient, remove a life
+    elseif(killerEntity == base) then
 
-        --subtract a life
+        --subtract lives equal to each creatures lifePenalty
         self.currentLives = self.currentLives - waveTable[self.currentWave].lifePenalty
 
         print(killedUnit:GetClassname(), " reached the end!")
-        Notifications:TopToAll({text=killedUnit:GetClassname().. " reached the end! Lifes left: " ..self.currentLives, duration=5.0})   
+        local msg = killedUnit:GetClassname().. " reached the end! Lifes left: " ..self.currentLives
+        Notifications:TopToAll({text=msg, duration=5.0})   
 
+        --if you run out of lives then stop all the timers and make the dire win
         if self.currentLives <= 0 then
-            GameRules:SetGameWinner( DOTA_TEAM_BADGUYS )
             Timers:RemoveTimers(true)
+            GameRules:SetGameWinner( DOTA_TEAM_BADGUYS )            
         end
 
+        --decrement the number of alive creeps
         self.numCreepsAlive = self.numCreepsAlive - 1
 
     --creep was killed by a tower
     else
         self.numCreepsAlive = self.numCreepsAlive - 1
-        print("Creep killed," , self.numCreepsAlive , "remaining")  
+        --print("Creep killed," , self.numCreepsAlive , "remaining")  
     end
 
     if self.numCreepsAlive == 0 then  
@@ -283,14 +289,15 @@ function GameMode:OnEntityKilled( keys )
       end
 
     --increment the wave number by one
-    self.currentWave = self.currentWave + 1                 
-    print("Starting wave", self.currentWave)
+    self.currentWave = self.currentWave + 1             
 
     --check we are not on the last wave
     if self.currentWave <= self.maxWave then        
-      --spawn the nextwave
+      --spawn the next wave
       self:SpawnWave(self.currentWave)                
     else
+        --if we have just finished the last wave then
+        --end the game with a radiant victory
       GameRules:SetGameWinner( DOTA_TEAM_GOODGUYS )
     end
   end  
@@ -378,6 +385,8 @@ end
 function GameMode:OnNPCGoalReached(keys)
   DebugPrint('[BAREBONES] OnNPCGoalReached')
   DebugPrintTable(keys)
+
+  print("[GameMode:OnNPCGoalReached()] NPC reached goal")
 
   local goalEntity = EntIndexToHScript(keys.goal_entindex)
   local nextGoalEntity = EntIndexToHScript(keys.next_goal_entindex)

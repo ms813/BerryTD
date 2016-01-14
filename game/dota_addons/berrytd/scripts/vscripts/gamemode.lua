@@ -183,6 +183,7 @@ end
 
 function GameMode:SpawnWave(waveIndex)
   Notifications:TopToAll({text="Starting wave "..waveIndex, duration=5.0, color="yellow"})   
+  print("Starting wave", self.currentWave)
 	local SpawnLocation = Entities:FindByName(nil, "creep_spawner")
 	self.numCreepsSpawned = 0	
 
@@ -218,21 +219,37 @@ end
 function GameMode:TimedTick()
 	--print("timed tick, current wave:",self.currentWave, ", numCreepsSpawned:", self.numCreepsSpawned, ", numCreepsAlive:" , self.numCreepsAlive)	
 
+    --get a list of the units that have reached the base
     local unitsAtEnd = GameMode:checkCreepsReachedEnd()
-
+    local base = Entities:FindByName(nil, "dota_goodguys_fort");
+    
+    --make the unit die to the ancient
     for _, unit in pairs(unitsAtEnd) do
-        unit:Kill(nil, unit)
+        unit:Kill(nil, base)
+    end
+
+    --attempting to find the currently selected unit
+    local player_id
+    local selections = GameRules.SELECTED_UNITS[player_id]   
+    print("Player selections:")
+    for k, selection in pairs (selections) do
+        print(k, selection:GetClassname(), seletion:GetEntityIndex())
+
+        if IsValidEntity(selection.flag) then
+            SetRenderingEnabled(selection, true)
+        end
     end
 	
 	return 0.5
 end
 
 function GameMode:checkCreepsReachedEnd()
-local endPos = Entities:FindByName(nil, "dota_goodguys_fort"):GetAbsOrigin()
-local radius = 500;
+    --get the position of the radiant ancient
+    local endPos = Entities:FindByName(nil, "dota_goodguys_fort"):GetAbsOrigin()
+    local radius = 500;
 
-
-  local unitsAtEnd = FindUnitsInRadius(DOTA_TEAM_NEUTRALS,
+    --search for units close to the ancient
+    local unitsAtEnd = FindUnitsInRadius(DOTA_TEAM_NEUTRALS,
                     endPos, 
                     nil,
                     radius,
