@@ -5,6 +5,9 @@
     "Level"                 "1"
     "ModelScale"            "1.0"
 
+    //used in events:OnEntityKilled() to adjust lives if creeps leak
+    "UnitLabel"             "creep"
+
     "Ability1"              ""
     "Ability2"              ""    
 

@@ -72,11 +72,16 @@ function SetDefenderSpawn(keys)
 	--and is stored in keys.target_points[]
 	local target_pos = keys.target_points[1]		
 	local ability_cast_range = ability:GetSpecialValueFor("cast_range")
-	local cast_dist = (caster_pos - target_pos):Length();
+	local cast_dist = (caster_pos - target_pos):Length2D();
 
 	--check if the spell is cast within the allowed cast range
-	if cast_dist < ability_cast_range then
+	if cast_dist > ability_cast_range then
 
+		print ("trying to place flag out of range")
+		target_pos = (target_pos - caster_pos):Normalized() * ability_cast_range
+
+
+	else
 		--get rid of the old flag if there is one
 		if not caster.flag == nil and IsValidEntity(caster.flag) then
 			caster.flag:ForceKill(false)
@@ -89,10 +94,6 @@ function SetDefenderSpawn(keys)
 											caster,
 											caster,
 											caster:GetTeamNumber())
-
-
-	else
-		print("Cant place here - outside range")
 	end
 
 end

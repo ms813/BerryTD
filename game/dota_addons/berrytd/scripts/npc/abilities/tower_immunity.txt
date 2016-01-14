@@ -1,3 +1,9 @@
+//The "tower_immunity" ability is used to root towers
+// and make them immune to physical and magic damage
+//This stops towers drawing creep aggro
+
+//It also removes the hp bar of towers
+
 "tower_immunity"
 {
 	"BaseClass"             		"ability_datadriven"
@@ -7,7 +13,7 @@
 
 	"Modifiers"
 	{
-		"modifier_building"
+		"modifier_tower_immunity"
 		{
 			"Passive"			"1"
 			"IsHidden"			"1"
@@ -19,6 +25,7 @@
 				"MODIFIER_STATE_SPECIALLY_DENIABLE" "MODIFIER_STATE_VALUE_ENABLED" // Allows attacking own buildings
 				"MODIFIER_STATE_LOW_ATTACK_PRIORITY" "MODIFIER_STATE_VALUE_ENABLED" // Makes it a secondary target when A-clicking ground
 				"MODIFIER_STATE_NO_UNIT_COLLISION"	"MODIFIER_STATE_VALUE_ENABLED" // GridNav is blocked
+				"MODIFIER_STATE_NO_HEALTH_BAR" 
 			}
 			"Properties"
 			{

@@ -7,6 +7,9 @@
     "GameSoundsFile"        "soundevents/game_sounds_heroes/game_sounds_sniper.vsndevts"
     "ConsideredHero"        "1"
 
+    //used as a hook in Lua scripts
+    "UnitLabel"             "tower"
+
     "HasInventory"          "1"    
     "AutoAttacksByDefault"  "1"
     "SelectOnSpawn"         "1"

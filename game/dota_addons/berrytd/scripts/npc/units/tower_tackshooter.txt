@@ -2,11 +2,15 @@
 {
 	"BaseClass"             "npc_dota_creature"
 	"Model"                 "models/heroes/disruptor/disruptor_thunderator.vmdl"
-	"ModelScale"			"8"
-	"SoundSet"              "Hero_Rubick"
+	"ModelScale"			"8"	
 	"GameSoundsFile"		""
     "ConsideredHero"        "1"
 
+    //used as a hook in Lua scripts
+    "UnitLabel"             "tower"
+
+    //this is 0 because units by default get 2*level ability points
+    //it's abilities are scaled up in ai_tackshooter:Spawn()
     "Level"                 "0"
 
 	"HasInventory"          "1"    
@@ -33,12 +37,13 @@
     //this is a dirty hack - set this equal to the sell price of the tower
     "StatusManaRegen"       "50" 
 
-    //I tried using these as hooks to get the sell gold but they arent picked up by ability:GetGoldBountyMax()
+    //I tried using these as hooks to get the sell gold but they arent 
+    //picked up by ability:GetGoldBountyMax()
     "BountyGoldMax"         "50"
     "BountyGoldMin"         "50"
 
     "VisionDaytimeRange"    "1000"       
     "VisionNighttimeRange"  "750"  
 
-    "vscripts"              "scripts/vscripts/unit_scripts/towers/ai_tackshooter.lua"
+    "vscripts"      "scripts/vscripts/unit_scripts/towers/ai_tackshooter.lua"
 }
