@@ -30,7 +30,7 @@ end
 
 function SpawnDefender(keys)
 	local caster = keys.caster
-	local casterPos = caster:GetAbsOrigin()
+	local caster_pos = caster:GetAbsOrigin()
 	local ability = keys.ability	
 
 	if caster.defender_cap == nil then
@@ -41,7 +41,13 @@ function SpawnDefender(keys)
 	local dmg = ability:GetLevelSpecialValueFor("damage", 1)
 	local health = ability:GetLevelSpecialValueFor("health", 1)
 
-	local spawnPos =  casterPos + RandomVector(100)
+
+	local spawnPos;
+	if not caster.flag == nil and IsValidEntity(caster.flag) then
+		local spawnPos =  caster.flag:GetAbsOrigin() + RandomVector(100)
+	else 
+		spawnPos = caster_pos + (RandomVector(1)*500)
+	end
 
 	if caster.defender_count < caster.defender_cap then
 		local defender = CreateUnitByName("defender_melee",
@@ -54,8 +60,7 @@ function SpawnDefender(keys)
 		defender:SetBaseDamageMin(dmg)
 		defender:SetBaseMaxHealth(health)
 		caster.defender_count = caster.defender_count + 1			
-	end
-	caster.cpr = defender
+	end	
 end
 
 function SetDefenderSpawn(keys)
@@ -63,13 +68,28 @@ function SetDefenderSpawn(keys)
 	local caster_pos = caster:GetAbsOrigin()
 	local ability = keys.ability
 
-	local target_pos = keys.target_points[1]	
-	print (target_pos)
+	--the target vector is passed from the KV "RunScript" {"Target" "POINT"}
+	--and is stored in keys.target_points[]
+	local target_pos = keys.target_points[1]		
 	local ability_cast_range = ability:GetSpecialValueFor("cast_range")
-
 	local cast_dist = (caster_pos - target_pos):Length();
 
+	--check if the spell is cast within the allowed cast range
 	if cast_dist < ability_cast_range then
+
+		--get rid of the old flag if there is one
+		if not caster.flag == nil and IsValidEntity(caster.flag) then
+			caster.flag:ForceKill(false)
+			caster.flag = nil
+		end
+
+		caster.flag = CreateUnitByName("barracks_spawn_flag",
+											target_pos,
+											true,
+											caster,
+											caster,
+											caster:GetTeamNumber())
+
 
 	else
 		print("Cant place here - outside range")

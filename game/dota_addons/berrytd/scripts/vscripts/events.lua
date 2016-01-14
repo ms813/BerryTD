@@ -243,17 +243,15 @@ function GameMode:OnEntityKilled( keys )
 
     -- Put code here to handle when an entity gets killed    
 
-    --if killed unit has an owner then someone is selling a tower, or a barracks has died
+    --if killed unit has an owner then someone is selling a tower, 
+    --or a defender has died
     if killedUnit:GetOwner() ~= nil then 
       local owner = killedUnit:GetOwner()
 
         --this is used to make sure barracks can only spawn up to their unit cap
         --see ai_melee_barracks.lua for example
-        if owner:GetUnitLabel() == "barracks" then
-          
-          owner.defender_count = owner.defender_count - 1
-
-          print("Defender died", owner.defender_count)
+        if owner:GetUnitLabel() == "barracks" then          
+          owner.defender_count = owner.defender_count - 1          
         end
 
     --if creep reaches the ancient, then suicide and remove a life
@@ -262,8 +260,8 @@ function GameMode:OnEntityKilled( keys )
         --subtract a life
         self.currentLives = self.currentLives - waveTable[self.currentWave].lifePenalty
 
-        print(killedUnit:GetName(), " reached the end!")
-        Notifications:TopToAll({text=killedUnit:GetName().. " reached the end! Lifes left: " ..self.currentLives, duration=5.0})   
+        print(killedUnit:GetClassname(), " reached the end!")
+        Notifications:TopToAll({text=killedUnit:GetClassname().. " reached the end! Lifes left: " ..self.currentLives, duration=5.0})   
 
         if self.currentLives <= 0 then
             GameRules:SetGameWinner( DOTA_TEAM_BADGUYS )
