@@ -5,6 +5,7 @@
 	"ModelScale"			"1"
 	"SoundSet"              "Hero_Jakiro"
 	"GameSoundsFile"		"soundevents/game_sounds_heroes/game_sounds_jakiro.vsndevts"
+    "ConsideredHero"        "1"
 
 	"HasInventory"          "1"    
     "AutoAttacksByDefault"  "1"

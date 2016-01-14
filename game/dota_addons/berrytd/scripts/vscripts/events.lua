@@ -246,8 +246,11 @@ function GameMode:OnEntityKilled( keys )
     --if killed unit has an owner then someone is selling a tower, or a barracks has died
     if killedUnit:GetOwner() ~= nil then 
       local owner = killedUnit:GetOwner()
+
+        --this is used to make sure barracks can only spawn up to their unit cap
+        --see ai_melee_barracks.lua for example
         if owner:GetUnitLabel() == "barracks" then
-          print (owner:GetName())
+          
           owner.defender_count = owner.defender_count - 1
 
           print("Defender died", owner.defender_count)

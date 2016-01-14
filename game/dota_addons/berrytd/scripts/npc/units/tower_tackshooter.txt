@@ -5,6 +5,7 @@
 	"ModelScale"			"8"
 	"SoundSet"              "Hero_Rubick"
 	"GameSoundsFile"		""
+    "ConsideredHero"        "1"
 
     "Level"                 "0"
 

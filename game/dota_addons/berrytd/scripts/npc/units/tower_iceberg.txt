@@ -5,6 +5,7 @@
 	"ModelScale"			"15"
 	"SoundSet"              "Hero_tusk"
 	"GameSoundsFile"		""
+    "ConsideredHero"        "1"
 
     "Level"                 "0"
 

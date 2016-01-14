@@ -1,0 +1,29 @@
+"barracks_spawn_flag"
+{                                       
+    "Model"                 "models/props_teams/banner_radiant.vmdl"    
+    "BaseClass"             "npc_dota_creature"
+    "Level"                 "1"
+    "ModelScale"            "0.6"    
+    "ConsideredHero"        "0"
+
+    "Ability1"              ""
+    "Ability2"              ""    
+
+    "RingRadius"            "40"
+    "HealthBarOffset"       "170"
+    "BoundsHullName"        "DOTA_HULL_SIZE_SMALL"
+
+    "BountyXP"              "0"
+    "BountyGoldMin"         "0"
+    "BountyGoldMax"         "0"
+
+    "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_NONE"
+
+    "StatusHealth"          "1"
+    "StatusHealthRegen"     "0"
+    "StatusMana"            "0"
+    "StatusManaRegen"       "0"
+    "ArmorPhysical"         "0"
+
+    "AttackCapabilities"    "DOTA_UNIT_CAP_NO_ATTACK"
+}

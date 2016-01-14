@@ -1,5 +1,48 @@
 "DOTAAbilities"
 {
+	"ability_barracks_set_spawn"
+	{
+		// General
+	    //-------------------------------------------------------------------------------------------------------------
+	    "BaseClass"             "ability_datadriven"    
+	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"    
+	    "AbilityTextureName"    "legion_commander_duel"
+	    "MaxLevel"              "1"
+	
+	    // Time     
+	    //-------------------------------------------------------------------------------------------------------------
+	    "AbilityCooldown"		"1"
+	    "AbilityCastRange"		"%cast_range"    
+	
+	    // Cost
+	    //-------------------------------------------------------------------------------------------------------------
+	    "AbilityManaCost"		"0" 
+	    "AbilityGoldCost"		"0"
+	 
+	    // Special
+	    //-------------------------------------------------------------------------------------------------------------
+	
+	
+	
+	    "OnSpellStart"
+	    {      
+	        "RunScript"
+	        {
+	            "ScriptFile"    "unit_scripts/towers/ai_melee_barracks.lua"
+	            "Function"      "SetDefenderSpawn"
+	            "Target"        "POINT"           
+	        }        
+	    }
+	
+	    "AbilitySpecial"
+	    {
+	        "01"
+	        {
+	            "var_type"      "FIELD_INTEGER"
+	            "cast_range"    "500"
+	        }             
+	    }
+	}
 	"ability_barracks_spawn_melee_defender"
 	{
 		// General
@@ -693,27 +736,34 @@
 	}
 	"tower_immunity"
 	{
-		"BaseClass"             "ability_datadriven"
-	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"  
-	    "AbilityTextureName"    "holdout_guardian_angel" 
+		"BaseClass"             		"ability_datadriven"
+		"MaxLevel" 						"1"
+	
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 	
 		"Modifiers"
 		{
-			"tower_immunity_buff"
+			"modifier_building"
 			{
 				"Passive"			"1"
-				"IsBuff"			"1"
-				"IsPurgable"		"0"			
-			
+				"IsHidden"			"1"
+				"Attributes"		"MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE | MODIFIER_ATTRIBUTE_PERMANENT"	
 				"States"
 				{
-					"MODIFIER_STATE_ATTACK_IMMUNE" 	"MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_MAGIC_IMMUNE"	"MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_NO_HEALTH_BAR"	"MODIFIER_STATE_VALUE_ENABLED"
-					//"MODIFIER_STATE_INVULNERABLE"	"MODIFIER_STATE_VALUE_ENABLED"	
-				}			
+					"MODIFIER_STATE_MAGIC_IMMUNE" "MODIFIER_STATE_VALUE_ENABLED" // Makes most abilities don't affect this. Use custom damage
+					"MODIFIER_STATE_ROOTED"		"MODIFIER_STATE_VALUE_ENABLED" // Prevents moving
+					"MODIFIER_STATE_SPECIALLY_DENIABLE" "MODIFIER_STATE_VALUE_ENABLED" // Allows attacking own buildings
+					"MODIFIER_STATE_LOW_ATTACK_PRIORITY" "MODIFIER_STATE_VALUE_ENABLED" // Makes it a secondary target when A-clicking ground
+					"MODIFIER_STATE_NO_UNIT_COLLISION"	"MODIFIER_STATE_VALUE_ENABLED" // GridNav is blocked
+				}
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_DISABLE_TURNING" "1"
+					"MODIFIER_PROPERTY_IGNORE_CAST_ANGLE" "1"
+					"MODIFIER_PROPERTY_MOVESPEED_ABSOLUTE"	"0.1"
+				}
 			}
-		}
+		}		
 	}
 	"ability_upgrade_dragon_1"
 	{
