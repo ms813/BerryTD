@@ -3,9 +3,9 @@
 	"BaseClass"             "npc_dota_creature"
 	"Model"                 "models/heroes/disruptor/disruptor_thunderator.vmdl"
 	"ModelScale"			"8"
-	"SoundSet"              "Hero_Rubick"
 	"GameSoundsFile"		""
     "ConsideredHero"        "1"
+    "UnitLabel"             "tower"
 
     "Level"                 "0"
 

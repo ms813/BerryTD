@@ -22,12 +22,14 @@
     "Ability1"              "ability_sell_tower"
     "Ability2"              "ability_barracks_spawn_melee_defender"  
     "Ability3"              "ability_barracks_set_spawn"
-    //"Ability4"              "ability_upgrade_melee_barracks_1"   
-    "Ability7"              "building_modifier"
+    "Ability4"              "ability_upgrade_melee_barracks_1"   
+    "Ability7"              "tower_immunity"
 
     "AttackCapabilities"    "DOTA_UNIT_CAP_NO_ATTACK"  
 
     "BoundsHullName"        "DOTA_HULL_SIZE_HERO"
+    //this cannot be _NONE as point target spells require the unit to be able to turn
+    //See tower_immunity for modifier used to root towers
     "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_GROUND"
     "MovementSpeed"         "0"
 

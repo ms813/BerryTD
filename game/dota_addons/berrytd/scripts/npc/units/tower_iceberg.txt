@@ -6,6 +6,7 @@
 	"SoundSet"              "Hero_tusk"
 	"GameSoundsFile"		""
     "ConsideredHero"        "1"
+    "UnitLabel"             "tower"
 
     "Level"                 "0"
 

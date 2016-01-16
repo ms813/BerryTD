@@ -6,8 +6,8 @@
     "ModelScale"            "0.6"    
     "ConsideredHero"        "0"
 
-    "Ability1"              ""
-    "Ability2"              ""    
+    "Ability1"              "tower_immunity"   
+    "Ability2"              "ability_unselectable"
 
     "RingRadius"            "40"
     "HealthBarOffset"       "170"

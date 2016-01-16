@@ -220,8 +220,9 @@ function GameMode:TimedTick()
 
     local unitsAtEnd = GameMode:checkCreepsReachedEnd()
 
+    local base = Entities:FindByName(nil, "dota_goodguys_fort")
     for _, unit in pairs(unitsAtEnd) do
-        unit:Kill(nil, unit)
+        unit:Kill(nil, base)
     end
 	
 	return 0.5

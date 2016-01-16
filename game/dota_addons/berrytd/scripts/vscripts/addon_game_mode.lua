@@ -40,7 +40,24 @@ function Precache( context )
   PrecacheUnitByNameSync("npc_dota_hero_ancient_apparition", context)
   PrecacheUnitByNameSync("npc_dota_hero_enigma", context)
 
-  PrecacheUnitByNameSync("npc_sniper_tower", context)
+
+  --Precaching towers
+  PrecacheUnitByNameSync("tower_sniper", context)
+  PrecacheResource("particle", "particles/units/heroes/hero_sniper/sniper_base_attack.vpcf", context)
+
+  PrecacheUnitByNameSync("tower_dragon", context)
+  PrecacheResource("particle", "particles/units/heroes/hero_jakiro/jakiro_base_attack_fire.vpcf", context)
+
+  PrecacheUnitByNameSync("tower_iceberg", context)
+  PrecacheUnitByNameSync("tower_tackshooter", context)
+
+
+  --Precaching barracks
+  PrecacheUnitByNameSync("barracks_melee", context)
+
+  --Precaching defenders
+  PrecacheUnitByNameSync("defender_melee", context)
+
 end
 
 -- Create the game mode when we activate

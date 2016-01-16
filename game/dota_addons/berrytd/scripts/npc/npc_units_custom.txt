@@ -24,12 +24,14 @@
 	    "Ability1"              "ability_sell_tower"
 	    "Ability2"              "ability_barracks_spawn_melee_defender"  
 	    "Ability3"              "ability_barracks_set_spawn"
-	    //"Ability4"              "ability_upgrade_melee_barracks_1"   
-	    "Ability7"              "building_modifier"
+	    "Ability4"              "ability_upgrade_melee_barracks_1"   
+	    "Ability7"              "tower_immunity"
 	
 	    "AttackCapabilities"    "DOTA_UNIT_CAP_NO_ATTACK"  
 	
 	    "BoundsHullName"        "DOTA_HULL_SIZE_HERO"
+	    //this cannot be _NONE as point target spells require the unit to be able to turn
+	    //See tower_immunity for modifier used to root towers
 	    "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_GROUND"
 	    "MovementSpeed"         "0"
 	
@@ -55,8 +57,8 @@
 	    "ModelScale"            "0.6"    
 	    "ConsideredHero"        "0"
 	
-	    "Ability1"              ""
-	    "Ability2"              ""    
+	    "Ability1"              "tower_immunity"   
+	    "Ability2"              "ability_unselectable"
 	
 	    "RingRadius"            "40"
 	    "HealthBarOffset"       "170"
@@ -82,6 +84,7 @@
 	    "BaseClass"             "npc_dota_creature"
 	    "Level"                 "1"
 	    "ModelScale"            "3"
+	    "UnitLabel"             "creep"
 	
 	    "Ability1"              "satyr_hellcaller_unholy_aura"
 	    "Ability2"              ""    
@@ -117,6 +120,7 @@
 	    "BaseClass"             "npc_dota_creature"
 	    "Level"                 "1"
 	    "ModelScale"            "1.0"
+	    "UnitLabel"             "creep"
 	
 	    "Ability1"              ""
 	    "Ability2"              ""    
@@ -151,6 +155,7 @@
 	    "BaseClass"             "npc_dota_creature"
 	    "Level"                 "1"
 	    "ModelScale"            "2"
+	    "UnitLabel"             "creep"
 	
 	    "Ability1"              ""
 	    "Ability2"              ""    
@@ -186,6 +191,7 @@
 	    "BaseClass"             "npc_dota_creature"
 	    "Level"                 "1"
 	    "ModelScale"            "4"
+	    "UnitLabel"             "creep"
 	
 	    "Ability1"              "shredder_reactive_armor"
 	    "Ability2"              ""    
@@ -221,6 +227,7 @@
 	    "BaseClass"             "npc_dota_creature"
 	    "Level"                 "1"
 	    "ModelScale"            "2"
+	    "UnitLabel"             "creep"
 	
 	    "Ability1"              "tidehunter_kraken_shell"
 	    "Ability2"              ""    
@@ -256,6 +263,7 @@
 	    "BaseClass"             "npc_dota_creature"
 	    "Level"                 "1"
 	    "ModelScale"            "1"
+	    "UnitLabel"             "creep"
 	
 	    "Ability1"              ""
 	    "Ability2"              ""    
@@ -298,6 +306,7 @@
 	    "BaseClass"             "npc_dota_creature"
 	    "Level"                 "1"
 	    "ModelScale"            "4.2"
+	    "UnitLabel"             "creep"
 	
 	    "Ability1"              "faceless_void_backtrack"
 	    "Ability2"              ""    
@@ -333,6 +342,7 @@
 	    "BaseClass"             "npc_dota_creature"
 	    "Level"                 "6"
 	    "ModelScale"            "3"
+	    "UnitLabel"             "creep"
 	
 	    "Ability1"              "templar_assassin_refraction"
 	    "Ability2"              ""    
@@ -372,6 +382,7 @@
 	    "BaseClass"             "npc_dota_creature"
 	    "Level"                 "1"
 	    "ModelScale"            "1"
+	    "UnitLabel"             "creep"
 	
 	    "Ability1"              ""
 	    "Ability2"              ""    
@@ -407,6 +418,7 @@
 	    "BaseClass"             "npc_dota_creature"
 	    "Level"                 "1"
 	    "ModelScale"            "1"
+	    "UnitLabel"             "creep"
 	
 	    "Ability1"              ""
 	    "Ability2"              ""    
@@ -443,8 +455,7 @@
 	    "Model"                 "models/creeps/lane_creeps/creep_radiant_melee/radiant_melee.vmdl"
 	    "BaseClass"             "npc_dota_creature"
 	    "Level"                 "1"
-	    "ModelScale"            "1.0"    
-	    "ConsideredHero"        "1"
+	    "ModelScale"            "1.0"        
 	
 	    "Ability1"              ""
 	    "Ability2"              ""    
@@ -577,6 +588,7 @@
 		"SoundSet"              "Hero_Jakiro"
 		"GameSoundsFile"		"soundevents/game_sounds_heroes/game_sounds_jakiro.vsndevts"
 	    "ConsideredHero"        "1"
+	    "UnitLabel"             "tower"
 	
 		"HasInventory"          "1"    
 	    "AutoAttacksByDefault"  "1"
@@ -627,6 +639,7 @@
 		"SoundSet"              "Hero_tusk"
 		"GameSoundsFile"		""
 	    "ConsideredHero"        "1"
+	    "UnitLabel"             "tower"
 	
 	    "Level"                 "0"
 	
@@ -669,6 +682,7 @@
 	    "SoundSet"              "Hero_Sniper"
 	    "GameSoundsFile"        "soundevents/game_sounds_heroes/game_sounds_sniper.vsndevts"
 	    "ConsideredHero"        "1"
+	    "UnitLabel"             "tower"
 	
 	    "HasInventory"          "1"    
 	    "AutoAttacksByDefault"  "1"
@@ -728,9 +742,9 @@
 		"BaseClass"             "npc_dota_creature"
 		"Model"                 "models/heroes/disruptor/disruptor_thunderator.vmdl"
 		"ModelScale"			"8"
-		"SoundSet"              "Hero_Rubick"
 		"GameSoundsFile"		""
 	    "ConsideredHero"        "1"
+	    "UnitLabel"             "tower"
 	
 	    "Level"                 "0"
 	

@@ -6,6 +6,7 @@
     "SoundSet"              "Hero_Sniper"
     "GameSoundsFile"        "soundevents/game_sounds_heroes/game_sounds_sniper.vsndevts"
     "ConsideredHero"        "1"
+    "UnitLabel"             "tower"
 
     "HasInventory"          "1"    
     "AutoAttacksByDefault"  "1"

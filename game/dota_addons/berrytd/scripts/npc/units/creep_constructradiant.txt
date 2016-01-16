@@ -4,6 +4,7 @@
     "BaseClass"             "npc_dota_creature"
     "Level"                 "1"
     "ModelScale"            "4"
+    "UnitLabel"             "creep"
 
     "Ability1"              "shredder_reactive_armor"
     "Ability2"              ""    
