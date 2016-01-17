@@ -8,6 +8,9 @@
     "ConsideredHero"        "1"
     "UnitLabel"             "tower"
 
+    //used as a hook in Lua scripts
+    "UnitLabel"             "tower"
+
     "Level"                 "0"
 
 	"HasInventory"          "1"    

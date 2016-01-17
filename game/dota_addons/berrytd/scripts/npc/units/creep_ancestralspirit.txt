@@ -6,6 +6,9 @@
     "ModelScale"            "3"
     "UnitLabel"             "creep"
 
+    //used in events:OnEntityKilled() to adjust lives if creeps leak
+    "UnitLabel"             "creep"
+
     "Ability1"              "satyr_hellcaller_unholy_aura"
     "Ability2"              ""    
 
