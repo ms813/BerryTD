@@ -17,6 +17,11 @@
         {
             "ScriptFile"        "scripts/vscripts/unit_scripts/towers/shoot_tacks.lua"
             "Function"          "launchTacks"
+
+            "AbilityContext"
+            {
+                "projectile_particle"   "particles/frostivus_gameplay/drow_linear_arrow.vpcf"
+            }
         }
     } 
 
@@ -42,7 +47,7 @@
             "var_type"    "FIELD_INTEGER"
             "damage"      "20"
         }       
-    }    
+    }   
 }
 
 "ability_upgrade_tackshooter_1"

@@ -30,6 +30,7 @@
 	    "AttackCapabilities"    "DOTA_UNIT_CAP_NO_ATTACK"  
 	
 	    "BoundsHullName"        "DOTA_HULL_SIZE_HERO"
+	
 	    //this cannot be _NONE as point target spells require the unit to be able to turn
 	    //See tower_immunity for modifier used to root towers
 	    "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_GROUND"
@@ -47,7 +48,57 @@
 	    "VisionDaytimeRange"    "1000"       
 	    "VisionNighttimeRange"  "750"  
 	
-	    "vscripts"              "scripts/vscripts/unit_scripts/towers/ai_melee_barracks.lua"
+	    "vscripts"              "scripts/vscripts/unit_scripts/towers/ai_barracks.lua"
+	}
+	"barracks_ranged"
+	{
+	    "BaseClass"             "npc_dota_creature"
+	    "Model"                 "models/props_structures/good_barracks_ranged002.vmdl"
+	    "ModelScale"            "0.8"  
+	
+	    //this is used as a hook in events.lua OnEntityKilled()
+	    //to maintain the barracks spawn cap
+	    "UnitLabel"             "barracks"
+	
+	    "ConsideredHero"        "1"
+	
+	    "Level"                 "1"
+	
+	    "HasInventory"          "1"    
+	    "AutoAttacksByDefault"  "0"
+	    "SelectOnSpawn"         "1"
+	    "WakesNeutrals"         "0"
+	
+	    //Abilities  
+	    "AbilityLayout"         "6"
+	    "Ability1"              "ability_sell_tower"
+	    "Ability2"              "ability_barracks_spawn_ranged_defender"  
+	    "Ability3"              "ability_barracks_set_spawn"
+	    //"Ability4"              "ability_upgrade_ranged_barracks_1"   
+	    "Ability7"              "tower_immunity"
+	
+	    "AttackCapabilities"    "DOTA_UNIT_CAP_NO_ATTACK"  
+	
+	    "BoundsHullName"        "DOTA_HULL_SIZE_HERO"
+	
+	    //this cannot be _NONE as point target spells require the unit to be able to turn
+	    //See tower_immunity for modifier used to root towers
+	    "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_GROUND"
+	    "MovementSpeed"         "0"
+	
+	    "StatusHealth"          "1000" 
+	
+	    //this is a dirty hack - set this equal to the sell price of the tower
+	    "StatusManaRegen"       "100" 
+	
+	    //I tried using these as hooks to get the sell gold but they arent picked up by ability:GetGoldBountyMax()
+	    "BountyGoldMax"         "100"
+	    "BountyGoldMin"         "100"
+	
+	    "VisionDaytimeRange"    "1000"       
+	    "VisionNighttimeRange"  "750"  
+	
+	    "vscripts"              "scripts/vscripts/unit_scripts/towers/ai_barracks.lua"
 	}
 	"barracks_spawn_flag"
 	{                                       
@@ -455,7 +506,7 @@
 	    "Model"                 "models/creeps/lane_creeps/creep_radiant_melee/radiant_melee.vmdl"
 	    "BaseClass"             "npc_dota_creature"
 	    "Level"                 "1"
-	    "ModelScale"            "1.0"        
+	    "ModelScale"            "0.8"        
 	
 	    "Ability1"              ""
 	    "Ability2"              ""    
@@ -465,8 +516,8 @@
 	    "BoundsHullName"        "DOTA_HULL_SIZE_SMALL"
 	
 	    "BountyXP"              "0"
-	    "BountyGoldMin"         "4"
-	    "BountyGoldMax"         "4"
+	    "BountyGoldMin"         "0"
+	    "BountyGoldMax"         "0"
 	
 	    "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_GROUND"
 	    "MovementSpeed"         "320"
@@ -478,12 +529,55 @@
 	    "ArmorPhysical"         "0"
 	
 	    "AttackCapabilities"    "DOTA_UNIT_CAP_MELEE_ATTACK"
-	    "AttackDamageMin"       "7"
+	    "AttackDamageMin"       "4"
 	    "AttackDamageMax"       "4"
 	    "AttackRate"            "1"
 	    "AttackRange"           "125"
-	    "AttackAcquisitionRange"    "300"
-	    "AttackAnimationPoint"  "0.1"
+	    "AttackAcquisitionRange"    "750"
+	    "AttackAnimationPoint"  "0.467"
+	
+	    "Creature"
+	    {
+	        "DisableClumpingBehavior"   "1"
+	    } 
+	}
+	"defender_ranged"
+	{                                       
+	    "Model"                 "models/creeps/lane_creeps/creep_radiant_ranged/radiant_ranged.vmdl"
+	    "BaseClass"             "npc_dota_creature"
+	    "Level"                 "1"
+	    "ModelScale"            "0.8"        
+	
+	    "Ability1"              ""
+	    "Ability2"              ""    
+	
+	    "RingRadius"            "40"
+	    "HealthBarOffset"       "170"
+	    "BoundsHullName"        "DOTA_HULL_SIZE_SMALL"
+	
+	    "BountyXP"              "0"
+	    "BountyGoldMin"         "0"
+	    "BountyGoldMax"         "0"
+	
+	    "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_GROUND"
+	    "MovementSpeed"         "320"
+	
+	    "StatusHealth"          "25"
+	    "StatusHealthRegen"     "0"
+	    "StatusMana"            "0"
+	    "StatusManaRegen"       "0"
+	    "ArmorPhysical"         "0"
+	
+	    "AttackCapabilities"    "DOTA_UNIT_CAP_RANGED_ATTACK"
+	    "AttackDamageMin"       "8"
+	    "AttackDamageMax"       "6"
+	    "AttackRate"            "1"
+	    "AttackRange"           "750"
+	    "AttackAcquisitionRange"    "1200"
+	    "AttackAnimationPoint"  "0.5"
+	    "ProjectileSpeed"       "900"
+	
+	    "ProjectileModel"       "particles/base_attacks/ranged_goodguy.vpcf"
 	
 	    "Creature"
 	    {

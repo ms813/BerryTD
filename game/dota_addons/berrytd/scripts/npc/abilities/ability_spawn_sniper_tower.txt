@@ -45,5 +45,12 @@
             "range"        "1000"
         }
     }
+
+    "precache"
+    {
+        "particle"  "particles/units/heroes/hero_sniper/sniper_base_attack.vpcf"
+        "soundfile" "soundevents/game_sounds_heroes/game_sounds_sniper.vsndevts"
+        "model"     "models/heroes/sniper/sniper.vmdl"
+    }
 }
 

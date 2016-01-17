@@ -250,9 +250,14 @@ function GameMode:OnEntityKilled( keys )
 
         --this is used to make sure barracks can only spawn up to their unit cap
         --see ai_melee_barracks.lua for example
-        if owner:GetUnitLabel() == "barracks" then          
-          owner.defender_count = owner.defender_count - 1
-          --print("Defender died", owner.defender_count)
+        if owner:GetUnitLabel() == "barracks" then                   
+
+          --remove the defender from the racks table by finding its index and using table.remove(table, index)
+          for k, defender in pairs(owner.defenders) do
+            if defender == killedUnit then
+              table.remove(owner.defenders, k)
+            end
+          end          
         end
 
     --if creep reaches the ancient, then suicide and remove a life

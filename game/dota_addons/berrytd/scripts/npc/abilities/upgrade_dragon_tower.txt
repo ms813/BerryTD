@@ -39,5 +39,12 @@
             "gold_cost"            "50"
         } 
     }
+
+    "precache"
+    {
+        "particle"  "particles/units/heroes/hero_jakiro/jakiro_base_attack_fire.vpcf"
+        "soundfile" "soundevents/game_sounds_heroes/game_sounds_jakiro.vsndevts"
+        "model"     "models/props_structures/statue_dragon003.vmdl"
+    }
 }
 

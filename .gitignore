@@ -23,5 +23,6 @@ steam_appid.txt
 
 /game/dota_addons/berrytd/panorama/*
 /game/dota_addons/berrytd/materials/*
+/game/dota_addons/berrytd/particles/*
 
 *.vpk

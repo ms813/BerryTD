@@ -232,6 +232,11 @@
 	            "range"         "750"
 	        }
 	    }
+	
+	    "precache"
+	    {
+	        "model"  "models/particle/ice_shards.vmdl"       
+	    }
 	}
 	
 	"ability_spawn_melee_barracks"
@@ -241,7 +246,7 @@
 	    "BaseClass"             "ability_datadriven"
 	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 	    "AbilityType"           "DOTA_ABILITY_TYPE_BASIC"
-	    "AbilityTextureName"    "holdout_battle_rage"
+	    "AbilityTextureName"    "phantom_lancer_phantom_edge"
 	    "MaxLevel"              "1"
 	    
 	
@@ -280,6 +285,61 @@
 	        {
 	            "var_type"      "FIELD_FLOAT"
 	            "health"        "100"
+	        }        
+	    }
+	}
+	
+	"ability_spawn_ranged_barracks"
+	{
+	    // General
+	    //-------------------------------------------------------------------------------------------------------------
+	    "BaseClass"             "ability_datadriven"
+	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+	    "AbilityType"           "DOTA_ABILITY_TYPE_BASIC"
+	    "AbilityTextureName"    "drow_ranger_marksmanship"
+	    "MaxLevel"              "1"
+	    
+	
+	    // Time     
+	    //-------------------------------------------------------------------------------------------------------------
+	    "AbilityCooldown"       "1.0"
+	
+	    // Cost
+	    //-------------------------------------------------------------------------------------------------------------
+	    "AbilityManaCost"       "0" 
+	    "AbilityGoldCost"       "200"
+	 
+	    // Special
+	    //-------------------------------------------------------------------------------------------------------------
+	
+	
+	    "OnSpellStart"
+	    {      
+	        "SpawnUnit"
+	        {
+	            "UnitName"      "barracks_ranged"
+	            "UnitCount"     "1"
+	            "SpawnRadius"   "0"
+	            "Target"        "POINT"
+	        }
+	    }
+	
+	    "AbilitySpecial"
+	    {
+	        "01"
+	        {
+	            "var_type"      "FIELD_INTEGER"
+	            "damage"        "5"
+	        }
+	        "02"
+	        {
+	            "var_type"      "FIELD_FLOAT"
+	            "health"        "100"
+	        }
+	        "03"
+	        {
+	            "var_type"      "FIELD_FLOAT"
+	            "max_aggro_dist"        "1500"
 	        }
 	    }
 	}
@@ -330,6 +390,13 @@
 	            "var_type"            "FIELD_FLOAT"
 	            "range"        "1000"
 	        }
+	    }
+	
+	    "precache"
+	    {
+	        "particle"  "particles/units/heroes/hero_sniper/sniper_base_attack.vpcf"
+	        "soundfile" "soundevents/game_sounds_heroes/game_sounds_sniper.vsndevts"
+	        "model"     "models/heroes/sniper/sniper.vmdl"
 	    }
 	}
 	
@@ -558,6 +625,13 @@
 	            "gold_cost"            "50"
 	        } 
 	    }
+	
+	    "precache"
+	    {
+	        "particle"  "particles/units/heroes/hero_jakiro/jakiro_base_attack_fire.vpcf"
+	        "soundfile" "soundevents/game_sounds_heroes/game_sounds_jakiro.vsndevts"
+	        "model"     "models/props_structures/statue_dragon003.vmdl"
+	    }
 	}
 	
 	"ability_iceberg_aoe_slow"
@@ -779,7 +853,7 @@
 	    "BaseClass"             "ability_datadriven"
 	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 	    "AbilityType"           "DOTA_ABILITY_TYPE_BASIC"
-	    "AbilityTextureName"    "holdout_battle_rage"
+	    "AbilityTextureName"    "phantom_lancer_phantom_edge"
 	    "MaxLevel"              "1"
 	
 	    // Time     
@@ -800,8 +874,13 @@
 	    {      
 	        "RunScript"
 	        {
-	            "ScriptFile"    "scripts/vscripts/unit_scripts/towers/ai_melee_barracks.lua"
+	            "ScriptFile"    "scripts/vscripts/unit_scripts/towers/ai_barracks.lua"
 	            "Function"      "SpawnDefender" 
+	
+	            "AbilityContext"
+	            {
+	                "defender_name"     "defender_melee"
+	            }
 	        }
 	    }
 	
@@ -810,18 +889,23 @@
 	        "01"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "damage"        "5"
+	            "damage"        "4"
 	        }
 	        "02"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "health"        "100"
+	            "health"        "50"
 	        }
 	        "03"
 	        {
 	            "var_type"      "FIELD_INTEGER"
 	            "defender_cap"  "4"
-	        }        
+	        }   
+	        "04"
+	        {
+	            "var_type"      "FIELD_FLOAT"
+	            "max_aggro_dist"        "1500"
+	        }     
 	    }
 	}
 	
@@ -854,7 +938,7 @@
 	    {      
 	        "RunScript"
 	        {
-	            "ScriptFile"    "unit_scripts/towers/ai_melee_barracks.lua"
+	            "ScriptFile"    "unit_scripts/towers/ai_barracks.lua"
 	            "Function"      "SetDefenderSpawn"
 	            "Target"        "POINT"           
 	        }        
@@ -898,10 +982,10 @@
 	
 	        "RunScript"
 	        {
-	            "ScriptFile"        "unit_scripts/towers/ai_melee_barracks.lua"
-	            "Function"          "Upgrade1"
+	            "ScriptFile"        "unit_scripts/towers/ai_barracks.lua"
+	            "Function"          "Upgrade"
 	
-	            "AddAbility1"
+	            "AbilityContext"
 	            {
 	                "Ability"   "ability_melee_defender_buff_1"
 	                "Level"     "1"
@@ -963,6 +1047,68 @@
 	            "regen_increase"    "2"
 	        }
 	    }   
+	}
+	"ability_barracks_spawn_ranged_defender"
+	{
+	    // General
+	    //-------------------------------------------------------------------------------------------------------------
+	    "BaseClass"             "ability_datadriven"
+	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+	    "AbilityType"           "DOTA_ABILITY_TYPE_BASIC"
+	    "AbilityTextureName"    "drow_ranger_marksmanship"
+	    "MaxLevel"              "1"
+	
+	    // Time     
+	    //-------------------------------------------------------------------------------------------------------------
+	    "AbilityCooldown"       "20.0"
+	    "AbilityCastRange"      "300"    
+	
+	    // Cost
+	    //-------------------------------------------------------------------------------------------------------------
+	    "AbilityManaCost"       "0" 
+	    "AbilityGoldCost"       "0"
+	 
+	    // Special
+	    //-------------------------------------------------------------------------------------------------------------
+	
+	
+	    "OnSpellStart"
+	    {      
+	        "RunScript"
+	        {
+	            "ScriptFile"    "scripts/vscripts/unit_scripts/towers/ai_barracks.lua"
+	            "Function"      "SpawnDefender" 
+	
+	            "AbilityContext"
+	            {
+	                "defender_name"     "defender_ranged"
+	            }
+	        }
+	    }
+	
+	    "AbilitySpecial"
+	    {
+	        "01"
+	        {
+	            "var_type"      "FIELD_INTEGER"
+	            "damage"        "8"
+	        }
+	        "02"
+	        {
+	            "var_type"      "FIELD_INTEGER"
+	            "health"        "25"
+	        }
+	        "03"
+	        {
+	            "var_type"      "FIELD_INTEGER"
+	            "defender_cap"  "4"
+	        }     
+	        "04"
+	        {
+	            "var_type"      "FIELD_FLOAT"
+	            "max_aggro_dist"        "1500"
+	        }   
+	    }
 	}
 	"ability_upgrade_sniper_1"
 	{
@@ -1375,6 +1521,11 @@
 	        {
 	            "ScriptFile"        "scripts/vscripts/unit_scripts/towers/shoot_tacks.lua"
 	            "Function"          "launchTacks"
+	
+	            "AbilityContext"
+	            {
+	                "projectile_particle"   "particles/frostivus_gameplay/drow_linear_arrow.vpcf"
+	            }
 	        }
 	    } 
 	
@@ -1400,7 +1551,7 @@
 	            "var_type"    "FIELD_INTEGER"
 	            "damage"      "20"
 	        }       
-	    }    
+	    }   
 	}
 	
 	"ability_upgrade_tackshooter_1"

@@ -1,11 +1,11 @@
-"ability_spawn_melee_barracks"
+"ability_spawn_ranged_barracks"
 {
     // General
     //-------------------------------------------------------------------------------------------------------------
     "BaseClass"             "ability_datadriven"
     "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
     "AbilityType"           "DOTA_ABILITY_TYPE_BASIC"
-    "AbilityTextureName"    "phantom_lancer_phantom_edge"
+    "AbilityTextureName"    "drow_ranger_marksmanship"
     "MaxLevel"              "1"
     
 
@@ -26,7 +26,7 @@
     {      
         "SpawnUnit"
         {
-            "UnitName"      "barracks_melee"
+            "UnitName"      "barracks_ranged"
             "UnitCount"     "1"
             "SpawnRadius"   "0"
             "Target"        "POINT"
@@ -44,7 +44,12 @@
         {
             "var_type"      "FIELD_FLOAT"
             "health"        "100"
-        }        
+        }
+        "03"
+        {
+            "var_type"      "FIELD_FLOAT"
+            "max_aggro_dist"        "1500"
+        }
     }
 }
 

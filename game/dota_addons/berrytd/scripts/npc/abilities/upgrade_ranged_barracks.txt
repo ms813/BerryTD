@@ -1,22 +1,22 @@
-"ability_spawn_melee_barracks"
+"ability_barracks_spawn_ranged_defender"
 {
     // General
     //-------------------------------------------------------------------------------------------------------------
     "BaseClass"             "ability_datadriven"
     "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
     "AbilityType"           "DOTA_ABILITY_TYPE_BASIC"
-    "AbilityTextureName"    "phantom_lancer_phantom_edge"
+    "AbilityTextureName"    "drow_ranger_marksmanship"
     "MaxLevel"              "1"
-    
 
     // Time     
     //-------------------------------------------------------------------------------------------------------------
-    "AbilityCooldown"       "1.0"
+    "AbilityCooldown"       "20.0"
+    "AbilityCastRange"      "300"    
 
     // Cost
     //-------------------------------------------------------------------------------------------------------------
     "AbilityManaCost"       "0" 
-    "AbilityGoldCost"       "200"
+    "AbilityGoldCost"       "0"
  
     // Special
     //-------------------------------------------------------------------------------------------------------------
@@ -24,12 +24,15 @@
 
     "OnSpellStart"
     {      
-        "SpawnUnit"
+        "RunScript"
         {
-            "UnitName"      "barracks_melee"
-            "UnitCount"     "1"
-            "SpawnRadius"   "0"
-            "Target"        "POINT"
+            "ScriptFile"    "scripts/vscripts/unit_scripts/towers/ai_barracks.lua"
+            "Function"      "SpawnDefender" 
+
+            "AbilityContext"
+            {
+                "defender_name"     "defender_ranged"
+            }
         }
     }
 
@@ -38,13 +41,22 @@
         "01"
         {
             "var_type"      "FIELD_INTEGER"
-            "damage"        "5"
+            "damage"        "8"
         }
         "02"
         {
+            "var_type"      "FIELD_INTEGER"
+            "health"        "25"
+        }
+        "03"
+        {
+            "var_type"      "FIELD_INTEGER"
+            "defender_cap"  "4"
+        }     
+        "04"
+        {
             "var_type"      "FIELD_FLOAT"
-            "health"        "100"
-        }        
+            "max_aggro_dist"        "800"
+        }   
     }
 }
-

@@ -1,4 +1,4 @@
-"barracks_melee"
+"barracks_ranged"
 {
     "BaseClass"             "npc_dota_creature"
     "Model"                 "models/props_structures/good_barracks_ranged002.vmdl"
@@ -20,9 +20,9 @@
     //Abilities  
     "AbilityLayout"         "6"
     "Ability1"              "ability_sell_tower"
-    "Ability2"              "ability_barracks_spawn_melee_defender"  
+    "Ability2"              "ability_barracks_spawn_ranged_defender"  
     "Ability3"              "ability_barracks_set_spawn"
-    "Ability4"              "ability_upgrade_melee_barracks_1"   
+    //"Ability4"              "ability_upgrade_ranged_barracks_1"   
     "Ability7"              "tower_immunity"
 
     "AttackCapabilities"    "DOTA_UNIT_CAP_NO_ATTACK"  

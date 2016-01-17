@@ -45,5 +45,10 @@
             "range"         "750"
         }
     }
+
+    "precache"
+    {
+        "model"  "models/particle/ice_shards.vmdl"       
+    }
 }
 

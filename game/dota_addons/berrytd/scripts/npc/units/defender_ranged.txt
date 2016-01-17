@@ -1,6 +1,6 @@
-"defender_melee"
+"defender_ranged"
 {                                       
-    "Model"                 "models/creeps/lane_creeps/creep_radiant_melee/radiant_melee.vmdl"
+    "Model"                 "models/creeps/lane_creeps/creep_radiant_ranged/radiant_ranged.vmdl"
     "BaseClass"             "npc_dota_creature"
     "Level"                 "1"
     "ModelScale"            "0.8"        
@@ -19,19 +19,22 @@
     "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_GROUND"
     "MovementSpeed"         "320"
 
-    "StatusHealth"          "50"
+    "StatusHealth"          "25"
     "StatusHealthRegen"     "0"
     "StatusMana"            "0"
     "StatusManaRegen"       "0"
     "ArmorPhysical"         "0"
 
-    "AttackCapabilities"    "DOTA_UNIT_CAP_MELEE_ATTACK"
-    "AttackDamageMin"       "4"
-    "AttackDamageMax"       "4"
+    "AttackCapabilities"    "DOTA_UNIT_CAP_RANGED_ATTACK"
+    "AttackDamageMin"       "8"
+    "AttackDamageMax"       "6"
     "AttackRate"            "1"
-    "AttackRange"           "125"
-    "AttackAcquisitionRange"    "750"
-    "AttackAnimationPoint"  "0.467"
+    "AttackRange"           "750"
+    "AttackAcquisitionRange"    "1200"
+    "AttackAnimationPoint"  "0.5"
+    "ProjectileSpeed"       "900"
+
+    "ProjectileModel"       "particles/base_attacks/ranged_goodguy.vpcf"
 
     "Creature"
     {

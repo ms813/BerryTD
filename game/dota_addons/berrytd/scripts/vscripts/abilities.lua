@@ -140,6 +140,7 @@ function GameMode:goToPage(keys)
 	elseif ability_name == "ability_open_page_two" then
 
 		caster:AddAbility("ability_spawn_melee_barracks")
+		caster:AddAbility("ability_spawn_ranged_barracks")
 
 	elseif ability_name == "ability_open_page_three" then
 

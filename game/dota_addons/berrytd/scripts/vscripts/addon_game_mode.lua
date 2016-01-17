@@ -41,16 +41,17 @@ function Precache( context )
   PrecacheUnitByNameSync("npc_dota_hero_enigma", context)
 
 
+
   --Precaching towers
   PrecacheUnitByNameSync("tower_sniper", context)
-  PrecacheResource("particle", "particles/units/heroes/hero_sniper/sniper_base_attack.vpcf", context)
+  --PrecacheResource("particle", "particles/units/heroes/hero_sniper/sniper_base_attack.vpcf", context)
 
   PrecacheUnitByNameSync("tower_dragon", context)
-  PrecacheResource("particle", "particles/units/heroes/hero_jakiro/jakiro_base_attack_fire.vpcf", context)
+  --PrecacheResource("particle", "particles/units/heroes/hero_jakiro/jakiro_base_attack_fire.vpcf", context)
 
   PrecacheUnitByNameSync("tower_iceberg", context)
-  PrecacheUnitByNameSync("tower_tackshooter", context)
 
+  PrecacheUnitByNameSync("tower_tackshooter", context) 
 
   --Precaching barracks
   PrecacheUnitByNameSync("barracks_melee", context)

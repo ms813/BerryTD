@@ -7,6 +7,7 @@ function launchTacks(keys)
     local projectile_radius = keys.ability:GetLevelSpecialValueFor('radius', keys.ability:GetLevel())
     local projectile_speed = keys.ability:GetLevelSpecialValueFor('speed', keys.ability:GetLevel())
     local projectile_damage = keys.ability:GetLevelSpecialValueFor('damage', keys.ability:GetLevel())
+    local projectile_particle = keys.AbilityContext.projectile_particle
 
     local directions = {
         --Vector(x, y, z)
@@ -44,7 +45,7 @@ function launchTacks(keys)
             bZCheck = false,
             bIgnoreSource = true,
             draw = false, --{rad = projectile_radius}
-            EffectName = "particles/econ/items/mirana/mirana_crescent_arrow/mirana_spell_crescent_arrow.vpcf",
+            EffectName = projectile_particle,
             fDistance = projectile_distance,
             fStartRadius = projectile_radius,
             fEndRadius = projectile_radius,
