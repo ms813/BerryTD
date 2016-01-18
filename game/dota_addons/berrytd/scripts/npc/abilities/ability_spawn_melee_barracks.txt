@@ -5,7 +5,7 @@
     "BaseClass"             "ability_datadriven"
     "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
     "AbilityType"           "DOTA_ABILITY_TYPE_BASIC"
-    "AbilityTextureName"    "phantom_lancer_phantom_edge"
+    "AbilityTextureName"    "sven_warcry"    
     "MaxLevel"              "1"
     
 

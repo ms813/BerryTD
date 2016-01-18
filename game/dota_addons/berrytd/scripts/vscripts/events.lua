@@ -269,6 +269,7 @@ function GameMode:OnEntityKilled( keys )
         print(killedUnit:GetName(), " reached the end!")
         Notifications:TopToAll({text=killedUnit:GetName().. " reached the end! Lifes left: " ..self.currentLives, duration=5.0})   
 
+        --if radiant runs out of lives then set dire victory
         if self.currentLives <= 0 then
             GameRules:SetGameWinner( DOTA_TEAM_BADGUYS )
             Timers:RemoveTimers(true)
@@ -278,6 +279,16 @@ function GameMode:OnEntityKilled( keys )
 
     --creep was killed by a tower
     else
+        --defender killed a creep 
+        --defenders are not considered heroes so we have to give the owner the kill bounty
+        if(killerEntity:GetUnitLabel() == "defender") then
+            local bounty = killedUnit:GetGoldBounty()
+
+            --call GetOwner() twice, first time gets the racks, second gets the hero
+            local owner = killerEntity:GetOwner():GetOwner()
+            owner:ModifyGold(bounty, true, DOTA_ModifyGold_CreepKill)
+        end
+
         self.numCreepsAlive = self.numCreepsAlive - 1
         print("Creep killed," , self.numCreepsAlive , "remaining")  
     end
@@ -288,18 +299,19 @@ function GameMode:OnEntityKilled( keys )
         player:ModifyGold(waveTable[self.currentWave].bonusEndGold, true, DOTA_ModifyGold_Unspecified)
       end
 
-    --increment the wave number by one
-    self.currentWave = self.currentWave + 1                 
-    print("Starting wave", self.currentWave)
+        --increment the wave number by one
+        self.currentWave = self.currentWave + 1                 
+        print("Starting wave", self.currentWave)
 
-    --check we are not on the last wave
-    if self.currentWave <= self.maxWave then        
-      --spawn the nextwave
-      self:SpawnWave(self.currentWave)                
-    else
-      GameRules:SetGameWinner( DOTA_TEAM_GOODGUYS )
-    end
-  end  
+        --check we are not on the last wave
+        if self.currentWave <= self.maxWave then        
+            --spawn the nextwave
+            self:SpawnWave(self.currentWave)                
+        else
+            --if there are no more waves then end the game with radiant victory
+            GameRules:SetGameWinner( DOTA_TEAM_GOODGUYS )
+        end
+    end  
 end
 
 

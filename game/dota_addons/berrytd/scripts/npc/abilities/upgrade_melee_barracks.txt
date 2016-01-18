@@ -3,9 +3,9 @@
     // General
     //-------------------------------------------------------------------------------------------------------------
     "BaseClass"             "ability_datadriven"
-    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
     "AbilityType"           "DOTA_ABILITY_TYPE_BASIC"
-    "AbilityTextureName"    "phantom_lancer_phantom_edge"
+    "AbilityTextureName"    "sven_warcry"
     "MaxLevel"              "1"
 
     // Time     
@@ -20,7 +20,6 @@
  
     // Special
     //-------------------------------------------------------------------------------------------------------------
-
 
     "OnSpellStart"
     {      
@@ -167,7 +166,7 @@
             {
                 "MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE"  "%dmg_increase"
                 "MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"    "%armour_increase"
-                "MODIFIER_PROPERTY_HEALTH_BONUS"            "%hp_increase"
+                "MODIFIER_PROPERTY_HEALTH_BONUS"             "%hp_increase"
                 "MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT"   "%regen_increase"               
             }
         }               

@@ -246,7 +246,7 @@
 	    "BaseClass"             "ability_datadriven"
 	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 	    "AbilityType"           "DOTA_ABILITY_TYPE_BASIC"
-	    "AbilityTextureName"    "phantom_lancer_phantom_edge"
+	    "AbilityTextureName"    "sven_warcry"    
 	    "MaxLevel"              "1"
 	    
 	
@@ -534,17 +534,17 @@
 	}
 	"tower_immunity"
 	{
-		"BaseClass"             		"ability_datadriven"
-		"MaxLevel" 						"1"
-	
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-	
+		"BaseClass"             	"ability_datadriven"
+		"MaxLevel" 					"1"
+		"AbilityTextureName"		"neutral_spell_immunity"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		
 		"Modifiers"
 		{
 			"modifier_tower_immunity"
 			{
 				"Passive"			"1"
-				"IsHidden"			"1"
+				"IsHidden"			"0"
 				"Attributes"		"MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE | MODIFIER_ATTRIBUTE_PERMANENT"	
 				"States"
 				{
@@ -555,7 +555,6 @@
 				}
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_DISABLE_TURNING" 	"0"
 					"MODIFIER_PROPERTY_IGNORE_CAST_ANGLE" 	"1"
 					"MODIFIER_PROPERTY_MOVESPEED_ABSOLUTE"	"0.1"
 				}
@@ -563,20 +562,42 @@
 		}		
 	}
 	
+	"ability_cant_turn"
+	{
+		"BaseClass"             		"ability_datadriven"	
+		"MaxLevel" 						"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+	
+		"Modifiers"
+		{
+			"modifier_name"
+			{
+				"Passive"			"1"
+				"IsHidden"			"1"		
+				"Attributes"		"MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE | MODIFIER_ATTRIBUTE_PERMANENT"	
+	
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_DISABLE_TURNING"	"1"
+				}	
+			}
+		}
+	}
+	
 	"ability_unselectable"
 	{
-		"BaseClass"             		"ability_datadriven"
-		"MaxLevel" 						"1"
-	
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"BaseClass"            	"ability_datadriven"
+		"MaxLevel" 				"1"
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 	
 		"Modifiers"
 		{
 			"modifier_unselectable"
 			{
-				"Passive" 	"1"
-				"IsHidden"	"1"
-				"Attributes"	"MODIFIER_ATTRIBUTE_PERMANENT"
+				"Passive" 		"1"
+				"IsHidden"		"1"
+				"Attributes"	"MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE | MODIFIER_ATTRIBUTE_PERMANENT"	
+	
 				"States"
 				{
 					"MODIFIER_STATE_UNSELECTABLE"		"MODIFIER_STATE_VALUE_ENABLED"
@@ -637,7 +658,7 @@
 	"ability_iceberg_aoe_slow"
 	{
 	    "BaseClass"                     "ability_datadriven"
-	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 	    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"    
 	    "AbilityTextureName"            "lich_frost_nova"
 	
@@ -851,9 +872,9 @@
 	    // General
 	    //-------------------------------------------------------------------------------------------------------------
 	    "BaseClass"             "ability_datadriven"
-	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 	    "AbilityType"           "DOTA_ABILITY_TYPE_BASIC"
-	    "AbilityTextureName"    "phantom_lancer_phantom_edge"
+	    "AbilityTextureName"    "sven_warcry"
 	    "MaxLevel"              "1"
 	
 	    // Time     
@@ -868,7 +889,6 @@
 	 
 	    // Special
 	    //-------------------------------------------------------------------------------------------------------------
-	
 	
 	    "OnSpellStart"
 	    {      
@@ -904,7 +924,7 @@
 	        "04"
 	        {
 	            "var_type"      "FIELD_FLOAT"
-	            "max_aggro_dist"        "1500"
+	            "max_aggro_dist"        "800"
 	        }     
 	    }
 	}
@@ -1015,7 +1035,7 @@
 	            {
 	                "MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE"  "%dmg_increase"
 	                "MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"    "%armour_increase"
-	                "MODIFIER_PROPERTY_HEALTH_BONUS"            "%hp_increase"
+	                "MODIFIER_PROPERTY_HEALTH_BONUS"             "%hp_increase"
 	                "MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT"   "%regen_increase"               
 	            }
 	        }               
@@ -1053,7 +1073,7 @@
 	    // General
 	    //-------------------------------------------------------------------------------------------------------------
 	    "BaseClass"             "ability_datadriven"
-	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 	    "AbilityType"           "DOTA_ABILITY_TYPE_BASIC"
 	    "AbilityTextureName"    "drow_ranger_marksmanship"
 	    "MaxLevel"              "1"
@@ -1106,9 +1126,104 @@
 	        "04"
 	        {
 	            "var_type"      "FIELD_FLOAT"
-	            "max_aggro_dist"        "1500"
+	            "max_aggro_dist"        "800"
 	        }   
 	    }
+	}
+	
+	
+	"ability_upgrade_ranged_barracks_1"
+	{
+	    "BaseClass"                     "ability_datadriven"
+	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+	    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"    
+	    "AbilityTextureName"            "clinkz_strafe"
+	
+	    "AbilityGoldCost"       "50"
+	
+	    "OnSpellStart"
+	    {
+	
+	        "RunScript"
+	        {
+	            "ScriptFile"    "scripts/vscripts/addon_game_mode.lua"
+	            "Function"      "upgradeTower"
+	
+	
+	            "AddAbility1"
+	            {
+	                "Ability"   "ability_ranged_defender_buff_1"
+	                "Level"     "1"
+	            }
+	        }        
+	
+	        "RunScript"
+	        {
+	            "ScriptFile"        "unit_scripts/towers/ai_barracks.lua"
+	            "Function"          "Upgrade"
+	
+	            "AbilityContext"
+	            {
+	                "Ability"   "ability_ranged_defender_buff_1"
+	                "Level"     "1"
+	                "Model"     "models/creeps/lane_creeps/creep_radiant_ranged/radiant_ranged_mega.vmdl"
+	            }
+	        } 
+	    }
+	}
+	
+	
+	"ability_ranged_defender_buff_1"
+	{
+	    "BaseClass"             "ability_datadriven"
+	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"  
+	    "AbilityTextureName"    "clinkz_strafe" 
+	
+	    "Modifiers"
+	    {
+	        "ability_ranged_defender_buff_1"
+	        {
+	            "Passive"           "1"         
+	            "IsPurgable"        "0"
+	            "IsBuff"            "1"
+	            "IsHidden"          "0"
+	
+	            "Properties"
+	            {
+	                "MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE"  "%dmg_increase"
+	                "MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"    "%armour_increase"
+	                "MODIFIER_PROPERTY_HEALTH_BONUS"            "%hp_increase"
+	                "MODIFIER_PROPERTY_ATTACK_RANGE_BONUS"      "%range_increase"               
+	            }
+	        }               
+	    }  
+	
+	    "AbilitySpecial"
+	    {
+	        "01"
+	        {
+	            "var_type"          "FIELD_INTEGER"
+	            "dmg_increase"      "8"
+	        }
+	
+	        "02"
+	        {
+	            "var_type"          "FIELD_INTEGER"
+	            "hp_increase"       "10"
+	        }
+	
+	        "03"
+	        {
+	            "var_type"          "FIELD_INTEGER"
+	            "armour_increase"   "2"
+	        }
+	
+	        "04"
+	        {
+	            "var_type"          "FIELD_INTEGER"
+	            "range_increase"    "200"
+	        }
+	    }   
 	}
 	"ability_upgrade_sniper_1"
 	{
@@ -1505,7 +1620,7 @@
 	"ability_shoot_tacks"
 	{
 	    "BaseClass"                     "ability_datadriven"
-	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 	    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"    
 	    "AbilityTextureName"            "bristleback_quill_spray"
 	

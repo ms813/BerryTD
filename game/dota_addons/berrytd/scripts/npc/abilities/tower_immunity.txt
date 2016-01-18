@@ -1,16 +1,16 @@
 "tower_immunity"
 {
-	"BaseClass"             		"ability_datadriven"
-	"MaxLevel" 						"1"
-
-	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-
+	"BaseClass"             	"ability_datadriven"
+	"MaxLevel" 					"1"
+	"AbilityTextureName"		"neutral_spell_immunity"
+	"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+	
 	"Modifiers"
 	{
 		"modifier_tower_immunity"
 		{
 			"Passive"			"1"
-			"IsHidden"			"1"
+			"IsHidden"			"0"
 			"Attributes"		"MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE | MODIFIER_ATTRIBUTE_PERMANENT"	
 			"States"
 			{
@@ -21,7 +21,6 @@
 			}
 			"Properties"
 			{
-				"MODIFIER_PROPERTY_DISABLE_TURNING" 	"0"
 				"MODIFIER_PROPERTY_IGNORE_CAST_ANGLE" 	"1"
 				"MODIFIER_PROPERTY_MOVESPEED_ABSOLUTE"	"0.1"
 			}
@@ -29,20 +28,42 @@
 	}		
 }
 
+"ability_cant_turn"
+{
+	"BaseClass"             		"ability_datadriven"	
+	"MaxLevel" 						"1"
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+
+	"Modifiers"
+	{
+		"modifier_name"
+		{
+			"Passive"			"1"
+			"IsHidden"			"1"		
+			"Attributes"		"MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE | MODIFIER_ATTRIBUTE_PERMANENT"	
+
+			"Properties"
+			{
+				"MODIFIER_PROPERTY_DISABLE_TURNING"	"1"
+			}	
+		}
+	}
+}
+
 "ability_unselectable"
 {
-	"BaseClass"             		"ability_datadriven"
-	"MaxLevel" 						"1"
-
-	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+	"BaseClass"            	"ability_datadriven"
+	"MaxLevel" 				"1"
+	"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 
 	"Modifiers"
 	{
 		"modifier_unselectable"
 		{
-			"Passive" 	"1"
-			"IsHidden"	"1"
-			"Attributes"	"MODIFIER_ATTRIBUTE_PERMANENT"
+			"Passive" 		"1"
+			"IsHidden"		"1"
+			"Attributes"	"MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE | MODIFIER_ATTRIBUTE_PERMANENT"	
+
 			"States"
 			{
 				"MODIFIER_STATE_UNSELECTABLE"		"MODIFIER_STATE_VALUE_ENABLED"

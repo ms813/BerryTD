@@ -22,8 +22,9 @@
     "Ability1"              "ability_sell_tower"
     "Ability2"              "ability_barracks_spawn_ranged_defender"  
     "Ability3"              "ability_barracks_set_spawn"
-    //"Ability4"              "ability_upgrade_ranged_barracks_1"   
+    "Ability4"              "ability_upgrade_ranged_barracks_1"   
     "Ability7"              "tower_immunity"
+    "Ability8"				"ability_cant_turn"
 
     "AttackCapabilities"    "DOTA_UNIT_CAP_NO_ATTACK"  
 

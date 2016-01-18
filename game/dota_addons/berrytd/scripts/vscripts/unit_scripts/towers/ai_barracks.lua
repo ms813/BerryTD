@@ -52,7 +52,7 @@ function BarracksThink(tower)
 		
 		if dist > tower.max_aggro_dist then
 			print("defender too far from spawn, trying to move back")
-			defender:MoveToNPC(tower.flag)
+			defender:MoveToPosition(tower.spawn_pos)
 		end
 	end
 
@@ -81,11 +81,19 @@ function SpawnDefender(keys)
 				print("adding ability to defender: ", upgrade.Ability)
 				
 				--add the ability and upgrade it to level 1
-				defender:AddAbility(upgrade.Ability)	
-				defender:FindAbilityByName(upgrade.Ability):SetLevel(upgrade.Level)
+				defender:AddAbility(upgrade.Ability)
+				local ab = defender:FindAbilityByName(upgrade.Ability)
+				ab:SetLevel(upgrade.Level)
 				
 				if upgrade.Model ~= nil then
 					defender:SetModel(upgrade.Model)
+				end
+
+				--hack here to increase HP as the MODIFIER_PROPERTY_HEALTH_BONUS KV doesnt work
+				local hp_increase = ab:GetLevelSpecialValueFor("hp_increase", 1)
+				if hp_increase ~= nil then
+					defender:SetMaxHealth(defender:GetMaxHealth() + hp_increase)
+					defender:SetHealth(defender:GetMaxHealth())
 				end
 			end
 		end	
