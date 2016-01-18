@@ -45,19 +45,58 @@ function BarracksThink(tower)
 		end
 	end	
 
-	--check that the defenders haven't moved too far from the spawn flag	
+	--some AI for the defenders in this barracks
 	for i, defender in pairs (tower.defenders) do
+
+		--check that the defenders haven't moved too far from the spawn flag	
 		local d_pos = defender:GetAbsOrigin()		
 		local dist = (tower.spawn_pos - d_pos):Length2D()
-		
+			
+		--if they are too far from the spawn then deaggro and move back
 		if dist > tower.max_aggro_dist then
-			print("defender too far from spawn, trying to move back")
+			--print("defender too far from spawn, trying to move back")
 			defender:MoveToPosition(tower.spawn_pos)
+		end	
+
+		if defender.aggro_target ~= nil and not defender.aggro_target:IsAlive() then
+			defender.aggro_target = nil
+		end
+
+		if defender.aggro_target == nil then
+
+			local creeps = FindUnitsInRadius(DOTA_TEAM_NEUTRALS,
+									defender:GetAbsOrigin(),
+									nil,
+									defender:GetAcquisitionRange(),
+								    DOTA_UNIT_TARGET_TEAM_FRIENDLY,
+								    DOTA_UNIT_TARGET_ALL,
+								    DOTA_UNIT_TARGET_FLAG_NONE,
+								    FIND_CLOSEST,
+									false)
+
+			for i, creep in pairs(creeps) do
+				--creep can't attack so hasn't been aggroed before
+				if creep:GetAttackCapability() ~= DOTA_UNIT_CAP_MELEE_ATTACK then
+					defender.aggro_target = creep
+					creep:SetAttackCapability(DOTA_UNIT_CAP_MELEE_ATTACK)
+					AttackOrder(defender, creep)
+					AttackOrder(creep, defender)
+					break
+				end
+			end
 		end
 	end
+	return 0.1
+end
+
+function AttackOrder(attacker, target)
+	ExecuteOrderFromTable({
+		UnitIndex = attacker:entindex(),
+		OrderType = DOTA_UNIT_ORDER_ATTACK_TARGET,
+		TargetIndex = target:entindex()
+	})
 
 
-	return 0.5
 end
 
 function SpawnDefender(keys)
@@ -69,8 +108,8 @@ function SpawnDefender(keys)
 		local defender = CreateUnitByName(keys.AbilityContext.defender_name,
 											 caster.spawn_pos, 
 											 true,
-											 caster,
-											 caster,
+											 caster:GetOwner(),
+											 caster:GetOwner(),
 											 caster:GetTeamNumber())	
 
 		--apply any upgrades to this defender
@@ -78,7 +117,7 @@ function SpawnDefender(keys)
 
 			--loop through the current list of upgrades
 			for k, upgrade in pairs(caster.upgrades) do
-				print("adding ability to defender: ", upgrade.Ability)
+				--print("adding ability to defender: ", upgrade.Ability)
 				
 				--add the ability and upgrade it to level 1
 				defender:AddAbility(upgrade.Ability)
@@ -100,7 +139,6 @@ function SpawnDefender(keys)
 
 		--finally add this defender to the racks table
 		table.insert(caster.defenders, defender)
-
 	end		
 end
 

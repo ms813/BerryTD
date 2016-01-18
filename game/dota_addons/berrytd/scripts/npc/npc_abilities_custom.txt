@@ -335,12 +335,7 @@
 	        {
 	            "var_type"      "FIELD_FLOAT"
 	            "health"        "100"
-	        }
-	        "03"
-	        {
-	            "var_type"      "FIELD_FLOAT"
-	            "max_aggro_dist"        "1500"
-	        }
+	        }        
 	    }
 	}
 	
@@ -407,7 +402,7 @@
 	    "BaseClass"             "ability_datadriven"
 	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 	    "AbilityType"           "DOTA_ABILITY_TYPE_BASIC"
-	    "AbilityTextureName"    "shredder_chakram"
+	    "AbilityTextureName"    "shredder_return_chakram"
 	    "MaxLevel"              "1"
 	
 	    // Time     
@@ -1067,6 +1062,47 @@
 	            "regen_increase"    "2"
 	        }
 	    }   
+	}
+	
+	
+	"ability_upgrade_melee_barracks_2"
+	{
+	    "BaseClass"                     "ability_datadriven"
+	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+	    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"    
+	    "AbilityTextureName"            "dragon_knight_dragon_blood"
+	
+	    "AbilityGoldCost"       "50"
+	
+	    "OnSpellStart"
+	    {
+	
+	        "RunScript"
+	        {
+	            "ScriptFile"    "scripts/vscripts/addon_game_mode.lua"
+	            "Function"      "upgradeTower"
+	
+	
+	            "AddAbility1"
+	            {
+	                "Ability"   "ability_melee_defender_buff_1"
+	                "Level"     "1"
+	            }
+	        }        
+	
+	        "RunScript"
+	        {
+	            "ScriptFile"        "unit_scripts/towers/ai_barracks.lua"
+	            "Function"          "Upgrade"
+	
+	            "AbilityContext"
+	            {
+	                "Ability"   "ability_melee_defender_buff_1"
+	                "Level"     "1"
+	                "Model"     "models/creeps/lane_creeps/creep_radiant_melee/radiant_melee_mega.vmdl"
+	            }
+	        } 
+	    }
 	}
 	"ability_barracks_spawn_ranged_defender"
 	{

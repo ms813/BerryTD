@@ -36,6 +36,7 @@ require('events')
 require('waves')
 
 require('abilities')
+require('unit_scripts/creeps/CreepAggroThink')
 
 --[[
   This function should be used to set up Async precache calls at the beginning of the gameplay.
@@ -149,6 +150,7 @@ function GameMode:InitGameMode()
   self.maxWave = #waveTable;
   self.currentLives = 50 
   self.players = {}
+  self.base = Entities:FindByName(nil, "dota_goodguys_fort")
 
   DebugPrint('[BAREBONES] Done loading Barebones gamemode!\n\n')
 end
@@ -160,10 +162,10 @@ function GameMode:ExampleConsoleCommand()
 	if cmdPlayer then
 		local playerID = cmdPlayer:GetPlayerID()
 		if playerID ~= nil and playerID ~= -1 then
-      -- Do something here for the player who called this command
-      PlayerResource:ReplaceHeroWith(playerID, "npc_dota_hero_viper", 1000, 1000)
-  end
-end
+            -- Do something here for the player who called this command
+            PlayerResource:ReplaceHeroWith(playerID, "npc_dota_hero_viper", 1000, 1000)
+        end
+    end
 
 print( '*********************************************' )
 end
@@ -192,45 +194,46 @@ function GameMode:SpawnWave(waveIndex)
     local waveGroupCount = 0
     local totalCreeps = waveTable[waveIndex].numTotal
     local groupSize = waveTable[waveIndex].spawnGroupSize
+  
+    Timers:CreateTimer(function()    
+        for i = 0, groupSize - 1 do
+            local creep = CreateUnitByName(waveTable[waveIndex].creep,
+                               SpawnLocation:GetAbsOrigin() + RandomVector(RandomFloat(200,200)),
+                               true,
+                               nil,
+                               nil,
+                               DOTA_TEAM_NEUTRALS)
+            self.numCreepsAlive = self.numCreepsAlive + 1
+            self.numCreepsSpawned = self.numCreepsSpawned + 1           
 
-    Timers:CreateTimer(function()
-          for i = 0, groupSize - 1 do
-              local creep = CreateUnitByName(waveTable[waveIndex].creep, SpawnLocation:GetAbsOrigin() + RandomVector(RandomFloat(200,200)), true, nil, nil, DOTA_TEAM_NEUTRALS)
-              self.numCreepsAlive = self.numCreepsAlive + 1
-              self.numCreepsSpawned = self.numCreepsSpawned + 1
-
-              local waypoint = Entities:FindByName(nil, "creep_waypoint_0")    
-
-              creep:SetInitialGoalEntity(waypoint) 
-          end
-
-          waveGroupCount = waveGroupCount + 1
-
-          if (waveGroupCount * groupSize) >= totalCreeps then             
-              return nil
-          else
-              return waveTable[waveIndex].spawnGroupInterval 
-          end     
-        end   
-    )
-
+            creep:SetInitialGoalEntity(self.base)    
+        end        
+        waveGroupCount = waveGroupCount + 1
+        
+       
+        --if we've spawned all the creeps stop the timer
+        if (waveGroupCount * groupSize) >= totalCreeps then                
+            return nil
+        else
+            --if there are still creeps to spawn then wait the group interval before spawning the next set
+            return waveTable[waveIndex].spawnGroupInterval 
+        end    
+    end)
 end
 
 function GameMode:TimedTick()
 	--print("timed tick, current wave:",self.currentWave, ", numCreepsSpawned:", self.numCreepsSpawned, ", numCreepsAlive:" , self.numCreepsAlive)	
 
-    local unitsAtEnd = GameMode:checkCreepsReachedEnd()
-
-    local base = Entities:FindByName(nil, "dota_goodguys_fort")
+    local unitsAtEnd = GameMode:checkCreepsReachedEnd()    
     for _, unit in pairs(unitsAtEnd) do
-        unit:Kill(nil, base)
+        unit:Kill(nil, self.base)
     end
 	
 	return 0.5
 end
 
 function GameMode:checkCreepsReachedEnd()
-local endPos = Entities:FindByName(nil, "dota_goodguys_fort"):GetAbsOrigin()
+local endPos = self.base:GetAbsOrigin()
 local radius = 500;
 
 

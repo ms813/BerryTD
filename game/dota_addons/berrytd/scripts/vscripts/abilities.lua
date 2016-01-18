@@ -8,6 +8,13 @@ function GameMode:sellTower(keys)
 
 	local refundAmount = caster:GetManaRegen()	
 
+	--if the sold tower is a barracks, kill its defenders
+	if caster:GetUnitLabel() == "barracks" then
+		for i, defender in pairs(caster.defenders) do
+			defender:ForceKill(false)
+		end
+	end
+
 	caster:ForceKill(false)
 	owner:ModifyGold(refundAmount, true, DOTA_ModifyGold_SellItem)
 

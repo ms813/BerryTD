@@ -243,7 +243,6 @@ function GameMode:OnEntityKilled( keys )
 
     -- Put code here to handle when an entity gets killed    
 
-    local base = Entities:FindByName(nil, "dota_goodguys_fort")
     --if killed unit has an owner then someone is selling a tower, or a defender has died
     if killedUnit:GetOwner() ~= nil then 
       local owner = killedUnit:GetOwner()
@@ -261,7 +260,7 @@ function GameMode:OnEntityKilled( keys )
         end
 
     --if creep reaches the ancient, then suicide and remove a life
-    elseif(base == killerEntity) then
+    elseif(self.base == killerEntity) then
 
         --subtract a life
         self.currentLives = self.currentLives - waveTable[self.currentWave].lifePenalty
@@ -278,22 +277,12 @@ function GameMode:OnEntityKilled( keys )
         self.numCreepsAlive = self.numCreepsAlive - 1
 
     --creep was killed by a tower
-    else
-        --defender killed a creep 
-        --defenders are not considered heroes so we have to give the owner the kill bounty
-        if(killerEntity:GetUnitLabel() == "defender") then
-            local bounty = killedUnit:GetGoldBounty()
-
-            --call GetOwner() twice, first time gets the racks, second gets the hero
-            local owner = killerEntity:GetOwner():GetOwner()
-            owner:ModifyGold(bounty, true, DOTA_ModifyGold_CreepKill)
-        end
-
+    else        
         self.numCreepsAlive = self.numCreepsAlive - 1
         print("Creep killed," , self.numCreepsAlive , "remaining")  
     end
 
-    if self.numCreepsAlive == 0 then  
+    if self.currentWave > 0 and self.numCreepsAlive == 0 then  
     --no creeps are on the map, so lets give the reward for completing the wave
       for i, player in pairs(self.players) do
         player:ModifyGold(waveTable[self.currentWave].bonusEndGold, true, DOTA_ModifyGold_Unspecified)

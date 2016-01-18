@@ -44,12 +44,7 @@
         {
             "var_type"      "FIELD_FLOAT"
             "health"        "100"
-        }
-        "03"
-        {
-            "var_type"      "FIELD_FLOAT"
-            "max_aggro_dist"        "1500"
-        }
+        }        
     }
 }
 
