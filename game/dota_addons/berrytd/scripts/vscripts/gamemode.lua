@@ -36,7 +36,6 @@ require('events')
 require('waves')
 
 require('abilities')
-require('unit_scripts/creeps/CreepAggroThink')
 
 --[[
   This function should be used to set up Async precache calls at the beginning of the gameplay.

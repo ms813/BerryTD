@@ -241,23 +241,29 @@ function GameMode:OnEntityKilled( keys )
 
     local damagebits = keys.damagebits -- This might always be 0 and therefore useless
 
-    -- Put code here to handle when an entity gets killed    
+    -- Put code here to handle when an entity gets killed   
 
-    --if killed unit has an owner then someone is selling a tower, or a defender has died
-    if killedUnit:GetOwner() ~= nil then 
-      local owner = killedUnit:GetOwner()
+    --this is used to make sure barracks can only spawn up to their unit cap
+    --see ai_melee_barracks.lua for example
 
-        --this is used to make sure barracks can only spawn up to their unit cap
-        --see ai_melee_barracks.lua for example
-        if owner:GetUnitLabel() == "barracks" then                   
+    if killedUnit:GetUnitLabel() == "defender" then
+        local rax = killedUnit.parent_barracks
 
-          --remove the defender from the racks table by finding its index and using table.remove(table, index)
-          for k, defender in pairs(owner.defenders) do
-            if defender == killedUnit then
-              table.remove(owner.defenders, k)
-            end
-          end          
+        --reset the killing unit's attack capabilities
+        if killedUnit.aggro_target ~= nil then
+            killedUnit.aggro_target:SetAttackCapability(DOTA_UNIT_CAP_NO_ATTACK)
         end
+        for k, defender in pairs(rax.defenders) do
+            if defender == killedUnit then
+              table.remove(rax.defenders, k)
+              --print("defender died, # remaning at this racks:", #rax.defenders)
+            end
+        end  
+    end
+
+    --if killed unit has an owner then someone is selling a tower
+    if killedUnit:GetOwner() ~= nil then 
+      
 
     --if creep reaches the ancient, then suicide and remove a life
     elseif(self.base == killerEntity) then

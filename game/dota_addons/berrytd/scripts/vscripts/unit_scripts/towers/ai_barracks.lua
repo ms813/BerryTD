@@ -48,40 +48,45 @@ function BarracksThink(tower)
 	--some AI for the defenders in this barracks
 	for i, defender in pairs (tower.defenders) do
 
-		--check that the defenders haven't moved too far from the spawn flag	
-		local d_pos = defender:GetAbsOrigin()		
-		local dist = (tower.spawn_pos - d_pos):Length2D()
-			
-		--if they are too far from the spawn then deaggro and move back
-		if dist > tower.max_aggro_dist then
-			--print("defender too far from spawn, trying to move back")
-			defender:MoveToPosition(tower.spawn_pos)
-		end	
+		--this checks that the defenders are not dead
+		if not defender:IsNull() then
 
-		if defender.aggro_target ~= nil and not defender.aggro_target:IsAlive() then
-			defender.aggro_target = nil
-		end
+			--check that the defenders haven't moved too far from the spawn flag	
+			local d_pos = defender:GetAbsOrigin()		
+			local dist = (tower.spawn_pos - d_pos):Length2D()
+				
+			--if they are too far from the spawn then deaggro and move back
+			if dist > tower.max_aggro_dist then
+				--print("defender too far from spawn, trying to move back")
+				defender:MoveToPosition(tower.spawn_pos)
+			end	
 
-		if defender.aggro_target == nil then
+			if defender.aggro_target ~= nil and not defender.aggro_target:IsAlive() then
+				defender.aggro_target = nil
+			end
 
-			local creeps = FindUnitsInRadius(DOTA_TEAM_NEUTRALS,
-									defender:GetAbsOrigin(),
-									nil,
-									defender:GetAcquisitionRange(),
-								    DOTA_UNIT_TARGET_TEAM_FRIENDLY,
-								    DOTA_UNIT_TARGET_ALL,
-								    DOTA_UNIT_TARGET_FLAG_NONE,
-								    FIND_CLOSEST,
-									false)
+			if defender.aggro_target == nil then
 
-			for i, creep in pairs(creeps) do
-				--creep can't attack so hasn't been aggroed before
-				if creep:GetAttackCapability() ~= DOTA_UNIT_CAP_MELEE_ATTACK then
-					defender.aggro_target = creep
-					creep:SetAttackCapability(DOTA_UNIT_CAP_MELEE_ATTACK)
-					AttackOrder(defender, creep)
-					AttackOrder(creep, defender)
-					break
+				local creeps = FindUnitsInRadius(DOTA_TEAM_NEUTRALS,
+										defender:GetAbsOrigin(),
+										nil,
+										defender:GetAcquisitionRange(),
+									    DOTA_UNIT_TARGET_TEAM_FRIENDLY,
+									    DOTA_UNIT_TARGET_ALL,
+									    DOTA_UNIT_TARGET_FLAG_NONE,
+									    FIND_CLOSEST,
+										false)
+
+				for i, creep in pairs(creeps) do
+					
+					--creep can't attack so hasn't been aggroed before
+					if creep:GetAttackCapability() ~= DOTA_UNIT_CAP_MELEE_ATTACK then
+						defender.aggro_target = creep
+						creep:SetAttackCapability(DOTA_UNIT_CAP_MELEE_ATTACK)
+						AttackOrder(defender, creep)
+						AttackOrder(creep, defender)
+						break
+					end
 				end
 			end
 		end
@@ -111,6 +116,8 @@ function SpawnDefender(keys)
 											 caster:GetOwner(),
 											 caster:GetOwner(),
 											 caster:GetTeamNumber())	
+
+		defender.parent_barracks = caster
 
 		--apply any upgrades to this defender
 		if caster.upgrades ~= nil then
