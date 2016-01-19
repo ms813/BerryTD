@@ -53,8 +53,7 @@ function upgradeTower(keys)
 	--check an upgrade is specified in the ability file and that we haven't already upgraded it
 	if keys.AddAbility1 ~= nil and caster.upgradePath[upgrade_number] == "available" then
 		
-		caster:AddAbility(keys.AddAbility1.Ability)
-		local new_ability = caster:FindAbilityByName(keys.AddAbility1.Ability)
+		local new_ability = caster:AddAbility(keys.AddAbility1.Ability)		 
 	
 		--take a note that we've purchased this number
 		caster.upgradePath[upgrade_number] = "purchased";	

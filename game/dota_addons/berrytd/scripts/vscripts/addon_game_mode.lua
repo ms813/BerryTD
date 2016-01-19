@@ -59,6 +59,8 @@ function Precache( context )
   --Precaching defenders
   PrecacheUnitByNameSync("defender_melee", context)
 
+  PrecacheResource("particle", "particles/econ/generic/generic_buff_1/generic_buff_1.vpcf", context)
+
 end
 
 -- Create the game mode when we activate

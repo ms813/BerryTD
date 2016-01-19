@@ -867,8 +867,7 @@
 	    // General
 	    //-------------------------------------------------------------------------------------------------------------
 	    "BaseClass"             "ability_datadriven"
-	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-	    "AbilityType"           "DOTA_ABILITY_TYPE_BASIC"
+	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_HIDDEN"    
 	    "AbilityTextureName"    "sven_warcry"
 	    "MaxLevel"              "1"
 	
@@ -973,9 +972,8 @@
 	"ability_upgrade_melee_barracks_1"
 	{
 	    "BaseClass"                     "ability_datadriven"
-	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
-	    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"    
-	    "AbilityTextureName"            "dragon_knight_dragon_blood"
+	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"        
+	    "AbilityTextureName"            "dragon_knight_dragon_tail"
 	
 	    "AbilityGoldCost"       "50"
 	
@@ -1015,7 +1013,7 @@
 	{
 	    "BaseClass"             "ability_datadriven"
 	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"  
-	    "AbilityTextureName"    "dragon_knight_dragon_blood" 
+	    "AbilityTextureName"    "dragon_knight_dragon_tail" 
 	
 	    "Modifiers"
 	    {
@@ -1030,8 +1028,7 @@
 	            {
 	                "MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE"  "%dmg_increase"
 	                "MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"    "%armour_increase"
-	                "MODIFIER_PROPERTY_HEALTH_BONUS"             "%hp_increase"
-	                "MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT"   "%regen_increase"               
+	                "MODIFIER_PROPERTY_HEALTH_BONUS"             "%hp_increase"                            
 	            }
 	        }               
 	    }  
@@ -1064,19 +1061,18 @@
 	    }   
 	}
 	
-	
 	"ability_upgrade_melee_barracks_2"
 	{
 	    "BaseClass"                     "ability_datadriven"
-	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
-	    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"    
-	    "AbilityTextureName"            "dragon_knight_dragon_blood"
-	
-	    "AbilityGoldCost"       "50"
+	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"    
+	    "AbilityTextureName"            "witch_doctor_voodoo_restoration"
+	    "AbilityGoldCost"               "50"
 	
 	    "OnSpellStart"
 	    {
 	
+	        //this script adds the ability to the barracks aesthetically
+	        //and sorts out the next upgrade ability 
 	        "RunScript"
 	        {
 	            "ScriptFile"    "scripts/vscripts/addon_game_mode.lua"
@@ -1085,11 +1081,13 @@
 	
 	            "AddAbility1"
 	            {
-	                "Ability"   "ability_melee_defender_buff_1"
+	                "Ability"   "ability_melee_defender_regen"
 	                "Level"     "1"
 	            }
 	        }        
 	
+	
+	        //this script adds the upgrade to the creeps
 	        "RunScript"
 	        {
 	            "ScriptFile"        "unit_scripts/towers/ai_barracks.lua"
@@ -1097,12 +1095,107 @@
 	
 	            "AbilityContext"
 	            {
-	                "Ability"   "ability_melee_defender_buff_1"
-	                "Level"     "1"
-	                "Model"     "models/creeps/lane_creeps/creep_radiant_melee/radiant_melee_mega.vmdl"
+	                "Ability"   "ability_melee_defender_regen"
+	                "Level"     "1"                              
 	            }
 	        } 
 	    }
+	}
+	
+	//a passive that toggles regen off when taking damage, then 
+	//switches it back on after %timeout
+	"ability_melee_defender_regen"
+	{
+	    "BaseClass"             "ability_datadriven"
+	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_TOGGLE"
+	    "AbilityTextureName"    "witch_doctor_voodoo_restoration"      
+	
+	    "OnToggleOn"
+	    {
+	        "ApplyModifier"
+	        {
+	            "ModifierName"  "modifier_melee_defender_regen"
+	            "Target"        "CASTER"            
+	        }
+	    }
+	
+	    "OnToggleOff"
+	    {
+	        "RemoveModifier"
+	        {
+	            "ModifierName"  "modifier_melee_defender_regen"
+	            "Target"        "CASTER"
+	        }
+	    }
+	
+	    "Modifiers"
+	    {
+	        "modifier_melee_defender_regen"
+	        {
+	
+	            "Passive"           "0"         
+	            "IsPurgable"        "0"
+	            "IsBuff"            "1"
+	            "IsHidden"          "0"            
+	
+	            "Properties"
+	            {               
+	                "MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE"   "%percent_regen"               
+	            }
+	
+	            "AttachEffect"
+	            {
+	                "Target" "CASTER"
+	                "EffectName" "particles/econ/generic/generic_buff_1/generic_buff_1.vpcf"
+	                "EffectAttachType" "follow_overhead"
+	                "EffectLifeDurationScale" "1"
+	                "EffectColorA" "255 255 0"
+	            }
+	        }
+	
+	        "modifier_melee_defender_dmg_check"
+	        {
+	            "Passive"   "1" 
+	            "IsHidden"  "1"
+	            //call a function that disables the regen for %cooldown
+	            "OnTakeDamage"    
+	            {
+	                "RunScript"
+	                {
+	                    "ScriptFile"        "unit_scripts/towers/ai_barracks.lua"
+	                    "Function"          "DisableRegen"
+	
+	                    // "%attack_damage" is set to the damage value after mitigation
+	                    "Damage"            "%attack_damage"
+	
+	                    "AbilityContext"
+	                    {
+	                        "Ability"       "ability_melee_defender_regen"
+	                        "Level"         "1"     
+	                        "Cooldown"      "%cooldown"
+	                    }
+	                } 
+	            }
+	        }
+	    }   
+	           
+	
+	
+	
+	    "AbilitySpecial"
+	    {       
+	        "01"
+	        {
+	            "var_type"          "FIELD_FLOAT"
+	            "cooldown"          "10.0"
+	        }    
+	
+	        "02"
+	        {
+	            "var_type"          "FIELD_INTEGER"
+	            "percent_regen"     "10"
+	        }         
+	    }   
 	}
 	"ability_barracks_spawn_ranged_defender"
 	{
