@@ -2,6 +2,7 @@ function Spawn(entityKeyValues)
 
 	--initiate an empty table to track the defenders
 	thisEntity.defenders = {}
+	thisEntity.upgrades = {}
 
 	--pick a random spawn location when this racks is placed
 	thisEntity.spawn_pos = thisEntity:GetAbsOrigin() + RandomVector(1)*500
@@ -132,8 +133,7 @@ function SpawnDefender(keys)
 				
 				--add the ability and upgrade it to level 1
 				defender:AddAbility(upgrade.Ability)
-				local ab = defender:FindAbilityByName(upgrade.Ability)
-				ab:SetLevel(upgrade.Level)
+				local ab = defender:FindAbilityByName(upgrade.Ability):SetLevel(upgrade.Level)				
 				
 				if upgrade.Model ~= nil then
 					defender:SetModel(upgrade.Model)
@@ -170,6 +170,9 @@ function SetDefenderSpawn(keys)
 
  	--get rid of the old flag if there is one
 	if caster.flag ~= nil and IsValidEntity(caster.flag) then
+		--make the flag invisible as soon as a new one is placed
+		caster:AddSpeechBubble(0, "New spawn point set", 5, 0, 0)
+		caster.flag:AddNoDraw()
 		caster.flag:ForceKill(false)
 		caster.flag = nil	
 		caster.spawn_pos = nil	
@@ -186,14 +189,14 @@ function SetDefenderSpawn(keys)
 end
 
 function Upgrade(keys)
-	--AbilityContext has the following fields:
-		--Ability
-		--Level
-		--Model		
-	if keys.caster.upgrades == nil then
-		keys.caster.upgrades = {}
-	end
+	
+	--cache a list of upgrades here so we can apply them to each defender on spawn	
 	table.insert(keys.caster.upgrades, keys.AbilityContext)
+
+	--remove the regen_manager from the racks itself	
+	if keys.AbilityContext.Ability == "ability_melee_defender_regen_manager" then
+		keys.caster:RemoveAbility(keys.AbilityContext.Ability)
+	end
 end
 
 function DisableRegen(keys)
