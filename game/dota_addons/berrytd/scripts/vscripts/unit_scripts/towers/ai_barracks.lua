@@ -208,9 +208,14 @@ function Upgrade(keys)
 	--cache a list of upgrades here so we can apply them to each defender on spawn	
 	table.insert(keys.caster.upgrades, keys.AbilityContext)
 	
-	--remove the regen_manager from the racks itself	
-	if keys.AbilityContext.Ability == "ability_melee_defender_regen_manager" then
-		--keys.caster:RemoveAbility(keys.AbilityContext.Ability)
+	--If the upgrade is creep regen, toggle it on on the racks then hide it
+	--This leaves the modifier on the racks so players know the upgrade is purchased
+	if keys.AbilityContext.Ability == "ability_melee_defender_regen" then
+		local ab = keys.caster:FindAbilityByName(keys.AbilityContext.Ability)
+		if not ab:GetToggleState() then
+			ab:ToggleAbility()
+		end
+		ab:SetHidden(true)
 	end
 end
 
