@@ -205,7 +205,11 @@ function GameMode:SpawnWave(waveIndex)
             self.numCreepsAlive = self.numCreepsAlive + 1
             self.numCreepsSpawned = self.numCreepsSpawned + 1           
 
-            creep:SetInitialGoalEntity(self.base)    
+            creep:SetInitialGoalEntity(self.base)  
+
+            --keep track of the default attack capability
+            --so we can use it later in the aggro script
+            creep.default_attack_capability = creep:GetAttackCapability()
         end        
         waveGroupCount = waveGroupCount + 1
         

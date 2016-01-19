@@ -59,6 +59,10 @@ function BarracksThink(tower)
 			if dist > tower.max_aggro_dist then
 				--print("defender too far from spawn, trying to move back")
 				defender:MoveToPosition(tower.spawn_pos)
+
+				--reset aggro
+				creep:SetAttackCapability(creep.default_attack_capability)
+				defender.aggro_target = nil
 			end	
 
 			if defender.aggro_target ~= nil and not defender.aggro_target:IsAlive() then
@@ -190,4 +194,33 @@ function Upgrade(keys)
 		keys.caster.upgrades = {}
 	end
 	table.insert(keys.caster.upgrades, keys.AbilityContext)
+end
+
+function DisableRegen(keys)
+
+	local defender = keys.caster
+	local timeout = keys.ability:GetLevelSpecialValueFor("timeout")
+	local regen_ability = keys.AbilityContext.Ability
+
+	--unit has taken damage so remove the regen ability for %timeout
+	if keys.Damage > 0 then
+		if defender.regen_timer ~= nil then
+		--stop any previous timers
+			Timers:RemoveTimer(defender.regen_timer)				
+		end
+
+		--remove the regen ability immediately
+		defender:RemoveAbility(regen_ability)
+
+		--start a new timer that will re-add the regen mod after the timeout
+		defender.regen_timer = Timers:CreateTimer({
+		    endTime = timeout, 
+		    callback = function()
+			    defender:AddAbility(regen_ability)			    
+			    defender:FindAbilityByName(regen_ability):SetLevel(keys.AbilityContext.Level)
+		    end
+		})
+		end
+	end
+	
 end
