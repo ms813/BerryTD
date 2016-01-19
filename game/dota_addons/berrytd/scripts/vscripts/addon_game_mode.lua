@@ -58,6 +58,7 @@ function Precache( context )
 
   --Precaching defenders
   PrecacheUnitByNameSync("defender_melee", context)
+  PrecacheResource("model", "models/creeps/lane_creeps/creep_radiant_melee/radiant_melee_mega.vmdl", context)
 
   PrecacheResource("particle", "particles/econ/generic/generic_buff_1/generic_buff_1.vpcf", context)
 

@@ -52,13 +52,11 @@ function BarracksThink(tower)
 		--this checks that the defenders are not dead
 		if not defender:IsNull() then
 
-			--try toggling on any toggle abilties
+			--try toggling on any toggle abilties if the cooldowns are ready
 			local regen_ability = defender:FindAbilityByName("ability_melee_defender_regen")
-
 			if  regen_ability ~= nil then				
 				if not regen_ability:GetToggleState() then					
 					if regen_ability:IsCooldownReady() then						
-						print("switching regen on")
 						regen_ability:ToggleAbility()
 					end
 				end
@@ -124,89 +122,92 @@ function AttackOrder(attacker, target)
 end
 
 function SetDefenderSpawn(keys)
-	local caster = keys.caster
-	local caster_pos = caster:GetAbsOrigin()
+	local rax = keys.caster
+	local rax_pos = rax:GetAbsOrigin()
 	local ability = keys.ability
 
 	--the target vector is passed from the KV "OnAbilityStart"{"RunScript" {"Target" "POINT"}}
 	local target_pos = keys.target_points[1]		
 	local ability_cast_range = ability:GetLevelSpecialValueFor("cast_range", 1)
-	local cast_dist = (caster_pos - target_pos):Length2D();
+	local cast_dist = (rax_pos - target_pos):Length2D();
 
 	if cast_dist > ability_cast_range then  
 		--move the flag to the edge of the ring on the same bearing as the target_point
-		target_pos = caster_pos + (target_pos - caster_pos):Normalized() * ability_cast_range
+		target_pos = rax_pos + (target_pos - rax_pos):Normalized() * ability_cast_range
 	end
 
  	--get rid of the old flag if there is one
-	if caster.flag ~= nil and IsValidEntity(caster.flag) then
+	if rax.flag ~= nil and IsValidEntity(rax.flag) then
 		--make the flag invisible as soon as a new one is placed
-		caster:AddSpeechBubble(0, "New spawn point set", 5, 0, 0)
-		caster.flag:AddNoDraw()
-		caster.flag:ForceKill(false)
-		caster.flag = nil	
-		caster.spawn_pos = nil	
+		rax:AddSpeechBubble(0, "New spawn point set", 5, 0, 0)
+		rax.flag:AddNoDraw()
+		rax.flag:ForceKill(false)
+		rax.flag = nil	
+		rax.spawn_pos = nil	
 	end
 
-	caster.flag = CreateUnitByName("barracks_spawn_flag",
+	rax.flag = CreateUnitByName("barracks_spawn_flag",
 										target_pos,
 										true,
-										caster,
-										caster,
-										caster:GetTeamNumber())  
-	caster.flag:SetHullRadius(0.1)
-	caster.spawn_pos = caster.flag:GetAbsOrigin()
+										rax,
+										rax,
+										rax:GetTeamNumber())  
+	rax.flag:SetHullRadius(0.1)
+	rax.spawn_pos = rax.flag:GetAbsOrigin()
 end
 
 function SpawnDefender(keys)
-	local caster = keys.caster
-	local caster_pos = caster:GetAbsOrigin()
+	local rax = keys.caster	
 	local ability = keys.ability	
 
-	if #caster.defenders < caster.defender_cap then
+	if #rax.defenders < rax.defender_cap then
 		local defender = CreateUnitByName(keys.AbilityContext.defender_name,
-											 caster.spawn_pos, 
+											 rax.spawn_pos, 
 											 true,
-											 caster:GetOwner(),
-											 caster:GetOwner(),
-											 caster:GetTeamNumber())	
+											 rax:GetOwner(),
+											 rax:GetOwner(),
+											 rax:GetTeamNumber())	
 
-		defender.parent_barracks = caster
+		defender.parent_barracks = rax
 		defender.default_attack_capability = defender:GetAttackCapability()
 
+		--check if any upgrades have requested a model change
+		if rax.creep_model ~= nil then			
+			defender:SetOriginalModel(rax.creep_model)
+		end
+
 		--apply any upgrades to this defender
-		if caster.upgrades ~= nil then
+		if rax.upgrades ~= nil then
 
 			--loop through the current list of upgrades
-			for k, upgrade in pairs(caster.upgrades) do
-				--print("adding ability to defender: ", upgrade.Ability)
+			for k, upgrade in pairs(rax.upgrades) do
+				--print("adding ability to defender: ", upgrade)
 				
 				--add the ability and upgrade it to level 1
-				local ab = defender:AddAbility(upgrade.Ability)				
-				ab:SetLevel(upgrade.Level)				
-								
-				if upgrade.Model ~= nil then
-					print("changing creep model to:", upgrade.Model)
-					defender:SetModel(upgrade.Model)
-				end
+				local ab = defender:AddAbility(upgrade)				
+				ab:SetLevel(1 --[[upgrade.Level]])
 
 				--hack here to increase HP as the MODIFIER_PROPERTY_HEALTH_BONUS KV doesnt work
-				local hp_increase = ab:GetLevelSpecialValueFor("hp_increase", 1)
-				if hp_increase ~= nil then
-					defender:SetMaxHealth(defender:GetMaxHealth() + hp_increase)
-					defender:SetHealth(defender:GetMaxHealth())
+				local hp_increase = ab:GetLevelSpecialValueFor("hp_increase", 1)				
+				if hp_increase ~= nil and hp_increase ~= 0 then
+					defender:SetBaseMaxHealth(defender:GetMaxHealth() + hp_increase)
+					defender:SetHealth(defender:GetMaxHealth())					
 				end
 			end
-		end	
-
+		end			
+		
 		--finally add this defender to this racks' table
-		table.insert(caster.defenders, defender)
+		table.insert(rax.defenders, defender)
 	end		
 end
 
 function Upgrade(keys)	
 	--cache a list of upgrades here so we can apply them to each defender on spawn	
-	table.insert(keys.caster.upgrades, keys.AbilityContext)
+	table.insert(keys.caster.upgrades, keys.AbilityContext.Ability)
+
+	if keys.AbilityContext.Model ~= nil then		
+		keys.caster.creep_model = keys.AbilityContext.Model
+	end
 	
 	--If the upgrade is creep regen, toggle it on on the racks then hide it
 	--This leaves the modifier on the racks so players know the upgrade is purchased
@@ -219,17 +220,14 @@ function Upgrade(keys)
 	end
 end
 
-function DisableRegen(keys)	
-	print("take dmg")
-	local cd = keys.AbilityContext.Cooldown
-	--local regen_ability = keys.AbilityContext.Ability
+function DisableRegen(keys)		
+	local cd = keys.AbilityContext.Cooldown	
 	local regen_ability = keys.ability	
 
-	print(cd)
-	--regen_ability:EndCooldown()
+	--if defender takes damage, put his regen on cooldown
 	regen_ability:StartCooldown(cd)	
 
-	--if ability is on...
+	--if regen ability is on...
 	if regen_ability:GetToggleState() then
 		--...toggle it off
 		regen_ability:ToggleAbility()

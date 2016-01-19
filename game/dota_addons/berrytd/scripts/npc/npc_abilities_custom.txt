@@ -1006,6 +1006,11 @@
 	            }
 	        } 
 	    }
+	
+	    "precache"
+	    {
+	        "model"     "models/creeps/lane_creeps/creep_radiant_melee/radiant_melee_mega.vmdl"
+	    }
 	}
 	
 	
@@ -1028,7 +1033,7 @@
 	            {
 	                "MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE"  "%dmg_increase"
 	                "MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"    "%armour_increase"
-	                "MODIFIER_PROPERTY_HEALTH_BONUS"             "%hp_increase"                            
+	                "MODIFIER_PROPERTY_HEALTH_BONUS"            "%hp_increase"                            
 	            }
 	        }               
 	    }  
@@ -1058,7 +1063,12 @@
 	            "var_type"          "FIELD_INTEGER"
 	            "regen_increase"    "2"
 	        }
-	    }   
+	    } 
+	
+	     "precache"
+	    {
+	        "model"     "models/creeps/lane_creeps/creep_radiant_melee/radiant_melee_mega.vmdl"
+	    }  
 	}
 	
 	"ability_upgrade_melee_barracks_2"
