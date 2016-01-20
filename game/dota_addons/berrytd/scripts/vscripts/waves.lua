@@ -14,27 +14,6 @@
 
   ]]
 
-waveTable = {}
-waveTable[1] = CreepExampleWaveBuilder()
-waveTable[2] = {
-	bonusEndGold = 200,
-	creepGroups = {
-		CreateCreepGroup("creep_donkey", 10, 0, 2, 2),
-		CreateCreepGroup("creep_sheep", 100, 0, 5, 1)
-	}
-}
-
-function CreepExampleWaveBuilder()
-	--make an empty wave with 
-	local wave = CreateEmptyWave(100)
-
-	wave:AddCreepGroup(CreateCreepGroup("creep_sheep", 6, 0, 1, 3))
-	wave:AddCreepGroup(CreateCreepGroup("creep_geodesic", 2, 3, 2, 1))
-	wave:AddCreepGroup(CreateCreepGroup("creep_constructradiant", 4, 3, 1, 2))
-	wave:AddCreepGroup(CreateCreepGroup("creep_cluckles", 6, 0, 1, 3))
-
-	return wave
-end
 
 function CreateEmptyWave(bonusEndGold)
 	local wave = {}
@@ -44,17 +23,40 @@ function CreateEmptyWave(bonusEndGold)
 end
 
 function AddCreepGroup(wave, creepGroup)
-	wave.creepGroups = {} or wave.creepGroups
+	wave.creepGroups = wave.creepGroups or {}
 	table.insert(wave.creepGroups, creepGroup)	
 end
 
 function CreateCreepGroup(creep, numTotal, spawnDelay, groupSize, groupInterval)
 	local cg = {}
 	cg.creep = creep
-	cg.numTotal = count
+	cg.numTotal = numTotal
 	cg.spawnDelay = spawnDelay
 	cg.spawnGroupSize = groupSize
 	cg.spawnGroupInterval = groupInterval
 
 	return cg	
 end
+
+
+function CreepExampleWaveBuilder()
+	--make an empty wave with 
+	local wave = CreateEmptyWave(100)
+
+	AddCreepGroup(wave, CreateCreepGroup("creep_sheep", 6, 0, 1, 3))
+	AddCreepGroup(wave, CreateCreepGroup("creep_geodesic", 2, 3, 2, 1))
+	AddCreepGroup(wave, CreateCreepGroup("creep_constructradiant", 4, 3, 1, 2))
+	AddCreepGroup(wave, CreateCreepGroup("creep_cluckles", 6, 0, 1, 3))
+
+	return wave
+end
+
+waveTable = {}
+waveTable[1] = CreepExampleWaveBuilder()
+waveTable[2] = {
+	bonusEndGold = 200,
+	creepGroups = {
+		CreateCreepGroup("creep_donkey", 10, 0, 2, 2),
+		CreateCreepGroup("creep_sheep", 100, 0, 5, 1)
+	}
+}
