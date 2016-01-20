@@ -192,13 +192,7 @@
         {
             "var_type"          "FIELD_INTEGER"
             "armour_increase"   "5"
-        }
-
-        "04"
-        {
-            "var_type"          "FIELD_INTEGER"
-            "regen_increase"    "2"
-        }
+        }       
     } 
 
     "precache"
@@ -255,6 +249,11 @@
     "BaseClass"             "ability_datadriven"
     "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_TOGGLE"
     "AbilityTextureName"    "witch_doctor_voodoo_restoration"      
+
+    "precache"
+    {
+        "particle"  "particles/econ/generic/generic_buff_1/generic_buff_1.vpcf"        
+    }
 
     "OnToggleOn"
     {
@@ -324,9 +323,6 @@
             }
         }
     }   
-           
-
-
 
     "AbilitySpecial"
     {       
