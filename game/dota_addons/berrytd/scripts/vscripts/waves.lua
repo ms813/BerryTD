@@ -1,27 +1,60 @@
-function Wave(creep, numTotal, bonusEndGold, spawnGroupSize, spawnGroupInterval)
-	local newWave = {}
-	newWave.isBoss = false
-	newWave.creep = creep
-	newWave.numTotal = numTotal
-	newWave.numPerSpawn = numPerSpawn
-	newWave.bonusEndGold = bonusEndGold	
-	newWave.lifePenalty = 1
-	newWave.spawnGroupSize = spawnGroupSize
-	newWave.spawnGroupInterval = spawnGroupInterval
+--[[
+	The wave table is the data structure that contains details of what waves are 
+	made up of.
 
-	return newWave
-end
+	Each wave has a bonus for completing it "bonusEndGold"
+	
+	Each wave also has a list of creepGroups that detail a group of creeps
+
+	Each creepGroup lists the creep name, total number and details if they will
+	spawn clumped together or spread apart (spawnGroupSize and spawnGroupInterval)
+
+	All creepGroups start spawning at the same time, so in order to stagger them,
+	a spawnDelay must be specified
+
+  ]]
 
 waveTable = {}
+waveTable[1] = CreepExampleWaveBuilder()
+waveTable[2] = {
+	bonusEndGold = 200,
+	creepGroups = {
+		CreateCreepGroup("creep_donkey", 10, 0, 2, 2),
+		CreateCreepGroup("creep_sheep", 100, 0, 5, 1)
+	}
+}
 
-waveTable[1] = Wave("creep_sheep", 10, 100, 2, 2)
-waveTable[2] = Wave("creep_cluckles", 10, 150, 1, 0.5)
-waveTable[3] = Wave("creep_donkey", 10, 160, 1, 0.5)
-waveTable[4] = Wave("creep_beaver", 10, 180, 1, 0.5)
-waveTable[5] = Wave("creep_facerex", 2, 200, 1, 0.5)
-waveTable[6] = Wave("creep_goldwight", 25, 200, 1, 0.5)
-waveTable[7] = Wave("creep_geodesic", 5, 200, 1, 0.5)
-waveTable[8] = Wave("creep_crab", 10, 200, 1, 0.5)
-waveTable[9] = Wave("creep_constructradiant", 10, 200, 1, 0.5)
-waveTable[10] = Wave("creep_ancestralspirit", 1, 400, 1, 0.5)
+function CreepExampleWaveBuilder()
+	--make an empty wave with 
+	local wave = CreateEmptyWave(100)
 
+	wave:AddCreepGroup(CreateCreepGroup("creep_sheep", 6, 0, 1, 3))
+	wave:AddCreepGroup(CreateCreepGroup("creep_geodesic", 2, 3, 2, 1))
+	wave:AddCreepGroup(CreateCreepGroup("creep_constructradiant", 4, 3, 1, 2))
+	wave:AddCreepGroup(CreateCreepGroup("creep_cluckles", 6, 0, 1, 3))
+
+	return wave
+end
+
+function CreateEmptyWave(bonusEndGold)
+	local wave = {}
+	wave.bonusEndGold = bonusEndGold
+	wave.creepGroups = {}
+	return wave
+end
+
+function AddCreepGroup(wave, creepGroup)
+	wave.creepGroups = {} or wave.creepGroups
+	table.insert(wave.creepGroups, creepGroup)	
+end
+
+function CreateCreepGroup(creep, numTotal, spawnDelay, groupSize, groupInterval)
+	local cg = {}
+	cg.creep = creep
+	cg.numTotal = count
+	cg.spawnDelay = spawnDelay
+	cg.spawnGroupSize = groupSize
+	cg.spawnGroupInterval = groupInterval
+
+	return cg	
+end

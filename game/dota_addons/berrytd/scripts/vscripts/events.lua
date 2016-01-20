@@ -269,7 +269,7 @@ function GameMode:OnEntityKilled( keys )
     elseif(self.base == killerEntity) then
 
         --subtract a life
-        self.currentLives = self.currentLives - waveTable[self.currentWave].lifePenalty
+        self.currentLives = self.currentLives - 1
 
         print(killedUnit:GetName(), " reached the end!")
         Notifications:TopToAll({text=killedUnit:GetName().. " reached the end! Lifes left: " ..self.currentLives, duration=5.0})   

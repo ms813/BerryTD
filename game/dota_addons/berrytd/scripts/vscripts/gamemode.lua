@@ -185,43 +185,48 @@ end
 
 function GameMode:SpawnWave(waveIndex)
   Notifications:TopToAll({text="Starting wave "..waveIndex, duration=5.0, color="yellow"})   
-	local SpawnLocation = Entities:FindByName(nil, "creep_spawner")
-	self.numCreepsSpawned = 0	
-
+	local spawnLocation = Entities:FindByName(nil, "creep_spawner")
     --waveTable is defined in waves.lua
 
-    local waveGroupCount = 0
-    local totalCreeps = waveTable[waveIndex].numTotal
-    local groupSize = waveTable[waveIndex].spawnGroupSize
-  
-    Timers:CreateTimer(function()    
-        for i = 0, groupSize - 1 do
-            local creep = CreateUnitByName(waveTable[waveIndex].creep,
-                               SpawnLocation:GetAbsOrigin() + RandomVector(RandomFloat(200,200)),
-                               true,
-                               nil,
-                               nil,
-                               DOTA_TEAM_NEUTRALS)
-            self.numCreepsAlive = self.numCreepsAlive + 1
-            self.numCreepsSpawned = self.numCreepsSpawned + 1           
+    local wave = waveTable[waveIndex]
 
-            creep:SetInitialGoalEntity(self.base)  
+    --start a timer for each group of creeps in the wave
+    for i, group in pairs(wave.creepGroups) do
 
-            --keep track of the default attack capability
-            --so we can use it later in the aggro script
-            creep.default_attack_capability = creep:GetAttackCapability()
-        end        
-        waveGroupCount = waveGroupCount + 1
-        
-       
-        --if we've spawned all the creeps stop the timer
-        if (waveGroupCount * groupSize) >= totalCreeps then                
-            return nil
-        else
-            --if there are still creeps to spawn then wait the group interval before spawning the next set
-            return waveTable[waveIndex].spawnGroupInterval 
-        end    
-    end)
+        --keep track of the number of subgroups spawned
+        group.subGroupCount = 0
+
+        Timers:CreateTimer(group.spawnDelay, function()
+            --spawn a subgroup of creeps from this group
+            for i=0, group.spawnGroupSize -1 do
+                local creep = CreateUnitByName(group.creep,
+                                                spawnLocation:GetAbsOrigin(),
+                                                true,
+                                                nil,
+                                                nil,
+                                                DOTA_TEAM_NEUTRALS)
+
+                --order the creep to run towards the throne
+                creep:SetInitialGoalEntity(self.base)
+
+                --cache the creeps attack capability for use in aggro AI later
+                creep.default_attack_capability = creep:GetAttackCapability()
+
+                --keep track of how many creeps are alive on the map at once
+                self.numCreepsAlive = self.numCreepsAlive + 1
+            end
+            group.subGroupCount = group.subGroupCount + 1
+
+            --if we have spawned all the creeps in this group stop the timer
+            if group.subGroupCount >= (group.numTotal / group.spawnGroupSize) then
+                return nil
+            else
+                --if there are still creeps in this group to spawn,
+                --wait the specified interval then spawn the next subgroup
+                return group.spawnGroupInterval
+            end
+        end) --timer
+    end
 end
 
 function GameMode:TimedTick()
