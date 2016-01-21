@@ -65,99 +65,35 @@ function upgradeTower(keys)
 	local caster = keys.caster
 	local ability_name = keys.ability:GetAbilityName()
 	local ability_gold_cost = keys.ability:GetGoldCost(keys.ability:GetLevel())
+	local next_upgrade = keys.AbilityContext.nextUpgrade
+	local split_upgrade = keys.AbilityContext.splitUpgrade
 
-	--initialise the upgrade tree if it hasn't already been done
-	if caster.upgradePath == nil then
-		caster.upgradePath = {}	
-		for i=1, 6 do
-			caster.upgradePath[i] = "available"
-		end
-	end	
+	keys.ability:SetHidden(true)
+	local new_ab = caster:AddAbility(next_upgrade)
 
-	--[[
-		upgrade_number is used to check the upgrade paths by trimming the number
-		off the end of the ability name:
-			e.g. ability_sniper_upgrade_1 		
-	Upgrade paths:
+	--not all upgrades are implemented yet so defend here
+	if new_ab ~= nil then new_ab:SetLevel(1) end
 
-				     ---> 3 ---> 5
-		1 ---> 2 ---|
-				     ---> 4 ---> 6
-		]] 
+	if split_upgrade ~= nil then
+		print(split_upgrade)
+		local ab = caster:AddAbility(split_upgrade)
+
+		--not all upgrades are implemented yet so defend here
+		if ab ~= nil then ab:SetLevel(1) end 
+	end
 
 	--grab the upgrade number from the ability name
 	local upgrade_number = tonumber(string.sub(ability_name, -1))	
 
-	--remove the upgrade button
-	caster:RemoveAbility(ability_name)
-
-	--check an upgrade is specified in the ability file and that we haven't already upgraded it
-	if keys.AddAbility1 ~= nil and caster.upgradePath[upgrade_number] == "available" then
+	if upgrade_number == 3 then
+		caster:RemoveAbility(string.sub(ability_name,0,-2).."4")
+	else if upgrade_number == 4 then
+		caster:RemoveAbility(string.sub(ability_name,0,-2).."3")
+	end
 		
-		--add the new ability that the upgrade provides and cache it
-		local new_ability = caster:AddAbility(keys.AddAbility1.Ability)	
 
-		--upgrade the new ability to the level specified in the ability file
-		new_ability:SetLevel(keys.AddAbility1.Level)	 
-	
-		--take a note that we've purchased this number
-		caster.upgradePath[upgrade_number] = "purchased";	
-
-		--if upgrade 3 is picked, block 4 and 6 and remove 4 from the bar
-		if upgrade_number == 3 then
-			caster.upgradePath[4] = "blocked"
-			caster.upgradePath[6] = "blocked"
-
-			local check4 = caster:FindAbilityByName(string.sub(ability_name,0,-2).."4")
-			if check4 ~= nil then
-				caster:RemoveAbility(check4:GetAbilityName())
-			end
-		--if upgrade 4 is picked, block 3 and 5 and remove 3 from the bar
-		elseif	upgrade_number == 4 then
-			caster.upgradePath[3] = "blocked"
-			caster.upgradePath[5] = "blocked"
-
-			local check3 = caster:FindAbilityByName(string.sub(ability_name,0,-2).."3")
-			if check3 ~= nil then
-				caster:RemoveAbility(check3:GetAbilityName())
-			end
-		end
-
-		--toggle autocast on if specified in the ability file
-		if keys.AddAbility1.AutoCast ~= nil and keys.AddAbility1.AutoCast == "true" then
-			new_ability:ToggleAutoCast()
-		end
-
-		--cache the level of the next upgrade
-		local next_upgrade_number = upgrade_number + 1
-
-		--this block adds the ability to purchase the next upgrade
-		if upgrade_number < 5 and caster.upgradePath[next_upgrade_number] == "available" then		
-
-			--get the name of the next upgrade in the path
-			--by trimming the start of the current ability and adding the next upgrade number
-			local next_upgrade_name = string.sub(ability_name,0,-2)..next_upgrade_number
-			
-			--add the ability to purchase the next upgrade in the path	
-			caster:AddAbility(next_upgrade_name)
-
-			--set the new upgrade to level 1 so that it can actually be clicked on			
-			if caster:FindAbilityByName(next_upgrade_name) ~= nil then
-				caster:FindAbilityByName(next_upgrade_name):SetLevel(1)
-			end
-			
-			--display upgrades 3 and 4 at the same time, only let the user pick one
-			if upgrade_number == 2 then
-				local lvl4_upgrade = string.sub(ability_name, 0, -2)..(next_upgrade_number+1)				
-				if caster:FindAbilityByName(lvl) ~= nil then
-					caster:AddAbility(lvl4_upgrade)
-					caster:FindAbilityByName(lvl4_upgrade):SetLevel(1)
-				end
-			end
-		end				
-
-		--this adds half the upgrade cost to the sell value using the mana regen hack
-		caster:SetBaseManaRegen(caster:GetManaRegen() + (ability_gold_cost / 2))
+	--this adds half the upgrade cost to the sell value using the mana regen hack
+	caster:SetBaseManaRegen(caster:GetManaRegen() + (ability_gold_cost / 2))
 
 	end
 end

@@ -31,7 +31,7 @@
 
             "AbilityContext"
             {
-                "defender_name"     "defender_ranged"
+                "defender_name"     "defender_ranged_0"
             }
         }
     }
@@ -73,6 +73,11 @@
 
     "OnSpellStart"
     {
+        "ApplyModifier"
+        {
+            "ModifierName"    "modifier_upgrade_ranged_barracks_1"
+            "Target"          "CASTER"            
+        }
 
         "RunScript"
         {
@@ -80,10 +85,9 @@
             "Function"      "upgradeTower"
 
 
-            "AddAbility1"
+            "AbilityContext"
             {
-                "Ability"   "ability_ranged_defender_buff_1"
-                "Level"     "1"
+                "nextUpgrade"   "ability_upgrade_ranged_barracks_2"                
             }
         }        
 
@@ -94,64 +98,120 @@
 
             "AbilityContext"
             {
-                "Ability"   "ability_ranged_defender_buff_1"
-                "Level"     "1"
-                "Model"     "models/creeps/lane_creeps/creep_radiant_ranged/radiant_ranged_mega.vmdl"
+                "defender_name" "defender_ranged_1"
             }
         } 
     }
-}
-
-
-"ability_ranged_defender_buff_1"
-{
-    "BaseClass"             "ability_datadriven"
-    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"  
-    "AbilityTextureName"    "clinkz_strafe" 
 
     "Modifiers"
     {
-        "ability_ranged_defender_buff_1"
+        "modifier_upgrade_ranged_barracks_1"
         {
-            "Passive"           "1"         
-            "IsPurgable"        "0"
-            "IsBuff"            "1"
-            "IsHidden"          "0"
+            "IsHidden"      "0"
+            "Passive"       "0"     
+        }
+    }
+}
 
-            "Properties"
-            {
-                "MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE"  "%dmg_increase"
-                "MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"    "%armour_increase"
-                "MODIFIER_PROPERTY_HEALTH_BONUS"            "%hp_increase"
-                "MODIFIER_PROPERTY_ATTACK_RANGE_BONUS"      "%range_increase"               
-            }
-        }               
-    }  
+"ability_upgrade_ranged_barracks_2"
+{
+    "BaseClass"                     "ability_datadriven"
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"    
+    "AbilityTextureName"            "drow_ranger_trueshot"
 
-    "AbilitySpecial"
+    "AbilityGoldCost"       "50"
+
+    "OnSpellStart"
     {
-        "01"
+        "ApplyModifier"
         {
-            "var_type"          "FIELD_INTEGER"
-            "dmg_increase"      "8"
+            "ModifierName"    "modifier_upgrade_ranged_barracks_2"
+            "Target"          "CASTER"            
         }
 
-        "02"
+        "RunScript"
         {
-            "var_type"          "FIELD_INTEGER"
-            "hp_increase"       "10"
+            "ScriptFile"    "scripts/vscripts/addon_game_mode.lua"
+            "Function"      "upgradeTower"
+
+
+            "AbilityContext"
+            {
+                "nextUpgrade"   "ability_upgrade_ranged_barracks_3"                
+                "splitUpgrade"  "ability_upgrade_ranged_barracks_4"
+            }
+        }        
+
+        "RunScript"
+        {
+            "ScriptFile"        "unit_scripts/towers/ai_barracks.lua"
+            "Function"          "Upgrade"
+
+            "AbilityContext"
+            {
+                "defender_name"     "defender_ranged_2"
+            }
+        } 
+    }
+
+    "Modifiers"
+    {
+        "modifier_upgrade_ranged_barracks_2"
+        {
+            "IsHidden"      "0"
+            "Passive"       "0"     
+        }
+    }
+}
+
+"ability_upgrade_ranged_barracks_3"
+{
+    "BaseClass"                     "ability_datadriven"
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"    
+    "AbilityTextureName"            "drow_ranger_trueshot"
+
+    "AbilityGoldCost"       "50"
+
+    "OnSpellStart"
+    {
+        "ApplyModifier"
+        {
+            "ModifierName"    "modifier_upgrade_ranged_barracks_3"
+            "Target"          "CASTER"            
         }
 
-        "03"
+        "RunScript"
         {
-            "var_type"          "FIELD_INTEGER"
-            "armour_increase"   "2"
-        }
+            "ScriptFile"    "scripts/vscripts/addon_game_mode.lua"
+            "Function"      "upgradeTower"
 
-        "04"
+
+            "AbilityContext"
+            {
+                "nextUpgrade"   "ability_upgrade_ranged_barracks_5"                
+            }
+        }        
+
+        "RunScript"
         {
-            "var_type"          "FIELD_INTEGER"
-            "range_increase"    "200"
+            "ScriptFile"        "unit_scripts/towers/ai_barracks.lua"
+            "Function"          "Upgrade"
+
+            "AbilityContext"
+            {
+                "defender_name"     "defender_ranged_3"
+            }
+        } 
+    }
+
+    "Modifiers"
+    {
+        "modifier_upgrade_ranged_barracks_3"
+        {
+            "IsHidden"      "0"
+            "Passive"       "0"     
         }
-    }   
+    }
 }

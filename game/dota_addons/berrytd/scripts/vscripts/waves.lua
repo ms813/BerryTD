@@ -52,7 +52,10 @@ function CreepExampleWaveBuilder()
 end
 
 waveTable = {}
-waveTable[1] = CreepExampleWaveBuilder()
+waveTable[1] = {
+	bonusEndGold = 100,
+	creepGroups = {CreateCreepGroup("creep_sheep", 10, 0, 1, 1)}
+}
 waveTable[2] = {
 	bonusEndGold = 200,
 	creepGroups = {
@@ -60,3 +63,4 @@ waveTable[2] = {
 		CreateCreepGroup("creep_sheep", 100, 0, 5, 1)
 	}
 }
+waveTable[3] = CreepExampleWaveBuilder()

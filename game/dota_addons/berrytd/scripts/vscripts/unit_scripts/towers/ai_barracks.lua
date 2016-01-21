@@ -3,6 +3,7 @@ function Spawn(entityKeyValues)
 	--initiate an empty table to track the defenders
 	thisEntity.defenders = {}
 	thisEntity.upgrades = {}
+	
 
 	--pick a random spawn location when this racks is placed
 	thisEntity.spawn_pos = thisEntity:GetAbsOrigin() + RandomVector(1)*500
@@ -13,6 +14,10 @@ function Spawn(entityKeyValues)
 	elseif barracks_name == "barracks_ranged" then
 		thisEntity.barracks_type = "ranged"
 	end
+
+	local ab_name = "ability_barracks_spawn_"..thisEntity.barracks_type.."_defender"
+	thisEntity.spawn_ability = thisEntity:FindAbilityByName(ab_name)
+	thisEntity.defender_name = "defender_"..thisEntity.barracks_type.."_0"
 
 	--grab the spawn ability and cache the defender cap
 	local ability_name = "ability_barracks_spawn_"..thisEntity.barracks_type.."_defender"
@@ -35,13 +40,10 @@ function BarracksThink(tower)
 		return nil
 	end
 
-	local ab_name = "ability_barracks_spawn_"..tower.barracks_type.."_defender"
-	local spawn_ability = tower:FindAbilityByName(ab_name)
-
-	if spawn_ability ~= nil then
-		if spawn_ability:GetCooldownTimeRemaining() <= 0.0 then			
+	if tower.spawn_ability ~= nil then
+		if tower.spawn_ability:GetCooldownTimeRemaining() <= 0.0 then			
 			if #tower.defenders < tower.defender_cap then			
-				spawn_ability:CastAbility()	
+				tower.spawn_ability:CastAbility()	
 			end
 		end
 	end	
@@ -161,7 +163,7 @@ function SpawnDefender(keys)
 	local ability = keys.ability	
 
 	if #rax.defenders < rax.defender_cap then
-		local defender = CreateUnitByName(keys.AbilityContext.defender_name,
+		local defender = CreateUnitByName(rax.defender_name,
 											 rax.spawn_pos, 
 											 true,
 											 rax:GetOwner(),
@@ -169,32 +171,7 @@ function SpawnDefender(keys)
 											 rax:GetTeamNumber())	
 
 		defender.parent_barracks = rax
-		defender.default_attack_capability = defender:GetAttackCapability()
-
-		--check if any upgrades have requested a model change
-		if rax.creep_model ~= nil then			
-			defender:SetOriginalModel(rax.creep_model)
-		end
-
-		--apply any upgrades to this defender
-		if rax.upgrades ~= nil then
-
-			--loop through the current list of upgrades
-			for k, upgrade in pairs(rax.upgrades) do
-				--print("adding ability to defender: ", upgrade)
-				
-				--add the ability and upgrade it to level 1
-				local ab = defender:AddAbility(upgrade)				
-				ab:SetLevel(1 --[[upgrade.Level]])
-
-				--hack here to increase HP as the MODIFIER_PROPERTY_HEALTH_BONUS KV doesnt work
-				local hp_increase = ab:GetLevelSpecialValueFor("hp_increase", 1)				
-				if hp_increase ~= nil and hp_increase ~= 0 then
-					defender:SetBaseMaxHealth(defender:GetMaxHealth() + hp_increase)
-					defender:SetHealth(defender:GetMaxHealth())					
-				end
-			end
-		end			
+		defender.default_attack_capability = defender:GetAttackCapability()				
 		
 		--finally add this defender to this racks' table
 		table.insert(rax.defenders, defender)
@@ -202,25 +179,11 @@ function SpawnDefender(keys)
 end
 
 function Upgrade(keys)	
-	--cache a list of upgrades here so we can apply them to each defender on spawn	
-	table.insert(keys.caster.upgrades, keys.AbilityContext.Ability)
-
-	if keys.AbilityContext.Model ~= nil then		
-		keys.caster.creep_model = keys.AbilityContext.Model
-	end
-	
-	--If the upgrade is creep regen, toggle it on on the racks then hide it
-	--This leaves the modifier on the racks so players know the upgrade is purchased
-	if keys.AbilityContext.Ability == "ability_melee_defender_regen" then
-		local ab = keys.caster:FindAbilityByName(keys.AbilityContext.Ability)
-		if not ab:GetToggleState() then
-			ab:ToggleAbility()
-		end
-		ab:SetHidden(true)
-	end
+	keys.caster.defender_name = keys.AbilityContext.defender_name
 end
 
 function DisableRegen(keys)		
+	print("disable regen enter")
 	local cd = keys.AbilityContext.Cooldown	
 	local regen_ability = keys.ability	
 

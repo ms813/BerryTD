@@ -29,7 +29,7 @@
 
             "AbilityContext"
             {
-                "defender_name"     "defender_melee"
+                "defender_name"     "defender_melee_0"
             }
         }
     }
@@ -109,12 +109,17 @@
 {
     "BaseClass"                     "ability_datadriven"
     "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"        
-    "AbilityTextureName"            "dragon_knight_dragon_tail"
+    "AbilityTextureName"            "necronomicon_warrior_mana_burn"
 
     "AbilityGoldCost"       "50"
 
     "OnSpellStart"
-    {
+    {   
+        "ApplyModifier"
+        {
+            "ModifierName"    "modifier_upgrade_melee_barracks_1"
+            "Target"          "CASTER"            
+        }
 
         "RunScript"
         {
@@ -122,10 +127,9 @@
             "Function"      "upgradeTower"
 
 
-            "AddAbility1"
+            "AbilityContext"
             {
-                "Ability"   "ability_melee_defender_buff_1"
-                "Level"     "1"
+                "nextUpgrade"   "ability_upgrade_melee_barracks_2"                
             }
         }        
 
@@ -136,69 +140,19 @@
 
             "AbilityContext"
             {
-                "Ability"   "ability_melee_defender_buff_1"
-                "Level"     "1"
-                "Model"     "models/creeps/lane_creeps/creep_radiant_melee/radiant_melee_mega.vmdl"
+                "defender_name"   "defender_melee_1"                                
             }
         } 
     }
 
-    "precache"
-    {
-        "model"     "models/creeps/lane_creeps/creep_radiant_melee/radiant_melee_mega.vmdl"
-    }
-}
-
-
-"ability_melee_defender_buff_1"
-{
-    "BaseClass"             "ability_datadriven"
-    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"  
-    "AbilityTextureName"    "dragon_knight_dragon_tail" 
-
     "Modifiers"
     {
-        "modifier_melee_defender_buff_1"
+        "modifier_upgrade_melee_barracks_1"
         {
-            "Passive"           "1"         
-            "IsPurgable"        "0"
-            "IsBuff"            "1"
-            "IsHidden"          "0"
-
-            "Properties"
-            {
-                "MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE"  "%dmg_increase"
-                "MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"    "%armour_increase"
-                "MODIFIER_PROPERTY_HEALTH_BONUS"            "%hp_increase"                                       
-            }
-        }               
-    }  
-
-    "AbilitySpecial"
-    {
-        "01"
-        {
-            "var_type"          "FIELD_INTEGER"
-            "dmg_increase"      "5"
+            "IsHidden"      "0"
+            "Passive"       "0"            
         }
-
-        "02"
-        {
-            "var_type"          "FIELD_INTEGER"
-            "hp_increase"       "50"
-        }
-
-        "03"
-        {
-            "var_type"          "FIELD_INTEGER"
-            "armour_increase"   "5"
-        }       
-    } 
-
-    "precache"
-    {
-        "model"     "models/creeps/lane_creeps/creep_radiant_melee/radiant_melee_mega.vmdl"
-    }  
+    }
 }
 
 "ability_upgrade_melee_barracks_2"
@@ -211,6 +165,12 @@
     "OnSpellStart"
     {
 
+        "ApplyModifier"
+        {
+            "ModifierName"    "modifier_upgrade_melee_barracks_2"
+            "Target"          "CASTER"            
+        }
+
         //this script adds the ability to the barracks aesthetically
         //and sorts out the next upgrade ability 
         "RunScript"
@@ -219,10 +179,10 @@
             "Function"      "upgradeTower"
 
 
-            "AddAbility1"
+            "AbilityContext"
             {
-                "Ability"   "ability_melee_defender_regen"
-                "Level"     "1"
+                "nextUpgrade"   "ability_upgrade_melee_barracks_3"   
+                "splitUpgrade"  "ability_upgrade_melee_barracks_4"             
             }
         }        
 
@@ -235,15 +195,80 @@
 
             "AbilityContext"
             {
-                "Ability"   "ability_melee_defender_regen"
-                "Level"     "1"                              
+                "defender_name"    "defender_melee_2"                           
             }
         } 
+    }
+
+     "Modifiers"
+    {
+        "modifier_upgrade_melee_barracks_2"
+        {
+            "IsHidden"      "0"
+            "Passive"       "0"            
+        }
+    }
+}
+
+
+
+"ability_upgrade_melee_barracks_3"
+{
+    "BaseClass"                     "ability_datadriven"
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"    
+    "AbilityTextureName"            "dragon_knight_dragon_blood"
+    "AbilityGoldCost"               "50"
+
+    "OnSpellStart"
+    {
+
+        "ApplyModifier"
+        {
+            "ModifierName"    "modifier_upgrade_melee_barracks_3"
+            "Target"          "CASTER"            
+        }
+
+        //this script adds the ability to the barracks aesthetically
+        //and sorts out the next upgrade ability 
+        "RunScript"
+        {
+            "ScriptFile"    "scripts/vscripts/addon_game_mode.lua"
+            "Function"      "upgradeTower"
+
+
+            "AbilityContext"
+            {
+                "nextUpgrade"   "ability_upgrade_melee_barracks_5"                
+            }
+        }        
+
+
+        //this script adds the upgrade to the creeps
+        "RunScript"
+        {
+            "ScriptFile"        "unit_scripts/towers/ai_barracks.lua"
+            "Function"          "Upgrade"
+
+            "AbilityContext"
+            {
+                "defender_name" "defender_melee_3"
+            }
+        } 
+    }
+
+    "Modifiers"
+    {
+        "modifier_upgrade_melee_barracks_3"
+        {
+            "IsHidden"      "0"
+            "Passive"       "0"            
+        }
     }
 }
 
 //a passive that toggles regen off when taking damage, then 
 //switches it back on after %timeout
+
 "ability_melee_defender_regen"
 {
     "BaseClass"             "ability_datadriven"
@@ -338,4 +363,4 @@
             "percent_regen"     "10"
         }         
     }   
-}
+} 

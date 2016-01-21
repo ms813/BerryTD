@@ -893,7 +893,7 @@
 	
 	            "AbilityContext"
 	            {
-	                "defender_name"     "defender_melee"
+	                "defender_name"     "defender_melee_0"
 	            }
 	        }
 	    }
@@ -973,12 +973,17 @@
 	{
 	    "BaseClass"                     "ability_datadriven"
 	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"        
-	    "AbilityTextureName"            "dragon_knight_dragon_tail"
+	    "AbilityTextureName"            "necronomicon_warrior_mana_burn"
 	
 	    "AbilityGoldCost"       "50"
 	
 	    "OnSpellStart"
-	    {
+	    {   
+	        "ApplyModifier"
+	        {
+	            "ModifierName"    "modifier_upgrade_melee_barracks_1"
+	            "Target"          "CASTER"            
+	        }
 	
 	        "RunScript"
 	        {
@@ -986,10 +991,9 @@
 	            "Function"      "upgradeTower"
 	
 	
-	            "AddAbility1"
+	            "AbilityContext"
 	            {
-	                "Ability"   "ability_melee_defender_buff_1"
-	                "Level"     "1"
+	                "nextUpgrade"   "ability_upgrade_melee_barracks_2"                
 	            }
 	        }        
 	
@@ -1000,75 +1004,19 @@
 	
 	            "AbilityContext"
 	            {
-	                "Ability"   "ability_melee_defender_buff_1"
-	                "Level"     "1"
-	                "Model"     "models/creeps/lane_creeps/creep_radiant_melee/radiant_melee_mega.vmdl"
+	                "defender_name"   "defender_melee_1"                                
 	            }
 	        } 
 	    }
 	
-	    "precache"
-	    {
-	        "model"     "models/creeps/lane_creeps/creep_radiant_melee/radiant_melee_mega.vmdl"
-	    }
-	}
-	
-	
-	"ability_melee_defender_buff_1"
-	{
-	    "BaseClass"             "ability_datadriven"
-	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"  
-	    "AbilityTextureName"    "dragon_knight_dragon_tail" 
-	
 	    "Modifiers"
 	    {
-	        "modifier_melee_defender_buff_1"
+	        "modifier_upgrade_melee_barracks_1"
 	        {
-	            "Passive"           "1"         
-	            "IsPurgable"        "0"
-	            "IsBuff"            "1"
-	            "IsHidden"          "0"
-	
-	            "Properties"
-	            {
-	                "MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE"  "%dmg_increase"
-	                "MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"    "%armour_increase"
-	                "MODIFIER_PROPERTY_HEALTH_BONUS"            "%hp_increase"                            
-	            }
-	        }               
-	    }  
-	
-	    "AbilitySpecial"
-	    {
-	        "01"
-	        {
-	            "var_type"          "FIELD_INTEGER"
-	            "dmg_increase"      "5"
+	            "IsHidden"      "0"
+	            "Passive"       "0"            
 	        }
-	
-	        "02"
-	        {
-	            "var_type"          "FIELD_INTEGER"
-	            "hp_increase"       "50"
-	        }
-	
-	        "03"
-	        {
-	            "var_type"          "FIELD_INTEGER"
-	            "armour_increase"   "5"
-	        }
-	
-	        "04"
-	        {
-	            "var_type"          "FIELD_INTEGER"
-	            "regen_increase"    "2"
-	        }
-	    } 
-	
-	     "precache"
-	    {
-	        "model"     "models/creeps/lane_creeps/creep_radiant_melee/radiant_melee_mega.vmdl"
-	    }  
+	    }
 	}
 	
 	"ability_upgrade_melee_barracks_2"
@@ -1081,6 +1029,12 @@
 	    "OnSpellStart"
 	    {
 	
+	        "ApplyModifier"
+	        {
+	            "ModifierName"    "modifier_upgrade_melee_barracks_2"
+	            "Target"          "CASTER"            
+	        }
+	
 	        //this script adds the ability to the barracks aesthetically
 	        //and sorts out the next upgrade ability 
 	        "RunScript"
@@ -1089,10 +1043,10 @@
 	            "Function"      "upgradeTower"
 	
 	
-	            "AddAbility1"
+	            "AbilityContext"
 	            {
-	                "Ability"   "ability_melee_defender_regen"
-	                "Level"     "1"
+	                "nextUpgrade"   "ability_upgrade_melee_barracks_3"   
+	                "splitUpgrade"  "ability_upgrade_melee_barracks_4"             
 	            }
 	        }        
 	
@@ -1105,20 +1059,90 @@
 	
 	            "AbilityContext"
 	            {
-	                "Ability"   "ability_melee_defender_regen"
-	                "Level"     "1"                              
+	                "defender_name"    "defender_melee_2"                           
 	            }
 	        } 
+	    }
+	
+	     "Modifiers"
+	    {
+	        "modifier_upgrade_melee_barracks_2"
+	        {
+	            "IsHidden"      "0"
+	            "Passive"       "0"            
+	        }
+	    }
+	}
+	
+	
+	
+	"ability_upgrade_melee_barracks_3"
+	{
+	    "BaseClass"                     "ability_datadriven"
+	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"    
+	    "AbilityTextureName"            "dragon_knight_dragon_blood"
+	    "AbilityGoldCost"               "50"
+	
+	    "OnSpellStart"
+	    {
+	
+	        "ApplyModifier"
+	        {
+	            "ModifierName"    "modifier_upgrade_melee_barracks_3"
+	            "Target"          "CASTER"            
+	        }
+	
+	        //this script adds the ability to the barracks aesthetically
+	        //and sorts out the next upgrade ability 
+	        "RunScript"
+	        {
+	            "ScriptFile"    "scripts/vscripts/addon_game_mode.lua"
+	            "Function"      "upgradeTower"
+	
+	
+	            "AbilityContext"
+	            {
+	                "nextUpgrade"   "ability_upgrade_melee_barracks_5"                
+	            }
+	        }        
+	
+	
+	        //this script adds the upgrade to the creeps
+	        "RunScript"
+	        {
+	            "ScriptFile"        "unit_scripts/towers/ai_barracks.lua"
+	            "Function"          "Upgrade"
+	
+	            "AbilityContext"
+	            {
+	                "defender_name" "defender_melee_3"
+	            }
+	        } 
+	    }
+	
+	    "Modifiers"
+	    {
+	        "modifier_upgrade_melee_barracks_3"
+	        {
+	            "IsHidden"      "0"
+	            "Passive"       "0"            
+	        }
 	    }
 	}
 	
 	//a passive that toggles regen off when taking damage, then 
 	//switches it back on after %timeout
+	
 	"ability_melee_defender_regen"
 	{
 	    "BaseClass"             "ability_datadriven"
 	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_TOGGLE"
 	    "AbilityTextureName"    "witch_doctor_voodoo_restoration"      
+	
+	    "precache"
+	    {
+	        "particle"  "particles/econ/generic/generic_buff_1/generic_buff_1.vpcf"        
+	    }
 	
 	    "OnToggleOn"
 	    {
@@ -1188,9 +1212,6 @@
 	            }
 	        }
 	    }   
-	           
-	
-	
 	
 	    "AbilitySpecial"
 	    {       
@@ -1206,7 +1227,7 @@
 	            "percent_regen"     "10"
 	        }         
 	    }   
-	}
+	} 
 	"ability_barracks_spawn_ranged_defender"
 	{
 	    // General
@@ -1240,7 +1261,7 @@
 	
 	            "AbilityContext"
 	            {
-	                "defender_name"     "defender_ranged"
+	                "defender_name"     "defender_ranged_0"
 	            }
 	        }
 	    }
@@ -1282,6 +1303,11 @@
 	
 	    "OnSpellStart"
 	    {
+	        "ApplyModifier"
+	        {
+	            "ModifierName"    "modifier_upgrade_ranged_barracks_1"
+	            "Target"          "CASTER"            
+	        }
 	
 	        "RunScript"
 	        {
@@ -1289,10 +1315,9 @@
 	            "Function"      "upgradeTower"
 	
 	
-	            "AddAbility1"
+	            "AbilityContext"
 	            {
-	                "Ability"   "ability_ranged_defender_buff_1"
-	                "Level"     "1"
+	                "nextUpgrade"   "ability_upgrade_ranged_barracks_2"                
 	            }
 	        }        
 	
@@ -1303,66 +1328,122 @@
 	
 	            "AbilityContext"
 	            {
-	                "Ability"   "ability_ranged_defender_buff_1"
-	                "Level"     "1"
-	                "Model"     "models/creeps/lane_creeps/creep_radiant_ranged/radiant_ranged_mega.vmdl"
+	                "defender_name" "defender_ranged_1"
 	            }
 	        } 
 	    }
-	}
-	
-	
-	"ability_ranged_defender_buff_1"
-	{
-	    "BaseClass"             "ability_datadriven"
-	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"  
-	    "AbilityTextureName"    "clinkz_strafe" 
 	
 	    "Modifiers"
 	    {
-	        "ability_ranged_defender_buff_1"
+	        "modifier_upgrade_ranged_barracks_1"
 	        {
-	            "Passive"           "1"         
-	            "IsPurgable"        "0"
-	            "IsBuff"            "1"
-	            "IsHidden"          "0"
+	            "IsHidden"      "0"
+	            "Passive"       "0"     
+	        }
+	    }
+	}
 	
-	            "Properties"
-	            {
-	                "MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE"  "%dmg_increase"
-	                "MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"    "%armour_increase"
-	                "MODIFIER_PROPERTY_HEALTH_BONUS"            "%hp_increase"
-	                "MODIFIER_PROPERTY_ATTACK_RANGE_BONUS"      "%range_increase"               
-	            }
-	        }               
-	    }  
+	"ability_upgrade_ranged_barracks_2"
+	{
+	    "BaseClass"                     "ability_datadriven"
+	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+	    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"    
+	    "AbilityTextureName"            "drow_ranger_trueshot"
 	
-	    "AbilitySpecial"
+	    "AbilityGoldCost"       "50"
+	
+	    "OnSpellStart"
 	    {
-	        "01"
+	        "ApplyModifier"
 	        {
-	            "var_type"          "FIELD_INTEGER"
-	            "dmg_increase"      "8"
+	            "ModifierName"    "modifier_upgrade_ranged_barracks_2"
+	            "Target"          "CASTER"            
 	        }
 	
-	        "02"
+	        "RunScript"
 	        {
-	            "var_type"          "FIELD_INTEGER"
-	            "hp_increase"       "10"
+	            "ScriptFile"    "scripts/vscripts/addon_game_mode.lua"
+	            "Function"      "upgradeTower"
+	
+	
+	            "AbilityContext"
+	            {
+	                "nextUpgrade"   "ability_upgrade_ranged_barracks_3"                
+	                "splitUpgrade"  "ability_upgrade_ranged_barracks_4"
+	            }
+	        }        
+	
+	        "RunScript"
+	        {
+	            "ScriptFile"        "unit_scripts/towers/ai_barracks.lua"
+	            "Function"          "Upgrade"
+	
+	            "AbilityContext"
+	            {
+	                "defender_name"     "defender_ranged_2"
+	            }
+	        } 
+	    }
+	
+	    "Modifiers"
+	    {
+	        "modifier_upgrade_ranged_barracks_2"
+	        {
+	            "IsHidden"      "0"
+	            "Passive"       "0"     
+	        }
+	    }
+	}
+	
+	"ability_upgrade_ranged_barracks_3"
+	{
+	    "BaseClass"                     "ability_datadriven"
+	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+	    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"    
+	    "AbilityTextureName"            "drow_ranger_trueshot"
+	
+	    "AbilityGoldCost"       "50"
+	
+	    "OnSpellStart"
+	    {
+	        "ApplyModifier"
+	        {
+	            "ModifierName"    "modifier_upgrade_ranged_barracks_3"
+	            "Target"          "CASTER"            
 	        }
 	
-	        "03"
+	        "RunScript"
 	        {
-	            "var_type"          "FIELD_INTEGER"
-	            "armour_increase"   "2"
-	        }
+	            "ScriptFile"    "scripts/vscripts/addon_game_mode.lua"
+	            "Function"      "upgradeTower"
 	
-	        "04"
+	
+	            "AbilityContext"
+	            {
+	                "nextUpgrade"   "ability_upgrade_ranged_barracks_5"                
+	            }
+	        }        
+	
+	        "RunScript"
 	        {
-	            "var_type"          "FIELD_INTEGER"
-	            "range_increase"    "200"
+	            "ScriptFile"        "unit_scripts/towers/ai_barracks.lua"
+	            "Function"          "Upgrade"
+	
+	            "AbilityContext"
+	            {
+	                "defender_name"     "defender_ranged_3"
+	            }
+	        } 
+	    }
+	
+	    "Modifiers"
+	    {
+	        "modifier_upgrade_ranged_barracks_3"
+	        {
+	            "IsHidden"      "0"
+	            "Passive"       "0"     
 	        }
-	    }   
+	    }
 	}
 	"ability_upgrade_sniper_1"
 	{
@@ -1375,6 +1456,11 @@
 	   
 	    "OnSpellStart"
 	    {
+	        "ApplyModifier"
+	        {
+	            "ModifierName"  "modifier_sniper_upgrade_1"
+	            "Target"        "CASTER"            
+	        }
 	
 	        "RunScript"
 	        {
@@ -1382,12 +1468,27 @@
 	            "Function"      "upgradeTower"
 	
 	
-	            "AddAbility1"
+	            "AbilityContext"
 	            {
-	                "Ability"   "ability_sniper_damage_buff"
-	                "Level"     "1"
+	                "nextUpgrade"   "ability_upgrade_sniper_2"                
 	            }
 	        }
+	    }
+	
+	    "Modifiers"
+	    {
+	        "modifier_sniper_upgrade_1"
+	        {
+	            "Passive"           "0"
+	            "IsBuff"            "1" 
+	            "IsPurgable"        "0"
+	            "IsHidden"          "0"             
+	
+	            "Properties"
+	            {
+	                "MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE" "%damage"        
+	            }  
+	        }           
 	    }
 	
 	    //this value appears in the tooltip
@@ -1407,42 +1508,6 @@
 	    }
 	}
 	
-	//this is the ability provided by upgrade 1
-	"ability_sniper_damage_buff"
-	{
-	    "BaseClass"             "ability_datadriven"
-	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"  
-	    "AbilityTextureName"    "phantom_assassin_coup_de_grace"                       
-	    
-	    "AbilityUnitDamageType" "DAMAGE_TYPE_PHYSICAL"
-	
-	
-	    "Modifiers"
-	    {
-	        "sniper_damage_buff"
-	        {
-	            "Passive"           "1"            
-	          
-	            "IsPurgable"        "0"
-	            "IsBuff"            "1"  
-	
-	            "Properties"
-	            {
-	                "MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE" "%damage"        
-	            }  
-	        }           
-	    }
-	
-	    "AbilitySpecial"
-	    {
-	        "01"
-	        {
-	            "var_type"            "FIELD_INTEGER"
-	            "damage"            "10"
-	        }        
-	    }
-	}
-	
 	"ability_upgrade_sniper_2"
 	{
 	    "BaseClass"             "ability_datadriven"
@@ -1450,19 +1515,21 @@
 	    "AbilityType"           "DOTA_ABILITY_TYPE_BASIC"
 	    "AbilityTextureName"    "sniper_headshot"
 	
-	    "AbilityGoldCost"       "80"
-	
-	    "AbilitySpecial"
-	    {
-	        "01"
-	        {
-	            "var_type"            "FIELD_INTEGER"
-	            "gold_cost"            "50"
-	        }  
-	    }
+	    "AbilityGoldCost"       "80"   
 	
 	    "OnSpellStart"
 	    {
+	        "AddAbility"
+	        {
+	            "Target"         "CASTER"
+	            "AbilityName"    "sniper_headshot"
+	        }
+	
+	        "LevelUpAbility"
+	        {
+	            "Target"         "CASTER"
+	            "AbilityName"    "sniper_headshot"
+	        }
 	
 	        "RunScript"
 	        {
@@ -1470,13 +1537,13 @@
 	            "Function"      "upgradeTower"
 	
 	
-	            "AddAbility1"
+	            "AbilityContext"
 	            {
-	                "Ability"   "sniper_headshot"
-	                "Level"     "2"
+	                "nextUpgrade"   "ability_upgrade_sniper_3"                
+	                "splitUpgrade"  "ability_upgrade_sniper_4"
 	            }
 	        }
-	    }
+	    }    
 	}
 	
 	
@@ -1491,6 +1558,11 @@
 	
 	    "OnSpellStart"
 	    {
+	        "ApplyModifier"
+	        {
+	            "ModifierName"    "modifier_sniper_upgrade_3"
+	            "Target"         "CASTER"           
+	        }
 	
 	        "RunScript"
 	        {
@@ -1498,51 +1570,20 @@
 	            "Function"      "upgradeTower"
 	
 	
-	            "AddAbility1"
+	            "AbilityContext"
 	            {
-	                "Ability"   "ability_sniper_long_range"
-	                "Level"     "1"
+	                "nextUpgrade"   "ability_upgrade_sniper_5"
 	            }
 	        }
 	    }
 	
-	    "AbilitySpecial"
-	    {
-	        "01"
-	        {
-	            "var_type"     "FIELD_INTEGER"
-	            "damage"       "980"
-	        }
-	        "02"
-	        {
-	            "var_type"     "FIELD_INTEGER"
-	            "range"        "2000"
-	        }
-	        "03"
-	        {
-	            "var_type"     "FIELD_FLOAT"
-	            "speed"        "-70"
-	        }
-	        "04"
-	        {
-	            "var_type"     "FIELD_INTEGER"
-	            "gold_cost"    "50"
-	        } 
-	    }
-	}
-	
-	"ability_sniper_long_range"
-	{
-	    "BaseClass"                     "ability_datadriven"
-	    "AbilityTextureName"            "sniper_assassinate"
-	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"  
-	
 	    "Modifiers"
 	    {
-	        "sniper_range_buff"
+	        "modifier_sniper_upgrade_3"
 	        {
-	            "Passive"            "1"            
+	            "Passive"            "0"            
 	            "IsBuff"             "1"
+	            "IsHidden"           "0"
 	            
 	            "Properties"
 	            {
@@ -1555,24 +1596,30 @@
 	    }  
 	
 	    "AbilitySpecial"
-	      {
-	          "01"
-	          {
-	              "var_type"            "FIELD_INTEGER"
-	              "range_bonus"            "2000"
-	          }
-	          "02"
-	          {
-	              "var_type"            "FIELD_FLOAT"
-	              "attackspeed_reduction" "-70"
-	          }
-	          "03"
-	          {
-	              "var_type"            "FIELD_FLOAT"
-	              "damage_bonus"        "980"
-	          }
-	      }  
+	    {
+	        "01"
+	        {
+	            "var_type"     "FIELD_INTEGER"
+	            "damage_bonus"       "980"
+	        }
+	        "02"
+	        {
+	            "var_type"     "FIELD_INTEGER"
+	            "range_bonus"  "2000"
+	        }
+	        "03"
+	        {
+	            "var_type"     "FIELD_FLOAT"
+	            "attackspeed_reduction"        "-70"
+	        }
+	        "04"
+	        {
+	            "var_type"     "FIELD_INTEGER"
+	            "gold_cost"    "50"
+	        } 
+	    }
 	}
+	
 	
 	"ability_upgrade_sniper_4"
 	{
@@ -1585,6 +1632,11 @@
 	
 	    "OnSpellStart"
 	    {
+	        "ApplyModifier"
+	        {
+	            "ModifierName"    "modifier_sniper_upgrade_3"
+	            "Target"         "CASTER"           
+	        }
 	
 	        "RunScript"
 	        {
@@ -1592,54 +1644,20 @@
 	            "Function"      "upgradeTower"
 	
 	
-	            "AddAbility1"
+	            "AbilityContext"
 	            {
-	                "Ability"   "ability_sniper_machine_gun"
-	                "Level"     "1"
+	                "nextUpgrade"   "ability_upgrade_sniper_6"                
 	            }
 	        }
 	    }
-	
-	    "AbilitySpecial"
-	    {
-	        "01"
-	        {
-	          "var_type"         "FIELD_INTEGER"
-	          "range"            "500"
-	        }
-	
-	        "02"
-	        {
-	          "var_type"        "FIELD_FLOAT"
-	          "speed"           "3660"
-	        }
-	
-	        "03"
-	        {
-	          "var_type"        "FIELD_FLOAT"
-	          "damage"          "20"
-	        }      
-	
-	        "04"
-	        {
-	            "var_type"      "FIELD_INTEGER"
-	            "gold_cost"     "50"
-	        }   
-	    } 
-	}
-	
-	"ability_sniper_machine_gun"
-	{
-	    "BaseClass" "ability_datadriven"
-	    "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-	    "AbilityTextureName"    "sniper_machine_gun_icon"
 	
 	    "Modifiers"
 	    {
 	        "sniper_machine_gun_buff"
 	        {
-	            "Passive"            "1"            
-	            "IsBuff"             "1"
+	            "Passive"           "0"            
+	            "IsBuff"            "1"
+	            "IsHidden"          "0"
 	            
 	            "Properties"
 	            {
@@ -1651,6 +1669,7 @@
 	                   
 	        }
 	    }  
+	
 	
 	    "AbilitySpecial"
 	    {
@@ -1678,84 +1697,6 @@
 	        }
 	    }  
 	}
-	
-	
-	
-	"ability_upgrade_sniper_5"
-	{
-	    "BaseClass"             "ability_datadriven"
-	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
-	    "AbilityType"           "DOTA_ABILITY_TYPE_BASIC"
-	    "AbilityTextureName"    "sven_gods_strength"
-	
-	    "AbilityGoldCost"       "50"
-	
-	    "AbilitySpecial"
-	    {
-	        "01"
-	        {
-	            "var_type"            "FIELD_INTEGER"
-	            "gold_cost"            "50"
-	        }       
-	    }
-	
-	    "OnSpellStart"
-	    {
-	
-	        "RunScript"
-	        {
-	            "ScriptFile"    "scripts/vscripts/addon_game_mode.lua"
-	            "Function"      "upgradeTower"
-	
-	
-	            "AddAbility1"
-	            {
-	                "Ability"   "sven_gods_strength"
-	                "Level"     "3"
-	            }
-	        }
-	    }
-	}
-	
-	"ability_upgrade_sniper_6"
-	{
-	    "BaseClass"             "ability_datadriven"
-	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
-	    "AbilityType"           "DOTA_ABILITY_TYPE_BASIC"
-	    "AbilityTextureName"    "ogre_magi_bloodlust"
-	
-	    "AbilityGoldCost"       "50"
-	
-	    "AbilitySpecial"
-	    {
-	        "01"
-	        {
-	            "var_type"            "FIELD_INTEGER"
-	            "gold_cost"            "50"
-	        }       
-	    }
-	
-	    "OnSpellStart"
-	    {
-	
-	        "RunScript"
-	        {
-	            "ScriptFile"    "scripts/vscripts/addon_game_mode.lua"
-	            "Function"      "upgradeTower"
-	
-	
-	            "AddAbility1"
-	            {
-	                "Ability"   "ogre_magi_bloodlust"
-	                "Level"     "4"
-	                "AutoCast"  "true"
-	            }
-	        }
-	    }
-	}
-	
-	
-	
 	"ability_shoot_tacks"
 	{
 	    "BaseClass"                     "ability_datadriven"

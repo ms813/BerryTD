@@ -191,9 +191,7 @@ function GameMode:SpawnWave(waveIndex)
     local wave = waveTable[waveIndex]
 
     --start a timer for each group of creeps in the wave
-    for i, group in pairs(wave.creepGroups) do
-
-        for k,v in pairs(group) do print(k) end
+    for i, group in pairs(wave.creepGroups) do       
         --keep track of the number of subgroups spawned
         group.subGroupCount = 0
 
