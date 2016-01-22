@@ -600,6 +600,83 @@
 			}
 		}
 	}
+	"ability_dragonfire"
+	{
+	    "BaseClass"                 "ability_datadriven"
+	    "AbilityTextureName"        "lina_dragon_slave_alt1"
+	    "AbilityBehavior"           "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+	    "AbilityUnitTargetTeam"     "DOTA_UNIT_TARGET_TEAM_ENEMY"
+	    "AbilityUnitTargetType"     "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+	    "AbilityUnitDamageType"     "DAMAGE_TYPE_MAGICAL"     
+	
+	    "AbilityCastRange"          "800"
+	    "AbilityCastPoint"          "0"
+	    "AbilityCooldown"           "5"
+	
+	    "AbilityDamage"             "5"
+	    "AbilityManaCost"           "0"
+	
+	    "OnSpellStart"
+	    {
+	        "RunScript"
+	        {
+	            "ScriptFile"        "scripts/vscripts/unit_scripts/towers/ai_dragon.lua"
+	            "Function"          "Dragonfire"
+	
+	            "AbilityContext"
+	            {
+	                "projectile_particle"   "particles/units/heroes/hero_lina/lina_spell_dragon_slave.vpcf"
+	            }
+	        }
+	
+	        "FireSound"
+	        {
+	            "EffectName"    "Hero_Lina.DragonSlave"
+	            "Target"        "CASTER"
+	        }
+	    }
+	
+	    "AbilitySpecial"
+	    {
+	        "01"
+	        {
+	            "var_type"          "FIELD_INTEGER"
+	            "cast_range"        "1200"
+	        }
+	        "02"
+	        {
+	            "var_type"          "FIELD_INTEGER"
+	            "cooldown"          "5"
+	        }
+	        "03"
+	        {
+	            "var_type"          "FIELD_INTEGER"
+	            "damage"            "5"
+	        }
+	        "04"
+	        {
+	            "var_type"          "FIELD_INTEGER"
+	            "projectile_speed"  "1200"
+	        }
+	        "05"
+	        {
+	            "var_type"          "FIELD_INTEGER"
+	            "width_start"       "275"
+	        }
+	        "06"
+	        {
+	            "var_type"          "FIELD_INTEGER"
+	            "width_end"          "275"
+	        }
+	    }
+	
+	    "precache"
+	    {
+	        "soundfile"             "soundevents/game_sounds_heroes/game_sounds_lina.vsndevts"
+	        "particle"              "particles/units/heroes/hero_lina/lina_spell_dragon_slave.vpcf"
+	    }
+	}
+	
 	"ability_upgrade_dragon_1"
 	{
 	    "BaseClass"             "ability_datadriven"

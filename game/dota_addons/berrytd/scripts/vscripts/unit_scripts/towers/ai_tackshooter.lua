@@ -91,6 +91,7 @@ function launchTacks(keys)
 
         local projectile = {
             bGroundLock = true,
+            fGroundOffset = 80,
             bZCheck = false,
             bIgnoreSource = true,
             draw = false, --{rad = projectile_radius}
@@ -101,7 +102,7 @@ function launchTacks(keys)
             Source = caster,            
             vSpawnOrigin = caster_point,
             vVelocity = directions[i] * projectile_speed,
-            WallBehaviour = PROJECTILES_NOTHING,
+            WallBehavior = PROJECTILES_NOTHING,
             TreeBehavior = PROJECTILES_NOTHING,
             UnitBehavior = PROJECTILES_DESTROY,
 

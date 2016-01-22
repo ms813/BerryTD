@@ -18,25 +18,17 @@
 	//Abilities  
     "AbilityLayout"         "6"
     "Ability1"              "ability_sell_tower"
-    "Ability2"              "ability_upgrade_dragon_1"  
+    "Ability2"              "ability_dragonfire"
+    //"Ability3"              "ability_upgrade_dragon_1"  
     "Ability6"              "tower_immunity"
 
-	"AttackCapabilities"    "DOTA_UNIT_CAP_RANGED_ATTACK"
-
-	"AttackDamageMin"       "10"
-    "AttackDamageMax"       "10"
-    "AttackRate"            "1"
-    "AttackRange"           "750"
-    "AttackAcquisitionRange"    "1200"
-    "AttackAnimationPoint"  "0.1"
-
-    "ProjectileModel"		"particles/units/heroes/hero_jakiro/jakiro_base_attack_fire.vpcf"
+	"AttackCapabilities"    "DOTA_UNIT_CAP_NO_ATTACK"       
 
     //same as jakiro's projectile speed
     "ProjectileSpeed"		"1100"	  
 
     "BoundsHullName"        "DOTA_HULL_SIZE_HERO"
-    "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_NONE"
+    "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_GROUND"
 
     "StatusHealth"          "1000" 
 
