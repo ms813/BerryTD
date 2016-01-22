@@ -129,3 +129,8 @@ function launchTacks(keys)
         Projectiles:CreateProjectile(projectile)
     end    
 end
+
+function tackshooter_16(keys)
+    local caster = keys.caster
+    caster.fire16Ways = true   
+end

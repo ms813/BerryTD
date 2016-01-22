@@ -1910,8 +1910,8 @@
 	
 	        "RunScript"
 	        {
-	            "ScriptFile"            "scripts/vscripts/unit_scripts/towers/shoot_tacks.lua"
-	            "Function"              "tackshooterUpgrade2"
+	            "ScriptFile"            "scripts/vscripts/unit_scripts/towers/ai_tackshooter.lua"
+	            "Function"              "tackshooter_16"
 	        }         
 	    }
 	
