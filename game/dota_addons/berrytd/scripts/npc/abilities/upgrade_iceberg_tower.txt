@@ -116,48 +116,44 @@
     "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"    
     "AbilityTextureName"            "lich_chain_frost"
 
-    "AbilityGoldCost"       "50"
+    "AbilityGoldCost"               "50"
 
     "OnSpellStart"
-    {
+    {   
+
+        "LevelUpAbility"
+        {
+            "Target"         "CASTER"
+            "AbilityName"    "ability_iceberg_aoe_slow"
+        }
+
+        "ApplyModifier"
+        {
+            "ModifierName"          "modifier_upgrade_iceberg_1"
+            "Target"                "CASTER"
+        }
 
         "RunScript"
         {
-            "ScriptFile"    "scripts/vscripts/addon_game_mode.lua"
-            "Function"      "upgradeTower"
+            "ScriptFile"            "scripts/vscripts/addon_game_mode.lua"
+            "Function"              "upgradeTower"
 
-
-            "AddAbility1"
+            "AbilityContext"
             {
-                "Ability"   "ability_iceberg_range_up"
-                "Level"     "1"
+                "nextUpgrade"       "ability_upgrade_iceberg_2"
             }
-        }
-
-        "RunScript"
-        {
-            "ScriptFile"        "scripts/vscripts/unit_scripts/towers/ai_iceberg.lua"
-            "Function"          "icebergUpgrade1"
-        }
-         
+        }         
     }
-}
-
-"ability_iceberg_range_up"
-{
-    "BaseClass"             "ability_datadriven"
-    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"  
-    "AbilityTextureName"    "lich_chain_frost" 
 
     "Modifiers"
     {
-        "tackshooter_range_up"
+        "modifier_upgrade_iceberg_1"
         {
-            "Passive"           "1"         
-            "IsPurgable"        "0"
-            "IsBuff"            "1"
-        }               
-    }      
+            "Passive"               "0"
+            "IsHidden"              "0"
+            "IsBuff"                "1"                
+        }
+    }
 }
 
 "ability_upgrade_iceberg_2"
@@ -167,46 +163,43 @@
     "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"    
     "AbilityTextureName"            "crystal_maiden_crystal_nova"
 
-    "AbilityGoldCost"       "50"
+    "AbilityGoldCost"               "50"
 
     "OnSpellStart"
-    {
+    {   
+
+        "LevelUpAbility"
+        {
+            "Target"         "CASTER"
+            "AbilityName"    "ability_iceberg_aoe_slow"
+        }
+
+        "ApplyModifier"
+        {
+            "ModifierName"          "modifier_upgrade_iceberg_2"
+            "Target"                "CASTER"
+        }
 
         "RunScript"
         {
-            "ScriptFile"    "scripts/vscripts/addon_game_mode.lua"
-            "Function"      "upgradeTower"
+            "ScriptFile"            "scripts/vscripts/addon_game_mode.lua"
+            "Function"              "upgradeTower"
 
-
-            "AddAbility1"
+            "AbilityContext"
             {
-                "Ability"   "ability_iceberg_slow_up"
-                "Level"     "1"
+                "nextUpgrade"       "ability_upgrade_iceberg_3"
+                "splitUpgrade"      "ability_upgrade_iceberg_4"
             }
-        }
-
-        "RunScript"
-        {
-            "ScriptFile"        "scripts/vscripts/unit_scripts/towers/ai_iceberg.lua"
-            "Function"          "icebergUpgrade2"
-        }
-         
+        }         
     }
-}
-
-"ability_iceberg_slow_up"
-{
-    "BaseClass"             "ability_datadriven"
-    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"  
-    "AbilityTextureName"    "crystal_maiden_crystal_nova" 
 
     "Modifiers"
     {
-        "tackshooter_slow_up"
+        "modifier_upgrade_iceberg_2"
         {
-            "Passive"           "1"         
-            "IsPurgable"        "0"
-            "IsBuff"            "1"
-        }               
-    }      
+            "Passive"               "0"
+            "IsHidden"              "0"
+            "IsBuff"                "1"                
+        }
+    }
 }

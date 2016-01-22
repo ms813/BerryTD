@@ -44,17 +44,3 @@ function IcebergThink(tower)
 
 	return 0.5
 end
-
-function icebergUpgrade1(keys)
-	local iceberg_aoe_slow = keys.caster:FindAbilityByName("ability_iceberg_aoe_slow")
-	if iceberg_aoe_slow ~= nil then
-		iceberg_aoe_slow:SetLevel(2)
-	end
-end
-
-function icebergUpgrade2(keys)
-	local iceberg_aoe_slow = keys.caster:FindAbilityByName("ability_iceberg_aoe_slow")
-	if iceberg_aoe_slow ~= nil then
-		iceberg_aoe_slow:SetLevel(3)
-	end
-end

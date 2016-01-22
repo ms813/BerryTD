@@ -612,17 +612,37 @@
 	    "OnSpellStart"
 	    {
 	
+	        "AddAbility"
+	        {
+	            "Target"         "CASTER"
+	            "AbilityName"    "jakiro_liquid_fire"
+	        }
+	
+	        "ApplyModifier"
+	        {
+	            "ModifierName"  "modifier_dragon_upgrade_1"
+	            "Target"        "CASTER"            
+	        }
+	
 	        "RunScript"
 	        {
 	            "ScriptFile"    "scripts/vscripts/addon_game_mode.lua"
 	            "Function"      "upgradeTower"
 	
-	
-	            "AddAbility1"
+	            "AbilityContext"
 	            {
-	                "Ability"   "jakiro_liquid_fire"
-	                "Level"     "4"
+	                "nextUpgrade"   "ability_upgrade_dragon_2"
 	            }
+	        }
+	    }
+	
+	    "Modifiers"
+	    {
+	        "modifier_dragon_upgrade_1"
+	        {
+	            "Passive"       "0"
+	            "IsHidden"      "0"
+	            "IsDebuff"      "0"             
 	        }
 	    }
 	
@@ -640,13 +660,6 @@
 	            "var_type"            "FIELD_INTEGER"
 	            "gold_cost"            "50"
 	        } 
-	    }
-	
-	    "precache"
-	    {
-	        "particle"  "particles/units/heroes/hero_jakiro/jakiro_base_attack_fire.vpcf"
-	        "soundfile" "soundevents/game_sounds_heroes/game_sounds_jakiro.vsndevts"
-	        "model"     "models/props_structures/statue_dragon003.vmdl"
 	    }
 	}
 	
@@ -768,48 +781,44 @@
 	    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"    
 	    "AbilityTextureName"            "lich_chain_frost"
 	
-	    "AbilityGoldCost"       "50"
+	    "AbilityGoldCost"               "50"
 	
 	    "OnSpellStart"
-	    {
+	    {   
+	
+	        "LevelUpAbility"
+	        {
+	            "Target"         "CASTER"
+	            "AbilityName"    "ability_iceberg_aoe_slow"
+	        }
+	
+	        "ApplyModifier"
+	        {
+	            "ModifierName"          "modifier_upgrade_iceberg_1"
+	            "Target"                "CASTER"
+	        }
 	
 	        "RunScript"
 	        {
-	            "ScriptFile"    "scripts/vscripts/addon_game_mode.lua"
-	            "Function"      "upgradeTower"
+	            "ScriptFile"            "scripts/vscripts/addon_game_mode.lua"
+	            "Function"              "upgradeTower"
 	
-	
-	            "AddAbility1"
+	            "AbilityContext"
 	            {
-	                "Ability"   "ability_iceberg_range_up"
-	                "Level"     "1"
+	                "nextUpgrade"       "ability_upgrade_iceberg_2"
 	            }
-	        }
-	
-	        "RunScript"
-	        {
-	            "ScriptFile"        "scripts/vscripts/unit_scripts/towers/ai_iceberg.lua"
-	            "Function"          "icebergUpgrade1"
-	        }
-	         
+	        }         
 	    }
-	}
-	
-	"ability_iceberg_range_up"
-	{
-	    "BaseClass"             "ability_datadriven"
-	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"  
-	    "AbilityTextureName"    "lich_chain_frost" 
 	
 	    "Modifiers"
 	    {
-	        "tackshooter_range_up"
+	        "modifier_upgrade_iceberg_1"
 	        {
-	            "Passive"           "1"         
-	            "IsPurgable"        "0"
-	            "IsBuff"            "1"
-	        }               
-	    }      
+	            "Passive"               "0"
+	            "IsHidden"              "0"
+	            "IsBuff"                "1"                
+	        }
+	    }
 	}
 	
 	"ability_upgrade_iceberg_2"
@@ -819,48 +828,45 @@
 	    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"    
 	    "AbilityTextureName"            "crystal_maiden_crystal_nova"
 	
-	    "AbilityGoldCost"       "50"
+	    "AbilityGoldCost"               "50"
 	
 	    "OnSpellStart"
-	    {
+	    {   
+	
+	        "LevelUpAbility"
+	        {
+	            "Target"         "CASTER"
+	            "AbilityName"    "ability_iceberg_aoe_slow"
+	        }
+	
+	        "ApplyModifier"
+	        {
+	            "ModifierName"          "modifier_upgrade_iceberg_2"
+	            "Target"                "CASTER"
+	        }
 	
 	        "RunScript"
 	        {
-	            "ScriptFile"    "scripts/vscripts/addon_game_mode.lua"
-	            "Function"      "upgradeTower"
+	            "ScriptFile"            "scripts/vscripts/addon_game_mode.lua"
+	            "Function"              "upgradeTower"
 	
-	
-	            "AddAbility1"
+	            "AbilityContext"
 	            {
-	                "Ability"   "ability_iceberg_slow_up"
-	                "Level"     "1"
+	                "nextUpgrade"       "ability_upgrade_iceberg_3"
+	                "splitUpgrade"      "ability_upgrade_iceberg_4"
 	            }
-	        }
-	
-	        "RunScript"
-	        {
-	            "ScriptFile"        "scripts/vscripts/unit_scripts/towers/ai_iceberg.lua"
-	            "Function"          "icebergUpgrade2"
-	        }
-	         
+	        }         
 	    }
-	}
-	
-	"ability_iceberg_slow_up"
-	{
-	    "BaseClass"             "ability_datadriven"
-	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"  
-	    "AbilityTextureName"    "crystal_maiden_crystal_nova" 
 	
 	    "Modifiers"
 	    {
-	        "tackshooter_slow_up"
+	        "modifier_upgrade_iceberg_2"
 	        {
-	            "Passive"           "1"         
-	            "IsPurgable"        "0"
-	            "IsBuff"            "1"
-	        }               
-	    }      
+	            "Passive"               "0"
+	            "IsHidden"              "0"
+	            "IsBuff"                "1"                
+	        }
+	    }
 	}
 	"ability_barracks_spawn_melee_defender"
 	{
@@ -1634,7 +1640,7 @@
 	    {
 	        "ApplyModifier"
 	        {
-	            "ModifierName"    "modifier_sniper_upgrade_3"
+	            "ModifierName"    "modifier_sniper_upgrade_4"
 	            "Target"         "CASTER"           
 	        }
 	
@@ -1653,7 +1659,7 @@
 	
 	    "Modifiers"
 	    {
-	        "sniper_machine_gun_buff"
+	        "modifier_sniper_upgrade_4"
 	        {
 	            "Passive"           "0"            
 	            "IsBuff"            "1"
@@ -1714,7 +1720,7 @@
 	    {  
 	        "RunScript"
 	        {
-	            "ScriptFile"        "scripts/vscripts/unit_scripts/towers/shoot_tacks.lua"
+	            "ScriptFile"        "scripts/vscripts/unit_scripts/towers/ai_tackshooter.lua"
 	            "Function"          "launchTacks"
 	
 	            "AbilityContext"
@@ -1754,50 +1760,45 @@
 	    "BaseClass"                     "ability_datadriven"
 	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 	    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"    
-	    "AbilityTextureName"            "holdout_focusfire"
+	    "AbilityTextureName"            "windrunner_focusfire"
 	
-	    "AbilityGoldCost"       "50"
+	    "AbilityGoldCost"               "50"
 	
 	    "OnSpellStart"
 	    {
+	        "ApplyModifier"
+	        {
+	            "ModifierName"          "modifier_upgrade_tackshooter_1"
+	            "Target"                "CASTER"            
+	        }
+	
+	        "LevelUpAbility"
+	        {
+	            "Target"                "CASTER"
+	            "AbilityName"           "ability_shoot_tacks"
+	        }
 	
 	        "RunScript"
 	        {
-	            "ScriptFile"    "scripts/vscripts/addon_game_mode.lua"
-	            "Function"      "upgradeTower"
+	            "ScriptFile"            "scripts/vscripts/addon_game_mode.lua"
+	            "Function"              "upgradeTower"
 	
-	
-	            "AddAbility1"
+	            "AbilityContext"
 	            {
-	                "Ability"   "ability_tackshooter_speed_up"
-	                "Level"     "1"
+	                "nextUpgrade"       "ability_upgrade_tackshooter_2"
 	            }
-	        }
-	
-	        "RunScript"
-	        {
-	            "ScriptFile"        "scripts/vscripts/unit_scripts/towers/shoot_tacks.lua"
-	            "Function"          "tackshooterUpgrade1"
-	        }
-	         
+	        }             
 	    }
-	}
-	
-	"ability_tackshooter_speed_up"
-	{
-	    "BaseClass"             "ability_datadriven"
-	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"  
-	    "AbilityTextureName"    "holdout_focusfire" 
 	
 	    "Modifiers"
 	    {
-	        "tackshooter_range_up"
+	        "modifier_upgrade_tackshooter_1"
 	        {
-	            "Passive"           "1"         
+	            "Passive"           "0"         
 	            "IsPurgable"        "0"
 	            "IsBuff"            "1"
 	        }               
-	    }      
+	    } 
 	}
 	
 	"ability_upgrade_tackshooter_2"
@@ -1805,49 +1806,46 @@
 	    "BaseClass"                     "ability_datadriven"
 	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 	    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"    
-	    "AbilityTextureName"            "windrunner_focusfire"
+	    "AbilityTextureName"            "holdout_focusfire"
 	
-	    "AbilityGoldCost"       "50"
+	    "AbilityGoldCost"               "50"
 	
 	    "OnSpellStart"
 	    {
 	
+	        "ApplyModifier"
+	        {
+	            "ModifierName"          "modifier_upgrade_tackshooter_2"
+	            "Target"                "CASTER"
+	        }
+	
 	        "RunScript"
 	        {
-	            "ScriptFile"    "scripts/vscripts/addon_game_mode.lua"
-	            "Function"      "upgradeTower"
+	            "ScriptFile"            "scripts/vscripts/addon_game_mode.lua"
+	            "Function"              "upgradeTower"
 	
-	
-	            "AddAbility1"
+	            "AbilityContext"
 	            {
-	                "Ability"   "ability_tackshooter_16_shots"
-	                "Level"     "1"
+	                "nextUpgrade"       "ability_upgrade_tackshooter_3"
+	                "splitUpgrade"      "ability_upgrade_tackshooter_4"
 	            }
 	        }
 	
 	        "RunScript"
 	        {
-	            "ScriptFile"        "scripts/vscripts/unit_scripts/towers/shoot_tacks.lua"
-	            "Function"          "tackshooterUpgrade2"
-	        }
-	         
+	            "ScriptFile"            "scripts/vscripts/unit_scripts/towers/shoot_tacks.lua"
+	            "Function"              "tackshooterUpgrade2"
+	        }         
 	    }
-	}
-	
-	"ability_tackshooter_16_shots"
-	{
-	    "BaseClass"             "ability_datadriven"
-	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"  
-	    "AbilityTextureName"    "windrunner_focusfire" 
 	
 	    "Modifiers"
 	    {
-	        "tackshooter_16_shots"
+	        "modifier_upgrade_tackshooter_2"
 	        {
-	            "Passive"           "1"         
+	            "Passive"           "0"         
 	            "IsPurgable"        "0"
 	            "IsBuff"            "1"
 	        }               
-	    }      
+	    }  
 	}
 }

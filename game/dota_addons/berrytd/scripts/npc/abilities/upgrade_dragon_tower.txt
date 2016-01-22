@@ -10,17 +10,37 @@
     "OnSpellStart"
     {
 
+        "AddAbility"
+        {
+            "Target"         "CASTER"
+            "AbilityName"    "jakiro_liquid_fire"
+        }
+
+        "ApplyModifier"
+        {
+            "ModifierName"  "modifier_dragon_upgrade_1"
+            "Target"        "CASTER"            
+        }
+
         "RunScript"
         {
             "ScriptFile"    "scripts/vscripts/addon_game_mode.lua"
             "Function"      "upgradeTower"
 
-
-            "AddAbility1"
+            "AbilityContext"
             {
-                "Ability"   "jakiro_liquid_fire"
-                "Level"     "4"
+                "nextUpgrade"   "ability_upgrade_dragon_2"
             }
+        }
+    }
+
+    "Modifiers"
+    {
+        "modifier_dragon_upgrade_1"
+        {
+            "Passive"       "0"
+            "IsHidden"      "0"
+            "IsDebuff"      "0"             
         }
     }
 
@@ -38,13 +58,6 @@
             "var_type"            "FIELD_INTEGER"
             "gold_cost"            "50"
         } 
-    }
-
-    "precache"
-    {
-        "particle"  "particles/units/heroes/hero_jakiro/jakiro_base_attack_fire.vpcf"
-        "soundfile" "soundevents/game_sounds_heroes/game_sounds_jakiro.vsndevts"
-        "model"     "models/props_structures/statue_dragon003.vmdl"
     }
 }
 
