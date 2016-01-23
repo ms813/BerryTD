@@ -604,7 +604,7 @@
 	{
 	    "BaseClass"                 "ability_datadriven"
 	    "AbilityTextureName"        "lina_dragon_slave_alt1"
-	    "AbilityBehavior"           "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+	    "AbilityBehavior"           "DOTA_ABILITY_BEHAVIOR_POINT"
 	    "AbilityUnitTargetTeam"     "DOTA_UNIT_TARGET_TEAM_ENEMY"
 	    "AbilityUnitTargetType"     "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 	    "AbilityUnitDamageType"     "DAMAGE_TYPE_MAGICAL"     
@@ -617,22 +617,78 @@
 	    "AbilityManaCost"           "0"
 	
 	    "OnSpellStart"
-	    {
-	        "RunScript"
-	        {
-	            "ScriptFile"        "scripts/vscripts/unit_scripts/towers/ai_dragon.lua"
-	            "Function"          "Dragonfire"
-	
-	            "AbilityContext"
-	            {
-	                "projectile_particle"   "particles/units/heroes/hero_lina/lina_spell_dragon_slave.vpcf"
-	            }
-	        }
-	
+	    {      
 	        "FireSound"
 	        {
 	            "EffectName"    "Hero_Lina.DragonSlave"
 	            "Target"        "CASTER"
+	        }
+	
+	        "LinearProjectile"
+	        {
+	            "Target"            "POINT"
+	            "EffectName"        "particles/units/heroes/hero_lina/lina_spell_dragon_slave.vpcf"
+	            "MoveSpeed"         "%projectile_speed"
+	            "StartPosition"     "attach_origin"
+	            "StartRadius"       "%width_start"
+	            "EndRadius"         "%width_end"
+	            "FixedDistance"     "%cast_range"
+	            "FixedDistance"     "%dragon_slave_distance"
+	            "TargetTeams"       "DOTA_UNIT_TARGET_TEAM_ENEMY"
+	            "TargetTypes"       "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+	            "TargetFlags"       "DOTA_UNIT_TARGET_FLAG_NONE"
+	            "HasFrontalCone"    "1"
+	            "ProvidesVision"    "0"
+	        }
+	    }
+	
+	    "OnProjectileHitUnit"
+	    {
+	        "DeleteOnHit"   "0"     
+	
+	        "Damage"
+	        {
+	            "Type"      "DAMAGE_TYPE_MAGICAL"
+	            "Damage"    "%damage"
+	            "Target"    "TARGET"
+	        }
+	
+	        "ApplyModifier"
+	        {
+	            "ModifierName"  "modifier_dragonfire_burn"
+	            "Target"        "TARGET"
+	            "Duration"      "%burn_duration"
+	        }
+	        
+	    }
+	
+	    "Modifiers"
+	    {
+	        "modifier_dragonfire_burn"
+	        {
+	            "Passive"           "0"
+	            "IsDebuff"          "1"
+	            "Duration"          "%burn_duration"
+	            "EffectName"        "particles/units/heroes/hero_phoenix/phoenix_icarus_dive_burn_debuff.vpcf"
+	            "EffectAttachType"  "follow_origin"
+	            "StatusEffectName"  "particles/status_fx/status_effect_burn.vpcf"
+	            "StatusEffectPriority"  "10"
+	            "TextureName"       "Demon_Eater_Shadowraze3_icon"
+	            "ThinkInterval"     "%burn_tick"
+	
+	            "OnIntervalThink"
+	            {
+	                "RunScript"
+	                {
+	                    "ScriptFile"    "scripts/vscripts/unit_scripts/towers/ai_dragon.lua"
+	                    "Function"      "BurnTick"
+	
+	                    "AbilityContext"
+	                    {
+	                        "currentHpPercentDmg"   "%burn_percent_dmg * %burn_tick / %burn_duration"
+	                    }
+	                }
+	            }
 	        }
 	    }
 	
@@ -666,7 +722,22 @@
 	        "06"
 	        {
 	            "var_type"          "FIELD_INTEGER"
-	            "width_end"          "275"
+	            "width_end"         "275"
+	        }
+	        "07"
+	        {
+	            "var_type"          "FIELD_INTEGER"
+	            "burn_duration"     "0 4"
+	        }
+	        "08"
+	        {
+	            "var_type"          "FIELD_FLOAT"
+	            "burn_percent_dmg"  "0 0.15"
+	        }
+	        "09"
+	        {
+	            "var_type"          "FIELD_FLOAT"
+	            "burn_tick"         "0 0.1"
 	        }
 	    }
 	
@@ -674,6 +745,8 @@
 	    {
 	        "soundfile"             "soundevents/game_sounds_heroes/game_sounds_lina.vsndevts"
 	        "particle"              "particles/units/heroes/hero_lina/lina_spell_dragon_slave.vpcf"
+	        "particle"              "particles/units/heroes/hero_phoenix/phoenix_icarus_dive_burn_debuff.vpcf"
+	        "particle"              "particles/status_fx/status_effect_burn.vpcf"
 	    }
 	}
 	
@@ -682,18 +755,17 @@
 	    "BaseClass"             "ability_datadriven"
 	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 	    "AbilityType"           "DOTA_ABILITY_TYPE_BASIC"
-	    "AbilityTextureName"    "jakiro_liquid_fire"
+	    "AbilityTextureName"    "Demon_Eater_Shadowraze3_icon"
 	
 	    "AbilityGoldCost"       "50"
 	   
 	    "OnSpellStart"
 	    {
-	
-	        "AddAbility"
+	        "LevelUpAbility"
 	        {
 	            "Target"         "CASTER"
-	            "AbilityName"    "jakiro_liquid_fire"
-	        }
+	            "AbilityName"    "ability_dragonfire"
+	        }      
 	
 	        "ApplyModifier"
 	        {
@@ -728,18 +800,68 @@
 	    {
 	        "01"
 	        {
-	            "var_type"  "FIELD_INTEGER"
-	            "damage"    "10"
+	            "var_type"          "FIELD_INTEGER"
+	            "burn_damage"       "0.15"
 	        }
 	
 	        "02"
 	        {
-	            "var_type"            "FIELD_INTEGER"
-	            "gold_cost"            "50"
+	            "var_type"          "FIELD_INTEGER"
+	            "burn_duration"     "4"
 	        } 
 	    }
 	}
 	
+	"ability_upgrade_dragon_2"
+	{
+	    "BaseClass"             "ability_datadriven"
+	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+	    "AbilityType"           "DOTA_ABILITY_TYPE_BASIC"
+	    "AbilityTextureName"    "jakiro_macropyre"
+	
+	    "AbilityGoldCost"       "50"
+	   
+	    "OnSpellStart"
+	    {
+	        "RunScript"
+	        {
+	            "ScriptFile"    "scripts/vscripts/addon_game_mode.lua"
+	            "Function"      "upgradeTower"
+	
+	            "AbilityContext"
+	            {
+	                "nextUpgrade"   "ability_upgrade_dragon_3"
+	                "splitUpgrade"  "ability_upgrade_dragon_4"
+	            }
+	        }       
+	    }
+	
+	    "Modifiers"
+	    {
+	        "modifier_dragon_upgrade_2"
+	        {
+	            "Passive"       "0"
+	            "IsHidden"      "0"
+	            "IsDebuff"      "0"             
+	        }
+	    }
+	
+	    //this value appears in the tooltip
+	    "AbilitySpecial"
+	    {
+	        "01"
+	        {
+	            "var_type"      "FIELD_INTEGER"
+	            "burn_damage"   "0.15"
+	        }
+	
+	        "02"
+	        {
+	            "var_type"          "FIELD_INTEGER"
+	            "burn_duration"     "4"
+	        } 
+	    }
+	}
 	"ability_iceberg_aoe_slow"
 	{
 	    "BaseClass"                     "ability_datadriven"

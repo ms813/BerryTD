@@ -7,6 +7,7 @@
 	"GameSoundsFile"		"soundevents/game_sounds_heroes/game_sounds_jakiro.vsndevts"
     "ConsideredHero"        "1"
     "UnitLabel"             "tower"
+    "Level"                 "0"
 
     //used as a hook in Lua scripts
     "UnitLabel"             "tower"
@@ -19,7 +20,7 @@
     "AbilityLayout"         "6"
     "Ability1"              "ability_sell_tower"
     "Ability2"              "ability_dragonfire"
-    //"Ability3"              "ability_upgrade_dragon_1"  
+    "Ability3"              "ability_upgrade_dragon_1"  
     "Ability6"              "tower_immunity"
 
 	"AttackCapabilities"    "DOTA_UNIT_CAP_NO_ATTACK"       

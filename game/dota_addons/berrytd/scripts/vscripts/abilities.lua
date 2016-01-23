@@ -74,10 +74,8 @@ function upgradeTower(keys)
 	--not all upgrades are implemented yet so defend here
 	if new_ab ~= nil then new_ab:SetLevel(1) end
 
-	if split_upgrade ~= nil then
-		print(split_upgrade)
+	if split_upgrade ~= nil then		
 		local ab = caster:AddAbility(split_upgrade)
-
 		--not all upgrades are implemented yet so defend here
 		if ab ~= nil then ab:SetLevel(1) end 
 	end
@@ -196,7 +194,7 @@ function lvlUpUnitAbilities(unit)
     	local a = unit:GetAbilityByIndex(i)
 
     	if a ~= nil then
-      	a:SetLevel(1)
+      	a:SetLevel(a:GetLevel() + 1)
   		end
 	end
 end

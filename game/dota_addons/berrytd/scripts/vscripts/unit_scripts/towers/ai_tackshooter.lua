@@ -1,12 +1,6 @@
 function Spawn(entityKeyValues)	
 
-	for i = 0, thisEntity:GetAbilityCount()-1 do
-    	local a = thisEntity:GetAbilityByIndex(i)
-
-    	if a ~= nil then
-      	a:SetLevel(1)
-  		end
-	end
+	lvlUpUnitAbilities(thisEntity)
 
 	Timers:CreateTimer(function()
 			return TackShooterThink(thisEntity)
