@@ -6,7 +6,6 @@
 	"SoundSet"              "Hero_Jakiro"
 	"GameSoundsFile"		"soundevents/game_sounds_heroes/game_sounds_jakiro.vsndevts"
     "ConsideredHero"        "1"
-    "UnitLabel"             "tower"
     "Level"                 "0"
 
     //used as a hook in Lua scripts

@@ -29,6 +29,7 @@ end
 function GameMode:sellTower(keys)
 	local caster =  keys.caster
 	local owner = caster:GetOwner()
+	local pos = caster:GetAbsOrigin()
 
 	--sell value uses mana regen as a hack as GetGoldBounty() doesn't work
 	local refundAmount = caster:GetManaRegen()	
@@ -48,6 +49,9 @@ function GameMode:sellTower(keys)
 
 	--send a message to the owner of the tower
 	Notifications:Top(caster:GetPlayerOwner():GetPlayerID(), {text = "Sold tower for "..refundAmount.." gold" , duration = 5})
+
+	--rebuild a tower spawn site
+	GameMode:BuildTowerSpawn(pos, owner) 
 end
 
 --[[

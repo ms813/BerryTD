@@ -86,7 +86,7 @@ function BarracksThink(tower)
 			--if defender has no target, look around for one
 			if defender.aggro_target == nil then
 
-				local creeps = FindUnitsInRadius(DOTA_TEAM_NEUTRALS,
+				local creeps = FindUnitsInRadius(DOTA_TEAM_BADGUYS,
 										defender:GetAbsOrigin(),
 										nil,
 										defender:GetAcquisitionRange(),

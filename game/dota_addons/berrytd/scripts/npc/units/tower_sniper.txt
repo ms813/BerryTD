@@ -6,7 +6,6 @@
     "SoundSet"              "Hero_Sniper"
     "GameSoundsFile"        "soundevents/game_sounds_heroes/game_sounds_sniper.vsndevts"
     "ConsideredHero"        "1"
-    "UnitLabel"             "tower"
 
     //used as a hook in Lua scripts
     "UnitLabel"             "tower"
@@ -37,7 +36,7 @@
 
     "BoundsHullName"        "DOTA_HULL_SIZE_HERO"
 
-    "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_NONE"
+    "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_GROUND"
 
     "StatusHealth"          "1000" 
 
@@ -47,7 +46,6 @@
     //I tried using these as hooks to get the sell gold but they arent picked up by ability:GetGoldBountyMax()
     "BountyGoldMax"         "50"
     "BountyGoldMin"         "50"
-
 
     "VisionDaytimeRange"    "1500"       
     "VisionNighttimeRange"  "1100"       

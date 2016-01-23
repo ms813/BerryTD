@@ -22,7 +22,7 @@ function TackShooterThink(tower)
 		end
 
 		local targets = FindUnitsInRadius(
-					DOTA_TEAM_NEUTRALS,
+					DOTA_TEAM_BADGUYS,
 					tower:GetAbsOrigin(),
 					nil,
 					tower:GetAcquisitionRange(), --range of tackshooter ability

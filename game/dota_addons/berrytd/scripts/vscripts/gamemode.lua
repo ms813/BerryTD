@@ -67,7 +67,7 @@ end
   It can be used to initialize state that isn't initializeable in InitGameMode() but needs to be done before everyone loads in.
   ]]
   function GameMode:OnFirstPlayerLoaded()
-  	DebugPrint("[BAREBONES] First Player has loaded")
+  	DebugPrint("[BAREBONES] First Player has loaded")    
   end
 
 --[[
@@ -75,7 +75,7 @@ end
   It can be used to initialize non-hero player state or adjust the hero selection (i.e. force random etc)
   ]]
   function GameMode:OnAllPlayersLoaded()
-  	DebugPrint("[BAREBONES] All Players have loaded into the game")
+  	DebugPrint("[BAREBONES] All Players have loaded into the game")    
   end
 
 --[[
@@ -106,8 +106,9 @@ end
 
   lvlUpUnitAbilities(hero)
   hero:SetAbilityPoints(0)
-
-  table.insert(self.players, hero)
+  table.insert(self.players, hero)  
+  
+  GameMode:InitTowerSpawns(hero)
 end
 
 --[[
@@ -149,7 +150,7 @@ function GameMode:InitGameMode()
   self.maxWave = #waveTable;
   self.currentLives = 50 
   self.players = {}
-  self.base = Entities:FindByName(nil, "dota_goodguys_fort")
+  self.base = Entities:FindByName(nil, "dota_goodguys_fort") 
 
   DebugPrint('[BAREBONES] Done loading Barebones gamemode!\n\n')
 end
@@ -203,7 +204,7 @@ function GameMode:SpawnWave(waveIndex)
                                                 true,
                                                 nil,
                                                 nil,
-                                                DOTA_TEAM_NEUTRALS)
+                                                DOTA_TEAM_BADGUYS)
 
                 --order the creep to run towards the throne
                 creep:SetInitialGoalEntity(self.base)
@@ -244,7 +245,7 @@ local endPos = self.base:GetAbsOrigin()
 local radius = 500;
 
 
-  local unitsAtEnd = FindUnitsInRadius(DOTA_TEAM_NEUTRALS,
+  local unitsAtEnd = FindUnitsInRadius(DOTA_TEAM_BADGUYS,
                     endPos, 
                     nil,
                     radius,
@@ -255,4 +256,26 @@ local radius = 500;
                     false)   
     
     return unitsAtEnd
+end
+
+function GameMode:InitTowerSpawns(owner)
+    local spawns = Entities:FindAllByName("tower_spawn_site")
+
+
+
+    for i, spawn_site in pairs(spawns) do        
+        local tower_stub = GameMode:BuildTowerSpawn(spawn_site:GetAbsOrigin(), owner)         
+    end
+end
+
+function GameMode:BuildTowerSpawn(pos, owner)
+    local spawn = CreateUnitByName(
+        "tower_spawn_site",
+        pos,
+        true,
+        owner,
+        owner,
+        DOTA_TEAM_GOODGUYS)
+    spawn:SetControllableByPlayer(owner:GetPlayerID(), false)
+    return spawn
 end

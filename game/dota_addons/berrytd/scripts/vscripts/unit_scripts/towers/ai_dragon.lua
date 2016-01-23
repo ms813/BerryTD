@@ -21,7 +21,7 @@ function DragonThink(tower)
 			local range = dragonfire:GetLevelSpecialValueFor("cast_range", 1)
 
 			--fire at closest creep
-			local creeps = FindUnitsInRadius(DOTA_TEAM_NEUTRALS,
+			local creeps = FindUnitsInRadius(DOTA_TEAM_BADGUYS,
 											tower:GetAbsOrigin(),
 											nil,
 											range - 50,

@@ -950,7 +950,6 @@
 		"SoundSet"              "Hero_Jakiro"
 		"GameSoundsFile"		"soundevents/game_sounds_heroes/game_sounds_jakiro.vsndevts"
 	    "ConsideredHero"        "1"
-	    "UnitLabel"             "tower"
 	    "Level"                 "0"
 	
 	    //used as a hook in Lua scripts
@@ -1043,7 +1042,6 @@
 	    "SoundSet"              "Hero_Sniper"
 	    "GameSoundsFile"        "soundevents/game_sounds_heroes/game_sounds_sniper.vsndevts"
 	    "ConsideredHero"        "1"
-	    "UnitLabel"             "tower"
 	
 	    //used as a hook in Lua scripts
 	    "UnitLabel"             "tower"
@@ -1074,7 +1072,7 @@
 	
 	    "BoundsHullName"        "DOTA_HULL_SIZE_HERO"
 	
-	    "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_NONE"
+	    "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_GROUND"
 	
 	    "StatusHealth"          "1000" 
 	
@@ -1084,7 +1082,6 @@
 	    //I tried using these as hooks to get the sell gold but they arent picked up by ability:GetGoldBountyMax()
 	    "BountyGoldMax"         "50"
 	    "BountyGoldMin"         "50"
-	
 	
 	    "VisionDaytimeRange"    "1500"       
 	    "VisionNighttimeRange"  "1100"       
@@ -1100,6 +1097,36 @@
 	            "Wearable5"  {"ItemDef"  "285"}
 	        }
 	    }
+	}
+	"tower_spawn_site"
+	{
+		"BaseClass"			"npc_dota_creature"
+		
+		//"Model"				"models/props_structures/radiant_tower_base001.vmdl"
+		"Model"				"models/props_structures/test_flag/test_flag.vmdl"
+		//"Model"				"models/heroes/sniper/sniper.vmdl"		
+		"ModelScale"		"1"
+		"ConsideredHero"	"1"
+		"UnitLabel"			"tower_spawn"
+	
+		"HasInventory"		"1"
+		"AutoAttacksByDefault"	"0"
+	
+		"AbilityLayout"		"6"
+		"Ability1"			"ability_open_page_one"
+		"Ability2"			"ability_open_page_two"
+		"Ability3"			"ability_open_page_three"
+		"Ability4"			"ability_open_page_four"
+		"Ability6"          "tower_immunity"
+		"Ability7"          "ability_cant_turn"
+	
+		"AttackCapabilities"	"DOTA_UNIT_CAP_NO_ATTACK"
+	
+		"BoundsHullName"	"DOTA_HULL_SIZE_BUILDING"
+	
+		"MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_GROUND"
+	
+		"StatusHealth"          "1"
 	}
 	"tower_tackshooter"
 	{

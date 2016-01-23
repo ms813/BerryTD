@@ -344,7 +344,7 @@
 	    // General
 	    //-------------------------------------------------------------------------------------------------------------
 	    "BaseClass"             "ability_datadriven"
-	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 	    "AbilityType"           "DOTA_ABILITY_TYPE_BASIC"
 	    "AbilityTextureName"    "sniper_take_aim"
 	    "MaxLevel"              "1"
@@ -364,13 +364,16 @@
 	
 	    "OnSpellStart"
 	    {      
-	        "SpawnUnit"
+	        "RunScript"
 	        {
-	            "UnitName"      "tower_sniper"
-	            "UnitCount"     "1"
-	            "SpawnRadius"   "0"
-	            "Target"        "POINT"
-	        }
+	            "ScriptFile"    "unit_scripts/towers/spawn_tower.lua"
+	            "Function"      "SpawnTower"
+	
+	            "AbilityContext"
+	            {
+	                "tower_name"    "tower_sniper"
+	            }
+	        }        
 	    }
 	
 	    "AbilitySpecial"
@@ -627,7 +630,7 @@
 	        "LinearProjectile"
 	        {
 	            "Target"            "POINT"
-	            "EffectName"        "particles/units/heroes/hero_lina/lina_spell_dragon_slave.vpcf"
+	            "EffectName"        "particles/units/heroes/hero_lina/lina_spell_dragon_slave.vpcf"            
 	            "MoveSpeed"         "%projectile_speed"
 	            "StartPosition"     "attach_origin"
 	            "StartRadius"       "%width_start"
@@ -746,7 +749,7 @@
 	        "soundfile"             "soundevents/game_sounds_heroes/game_sounds_lina.vsndevts"
 	        "particle"              "particles/units/heroes/hero_lina/lina_spell_dragon_slave.vpcf"
 	        "particle"              "particles/units/heroes/hero_phoenix/phoenix_icarus_dive_burn_debuff.vpcf"
-	        "particle"              "particles/status_fx/status_effect_burn.vpcf"
+	        "particle"              "particles/status_fx/status_effect_burn.vpcf"      
 	    }
 	}
 	
