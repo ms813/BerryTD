@@ -1100,12 +1100,11 @@
 	}
 	"tower_spawn_site"
 	{
-		"BaseClass"			"npc_dota_creature"
+		"BaseClass"			"npc_dota_creature"	
 		
-		//"Model"				"models/props_structures/radiant_tower_base001.vmdl"
-		"Model"				"models/props_structures/test_flag/test_flag.vmdl"
-		//"Model"				"models/heroes/sniper/sniper.vmdl"		
-		"ModelScale"		"1"
+		"Model"				"models/props_teams/bannerb_dire.vmdl"
+		
+		"ModelScale"		"1.2"
 		"ConsideredHero"	"1"
 		"UnitLabel"			"tower_spawn"
 	

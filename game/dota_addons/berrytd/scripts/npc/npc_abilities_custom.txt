@@ -141,7 +141,7 @@
 	    // General
 	    //-------------------------------------------------------------------------------------------------------------
 	    "BaseClass"             "ability_datadriven"
-	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 	    "AbilityType"           "DOTA_ABILITY_TYPE_BASIC"
 	    "AbilityTextureName"    "dragon_knight_elder_dragon_form"
 	    "MaxLevel"              "1"
@@ -161,26 +161,29 @@
 	
 	    "OnSpellStart"
 	    {      
-	        "SpawnUnit"
+	        "RunScript"
 	        {
-	            "UnitName"      "tower_dragon"
-	            "UnitCount"     "1"
-	            "SpawnRadius"   "0"
-	            "Target"        "POINT"
-	        }
+	            "ScriptFile"    "unit_scripts/towers/spawn_tower.lua"
+	            "Function"      "SpawnTower"
+	
+	            "AbilityContext"
+	            {
+	                "tower_name"    "tower_dragon"
+	            }
+	        }  
 	    }
 	
 	    "AbilitySpecial"
 	    {
 	        "01"
 	        {
-	            "var_type"            "FIELD_INTEGER"
-	            "damage"            "10"
+	            "var_type"          "FIELD_INTEGER"
+	            "damage"            "5"
 	        }
 	        "02"
 	        {
-	            "var_type"            "FIELD_FLOAT"
-	            "range"        "750"
+	            "var_type"          "FIELD_FLOAT"
+	            "cooldown"          "5"
 	        }
 	    }
 	}
@@ -190,7 +193,7 @@
 	    // General
 	    //-------------------------------------------------------------------------------------------------------------
 	    "BaseClass"             "ability_datadriven"
-	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 	    "AbilityType"           "DOTA_ABILITY_TYPE_BASIC"
 	    "AbilityTextureName"    "winter_wyvern_cold_embrace"
 	    "MaxLevel"              "1"
@@ -210,13 +213,16 @@
 	
 	    "OnSpellStart"
 	    {      
-	        "SpawnUnit"
+	        "RunScript"
 	        {
-	            "UnitName"      "tower_iceberg"
-	            "UnitCount"     "1"
-	            "SpawnRadius"   "0"
-	            "Target"        "POINT"
-	        }
+	            "ScriptFile"    "unit_scripts/towers/spawn_tower.lua"
+	            "Function"      "SpawnTower"
+	
+	            "AbilityContext"
+	            {
+	                "tower_name"    "tower_iceberg"
+	            }
+	        }  
 	    }
 	
 	    "AbilitySpecial"
@@ -224,12 +230,12 @@
 	        "01"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "damage"        "10"
+	            "slow"          "25 25 50"
 	        }
 	        "02"
 	        {
 	            "var_type"      "FIELD_FLOAT"
-	            "range"         "750"
+	            "range"         "500 800 800"
 	        }
 	    }
 	
@@ -244,7 +250,7 @@
 	    // General
 	    //-------------------------------------------------------------------------------------------------------------
 	    "BaseClass"             "ability_datadriven"
-	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 	    "AbilityType"           "DOTA_ABILITY_TYPE_BASIC"
 	    "AbilityTextureName"    "sven_warcry"    
 	    "MaxLevel"              "1"
@@ -265,13 +271,16 @@
 	
 	    "OnSpellStart"
 	    {      
-	        "SpawnUnit"
+	        "RunScript"
 	        {
-	            "UnitName"      "barracks_melee"
-	            "UnitCount"     "1"
-	            "SpawnRadius"   "0"
-	            "Target"        "POINT"
-	        }
+	            "ScriptFile"    "unit_scripts/towers/spawn_tower.lua"
+	            "Function"      "SpawnTower"
+	
+	            "AbilityContext"
+	            {
+	                "tower_name"    "barracks_melee"
+	            }
+	        } 
 	    }
 	
 	    "AbilitySpecial"
@@ -279,12 +288,12 @@
 	        "01"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "damage"        "5"
+	            "creep_dmg"        "5"
 	        }
 	        "02"
 	        {
 	            "var_type"      "FIELD_FLOAT"
-	            "health"        "100"
+	            "creep_hp"        "100"
 	        }        
 	    }
 	}
@@ -294,7 +303,7 @@
 	    // General
 	    //-------------------------------------------------------------------------------------------------------------
 	    "BaseClass"             "ability_datadriven"
-	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 	    "AbilityType"           "DOTA_ABILITY_TYPE_BASIC"
 	    "AbilityTextureName"    "drow_ranger_marksmanship"
 	    "MaxLevel"              "1"
@@ -315,13 +324,16 @@
 	
 	    "OnSpellStart"
 	    {      
-	        "SpawnUnit"
+	        "RunScript"
 	        {
-	            "UnitName"      "barracks_ranged"
-	            "UnitCount"     "1"
-	            "SpawnRadius"   "0"
-	            "Target"        "POINT"
-	        }
+	            "ScriptFile"    "unit_scripts/towers/spawn_tower.lua"
+	            "Function"      "SpawnTower"
+	
+	            "AbilityContext"
+	            {
+	                "tower_name"    "barracks_ranged"
+	            }
+	        }   
 	    }
 	
 	    "AbilitySpecial"
@@ -329,12 +341,12 @@
 	        "01"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "damage"        "5"
+	            "creep_dmg"        "5"
 	        }
 	        "02"
 	        {
 	            "var_type"      "FIELD_FLOAT"
-	            "health"        "100"
+	            "creep_hp"        "100"
 	        }        
 	    }
 	}
@@ -351,12 +363,12 @@
 	
 	    // Time     
 	    //-------------------------------------------------------------------------------------------------------------
-	    "AbilityCooldown"               "1.0"
+	    "AbilityCooldown"       "2.0"
 	
 	    // Cost
 	    //-------------------------------------------------------------------------------------------------------------
-	    "AbilityManaCost"               "0" 
-	    "AbilityGoldCost"               "40"
+	    "AbilityManaCost"       "0" 
+	    "AbilityGoldCost"       "40"
 	 
 	    // Special
 	    //-------------------------------------------------------------------------------------------------------------
@@ -380,21 +392,21 @@
 	    {
 	        "01"
 	        {
-	            "var_type"            "FIELD_INTEGER"
-	            "damage"            "10"
+	            "var_type"      "FIELD_INTEGER"
+	            "damage"        "10"
 	        }
 	        "02"
 	        {
-	            "var_type"            "FIELD_FLOAT"
-	            "range"        "1000"
+	            "var_type"      "FIELD_FLOAT"
+	            "range"         "1000"
 	        }
 	    }
 	
 	    "precache"
 	    {
-	        "particle"  "particles/units/heroes/hero_sniper/sniper_base_attack.vpcf"
-	        "soundfile" "soundevents/game_sounds_heroes/game_sounds_sniper.vsndevts"
-	        "model"     "models/heroes/sniper/sniper.vmdl"
+	        "particle"      "particles/units/heroes/hero_sniper/sniper_base_attack.vpcf"
+	        "soundfile"     "soundevents/game_sounds_heroes/game_sounds_sniper.vsndevts"
+	        "model"         "models/heroes/sniper/sniper.vmdl"
 	    }
 	}
 	
@@ -403,19 +415,19 @@
 	    // General
 	    //-------------------------------------------------------------------------------------------------------------
 	    "BaseClass"             "ability_datadriven"
-	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 	    "AbilityType"           "DOTA_ABILITY_TYPE_BASIC"
 	    "AbilityTextureName"    "shredder_return_chakram"
 	    "MaxLevel"              "1"
 	
 	    // Time     
 	    //-------------------------------------------------------------------------------------------------------------
-	    "AbilityCooldown"               "2.0"
+	    "AbilityCooldown"       "2.0"
 	
 	    // Cost
 	    //-------------------------------------------------------------------------------------------------------------
-	    "AbilityManaCost"               "0" 
-	    "AbilityGoldCost"               "100"
+	    "AbilityManaCost"       "0" 
+	    "AbilityGoldCost"       "100"
 	 
 	    // Special
 	    //-------------------------------------------------------------------------------------------------------------
@@ -423,26 +435,29 @@
 	
 	    "OnSpellStart"
 	    {      
-	        "SpawnUnit"
+	        "RunScript"
 	        {
-	            "UnitName"      "tower_tackshooter"
-	            "UnitCount"     "1"
-	            "SpawnRadius"   "0"
-	            "Target"        "POINT"
-	        }
+	            "ScriptFile"    "unit_scripts/towers/spawn_tower.lua"
+	            "Function"      "SpawnTower"
+	
+	            "AbilityContext"
+	            {
+	                "tower_name"    "tower_tackshooter"
+	            }
+	        }   
 	    }
 	
 	    "AbilitySpecial"
 	    {
 	        "01"
 	        {
-	            "var_type"            "FIELD_INTEGER"
+	            "var_type"          "FIELD_INTEGER"
 	            "damage"            "10"
 	        }
 	        "02"
 	        {
-	            "var_type"            "FIELD_FLOAT"
-	            "range"        "1000"
+	            "var_type"          "FIELD_FLOAT"
+	            "shot_count"        "8"
 	        }
 	    }
 	}

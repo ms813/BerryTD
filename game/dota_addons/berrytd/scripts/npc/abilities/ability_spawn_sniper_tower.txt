@@ -10,12 +10,12 @@
 
     // Time     
     //-------------------------------------------------------------------------------------------------------------
-    "AbilityCooldown"               "1.0"
+    "AbilityCooldown"       "2.0"
 
     // Cost
     //-------------------------------------------------------------------------------------------------------------
-    "AbilityManaCost"               "0" 
-    "AbilityGoldCost"               "40"
+    "AbilityManaCost"       "0" 
+    "AbilityGoldCost"       "40"
  
     // Special
     //-------------------------------------------------------------------------------------------------------------
@@ -39,21 +39,21 @@
     {
         "01"
         {
-            "var_type"            "FIELD_INTEGER"
-            "damage"            "10"
+            "var_type"      "FIELD_INTEGER"
+            "damage"        "10"
         }
         "02"
         {
-            "var_type"            "FIELD_FLOAT"
-            "range"        "1000"
+            "var_type"      "FIELD_FLOAT"
+            "range"         "1000"
         }
     }
 
     "precache"
     {
-        "particle"  "particles/units/heroes/hero_sniper/sniper_base_attack.vpcf"
-        "soundfile" "soundevents/game_sounds_heroes/game_sounds_sniper.vsndevts"
-        "model"     "models/heroes/sniper/sniper.vmdl"
+        "particle"      "particles/units/heroes/hero_sniper/sniper_base_attack.vpcf"
+        "soundfile"     "soundevents/game_sounds_heroes/game_sounds_sniper.vsndevts"
+        "model"         "models/heroes/sniper/sniper.vmdl"
     }
 }
 

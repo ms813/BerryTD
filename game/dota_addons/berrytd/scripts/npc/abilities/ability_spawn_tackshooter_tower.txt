@@ -3,19 +3,19 @@
     // General
     //-------------------------------------------------------------------------------------------------------------
     "BaseClass"             "ability_datadriven"
-    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
     "AbilityType"           "DOTA_ABILITY_TYPE_BASIC"
     "AbilityTextureName"    "shredder_return_chakram"
     "MaxLevel"              "1"
 
     // Time     
     //-------------------------------------------------------------------------------------------------------------
-    "AbilityCooldown"               "2.0"
+    "AbilityCooldown"       "2.0"
 
     // Cost
     //-------------------------------------------------------------------------------------------------------------
-    "AbilityManaCost"               "0" 
-    "AbilityGoldCost"               "100"
+    "AbilityManaCost"       "0" 
+    "AbilityGoldCost"       "100"
  
     // Special
     //-------------------------------------------------------------------------------------------------------------
@@ -23,26 +23,29 @@
 
     "OnSpellStart"
     {      
-        "SpawnUnit"
+        "RunScript"
         {
-            "UnitName"      "tower_tackshooter"
-            "UnitCount"     "1"
-            "SpawnRadius"   "0"
-            "Target"        "POINT"
-        }
+            "ScriptFile"    "unit_scripts/towers/spawn_tower.lua"
+            "Function"      "SpawnTower"
+
+            "AbilityContext"
+            {
+                "tower_name"    "tower_tackshooter"
+            }
+        }   
     }
 
     "AbilitySpecial"
     {
         "01"
         {
-            "var_type"            "FIELD_INTEGER"
+            "var_type"          "FIELD_INTEGER"
             "damage"            "10"
         }
         "02"
         {
-            "var_type"            "FIELD_FLOAT"
-            "range"        "1000"
+            "var_type"          "FIELD_FLOAT"
+            "shot_count"        "8"
         }
     }
 }

@@ -3,7 +3,7 @@
     // General
     //-------------------------------------------------------------------------------------------------------------
     "BaseClass"             "ability_datadriven"
-    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
     "AbilityType"           "DOTA_ABILITY_TYPE_BASIC"
     "AbilityTextureName"    "sven_warcry"    
     "MaxLevel"              "1"
@@ -24,13 +24,16 @@
 
     "OnSpellStart"
     {      
-        "SpawnUnit"
+        "RunScript"
         {
-            "UnitName"      "barracks_melee"
-            "UnitCount"     "1"
-            "SpawnRadius"   "0"
-            "Target"        "POINT"
-        }
+            "ScriptFile"    "unit_scripts/towers/spawn_tower.lua"
+            "Function"      "SpawnTower"
+
+            "AbilityContext"
+            {
+                "tower_name"    "barracks_melee"
+            }
+        } 
     }
 
     "AbilitySpecial"
@@ -38,12 +41,12 @@
         "01"
         {
             "var_type"      "FIELD_INTEGER"
-            "damage"        "5"
+            "creep_dmg"        "5"
         }
         "02"
         {
             "var_type"      "FIELD_FLOAT"
-            "health"        "100"
+            "creep_hp"        "100"
         }        
     }
 }
