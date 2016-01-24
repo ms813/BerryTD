@@ -534,6 +534,7 @@
 	{                                       
 	    "Model"                 "models/creeps/lane_creeps/creep_radiant_melee/radiant_melee.vmdl"
 	    "BaseClass"             "npc_dota_creature"
+	    "GameSoundsFile"        "soundevents/game_sounds_creeps.vsndevts"
 	    "Level"                 "1"
 	    "ModelScale"            "0.8"     
 	    "UnitLabel"             "defender"   
@@ -571,6 +572,7 @@
 	{                                       
 	    "Model"                 "models/creeps/lane_creeps/creep_radiant_melee/radiant_melee_mega.vmdl"
 	    "BaseClass"             "npc_dota_creature"
+	    "GameSoundsFile"        "soundevents/game_sounds_creeps.vsndevts"
 	    "Level"                 "1"
 	    "ModelScale"            "0.8"     
 	    "UnitLabel"             "defender"   
@@ -608,6 +610,7 @@
 	{                                       
 	    "Model"                 "models/creeps/lane_creeps/creep_radiant_melee/radiant_melee_mega.vmdl"
 	    "BaseClass"             "npc_dota_creature"
+	    "GameSoundsFile"        "soundevents/game_sounds_creeps.vsndevts"
 	    "Level"                 "1"
 	    "ModelScale"            "0.8"     
 	    "UnitLabel"             "defender"   
@@ -648,6 +651,7 @@
 	{                                       
 	    "Model"                 "models/heroes/dragon_knight/dragon_knight.vmdl"
 	    "BaseClass"             "npc_dota_creature"
+	    "SoundSet"              "Hero_DragonKnight"    
 	    "Level"                 "1"
 	    "ModelScale"            "0.8"     
 	    "UnitLabel"             "defender"   
@@ -692,6 +696,8 @@
 	        }
 	    } 
 	}
+	
+	//plain old ranged creep
 	"defender_ranged_0"
 	{                                       
 	    "Model"                 "models/creeps/lane_creeps/creep_radiant_ranged/radiant_ranged.vmdl"
@@ -732,6 +738,7 @@
 	    } 
 	}
 	
+	//stronger mega ranged creep
 	"defender_ranged_1"
 	{                                       
 	    "Model"                 "models/creeps/lane_creeps/creep_radiant_ranged/radiant_ranged_mega.vmdl"
@@ -846,6 +853,93 @@
 	    "ProjectileSpeed"       "900"
 	
 	    "ProjectileModel"       "particles/items2_fx/necronomicon_archer_projectile.vpcf"
+	
+	    "Creature"
+	    {
+	        "DisableClumpingBehavior"   "1"
+	    } 
+	}
+	
+	"defender_ranged_4"
+	{                                       
+	    "Model"                 "models/items/techies/bigshot/bigshot.vmdl"
+	    "BaseClass"             "npc_dota_creature"
+	    "Level"                 "1"
+	    "ModelScale"            "1"    
+	    "UnitLabel"             "defender"   
+	
+	    "RingRadius"            "40"
+	    "HealthBarOffset"       "170"
+	    "BoundsHullName"        "DOTA_HULL_SIZE_SMALL"
+	
+	    "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_GROUND"
+	    "MovementSpeed"         "320"
+	
+	    "WakesNeutrals"         "0"
+	
+	    "StatusHealth"          "30"
+	    "StatusHealthRegen"     "0"
+	    "StatusMana"            "0"
+	    "StatusManaRegen"       "0"
+	    "ArmorPhysical"         "1"
+	
+	    "AttackCapabilities"    "DOTA_UNIT_CAP_RANGED_ATTACK"
+	    "AttackDamageMin"       "250"
+	    "AttackDamageMax"       "250"
+	    "AttackRate"            "4"
+	    "AttackRange"           "750"
+	    "AttackAcquisitionRange"    "1200"
+	    "AttackAnimationPoint"  "0.7"
+	    "ProjectileSpeed"       "900"
+	
+	    "ProjectileModel"       "particles/items2_fx/necronomicon_archer_projectile.vpcf"
+	
+	    "Creature"
+	    {
+	        "DisableClumpingBehavior"   "1"
+	    } 
+	}
+	
+	"defender_ranged_6"
+	{                                       
+	    "Model"                 "models/creeps/lane_creeps/creep_bad_siege/creep_bad_siege.vmdl"
+	    "BaseClass"             "npc_dota_creature"
+	    "Level"                 "1"
+	    "ModelScale"            "1"    
+	    "UnitLabel"             "defender"
+	
+	    "Ability1"              "defender_ranged_6_aoe"
+	
+	    "RingRadius"            "40"
+	    "HealthBarOffset"       "170"
+	    "BoundsHullName"        "DOTA_HULL_SIZE_SMALL"
+	
+	    "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_GROUND"
+	    "MovementSpeed"         "320"
+	
+	    "WakesNeutrals"         "0"
+	
+	    "StatusHealth"          "30"
+	    "StatusHealthRegen"     "0"
+	    "StatusMana"            "0"
+	    "StatusManaRegen"       "0"
+	    "ArmorPhysical"         "1"
+	
+	    "AttackCapabilities"    "DOTA_UNIT_CAP_RANGED_ATTACK"
+	    "AttackDamageMin"       "250"
+	    "AttackDamageMax"       "250"
+	    "AttackRate"            "4"
+	    "AttackRange"           "750"
+	    "AttackAcquisitionRange"    "1200"
+	    "AttackAnimationPoint"  "0.7"
+	    "ProjectileSpeed"       "900"
+	
+	    "ProjectileModel"       "particles/econ/items/techies/techies_arcana/techies_base_attack_arcana_model.vpcf"
+	
+	    "precache"
+	    {
+	        "particle"  "particles/econ/items/techies/techies_arcana/techies_base_attack_arcana_model.vpcf"        
+	    }
 	
 	    "Creature"
 	    {
@@ -1104,7 +1198,7 @@
 		
 		"Model"				"models/props_teams/bannerb_dire.vmdl"
 		
-		"ModelScale"		"1.2"
+		"ModelScale"		"0.8"
 		"ConsideredHero"	"1"
 		"UnitLabel"			"tower_spawn"
 	

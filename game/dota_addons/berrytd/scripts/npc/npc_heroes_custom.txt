@@ -65,7 +65,7 @@
 	    "SoundSet"                  "0"    
 	
 	    "AbilityLayout"             "6"  
-	    "Ability1"                  "tower_immunity"
+	    "Ability1"                  "hero_immunity"
 	    "Ability2"                  ""
 	    "Ability3"                  ""
 	    "Ability4"                  ""

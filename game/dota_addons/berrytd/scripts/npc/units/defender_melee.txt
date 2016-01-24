@@ -2,6 +2,7 @@
 {                                       
     "Model"                 "models/creeps/lane_creeps/creep_radiant_melee/radiant_melee.vmdl"
     "BaseClass"             "npc_dota_creature"
+    "GameSoundsFile"        "soundevents/game_sounds_creeps.vsndevts"
     "Level"                 "1"
     "ModelScale"            "0.8"     
     "UnitLabel"             "defender"   
@@ -39,6 +40,7 @@
 {                                       
     "Model"                 "models/creeps/lane_creeps/creep_radiant_melee/radiant_melee_mega.vmdl"
     "BaseClass"             "npc_dota_creature"
+    "GameSoundsFile"        "soundevents/game_sounds_creeps.vsndevts"
     "Level"                 "1"
     "ModelScale"            "0.8"     
     "UnitLabel"             "defender"   
@@ -76,6 +78,7 @@
 {                                       
     "Model"                 "models/creeps/lane_creeps/creep_radiant_melee/radiant_melee_mega.vmdl"
     "BaseClass"             "npc_dota_creature"
+    "GameSoundsFile"        "soundevents/game_sounds_creeps.vsndevts"
     "Level"                 "1"
     "ModelScale"            "0.8"     
     "UnitLabel"             "defender"   
@@ -116,6 +119,7 @@
 {                                       
     "Model"                 "models/heroes/dragon_knight/dragon_knight.vmdl"
     "BaseClass"             "npc_dota_creature"
+    "SoundSet"              "Hero_DragonKnight"    
     "Level"                 "1"
     "ModelScale"            "0.8"     
     "UnitLabel"             "defender"   

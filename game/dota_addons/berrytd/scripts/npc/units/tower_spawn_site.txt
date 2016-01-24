@@ -4,7 +4,7 @@
 	
 	"Model"				"models/props_teams/bannerb_dire.vmdl"
 	
-	"ModelScale"		"1.2"
+	"ModelScale"		"0.8"
 	"ConsideredHero"	"1"
 	"UnitLabel"			"tower_spawn"
 

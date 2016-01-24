@@ -188,6 +188,7 @@
 	    }
 	}
 	
+	
 	"ability_spawn_iceberg_tower"
 	{
 	    // General
@@ -545,6 +546,29 @@
 	      }
 	  }
 	}
+	"hero_immunity"
+	{
+		"BaseClass"             	"ability_datadriven"
+		"MaxLevel" 					"1"
+		"AbilityTextureName"		"neutral_spell_immunity"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		
+		"Modifiers"
+		{
+			"modifier_tower_immunity"
+			{
+				"Passive"			"1"
+				"IsHidden"			"0"
+				"Attributes"		"MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE | MODIFIER_ATTRIBUTE_PERMANENT"	
+				"States"
+				{
+					"MODIFIER_STATE_MAGIC_IMMUNE" 			"MODIFIER_STATE_VALUE_ENABLED" 
+					"MODIFIER_STATE_ATTACK_IMMUNE"			"MODIFIER_STATE_VALUE_ENABLED"			
+					"MODIFIER_STATE_NO_HEALTH_BAR"			"MODIFIER_STATE_VALUE_ENABLED"
+				}			
+			}
+		}		
+	}
 	"tower_immunity"
 	{
 		"BaseClass"             	"ability_datadriven"
@@ -567,8 +591,7 @@
 					"MODIFIER_STATE_NO_HEALTH_BAR"			"MODIFIER_STATE_VALUE_ENABLED"
 				}
 				"Properties"
-				{
-					"MODIFIER_PROPERTY_IGNORE_CAST_ANGLE" 	"1"
+				{				
 					"MODIFIER_PROPERTY_MOVESPEED_ABSOLUTE"	"0.1"
 				}
 			}
@@ -1470,7 +1493,7 @@
 	    //-------------------------------------------------------------------------------------------------------------
 	    "AbilityManaCost"       "0" 
 	    "AbilityGoldCost"       "0"
-	 
+	
 	    // Special
 	    //-------------------------------------------------------------------------------------------------------------
 	
@@ -1623,7 +1646,7 @@
 	    "BaseClass"                     "ability_datadriven"
 	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 	    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"    
-	    "AbilityTextureName"            "drow_ranger_trueshot"
+	    "AbilityTextureName"            "necronomicon_archer_aoe"
 	
 	    "AbilityGoldCost"       "50"
 	
@@ -1665,6 +1688,184 @@
 	        {
 	            "IsHidden"      "0"
 	            "Passive"       "0"     
+	        }
+	    }
+	}
+	
+	"ability_upgrade_ranged_barracks_4"
+	{
+	    "BaseClass"                     "ability_datadriven"
+	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+	    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"    
+	    "AbilityTextureName"            "necronomicon_archer_mana_burn"
+	
+	    "AbilityGoldCost"       "50"
+	
+	    "OnSpellStart"
+	    {
+	        "ApplyModifier"
+	        {
+	            "ModifierName"    "modifier_upgrade_ranged_barracks_4"
+	            "Target"          "CASTER"            
+	        }
+	
+	        "RunScript"
+	        {
+	            "ScriptFile"    "scripts/vscripts/addon_game_mode.lua"
+	            "Function"      "upgradeTower"
+	
+	
+	            "AbilityContext"
+	            {
+	                "nextUpgrade"   "ability_upgrade_ranged_barracks_6"                
+	            }
+	        }        
+	
+	        "RunScript"
+	        {
+	            "ScriptFile"        "unit_scripts/towers/ai_barracks.lua"
+	            "Function"          "Upgrade"
+	
+	            "AbilityContext"
+	            {
+	                "defender_name"     "defender_ranged_4"
+	            }
+	        } 
+	    }
+	
+	    "Modifiers"
+	    {
+	        "modifier_upgrade_ranged_barracks_3"
+	        {
+	            "IsHidden"      "0"
+	            "Passive"       "0"     
+	        }
+	    }
+	}
+	
+	"ability_upgrade_ranged_barracks_6"
+	{
+	    "BaseClass"                     "ability_datadriven"
+	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+	    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"    
+	    "AbilityTextureName"            "batrider_flamebreak"
+	
+	    "AbilityGoldCost"       "50"
+	
+	    "OnSpellStart"
+	    {
+	        "ApplyModifier"
+	        {
+	            "ModifierName"    "modifier_upgrade_ranged_barracks_4"
+	            "Target"          "CASTER"            
+	        }
+	
+	        "RunScript"
+	        {
+	            "ScriptFile"    "scripts/vscripts/addon_game_mode.lua"
+	            "Function"      "upgradeTower"
+	
+	
+	            "AbilityContext"
+	            {
+	                "nextUpgrade"   ""                
+	            }
+	        }        
+	
+	        "RunScript"
+	        {
+	            "ScriptFile"        "unit_scripts/towers/ai_barracks.lua"
+	            "Function"          "Upgrade"
+	
+	            "AbilityContext"
+	            {
+	                "defender_name"     "defender_ranged_6"
+	            }
+	        } 
+	    }
+	
+	    "Modifiers"
+	    {
+	        "modifier_upgrade_ranged_barracks_3"
+	        {
+	            "IsHidden"      "0"
+	            "Passive"       "0"     
+	        }
+	    }
+	}
+	
+	"defender_ranged_6_aoe"
+	{
+	
+	    "BaseClass"                     "ability_datadriven"    
+	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	    "AbilityTextureName"            "lina_light_strike_array"
+	    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+	    "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+	    "AbilityUnitDamageType"         "DAMAGE_TYPE_PHYSICAL"
+	    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+	
+	    "precache"
+	    {
+	        "particle"  "particles/units/heroes/hero_lina/lina_spell_light_strike_array_explosion.vpcf"
+	        "particle"  "particles/units/heroes/hero_techies/techies_bomb_ground_debris.vpcf"
+	        "particle"  "particles/econ/items/techies/techies_arcana/techies_base_attack_arcana.vpcf"        
+	        "soundfile" "sounds/weapons/hero/gyrocopter/homing_missile_destroy.vsnd"
+	    }    
+	
+	    "AbilitySpecial"
+	    {
+	        "01"
+	        {
+	            "var_type"              "FIELD_INTEGER"
+	            "aoe_radius"            "300.0"
+	        }
+	        
+	        "02"
+	        {
+	            "var_type"              "FIELD_INTEGER"
+	            "damage_percent"        "100"
+	        }
+	    }
+	
+	    "Modifiers"
+	    {
+	        "modifier_defender_ranged_6_aoe"
+	        {
+	            "Passive"            "1"
+	            "IsHidden"           "1"
+	
+	            "OnAttackLanded"
+	            // "%attack_damage" is set to the damage value before mitigation
+	            {   
+	                "FireSound"
+	                {
+	                    "EffectName"    "Hero_Gyrocopter.HomingMissile.Destroy"
+	                    //"EffectName"    "sounds/weapons/hero/gyrocopter/homing_missile_destroy.vsnd"
+	                    "Target"        "TARGET"
+	                }
+	
+	                "FireEffect"
+	                {
+	                    "EffectName"        "particles/units/heroes/hero_techies/techies_bomb_ground_debris.vpcf"
+	                    "EffectAttachType"  "follow_origin"
+	                    "Target"            "TARGET"
+	                }
+	
+	                "FireEffect"
+	                {
+	                    "EffectName"        "particles/units/heroes/hero_lina/lina_spell_light_strike_array_explosion.vpcf"
+	                    "EffectAttachType"  "follow_origin"
+	                    "Target"            "TARGET"
+	                }
+	
+	
+	                "CleaveAttack"
+	                {
+	                    "CleavePercent"         "%damage_percent"
+	                    "CleaveRadius"          "%aoe_radius"                    
+	                }
+	            }         
 	        }
 	    }
 	}

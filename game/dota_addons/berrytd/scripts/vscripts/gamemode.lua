@@ -150,7 +150,10 @@ function GameMode:InitGameMode()
   self.maxWave = #waveTable;
   self.currentLives = 50 
   self.players = {}
+
+  --find the radiant base entity and hide it
   self.base = Entities:FindByName(nil, "dota_goodguys_fort") 
+  self.base:AddNoDraw()
 
   DebugPrint('[BAREBONES] Done loading Barebones gamemode!\n\n')
 end
@@ -171,17 +174,8 @@ print( '*********************************************' )
 end
 
 WAYPOINTS = {}
-function GameMode:PopulateWayPoints()  
-	local waypoint_count = 20
-
-	for i=0, waypoint_count-1 do
-		WAYPOINTS[i] = Entities:FindByName(nil, "creep_waypoint_" .. i):GetAbsOrigin()       		 
-	end   
---[[
-    for k,v in pairs(WAYPOINTS) do
-        print(k,v)
-    end
-    --]]
+function GameMode:PopulateWayPoints()  	
+  local WAYPOINTS = Entities:FindAllByClassname("path_corner")   
 end
 
 function GameMode:SpawnWave(waveIndex)
@@ -207,7 +201,8 @@ function GameMode:SpawnWave(waveIndex)
                                                 DOTA_TEAM_BADGUYS)
 
                 --order the creep to run towards the throne
-                creep:SetInitialGoalEntity(self.base)
+                local path_start = Entities:FindByName(nil, "creep_waypoint_0")
+                creep:SetInitialGoalEntity(path_start)
 
                 --cache the creeps attack capability for use in aggro AI later
                 creep.default_attack_capability = creep:GetAttackCapability()

@@ -1,0 +1,23 @@
+"hero_immunity"
+{
+	"BaseClass"             	"ability_datadriven"
+	"MaxLevel" 					"1"
+	"AbilityTextureName"		"neutral_spell_immunity"
+	"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+	
+	"Modifiers"
+	{
+		"modifier_tower_immunity"
+		{
+			"Passive"			"1"
+			"IsHidden"			"0"
+			"Attributes"		"MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE | MODIFIER_ATTRIBUTE_PERMANENT"	
+			"States"
+			{
+				"MODIFIER_STATE_MAGIC_IMMUNE" 			"MODIFIER_STATE_VALUE_ENABLED" 
+				"MODIFIER_STATE_ATTACK_IMMUNE"			"MODIFIER_STATE_VALUE_ENABLED"			
+				"MODIFIER_STATE_NO_HEALTH_BAR"			"MODIFIER_STATE_VALUE_ENABLED"
+			}			
+		}
+	}		
+}

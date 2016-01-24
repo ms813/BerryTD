@@ -74,6 +74,7 @@ function BarracksThink(tower)
 				defender:MoveToPosition(tower.spawn_pos)
 
 				--reset aggro
+				local creep =defender.aggro_target
 				creep:SetAttackCapability(creep.default_attack_capability)
 				defender.aggro_target = nil
 			end	
@@ -168,7 +169,7 @@ function SpawnDefender(keys)
 											 true,
 											 rax:GetOwner(),
 											 rax:GetOwner(),
-											 rax:GetTeamNumber())	
+											 DOTA_TEAM_GOODGUYS)	
 
 		defender.parent_barracks = rax
 		defender.default_attack_capability = defender:GetAttackCapability()				
@@ -182,8 +183,7 @@ function Upgrade(keys)
 	keys.caster.defender_name = keys.AbilityContext.defender_name
 end
 
-function DisableRegen(keys)		
-	print("disable regen enter")
+function DisableRegen(keys)			
 	local cd = keys.AbilityContext.Cooldown	
 	local regen_ability = keys.ability	
 

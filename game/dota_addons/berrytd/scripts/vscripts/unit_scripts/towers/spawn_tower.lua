@@ -10,7 +10,7 @@ function SpawnTower(keys)
 		false,
 		owner,
 		owner,
-		pID)
+		DOTA_TEAM_GOODGUYS)
 
 	tower:SetControllableByPlayer(pID, false)
 
