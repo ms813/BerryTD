@@ -102,7 +102,7 @@ function BarracksThink(tower)
 					--creep can't attack so hasn't been aggroed before
 					if creep:GetAttackCapability() ~= DOTA_UNIT_CAP_MELEE_ATTACK then
 						defender.aggro_target = creep
-						creep:SetAttackCapability(DOTA_UNIT_CAP_MELEE_ATTACK)
+						--creep:SetAttackCapability(DOTA_UNIT_CAP_MELEE_ATTACK)
 						AttackOrder(defender, creep)
 						AttackOrder(creep, defender)
 						break

@@ -318,12 +318,105 @@
     }
 }
 
-"defender_ranged_6_aoe"
+"ability_defender_ranged_4_aoe"
+{
+    "BaseClass"                     "ability_datadriven"
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+    "AbilityTextureName"            "tiny_avalanche"
+
+    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+    "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+    "AbilityUnitDamageType"         "DAMAGE_TYPE_PHYSICAL"
+    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+
+    "precache"
+    {
+        "particle"  "particles/units/heroes/hero_techies/techies_bomb_ground_debris.vpcf"
+        "soundfile" "sounds/weapons/hero/gyrocopter/homing_missile_destroy.vsnd"
+    }
+
+    "Modifiers"
+    {
+        "modifier_defender_ranged_4_stun"
+        {
+            "Passive"       "1"
+            "IsHidden"      "1"
+
+            "OnAttackLanded"
+            {
+
+                "FireEffect"
+                {
+                    "EffectName"        "particles/units/heroes/hero_techies/techies_bomb_ground_debris.vpcf"
+                    "EffectAttachType"  "follow_origin"
+                    "Target"            "TARGET"
+                }
+
+                "FireSound"
+                {
+                    "EffectName"    "Hero_Gyrocopter.HomingMissile.Destroy"                   
+                    "Target"        "TARGET"
+                }
+
+                "Damage"
+                {
+                    "Target"
+                    {
+                        "Center"    "TARGET"
+                        "Radius"    "%aoe_radius"                        
+                        "Teams"     "DOTA_UNIT_TARGET_TEAM_ENEMY"
+                        "Types"     "DOTA_UNIT_TARGET_ALL" 
+                    }
+
+                    "Type"      "DAMAGE_TYPE_PHYSICAL"
+                    "Damage"    "%aoe_damage"
+                }
+
+                "Stun"
+                {
+                    "Target"
+                    {
+                        "Center"    "TARGET"
+                        "Radius"    "%aoe_radius"                        
+                        "Teams"     "DOTA_UNIT_TARGET_TEAM_ENEMY"
+                        "Types"     "DOTA_UNIT_TARGET_ALL" 
+                    }
+
+                    "Duration"      "%stun_duration"
+                }                
+            }            
+        }
+    }   
+
+    "AbilitySpecial"
+    {
+        "01"
+        {
+            "var_type"          "FIELD_INTEGER"
+            "aoe_radius"        "300.0"
+        }
+        
+        "02"
+        {
+            "var_type"          "FIELD_INTEGER"
+            "stun_duration"     "2"
+        }
+
+        "03"
+        {
+            "var_type"          "FIELD_INTEGER"
+            "aoe_damage"        "100.0"
+        }
+    }
+}
+
+"ability_defender_ranged_6_aoe"
 {
 
     "BaseClass"                     "ability_datadriven"    
     "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
     "AbilityTextureName"            "lina_light_strike_array"
+
     "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
     "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
     "AbilityUnitDamageType"         "DAMAGE_TYPE_PHYSICAL"
@@ -388,12 +481,11 @@
                     "Target"            "TARGET"
                 }
 
-
                 "Damage"
                 {
                     "Target"
                     {
-                        "Center"    "CASTER"
+                        "Center"    "TARGET"
                         "Radius"    "%aoe_radius"
 
                         //AbilityUnitTargetTeam values

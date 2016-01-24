@@ -57,11 +57,16 @@ function Precache( context )
   PrecacheUnitByNameSync("barracks_melee", context)
 
   --Precaching defenders
-  PrecacheUnitByNameSync("defender_melee", context)
-  PrecacheResource("model", "models/creeps/lane_creeps/creep_radiant_melee/radiant_melee_mega.vmdl", context)
-
-  PrecacheResource("particle", "particles/econ/generic/generic_buff_1/generic_buff_1.vpcf", context)
-
+  PrecacheUnitByNameSync("defender_melee_0", context)
+  PrecacheUnitByNameSync("defender_melee_1", context)
+  PrecacheUnitByNameSync("defender_melee_2", context)
+  PrecacheUnitByNameSync("defender_melee_3", context)
+  PrecacheUnitByNameSync("defender_melee_4", context)
+  PrecacheUnitByNameSync("defender_melee_5", context)
+  PrecacheUnitByNameSync("defender_melee_6", context)
+  
+  PrecacheUnitByNameSync("defender_ranged_4", context)
+  PrecacheUnitByNameSync("defender_ranged_6", context) 
 end
 
 -- Create the game mode when we activate

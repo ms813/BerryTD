@@ -860,13 +860,16 @@
 	    } 
 	}
 	
+	//catapult with aoe split shot
 	"defender_ranged_4"
 	{                                       
-	    "Model"                 "models/items/techies/bigshot/bigshot.vmdl"
+	    "Model"                 "models/creeps/lane_creeps/creep_good_siege/creep_good_siege.vmdl"
 	    "BaseClass"             "npc_dota_creature"
 	    "Level"                 "1"
 	    "ModelScale"            "1"    
 	    "UnitLabel"             "defender"   
+	
+	    "Ability1"              "ability_defender_ranged_4_aoe"
 	
 	    "RingRadius"            "40"
 	    "HealthBarOffset"       "170"
@@ -884,15 +887,15 @@
 	    "ArmorPhysical"         "1"
 	
 	    "AttackCapabilities"    "DOTA_UNIT_CAP_RANGED_ATTACK"
-	    "AttackDamageMin"       "250"
-	    "AttackDamageMax"       "250"
+	    "AttackDamageMin"       "100"
+	    "AttackDamageMax"       "100"
 	    "AttackRate"            "4"
-	    "AttackRange"           "750"
+	    "AttackRange"           "1200"
 	    "AttackAcquisitionRange"    "1200"
 	    "AttackAnimationPoint"  "0.7"
-	    "ProjectileSpeed"       "900"
+	    "ProjectileSpeed"       "1200"
 	
-	    "ProjectileModel"       "particles/items2_fx/necronomicon_archer_projectile.vpcf"
+	    "ProjectileModel"       "particles/base_attacks/ranged_siege_good.vpcf"
 	
 	    "Creature"
 	    {
@@ -900,6 +903,7 @@
 	    } 
 	}
 	
+	//catapult with aoe damage on attack
 	"defender_ranged_6"
 	{                                       
 	    "Model"                 "models/creeps/lane_creeps/creep_bad_siege/creep_bad_siege.vmdl"
@@ -908,7 +912,7 @@
 	    "ModelScale"            "1"    
 	    "UnitLabel"             "defender"
 	
-	    "Ability1"              "defender_ranged_6_aoe"
+	    "Ability1"              "ability_defender_ranged_6_aoe"
 	
 	    "RingRadius"            "40"
 	    "HealthBarOffset"       "170"
@@ -932,10 +936,10 @@
 	    "AttackRange"           "750"
 	    "AttackAcquisitionRange"    "1200"
 	    "AttackAnimationPoint"  "0.7"
-	    "ProjectileSpeed"       "900"
+	    "ProjectileSpeed"       "800"
 	
 	    "ProjectileModel"       "particles/units/heroes/hero_rattletrap/rattletrap_rocket_flare.vpcf"
-	
+	    
 	    "Creature"
 	    {
 	        "DisableClumpingBehavior"   "1"
