@@ -710,7 +710,7 @@
 	            "Passive"           "0"
 	            "IsDebuff"          "1"
 	            "Duration"          "%burn_duration"
-	            "EffectName"        "particles/units/heroes/hero_phoenix/phoenix_icarus_dive_burn_debuff.vpcf"
+	            "EffectName"        "particles/units/heroes/hero_phoenix/phoenix_fire_spirit_burn_creep.vpcf"
 	            "EffectAttachType"  "follow_origin"
 	            "StatusEffectName"  "particles/status_fx/status_effect_burn.vpcf"
 	            "StatusEffectPriority"  "10"
@@ -718,7 +718,7 @@
 	            "ThinkInterval"     "%burn_tick"
 	
 	            "OnIntervalThink"
-	            {
+	            {   
 	                "RunScript"
 	                {
 	                    "ScriptFile"    "scripts/vscripts/unit_scripts/towers/ai_dragon.lua"
@@ -1809,7 +1809,7 @@
 	    {
 	        "particle"  "particles/units/heroes/hero_lina/lina_spell_light_strike_array_explosion.vpcf"
 	        "particle"  "particles/units/heroes/hero_techies/techies_bomb_ground_debris.vpcf"
-	        "particle"  "particles/econ/items/techies/techies_arcana/techies_base_attack_arcana.vpcf"        
+	        "particle"  "particles/units/heroes/hero_phoenix/phoenix_fire_spirit_ground.vpcf"        
 	        "soundfile" "sounds/weapons/hero/gyrocopter/homing_missile_destroy.vsnd"
 	    }    
 	
@@ -1824,7 +1824,7 @@
 	        "02"
 	        {
 	            "var_type"              "FIELD_INTEGER"
-	            "damage_percent"        "100"
+	            "aoe_damage"            "250"
 	        }
 	    }
 	
@@ -1840,8 +1840,7 @@
 	            {   
 	                "FireSound"
 	                {
-	                    "EffectName"    "Hero_Gyrocopter.HomingMissile.Destroy"
-	                    //"EffectName"    "sounds/weapons/hero/gyrocopter/homing_missile_destroy.vsnd"
+	                    "EffectName"    "Hero_Gyrocopter.HomingMissile.Destroy"                   
 	                    "Target"        "TARGET"
 	                }
 	
@@ -1858,12 +1857,31 @@
 	                    "EffectAttachType"  "follow_origin"
 	                    "Target"            "TARGET"
 	                }
-	
-	
-	                "CleaveAttack"
+	                "FireEffect"
 	                {
-	                    "CleavePercent"         "%damage_percent"
-	                    "CleaveRadius"          "%aoe_radius"                    
+	                    "EffectName"        "particles/units/heroes/hero_phoenix/phoenix_fire_spirit_ground.vpcf"
+	                    "EffectAttachType"  "follow_origin"
+	                    "Target"            "TARGET"
+	                }
+	
+	
+	                "Damage"
+	                {
+	                    "Target"
+	                    {
+	                        "Center"    "CASTER"
+	                        "Radius"    "%aoe_radius"
+	
+	                        //AbilityUnitTargetTeam values
+	                        "Teams"  "DOTA_UNIT_TARGET_TEAM_ENEMY"
+	
+	                        //AbilityUnitTargetTypes
+	                        "Types"  "DOTA_UNIT_TARGET_ALL"                       
+	
+	                    }
+	
+	                    "Type"      "DAMAGE_TYPE_PHYSICAL"
+	                    "Damage"    "%aoe_damage"
 	                }
 	            }         
 	        }

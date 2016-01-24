@@ -67,7 +67,7 @@
             "Passive"           "0"
             "IsDebuff"          "1"
             "Duration"          "%burn_duration"
-            "EffectName"        "particles/units/heroes/hero_phoenix/phoenix_icarus_dive_burn_debuff.vpcf"
+            "EffectName"        "particles/units/heroes/hero_phoenix/phoenix_fire_spirit_burn_creep.vpcf"
             "EffectAttachType"  "follow_origin"
             "StatusEffectName"  "particles/status_fx/status_effect_burn.vpcf"
             "StatusEffectPriority"  "10"
@@ -75,7 +75,7 @@
             "ThinkInterval"     "%burn_tick"
 
             "OnIntervalThink"
-            {
+            {   
                 "RunScript"
                 {
                     "ScriptFile"    "scripts/vscripts/unit_scripts/towers/ai_dragon.lua"

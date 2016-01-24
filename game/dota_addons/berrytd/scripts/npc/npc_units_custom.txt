@@ -934,12 +934,7 @@
 	    "AttackAnimationPoint"  "0.7"
 	    "ProjectileSpeed"       "900"
 	
-	    "ProjectileModel"       "particles/econ/items/techies/techies_arcana/techies_base_attack_arcana_model.vpcf"
-	
-	    "precache"
-	    {
-	        "particle"  "particles/econ/items/techies/techies_arcana/techies_base_attack_arcana_model.vpcf"        
-	    }
+	    "ProjectileModel"       "particles/units/heroes/hero_rattletrap/rattletrap_rocket_flare.vpcf"
 	
 	    "Creature"
 	    {
