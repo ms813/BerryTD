@@ -1,0 +1,429 @@
+"ability_defender_ranged_2_truesight"
+{
+    "BaseClass"                     "ability_datadriven"
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+    "AbilityTextureName"            "necronomicon_warrior_sight"
+
+    "OnSpellStart"
+    {
+        "ApplyModifier"
+        {
+            "ModifierName"    "modifier_truesight"
+            "Target"         "CASTER"            
+        }
+    }
+}
+
+"ability_defender_ranged_3_attackspeed_stacks"
+{
+    "BaseClass"                     "ability_datadriven"
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+    "AbilityTextureName"            "drow_ranger_marksmanship"
+
+    "Modifiers"
+    {
+        "modifier_defender_ranged_3"
+        {
+            "Passive"            "1"
+            "IsHidden"           "1"
+            "IsBuff"             "1"       
+    
+            "OnAttackLanded"
+            {
+                "RunScript"
+                {
+                    "ScriptFile"    "unit_scripts/defenders/defender_ranged.lua"
+                    "Function"      "DefenderRangedSpeedStack"
+                    "AbilityContext"
+                    {
+                        "modifier"      "modifier_defender_ranged_3_stack"                         
+                        "max_stacks_modifier"   "modifier_defender_ranged_3_max_stacks"
+                    }
+                    
+                }
+            }
+        }
+
+        "modifier_defender_ranged_3_stack"
+        {
+           "IsBuff"     "1"
+
+           "Properties"
+           {
+               "MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "%bonus_attack_speed"               
+           }          
+        }
+
+        "modifier_defender_ranged_3_max_stacks"
+        {
+            "IsBuff"    "1"
+            "TextureName"    "phantom_assassin_blur"
+            "Properties"
+            {
+                "MODIFIER_PROPERTY_EVASION_CONSTANT"    "%evasion"                
+            }         
+        }
+    }
+
+    "AbilitySpecial"
+    {
+        "01"
+        {
+            "var_type"          "FIELD_INTEGER"
+            "bonus_attack_speed"    "5"
+        }
+
+        //wait this long after landing an attack before the stack starts to decay
+        "02"
+        {
+            "var_type"          "FIELD_INTEGER"
+            "stack_decay_delay"    "5"
+        }   
+
+        //afteer the initial delay lose stacks at this rate
+        "03"
+        {
+            "var_type"          "FIELD_INTEGER"
+            "stack_decay_rate"  "1"
+        }
+
+        "04"
+        {
+            "var_type"          "FIELD_INTEGER"
+            "max_stacks"        "20"
+        }
+
+        "05"
+        {
+            "var_type"          "FIELD_INTEGER"
+            "evasion"           "75"
+        }        
+    }
+}
+
+"ability_defender_ranged_4_aoe"
+{
+    "BaseClass"                     "ability_datadriven"
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+    "AbilityTextureName"            "tiny_avalanche"
+
+    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+    "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+    "AbilityUnitDamageType"         "DAMAGE_TYPE_PHYSICAL"
+    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+
+    "precache"
+    {
+        "particle"  "particles/units/heroes/hero_techies/techies_bomb_ground_debris.vpcf"
+        "soundfile" "sounds/weapons/hero/gyrocopter/homing_missile_target.vsnd" 
+    }
+
+    "Modifiers"
+    {
+        "modifier_defender_ranged_4_stun"
+        {
+            "Passive"       "1"
+            "IsHidden"      "1"
+
+            "OnAttackLanded"
+            {
+
+                "FireEffect"
+                {
+                    "EffectName"        "particles/units/heroes/hero_techies/techies_bomb_ground_debris.vpcf"
+                    "EffectAttachType"  "follow_origin"
+                    "Target"
+                    {
+                        "Center"    "TARGET"
+                        "Radius"    "%aoe_radius"                        
+                        "Teams"     "DOTA_UNIT_TARGET_TEAM_ENEMY"
+                        "Types"     "DOTA_UNIT_TARGET_ALL" 
+                    }
+                }
+
+                "FireSound"
+                {
+                    "EffectName"    "Hero_Gyrocopter.HomingMissile.Target"  
+                    "Target"        "TARGET"
+                }
+
+                "Damage"
+                {
+                    "Target"
+                    {
+                        "Center"    "TARGET"
+                        "Radius"    "%aoe_radius"                        
+                        "Teams"     "DOTA_UNIT_TARGET_TEAM_ENEMY"
+                        "Types"     "DOTA_UNIT_TARGET_ALL" 
+                    }
+
+                    "Type"      "DAMAGE_TYPE_PHYSICAL"
+                    "Damage"    "%aoe_damage"
+                }
+
+                "Stun"
+                {
+                    "Target"
+                    {
+                        "Center"    "TARGET"
+                        "Radius"    "%aoe_radius"                        
+                        "Teams"     "DOTA_UNIT_TARGET_TEAM_ENEMY"
+                        "Types"     "DOTA_UNIT_TARGET_ALL" 
+                    }
+
+                    "Duration"      "%stun_duration"
+                }                
+            }            
+        }
+    }   
+
+    "AbilitySpecial"
+    {
+        "01"
+        {
+            "var_type"          "FIELD_INTEGER"
+            "aoe_radius"        "200"
+        }
+        
+        "02"
+        {
+            "var_type"          "FIELD_FLOAT"
+            "stun_duration"     "1.5"
+        }
+
+        "03"
+        {
+            "var_type"          "FIELD_INTEGER"
+            "aoe_damage"        "100"
+        }
+    }
+}
+
+"ability_defender_ranged_5_dmg_stacks"
+{
+    "BaseClass"                     "ability_datadriven"
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+    "AbilityTextureName"            "drow_ranger_trueshot"
+
+    "Modifiers"
+    {
+        "modifier_defender_ranged_5"
+        {
+            "Passive"            "1"
+            "IsHidden"           "1"
+            "IsBuff"             "1"                   
+
+            "OnAttackLanded"
+            // "%attack_damage" is set to the damage value before mitigation
+            {
+                "RunScript"
+                {
+                    "ScriptFile"    "unit_scripts/defenders/defender_ranged.lua"
+                    "Function"      "DefenderRangedDmgStack"
+
+                    "AbilityContext"
+                    {
+                        "modifier"              "modifier_defender_ranged_5_stack"
+                        "max_stacks_modifier"   "modifier_defender_ranged_5_max_stacks"
+                        "max_projectile"        "particles/units/heroes/hero_clinkz/clinkz_searing_arrow.vpcf"
+                        "regular_projectile"    "particles/units/heroes/hero_clinkz/clinkz_base_attack.vpcf"
+                    }
+                }
+            }
+        }  
+
+        "modifier_defender_ranged_5_stack"  
+        {
+            "IsBuff"     "1"
+
+            "Properties"
+            {
+               "MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE" "%bonus_dmg"               
+            }  
+        }    
+
+        "modifier_defender_ranged_5_max_stacks"
+        {   
+            "IsBuff"    "1"
+            "TextureName"    "enchantress_impetus"                               
+
+            "OnAttackLanded"
+            // "%attack_damage" is set to the damage value before mitigation
+            {
+                "Damage"
+                {
+                    "Target"        "TARGET"
+                    "Type"          "DAMAGE_TYPE_PURE"
+                    "Damage"        "(%attack_damage * 100) / %cap_bonus_dmg_percent"
+                }
+            }
+
+            "Properties"
+            {
+                "MODIFIER_PROPERTY_ATTACK_RANGE_BONUS" "%cap_range_bonus"                           
+            }
+        }
+    }
+
+    "AbilitySpecial"
+    {
+        "01"
+        {
+            "var_type"          "FIELD_INTEGER"
+            "bonus_dmg"         "1"
+        }
+
+        //wait this long after landing an attack before the stack starts to decay
+        "02"
+        {
+            "var_type"              "FIELD_INTEGER"
+            "stack_decay_delay"     "5"
+        }   
+
+        //after the initial delay lose stacks at this rate
+        "03"
+        {   
+            "var_type"          "FIELD_INTEGER"
+            "stack_decay_rate"  "1"
+        }
+
+        "04"
+        {
+            "var_type"          "FIELD_INTEGER"
+            "max_stacks"        "40"            
+        }
+
+        "05"
+        {
+            "var_type"          "FIELD_INTEGER"
+            "cap_range_bonus"       "300"
+        }
+
+        "06"
+        {
+            "var_type"          "FIELD_INTEGER"
+            "cap_bonus_dmg_percent"     "50"
+        }        
+    }
+}
+
+"ability_defender_ranged_6_aoe"
+{
+
+    "BaseClass"                     "ability_datadriven"    
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+    "AbilityTextureName"            "lina_light_strike_array"
+
+    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+    "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+    "AbilityUnitDamageType"         "DAMAGE_TYPE_PHYSICAL"
+    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+
+    "precache"
+    {
+        "particle"  "particles/units/heroes/hero_lina/lina_spell_light_strike_array_explosion.vpcf"
+        "particle"  "particles/units/heroes/hero_techies/techies_bomb_ground_debris.vpcf"
+        "particle"  "particles/units/heroes/hero_phoenix/phoenix_fire_spirit_ground.vpcf"        
+        "soundfile" "sounds/weapons/hero/gyrocopter/homing_missile_destroy.vsnd"        
+    }    
+
+    "AbilitySpecial"
+    {
+        "01"
+        {
+            "var_type"              "FIELD_INTEGER"
+            "aoe_radius"            "300"
+        }
+        
+        "02"
+        {
+            "var_type"              "FIELD_INTEGER"
+            "aoe_damage"            "250"
+        }
+
+        "03"
+        {
+            "var_type"              "FIELD_INTEGER"
+            "knockback_distance"    "500"
+        }
+
+        "04"
+        {
+            "var_type"              "FIELD_INTEGER"
+            "air_time"              "3"
+        }
+    }
+
+    "Modifiers"
+    {
+        "modifier_defender_ranged_6_aoe"
+        {
+            "Passive"            "1"
+            "IsHidden"           "1"
+
+            "OnAttackLanded"
+            // "%attack_damage" is set to the damage value before mitigation
+            {   
+                "FireSound"
+                {
+                    "EffectName"    "Hero_Gyrocopter.HomingMissile.Destroy"                   
+                    "Target"        "TARGET"
+                }
+
+                "FireEffect"
+                {
+                    "EffectName"        "particles/units/heroes/hero_techies/techies_bomb_ground_debris.vpcf"
+                    "EffectAttachType"  "follow_origin"
+                    "Target"            "TARGET"
+                }
+
+                "FireEffect"
+                {
+                    "EffectName"        "particles/units/heroes/hero_lina/lina_spell_light_strike_array_explosion.vpcf"
+                    "EffectAttachType"  "follow_origin"
+                    "Target"            "TARGET"
+                }
+                "FireEffect"
+                {
+                    "EffectName"        "particles/units/heroes/hero_phoenix/phoenix_fire_spirit_ground.vpcf"
+                    "EffectAttachType"  "follow_origin"
+                    "Target"            "TARGET"
+                }                
+
+                "Knockback"
+                {
+                    "Target"            
+                    {
+                        "Center"    "TARGET"
+                        "Radius"    "%aoe_radius"                        
+                        "Teams"  "DOTA_UNIT_TARGET_TEAM_ENEMY"                      
+                        "Types"  "DOTA_UNIT_TARGET_ALL"                       
+
+                    }
+
+                    "Center"            "TARGET"
+                    "Distance"          "%knockback_distance"
+                    "Duration"          "%air_time"
+                    "Height"            "500"
+                    "IsFixedDistance"   "1"
+                    "ShouldStun"        "1"    
+                }
+
+                "Damage"
+                {
+                    "Target"
+                    {
+                        "Center"    "TARGET"
+                        "Radius"    "%aoe_radius"
+                        "Teams"  "DOTA_UNIT_TARGET_TEAM_ENEMY"
+                        "Types"  "DOTA_UNIT_TARGET_ALL"                       
+
+                    }
+
+                    "Type"      "DAMAGE_TYPE_PHYSICAL"
+                    "Damage"    "%aoe_damage"
+                }
+            }         
+        }
+    }
+}

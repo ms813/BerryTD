@@ -3,8 +3,7 @@ function Spawn(entityKeyValues)
 	--initiate an empty table to track the defenders
 	thisEntity.defenders = {}
 	thisEntity.upgrades = {}
-	
-
+		
 	--pick a random spawn location when this racks is placed
 	thisEntity.spawn_pos = thisEntity:GetAbsOrigin() + RandomVector(1)*500
 

@@ -270,7 +270,7 @@ function GameMode:OnEntityKilled( keys )
         --subtract a life
         self.currentLives = self.currentLives - 1
 
-        print(killedUnit:GetName(), " reached the end!")
+        print(killedUnit:GetUnitName(), " reached the end!")
         Notifications:TopToAll({text=killedUnit:GetName().. " reached the end! Lifes left: " ..self.currentLives, duration=5.0})   
 
         --if radiant runs out of lives then set dire victory
@@ -284,7 +284,7 @@ function GameMode:OnEntityKilled( keys )
     --creep was killed by a tower
     else        
         self.numCreepsAlive = self.numCreepsAlive - 1
-        print("Creep killed," , self.numCreepsAlive , "remaining")  
+        --print("Creep killed," , self.numCreepsAlive , "remaining")  
     end
 
     if self.currentWave > 0 and self.numCreepsAlive == 0 then  

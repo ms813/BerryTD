@@ -65,7 +65,12 @@ function Precache( context )
   PrecacheUnitByNameSync("defender_melee_5", context)
   PrecacheUnitByNameSync("defender_melee_6", context)
   
+  PrecacheUnitByNameSync("defender_ranged_0", context)
+  PrecacheUnitByNameSync("defender_ranged_1", context)
+  PrecacheUnitByNameSync("defender_ranged_2", context)
+  PrecacheUnitByNameSync("defender_ranged_3", context)
   PrecacheUnitByNameSync("defender_ranged_4", context)
+  PrecacheUnitByNameSync("defender_ranged_5", context)
   PrecacheUnitByNameSync("defender_ranged_6", context) 
 end
 

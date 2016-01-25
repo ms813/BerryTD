@@ -29,7 +29,7 @@
     "StatusManaRegen"       "0.0"
     "ArmorPhysical"         "2"
 
-    "AttackCapabilities"    "DOTA_UNIT_CAP_MELEE_ATTACK"
+    "AttackCapabilities"    "DOTA_UNIT_CAP_NO_ATTACK"
     "AttackAcquisitionRange"     "125"
     "AttackRange"                "125"  
     "AttackDamageMin"       "8"
