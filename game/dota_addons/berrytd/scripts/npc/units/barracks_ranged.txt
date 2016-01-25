@@ -14,7 +14,7 @@
 
     "HasInventory"          "1"    
     "AutoAttacksByDefault"  "0"
-    "SelectOnSpawn"         "1"
+    "SelectOnSpawn"         "0"
     "WakesNeutrals"         "0"
 
     //Abilities  

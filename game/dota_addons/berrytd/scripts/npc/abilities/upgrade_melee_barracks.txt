@@ -255,6 +255,8 @@
             }
         } 
 
+        //increase the rax unit cap
+        //this will stay in effect for future upgrade levels
         "RunScript"
         {
             "ScriptFile"    "unit_scripts/towers/ai_barracks.lua"
@@ -270,7 +272,7 @@
             "new_unit_cap"      "8"
         } 
 
-        "01"
+        "02"
         {
             "var_type"          "FIELD_INTEGER"
             "cooldown_percent"    "40"
@@ -289,6 +291,76 @@
             {
                 "MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE" "%cooldown_percent"                
             }
+        }
+    }
+}
+
+//apply a debuff to enemies
+//when that enemy dies, other units in range have a chance to flee
+"ability_upgrade_melee_barracks_5"
+{
+    "BaseClass"                     "ability_datadriven"
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"    
+    "AbilityTextureName"            "skeleton_king_vampiric_aura"
+    "AbilityGoldCost"               "50"
+
+    "OnSpellStart"
+    {
+
+        "ApplyModifier"
+        {
+            "ModifierName"    "modifier_upgrade_melee_barracks_5"
+            "Target"          "CASTER"            
+        }
+
+        //this script adds the ability to the barracks aesthetically
+        //and sorts out the next upgrade ability 
+        "RunScript"
+        {
+            "ScriptFile"    "scripts/vscripts/addon_game_mode.lua"
+            "Function"      "upgradeTower"
+
+            "AbilityContext"
+            {
+                "nextUpgrade"   ""                
+            }
+        }      
+
+        "RunScript"
+        {
+            "ScriptFile"        "unit_scripts/towers/ai_barracks.lua"
+            "Function"          "Upgrade"
+
+            "AbilityContext"
+            {
+                "defender_name" "defender_melee_5"           
+
+            }
+        } 
+    }
+
+    "AbilitySpecial"
+    {
+        "01"
+        {
+            "var_type"          "FIELD_INTEGER"
+            "fear_duration"     "8"
+        } 
+
+        "02"
+        {
+            "var_type"          "FIELD_INTEGER"
+            "fear_radius"    "40"
+        } 
+
+    }
+
+    "Modifiers"
+    {
+        "modifier_upgrade_melee_barracks_5"
+        {
+            "IsHidden"      "0"
+            "Passive"       "0" 
         }
     }
 }

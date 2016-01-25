@@ -64,8 +64,8 @@
             {
                 "RunScript"
                 {
-                    "ScriptFile"        "unit_scripts/towers/ai_barracks.lua"
-                    "Function"          "DisableRegen"
+                    "ScriptFile"        "unit_scripts/defenders/defender_melee.lua"
+                    "Function"          "MeleeDefenderDisableRegen"
 
                     // "%attack_damage" is set to the damage value after mitigation
                     "Damage"            "%attack_damage"
@@ -96,3 +96,130 @@
         }         
     }   
 } 
+
+"ability_defender_melee_5_fear"
+{
+    "BaseClass"             "ability_datadriven"
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+    "AbilityTextureName"    "skeleton_king_vampiric_aura"
+    
+    "precache"
+    {
+        "particle"  "particles/status_fx/status_effect_ghost.vpcf"    
+        "particle"  "particles/units/heroes/hero_abaddon/abaddon_borrowed_time.vpcf"
+        "particle"  "particles/units/heroes/hero_skeletonking/wraith_king_ghosts_ambient.vpcf"
+        "soundfile" "soundevents/game_sounds_items.vsndevts"        
+    }
+
+    "Modifiers"
+    {
+        //this buff is permanently on skeleton king
+        "modifier_upgrade_melee_barracks_5_apply_debuff"
+        {
+            "Passive"       "1"
+            "IsHidden"      "1"                     
+    
+            "OnAttackLanded"
+            {
+                "ApplyModifier"
+                {
+                    "ModifierName"  "modifier_melee_defender_5_res_chance"
+                    "Target"        "TARGET"
+                    "Duration"      "%hit_duration"
+                }    
+            }
+        }
+
+        //this buff is applied to a creep when hit by skeleton king
+        //if the creep dies with this buff on then chance to res as ghost
+        "modifier_melee_defender_5_res_chance"
+        {
+            "TextureName"   "invoker_ghost_walk"
+            "Passive"   "0"
+            "IsHidden"  "0"
+            
+            "OnDeath"
+            {        
+                "Random"
+                {
+                    "Chance"    "%res_chance"
+                    "OnSuccess"
+                    {
+                        "RunScript"
+                        {
+                            "ScriptFile"    "unit_scripts/defenders/defender_melee.lua"
+                            "Function"      "MeleeDefenderResCreep"
+
+                            "AbilityContext"   
+                            {
+                                "particle"  "particles/units/heroes/hero_abaddon/abaddon_borrowed_time.vpcf"
+                                "sound"     "DOTA_Item.GhostScepter.Activate"                       
+                            }
+                        }
+                    }
+
+                    "OnFailure"
+                    {
+                        
+                    }
+                }                                   
+            } 
+
+            "OnCreated"
+            {
+                "RunScript"
+                {
+                    "ScriptFile"    "unit_scripts/defenders/defender_melee.lua"
+                    "Function"      "MeleeDefenderAttachParticles"
+
+                    "AbilityContext"   
+                    {
+                        "particle"  "particles/units/heroes/hero_skeletonking/wraith_king_ghosts_ambient.vpcf"
+                    }
+                }  
+            }
+                     
+        }
+
+        "modifier_melee_defender_5_ghost"
+        {   
+            "Passive"   "0"
+            "IsHidden"  "0"
+            "IsDebuff"  "1"
+
+            "StatusEffectName"      "particles/status_fx/status_effect_ghost.vpcf"        
+            "StatusEffectPriority"  "10"            
+            "TextureName"           "undying_tombstone_zombie_deathstrike"  
+
+            "OnDeath"
+            {
+                "RunScript"
+                {
+                    "ScriptFile"    "unit_scripts/defenders/defender_melee.lua"
+                    "Function"      "MeleeDefenderZombieDeath"
+                }
+            }
+        }
+    }
+
+    "AbilitySpecial"
+    {       
+        "01"
+        {
+            "var_type"          "FIELD_INTEGER"
+            "hit_duration"     "5"
+        }       
+
+        "02"
+        {
+            "var_type"          "FIELD_INTEGER"
+            "res_chance"       "20"
+        }    
+
+        "03"
+        {
+            "var_type"          "FIELD_INTEGER"
+            "res_duration"      "10"
+        }
+    }    
+}

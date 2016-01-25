@@ -162,7 +162,7 @@ end
 
 function SpawnDefender(keys)
 	local rax = keys.caster	
-	local ability = keys.ability	
+	local ability = keys.ability
 
 	if #rax.defenders < rax.defender_cap then
 		local defender = CreateUnitByName(rax.defender_name,
@@ -174,6 +174,9 @@ function SpawnDefender(keys)
 
 		defender.parent_barracks = rax
 		defender.default_attack_capability = defender:GetAttackCapability()				
+
+		--make our defender phased
+		defender:AddNewModifier(defender, nil, "modifier_phased", {})
 		
 		--finally add this defender to this racks' table
 		table.insert(rax.defenders, defender)
@@ -182,20 +185,6 @@ end
 
 function Upgrade(keys)	
 	keys.caster.defender_name = keys.AbilityContext.defender_name
-end
-
-function DisableRegen(keys)			
-	local cd = keys.AbilityContext.Cooldown	
-	local regen_ability = keys.ability	
-
-	--if defender takes damage, put his regen on cooldown
-	regen_ability:StartCooldown(cd)	
-
-	--if regen ability is on...
-	if regen_ability:GetToggleState() then
-		--...toggle it off
-		regen_ability:ToggleAbility()
-	end
 end
 
 --[[

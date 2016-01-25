@@ -121,8 +121,11 @@ function DefenderRangedDmgStack(keys)
 		end) 
 end
 
-function OnDeath(keys)
-	print("ranger died")	
+--[[
+	Death animation for catapults
+	AddNoDraw() to the dying unit and play the explosion animation
+]]
+function OnDeath(keys)	
 	keys.caster:AddNoDraw()	
 	local particle = keys.AbilityContext.particle
 	ParticleManager:CreateParticle(

@@ -16,7 +16,7 @@
 	
 	    "HasInventory"          "1"    
 	    "AutoAttacksByDefault"  "0"
-	    "SelectOnSpawn"         "1"
+	    "SelectOnSpawn"         "0"
 	    "WakesNeutrals"         "0"
 	
 	    //Abilities  
@@ -67,7 +67,7 @@
 	
 	    "HasInventory"          "1"    
 	    "AutoAttacksByDefault"  "0"
-	    "SelectOnSpawn"         "1"
+	    "SelectOnSpawn"         "0"
 	    "WakesNeutrals"         "0"
 	
 	    //Abilities  
@@ -542,7 +542,7 @@
 	
 	    "RingRadius"            "40"
 	    "HealthBarOffset"       "170"
-	    "BoundsHullName"        "DOTA_HULL_SIZE_SMALL"
+	    "BoundsHullName"        "DOTA_HULL_SIZE_REGULAR"
 	
 	    "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_GROUND"
 	    "MovementSpeed"         "350"
@@ -581,7 +581,7 @@
 	
 	    "RingRadius"            "40"
 	    "HealthBarOffset"       "170"
-	    "BoundsHullName"        "DOTA_HULL_SIZE_SMALL"
+	    "BoundsHullName"        "DOTA_HULL_SIZE_REGULAR"
 	
 	    "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_GROUND"
 	    "MovementSpeed"         "380"
@@ -624,7 +624,7 @@
 	
 	    "RingRadius"            "40"
 	    "HealthBarOffset"       "170"
-	    "BoundsHullName"        "DOTA_HULL_SIZE_SMALL"
+	    "BoundsHullName"        "DOTA_HULL_SIZE_HERO"
 	
 	    "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_GROUND"
 	    "MovementSpeed"         "420"
@@ -677,7 +677,7 @@
 	
 	    "RingRadius"            "40"
 	    "HealthBarOffset"       "170"
-	    "BoundsHullName"        "DOTA_HULL_SIZE_SMALL"
+	    "BoundsHullName"        "DOTA_HULL_SIZE_HERO"
 	
 	    "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_GROUND"
 	    "MovementSpeed"         "450"
@@ -711,6 +711,60 @@
 	            "Wearable4" { "ItemDef" "7419" }
 	            "Wearable5" { "ItemDef" "7420" }
 	            "Wearable6" { "ItemDef" "7421" }  
+	        }
+	    } 
+	}
+	
+	//applies a debuff to anything it hits
+	//if other creeps see an affected unit die, they have a chance to flee
+	"defender_melee_5"
+	{                                       
+	    "Model"                 "models/heroes/wraith_king/wraith_king.vmdl"
+	    "BaseClass"             "npc_dota_creature"
+	     
+	    "Level"                 "1"
+	    "ModelScale"            "0.8"     
+	    "UnitLabel"             "defender"   
+	
+	    "Ability1"              "ability_melee_defender_regen"
+	    "Ability2"              "ability_defender_melee_5_fear"
+	
+	    "RingRadius"            "40"
+	    "HealthBarOffset"       "170"
+	    "BoundsHullName"        "DOTA_HULL_SIZE_HERO"
+	
+	    "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_GROUND"
+	    "MovementSpeed"         "450"
+	
+	    "WakesNeutrals"         "0"
+	
+	    "StatusHealth"          "250"
+	    "StatusHealthRegen"     "0"
+	    "StatusMana"            "0"
+	    "StatusManaRegen"       "0"
+	    "ArmorPhysical"         "15"
+	
+	    "AttackCapabilities"    "DOTA_UNIT_CAP_MELEE_ATTACK"
+	    "AttackDamageMin"       "30"
+	    "AttackDamageMax"       "30"
+	    "AttackRate"            "0.5"
+	    "AttackRange"           "125"
+	    "AttackAcquisitionRange"    "750"
+	    "AttackAnimationPoint"  "0.56"    
+	
+	    "Creature"
+	    {
+	        "DisableClumpingBehavior"   "1"
+	
+	        "AttachWearables"
+	        {   
+	            //Relics of the Sundered King set
+	            "Wearable1" { "ItemDef" "7103" }
+	            "Wearable2" { "ItemDef" "7104" }
+	            "Wearable3" { "ItemDef" "7105" }
+	            "Wearable4" { "ItemDef" "7106" }
+	            "Wearable5" { "ItemDef" "7107" }
+	            "Wearable6" { "ItemDef" "7108" }  
 	        }
 	    } 
 	}
