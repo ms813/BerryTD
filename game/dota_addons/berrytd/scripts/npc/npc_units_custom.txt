@@ -530,6 +530,7 @@
 	    }
 	 
 	}
+	//standard weak melee defender
 	"defender_melee_0"
 	{                                       
 	    "Model"                 "models/creeps/lane_creeps/creep_radiant_melee/radiant_melee.vmdl"
@@ -544,7 +545,7 @@
 	    "BoundsHullName"        "DOTA_HULL_SIZE_SMALL"
 	
 	    "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_GROUND"
-	    "MovementSpeed"         "320"
+	    "MovementSpeed"         "350"
 	
 	    "WakesNeutrals"         "0"
 	
@@ -568,6 +569,7 @@
 	    } 
 	}
 	
+	//slightly stronger and tankier mega melee defender
 	"defender_melee_1"
 	{                                       
 	    "Model"                 "models/creeps/lane_creeps/creep_radiant_melee/radiant_melee_mega.vmdl"
@@ -582,7 +584,7 @@
 	    "BoundsHullName"        "DOTA_HULL_SIZE_SMALL"
 	
 	    "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_GROUND"
-	    "MovementSpeed"         "320"
+	    "MovementSpeed"         "380"
 	
 	    "WakesNeutrals"         "0"
 	
@@ -606,11 +608,13 @@
 	    } 
 	}
 	
+	//dragon knight with regen that toggles on when out of combat
 	"defender_melee_2"
 	{                                       
-	    "Model"                 "models/creeps/lane_creeps/creep_radiant_melee/radiant_melee_mega.vmdl"
+	    "Model"                 "models/heroes/dragon_knight/dragon_knight.vmdl"
 	    "BaseClass"             "npc_dota_creature"
-	    "GameSoundsFile"        "soundevents/game_sounds_creeps.vsndevts"
+	    "SoundSet"              "Hero_DragonKnight"   
+	    "GameSoundsFile"        "soundevents/game_sounds_heroes/game_sounds_dragon_knight.vsndevts"
 	    "Level"                 "1"
 	    "ModelScale"            "0.8"     
 	    "UnitLabel"             "defender"   
@@ -623,7 +627,7 @@
 	    "BoundsHullName"        "DOTA_HULL_SIZE_SMALL"
 	
 	    "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_GROUND"
-	    "MovementSpeed"         "320"
+	    "MovementSpeed"         "420"
 	
 	    "WakesNeutrals"         "0"
 	
@@ -639,19 +643,32 @@
 	    "AttackRate"            "1"
 	    "AttackRange"           "125"
 	    "AttackAcquisitionRange"    "750"
-	    "AttackAnimationPoint"  "0.467"
+	    "AttackAnimationPoint"  "0.5"
 	
 	    "Creature"
 	    {
 	        "DisableClumpingBehavior"   "1"
+	
+	        "AttachWearables"
+	        {
+	            //plain ol' DK set
+	            "Wearable1" { "ItemDef" "63" }
+	            "Wearable2" { "ItemDef" "64" }
+	            "Wearable3" { "ItemDef" "65" }
+	            "Wearable4" { "ItemDef" "66" }
+	            "Wearable5" { "ItemDef" "67" }
+	            "Wearable6" { "ItemDef" "68" }  
+	        }
 	    } 
 	}
 	
+	//increase the unit cap on the racks
+	//spawn many of the dragon knight defenders to block more creeps
 	"defender_melee_3"
 	{                                       
 	    "Model"                 "models/heroes/dragon_knight/dragon_knight.vmdl"
 	    "BaseClass"             "npc_dota_creature"
-	    "SoundSet"              "Hero_DragonKnight"    
+	     
 	    "Level"                 "1"
 	    "ModelScale"            "0.8"     
 	    "UnitLabel"             "defender"   
@@ -663,7 +680,7 @@
 	    "BoundsHullName"        "DOTA_HULL_SIZE_SMALL"
 	
 	    "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_GROUND"
-	    "MovementSpeed"         "320"
+	    "MovementSpeed"         "450"
 	
 	    "WakesNeutrals"         "0"
 	
@@ -679,24 +696,24 @@
 	    "AttackRate"            "1"
 	    "AttackRange"           "125"
 	    "AttackAcquisitionRange"    "750"
-	    "AttackAnimationPoint"  "0.467"
+	    "AttackAnimationPoint"  "0.5"    
 	
 	    "Creature"
 	    {
 	        "DisableClumpingBehavior"   "1"
 	
 	        "AttachWearables"
-	        {
-	            "Wearable1" { "ItemDef" "63" }
-	            "Wearable2" { "ItemDef" "64" }
-	            "Wearable3" { "ItemDef" "65" }
-	            "Wearable4" { "ItemDef" "66" }
-	            "Wearable5" { "ItemDef" "67" }
-	            "Wearable6" { "ItemDef" "68" }  
+	        {   
+	            //Pact of the Wurmblood set
+	            "Wearable1" { "ItemDef" "7416" }
+	            "Wearable2" { "ItemDef" "7417" }
+	            "Wearable3" { "ItemDef" "7418" }
+	            "Wearable4" { "ItemDef" "7419" }
+	            "Wearable5" { "ItemDef" "7420" }
+	            "Wearable6" { "ItemDef" "7421" }  
 	        }
 	    } 
 	}
-	
 	//plain old ranged creep
 	"defender_ranged_0"
 	{                                       
@@ -779,7 +796,7 @@
 	    } 
 	}
 	
-	
+	//necro archer with true sight
 	"defender_ranged_2"
 	{                                       
 	    "Model"                 "models/creeps/item_creeps/i_creep_necro_archer/necro_archer.vmdl"
@@ -822,6 +839,7 @@
 	    } 
 	}
 	
+	//drow ranger, attack speed increases with consecutive attacks
 	"defender_ranged_3"
 	{                                       
 	    "Model"                 "models/heroes/drow/drow.vmdl"
@@ -876,7 +894,7 @@
 	    } 
 	}
 	
-	//catapult with aoe split shot
+	//catapult with aoe stun
 	"defender_ranged_4"
 	{                                       
 	    "Model"                 "models/creeps/lane_creeps/creep_good_siege/creep_good_siege.vmdl"
@@ -977,7 +995,8 @@
 	
 	
 	
-	//catapult with aoe damage on attack
+	//catapult with aoe damage and knockback
+	//boom
 	"defender_ranged_6"
 	{                                       
 	    "Model"                 "models/creeps/lane_creeps/creep_bad_siege/creep_bad_siege.vmdl"
@@ -1005,8 +1024,8 @@
 	    "ArmorPhysical"         "1"
 	
 	    "AttackCapabilities"    "DOTA_UNIT_CAP_RANGED_ATTACK"
-	    "AttackDamageMin"       "1"
-	    "AttackDamageMax"       "1"
+	    "AttackDamageMin"       "250"
+	    "AttackDamageMax"       "250"
 	    "AttackRate"            "4"
 	    "AttackRange"           "1200"
 	    "AttackAcquisitionRange"    "1500"

@@ -3,7 +3,7 @@
     // General
     //-------------------------------------------------------------------------------------------------------------
     "BaseClass"             "ability_datadriven"
-    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_HIDDEN"    
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"    
     "AbilityTextureName"    "sven_warcry"
     "MaxLevel"              "1"
 
@@ -211,7 +211,7 @@
 }
 
 
-
+//increase spawn cap and reduce respawn time
 "ability_upgrade_melee_barracks_3"
 {
     "BaseClass"                     "ability_datadriven"
@@ -240,10 +240,8 @@
             {
                 "nextUpgrade"   "ability_upgrade_melee_barracks_5"                
             }
-        }        
+        }      
 
-
-        //this script adds the upgrade to the creeps
         "RunScript"
         {
             "ScriptFile"        "unit_scripts/towers/ai_barracks.lua"
@@ -252,8 +250,32 @@
             "AbilityContext"
             {
                 "defender_name" "defender_melee_3"
+            
+
             }
         } 
+
+        "RunScript"
+        {
+            "ScriptFile"    "unit_scripts/towers/ai_barracks.lua"
+            "Function"      "IncreaseUnitCap"
+        }
+    }
+
+    "AbilitySpecial"
+    {
+        "01"
+        {
+            "var_type"          "FIELD_INTEGER"
+            "new_unit_cap"      "8"
+        } 
+
+        "01"
+        {
+            "var_type"          "FIELD_INTEGER"
+            "cooldown_percent"    "40"
+        } 
+
     }
 
     "Modifiers"
@@ -262,106 +284,11 @@
         {
             "IsHidden"      "0"
             "Passive"       "0"            
+
+            "Properties"
+            {
+                "MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE" "%cooldown_percent"                
+            }
         }
     }
 }
-
-//a passive that toggles regen off when taking damage, then 
-//switches it back on after %timeout
-
-"ability_melee_defender_regen"
-{
-    "BaseClass"             "ability_datadriven"
-    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_TOGGLE"
-    "AbilityTextureName"    "witch_doctor_voodoo_restoration"      
-
-    "precache"
-    {
-        "particle"  "particles/units/heroes/hero_oracle/oracle_purifyingflames.vpcf"
-    }
-
-    "OnToggleOn"
-    {
-        "ApplyModifier"
-        {
-            "ModifierName"  "modifier_melee_defender_regen"
-            "Target"        "CASTER"            
-        }
-    }
-
-    "OnToggleOff"
-    {
-        "RemoveModifier"
-        {
-            "ModifierName"  "modifier_melee_defender_regen"
-            "Target"        "CASTER"
-        }
-    }
-
-    "Modifiers"
-    {
-        "modifier_melee_defender_regen"
-        {
-
-            "Passive"           "0"         
-            "IsPurgable"        "0"
-            "IsBuff"            "1"
-            "IsHidden"          "0"            
-
-            "Properties"
-            {               
-                "MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE"   "%percent_regen"               
-            }
-
-            "OnCreated"
-            {
-                "AttachEffect"
-                {
-                    "Target" "CASTER"
-                    "EffectName" "particles/units/heroes/hero_oracle/oracle_purifyingflames.vpcf"
-                    "EffectAttachType" "follow_origin"           
-                }
-            }           
-        }
-
-        "modifier_melee_defender_dmg_check"
-        {
-            "Passive"   "1" 
-            "IsHidden"  "1"
-            //call a function that disables the regen for %cooldown
-            "OnTakeDamage"    
-            {
-                "RunScript"
-                {
-                    "ScriptFile"        "unit_scripts/towers/ai_barracks.lua"
-                    "Function"          "DisableRegen"
-
-                    // "%attack_damage" is set to the damage value after mitigation
-                    "Damage"            "%attack_damage"
-
-                    "AbilityContext"
-                    {
-                        "Ability"       "ability_melee_defender_regen"
-                        "Level"         "1"     
-                        "Cooldown"      "%cooldown"
-                    }
-                } 
-            }
-        }
-    }   
-
-    "AbilitySpecial"
-    {       
-        "01"
-        {
-            "var_type"          "FIELD_FLOAT"
-            "cooldown"          "10.0"
-        }    
-
-        "02"
-        {
-            "var_type"          "FIELD_INTEGER"
-            "percent_regen"     "10"
-        }         
-    }   
-} 

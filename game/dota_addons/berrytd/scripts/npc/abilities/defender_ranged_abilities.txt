@@ -175,6 +175,26 @@
                 }                
             }            
         }
+
+        "modifier_defender_ranged_4_death"
+        {
+            "Passive"   "1"
+            "IsHidden"  "1"
+
+            "OnDeath"
+            {
+                "RunScript"
+                {
+                    "ScriptFile"    "unit_scripts/defenders/defender_ranged.lua"
+                    "Function"        "OnDeath"                    
+                    
+                    "AbilityContext"
+                    {
+                        "particle"  "particles/siege_fx/siege_good_death_01.vpcf"
+                    }
+                }
+            }
+        } 
     }   
 
     "AbilitySpecial"
@@ -323,7 +343,8 @@
     {
         "particle"  "particles/units/heroes/hero_lina/lina_spell_light_strike_array_explosion.vpcf"
         "particle"  "particles/units/heroes/hero_techies/techies_bomb_ground_debris.vpcf"
-        "particle"  "particles/units/heroes/hero_phoenix/phoenix_fire_spirit_ground.vpcf"        
+        "particle"  "particles/units/heroes/hero_phoenix/phoenix_fire_spirit_ground.vpcf"
+        "particle"  "particles/siege_fx/siege_bad_death_01.vpcf"        
         "soundfile" "sounds/weapons/hero/gyrocopter/homing_missile_destroy.vsnd"        
     }    
 
@@ -355,7 +376,27 @@
     }
 
     "Modifiers"
-    {
+    {        
+        "modifier_defender_ranged_6_death"
+        {
+            "Passive"   "1"
+            "IsHidden"  "1"
+
+            "OnDeath"
+            {
+                "RunScript"
+                {
+                    "ScriptFile"    "unit_scripts/defenders/defender_ranged.lua"
+                    "Function"        "OnDeath"                    
+                    
+                    "AbilityContext"
+                    {
+                        "particle"  "particles/siege_fx/siege_bad_death_01.vpcf"
+                    }
+                }
+            }
+        } 
+
         "modifier_defender_ranged_6_aoe"
         {
             "Passive"            "1"

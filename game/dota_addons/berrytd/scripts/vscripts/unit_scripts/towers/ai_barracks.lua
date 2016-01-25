@@ -73,8 +73,10 @@ function BarracksThink(tower)
 				defender:MoveToPosition(tower.spawn_pos)
 
 				--reset aggro
-				local creep =defender.aggro_target
-				creep:SetAttackCapability(creep.default_attack_capability)
+				local creep = defender.aggro_target
+				if creep ~= nil then
+					creep:SetAttackCapability(creep.default_attack_capability)
+				end
 				defender.aggro_target = nil
 			end	
 
@@ -194,4 +196,14 @@ function DisableRegen(keys)
 		--...toggle it off
 		regen_ability:ToggleAbility()
 	end
+end
+
+--[[
+	Used in upgrade 3 to up the defender cap
+]]
+function IncreaseUnitCap(keys)
+	local caster = keys.caster
+	local new_cap = keys.ability:GetLevelSpecialValueFor("new_unit_cap", 1)	
+
+	caster.defender_cap = new_cap
 end

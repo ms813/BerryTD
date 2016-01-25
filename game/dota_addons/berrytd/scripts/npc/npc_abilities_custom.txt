@@ -519,6 +519,104 @@
 	    //-------------------------------------------------------------------------------------------------------------
 	    "AbilityManaCost"       "0 0 0 0"
 	}
+	//a passive that toggles regen off when taking damage, then 
+	//switches it back on after %timeout
+	"ability_melee_defender_regen"
+	{
+	    "BaseClass"             "ability_datadriven"
+	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_TOGGLE"
+	    "AbilityTextureName"    "witch_doctor_voodoo_restoration"      
+	
+	    "precache"
+	    {
+	        "particle"  "particles/units/heroes/hero_oracle/oracle_purifyingflames.vpcf"
+	    }
+	
+	    "OnToggleOn"
+	    {
+	        "ApplyModifier"
+	        {
+	            "ModifierName"  "modifier_melee_defender_regen"
+	            "Target"        "CASTER"            
+	        }
+	    }
+	
+	    "OnToggleOff"
+	    {
+	        "RemoveModifier"
+	        {
+	            "ModifierName"  "modifier_melee_defender_regen"
+	            "Target"        "CASTER"
+	        }
+	    }
+	
+	    "Modifiers"
+	    {
+	        "modifier_melee_defender_regen"
+	        {
+	
+	            "Passive"           "0"         
+	            "IsPurgable"        "0"
+	            "IsBuff"            "1"
+	            "IsHidden"          "0"            
+	
+	            "Properties"
+	            {               
+	                "MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE"   "%percent_regen"               
+	            }
+	
+	            "OnCreated"
+	            {
+	                "AttachEffect"
+	                {
+	                    "Target" "CASTER"
+	                    "EffectName" "particles/units/heroes/hero_oracle/oracle_purifyingflames.vpcf"
+	                    "EffectAttachType" "follow_origin"           
+	                }
+	            }           
+	        }
+	
+	        "modifier_melee_defender_dmg_check"
+	        {
+	            "Passive"   "1" 
+	            "IsHidden"  "1"
+	            //call a function that disables the regen for %cooldown
+	            "OnTakeDamage"    
+	            {
+	                "RunScript"
+	                {
+	                    "ScriptFile"        "unit_scripts/towers/ai_barracks.lua"
+	                    "Function"          "DisableRegen"
+	
+	                    // "%attack_damage" is set to the damage value after mitigation
+	                    "Damage"            "%attack_damage"
+	
+	                    "AbilityContext"
+	                    {
+	                        "Ability"       "ability_melee_defender_regen"
+	                        "Level"         "1"     
+	                        "Cooldown"      "%cooldown"
+	                    }
+	                } 
+	            }
+	        }
+	    }   
+	
+	    "AbilitySpecial"
+	    {       
+	        "01"
+	        {
+	            "var_type"          "FIELD_FLOAT"
+	            "cooldown"          "10.0"
+	        }    
+	
+	        "02"
+	        {
+	            "var_type"          "FIELD_INTEGER"
+	            "percent_regen"     "10"
+	        }         
+	    }   
+	} 
 	"ability_defender_ranged_2_truesight"
 	{
 	    "BaseClass"                     "ability_datadriven"
@@ -696,6 +794,26 @@
 	                }                
 	            }            
 	        }
+	
+	        "modifier_defender_ranged_4_death"
+	        {
+	            "Passive"   "1"
+	            "IsHidden"  "1"
+	
+	            "OnDeath"
+	            {
+	                "RunScript"
+	                {
+	                    "ScriptFile"    "unit_scripts/defenders/defender_ranged.lua"
+	                    "Function"        "OnDeath"                    
+	                    
+	                    "AbilityContext"
+	                    {
+	                        "particle"  "particles/siege_fx/siege_good_death_01.vpcf"
+	                    }
+	                }
+	            }
+	        } 
 	    }   
 	
 	    "AbilitySpecial"
@@ -703,19 +821,19 @@
 	        "01"
 	        {
 	            "var_type"          "FIELD_INTEGER"
-	            "aoe_radius"        "300.0"
+	            "aoe_radius"        "200"
 	        }
 	        
 	        "02"
 	        {
-	            "var_type"          "FIELD_INTEGER"
-	            "stun_duration"     "2"
+	            "var_type"          "FIELD_FLOAT"
+	            "stun_duration"     "1.5"
 	        }
 	
 	        "03"
 	        {
 	            "var_type"          "FIELD_INTEGER"
-	            "aoe_damage"        "100.0"
+	            "aoe_damage"        "100"
 	        }
 	    }
 	}
@@ -844,7 +962,8 @@
 	    {
 	        "particle"  "particles/units/heroes/hero_lina/lina_spell_light_strike_array_explosion.vpcf"
 	        "particle"  "particles/units/heroes/hero_techies/techies_bomb_ground_debris.vpcf"
-	        "particle"  "particles/units/heroes/hero_phoenix/phoenix_fire_spirit_ground.vpcf"        
+	        "particle"  "particles/units/heroes/hero_phoenix/phoenix_fire_spirit_ground.vpcf"
+	        "particle"  "particles/siege_fx/siege_bad_death_01.vpcf"        
 	        "soundfile" "sounds/weapons/hero/gyrocopter/homing_missile_destroy.vsnd"        
 	    }    
 	
@@ -853,30 +972,50 @@
 	        "01"
 	        {
 	            "var_type"              "FIELD_INTEGER"
-	            "aoe_radius"            "300.0"
+	            "aoe_radius"            "300"
 	        }
 	        
 	        "02"
 	        {
 	            "var_type"              "FIELD_INTEGER"
-	            "aoe_damage"            "1"
+	            "aoe_damage"            "250"
 	        }
 	
 	        "03"
 	        {
 	            "var_type"              "FIELD_INTEGER"
-	            "knockback_distance"    "300"
+	            "knockback_distance"    "500"
 	        }
 	
 	        "04"
 	        {
 	            "var_type"              "FIELD_INTEGER"
-	            "air_time"              "2"
+	            "air_time"              "3"
 	        }
 	    }
 	
 	    "Modifiers"
-	    {
+	    {        
+	        "modifier_defender_ranged_6_death"
+	        {
+	            "Passive"   "1"
+	            "IsHidden"  "1"
+	
+	            "OnDeath"
+	            {
+	                "RunScript"
+	                {
+	                    "ScriptFile"    "unit_scripts/defenders/defender_ranged.lua"
+	                    "Function"        "OnDeath"                    
+	                    
+	                    "AbilityContext"
+	                    {
+	                        "particle"  "particles/siege_fx/siege_bad_death_01.vpcf"
+	                    }
+	                }
+	            }
+	        } 
+	
 	        "modifier_defender_ranged_6_aoe"
 	        {
 	            "Passive"            "1"
@@ -1542,7 +1681,7 @@
 	    // General
 	    //-------------------------------------------------------------------------------------------------------------
 	    "BaseClass"             "ability_datadriven"
-	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_HIDDEN"    
+	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"    
 	    "AbilityTextureName"    "sven_warcry"
 	    "MaxLevel"              "1"
 	
@@ -1750,7 +1889,7 @@
 	}
 	
 	
-	
+	//increase spawn cap and reduce respawn time
 	"ability_upgrade_melee_barracks_3"
 	{
 	    "BaseClass"                     "ability_datadriven"
@@ -1779,10 +1918,8 @@
 	            {
 	                "nextUpgrade"   "ability_upgrade_melee_barracks_5"                
 	            }
-	        }        
+	        }      
 	
-	
-	        //this script adds the upgrade to the creeps
 	        "RunScript"
 	        {
 	            "ScriptFile"        "unit_scripts/towers/ai_barracks.lua"
@@ -1791,8 +1928,32 @@
 	            "AbilityContext"
 	            {
 	                "defender_name" "defender_melee_3"
+	            
+	
 	            }
 	        } 
+	
+	        "RunScript"
+	        {
+	            "ScriptFile"    "unit_scripts/towers/ai_barracks.lua"
+	            "Function"      "IncreaseUnitCap"
+	        }
+	    }
+	
+	    "AbilitySpecial"
+	    {
+	        "01"
+	        {
+	            "var_type"          "FIELD_INTEGER"
+	            "new_unit_cap"      "8"
+	        } 
+	
+	        "01"
+	        {
+	            "var_type"          "FIELD_INTEGER"
+	            "cooldown_percent"    "40"
+	        } 
+	
 	    }
 	
 	    "Modifiers"
@@ -1801,115 +1962,20 @@
 	        {
 	            "IsHidden"      "0"
 	            "Passive"       "0"            
+	
+	            "Properties"
+	            {
+	                "MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE" "%cooldown_percent"                
+	            }
 	        }
 	    }
 	}
-	
-	//a passive that toggles regen off when taking damage, then 
-	//switches it back on after %timeout
-	
-	"ability_melee_defender_regen"
-	{
-	    "BaseClass"             "ability_datadriven"
-	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_TOGGLE"
-	    "AbilityTextureName"    "witch_doctor_voodoo_restoration"      
-	
-	    "precache"
-	    {
-	        "particle"  "particles/units/heroes/hero_oracle/oracle_purifyingflames.vpcf"
-	    }
-	
-	    "OnToggleOn"
-	    {
-	        "ApplyModifier"
-	        {
-	            "ModifierName"  "modifier_melee_defender_regen"
-	            "Target"        "CASTER"            
-	        }
-	    }
-	
-	    "OnToggleOff"
-	    {
-	        "RemoveModifier"
-	        {
-	            "ModifierName"  "modifier_melee_defender_regen"
-	            "Target"        "CASTER"
-	        }
-	    }
-	
-	    "Modifiers"
-	    {
-	        "modifier_melee_defender_regen"
-	        {
-	
-	            "Passive"           "0"         
-	            "IsPurgable"        "0"
-	            "IsBuff"            "1"
-	            "IsHidden"          "0"            
-	
-	            "Properties"
-	            {               
-	                "MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE"   "%percent_regen"               
-	            }
-	
-	            "OnCreated"
-	            {
-	                "AttachEffect"
-	                {
-	                    "Target" "CASTER"
-	                    "EffectName" "particles/units/heroes/hero_oracle/oracle_purifyingflames.vpcf"
-	                    "EffectAttachType" "follow_origin"           
-	                }
-	            }           
-	        }
-	
-	        "modifier_melee_defender_dmg_check"
-	        {
-	            "Passive"   "1" 
-	            "IsHidden"  "1"
-	            //call a function that disables the regen for %cooldown
-	            "OnTakeDamage"    
-	            {
-	                "RunScript"
-	                {
-	                    "ScriptFile"        "unit_scripts/towers/ai_barracks.lua"
-	                    "Function"          "DisableRegen"
-	
-	                    // "%attack_damage" is set to the damage value after mitigation
-	                    "Damage"            "%attack_damage"
-	
-	                    "AbilityContext"
-	                    {
-	                        "Ability"       "ability_melee_defender_regen"
-	                        "Level"         "1"     
-	                        "Cooldown"      "%cooldown"
-	                    }
-	                } 
-	            }
-	        }
-	    }   
-	
-	    "AbilitySpecial"
-	    {       
-	        "01"
-	        {
-	            "var_type"          "FIELD_FLOAT"
-	            "cooldown"          "10.0"
-	        }    
-	
-	        "02"
-	        {
-	            "var_type"          "FIELD_INTEGER"
-	            "percent_regen"     "10"
-	        }         
-	    }   
-	} 
 	"ability_barracks_spawn_ranged_defender"
 	{
 	    // General
 	    //-------------------------------------------------------------------------------------------------------------
 	    "BaseClass"             "ability_datadriven"
-	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 	    "AbilityType"           "DOTA_ABILITY_TYPE_BASIC"
 	    "AbilityTextureName"    "drow_ranger_marksmanship"
 	    "MaxLevel"              "1"

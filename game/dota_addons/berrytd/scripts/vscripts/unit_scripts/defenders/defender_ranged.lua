@@ -120,3 +120,13 @@ function DefenderRangedDmgStack(keys)
 			return stack_decay_rate
 		end) 
 end
+
+function OnDeath(keys)
+	print("ranger died")	
+	keys.caster:AddNoDraw()	
+	local particle = keys.AbilityContext.particle
+	ParticleManager:CreateParticle(
+		particle
+		PATTACH_CUSTOMORIGIN_FOLLOW,
+		keys.caster)
+end

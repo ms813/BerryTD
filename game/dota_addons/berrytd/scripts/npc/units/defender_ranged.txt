@@ -1,4 +1,3 @@
-
 //plain old ranged creep
 "defender_ranged_0"
 {                                       
@@ -81,7 +80,7 @@
     } 
 }
 
-
+//necro archer with true sight
 "defender_ranged_2"
 {                                       
     "Model"                 "models/creeps/item_creeps/i_creep_necro_archer/necro_archer.vmdl"
@@ -124,6 +123,7 @@
     } 
 }
 
+//drow ranger, attack speed increases with consecutive attacks
 "defender_ranged_3"
 {                                       
     "Model"                 "models/heroes/drow/drow.vmdl"
@@ -178,7 +178,7 @@
     } 
 }
 
-//catapult with aoe split shot
+//catapult with aoe stun
 "defender_ranged_4"
 {                                       
     "Model"                 "models/creeps/lane_creeps/creep_good_siege/creep_good_siege.vmdl"
@@ -279,7 +279,8 @@
 
 
 
-//catapult with aoe damage on attack
+//catapult with aoe damage and knockback
+//boom
 "defender_ranged_6"
 {                                       
     "Model"                 "models/creeps/lane_creeps/creep_bad_siege/creep_bad_siege.vmdl"
@@ -307,8 +308,8 @@
     "ArmorPhysical"         "1"
 
     "AttackCapabilities"    "DOTA_UNIT_CAP_RANGED_ATTACK"
-    "AttackDamageMin"       "1"
-    "AttackDamageMax"       "1"
+    "AttackDamageMin"       "250"
+    "AttackDamageMax"       "250"
     "AttackRate"            "4"
     "AttackRange"           "1200"
     "AttackAcquisitionRange"    "1500"
