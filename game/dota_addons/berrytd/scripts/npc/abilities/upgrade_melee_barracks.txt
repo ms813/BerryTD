@@ -49,7 +49,7 @@
         "03"
         {
             "var_type"      "FIELD_INTEGER"
-            "defender_cap"  "4"
+            "defender_cap"  "3"
         }   
         "04"
         {
@@ -269,7 +269,7 @@
         "01"
         {
             "var_type"          "FIELD_INTEGER"
-            "new_unit_cap"      "8"
+            "new_unit_cap"      "6"
         } 
 
         "02"

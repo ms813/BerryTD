@@ -51,7 +51,7 @@
         "03"
         {
             "var_type"      "FIELD_INTEGER"
-            "defender_cap"  "4"
+            "defender_cap"  "3"
         }     
         "04"
         {
