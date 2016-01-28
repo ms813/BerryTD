@@ -40,7 +40,7 @@
         "03"
         {
             "var_type"    "FIELD_INTEGER"
-            "distance"    "650"
+            "distance"    "500"
         }  
         "04"
         {
@@ -62,18 +62,23 @@
     "AbilityManaCost"                "0"
     "AbilityDamage"                  "200"
 
+    "precache"
+    {
+        "particle"  "particles/status_fx/status_effect_poison_venomancer.vpcf" 
+        "particle"  "particles/units/heroes/hero_broodmother/broodmother_incapacitatingbite_debuff.vpcf"       
+        "particle"  "particles/units/heroes/hero_venomancer/venomancer_poison_nova.vpcf"
+    }
+
     "OnSpellStart"
     {
         "FireEffect"
         {
             "TargetPoint"           "CASTER"
-
-            //poison nova
-            //"EffectName"            ""
+            "EffectName"            "particles/units/heroes/hero_venomancer/venomancer_poison_nova.vpcf"
             "EffectAttachType"      "world_origin"
             "ControlPoints"
             {
-                "01"                "%radius 2 %radius*2"
+                "01"                "1 1 %radius"
             }
         }
 
@@ -116,19 +121,16 @@
         {
             "Passive"           "0"
             "IsHidden"          "0"
-            "IsDebuff"          "0"
+            "IsDebuff"          "1"           
+            
+            "EffectName"            "particles/units/heroes/hero_broodmother/broodmother_incapacitatingbite_debuff.vpcf"
+            "EffectAttachType"      "follow_origin" 
+
+            "StatusEffectName"      "particles/status_fx/status_effect_poison_venomancer.vpcf"        
+            "StatusEffectPriority"  "10"      
 
             "Duration"          "6"
-            
-            //some sort of poison spray
-            //"EffectName"        "particle_name"
-            //"EffectAttachType"    "follow_origin"  
-
-            //status effect poisoned
-            //"StatusEffectName"         "particle_name"        
-            //"StatusEffectPriority"  "10"      
-
-            "ThinkInterval"  "0.1"
+            "ThinkInterval"  "%tick_interval"
             "OnIntervalThink"
             {
                 "RunScript"
@@ -138,7 +140,7 @@
                     "AbilityContext"
                     {
                         "modifier"  "modifier_ring_of_poison"
-                        "tick_dmg"  "%tick_dmg"
+                        "tick_dmg"  "%tick_dmg * %tock_interval"
                     }
                 }
             }            
@@ -150,17 +152,22 @@
         "01"
         {
             "var_type"          "FIELD_INTEGER"
-            "base_dmg"          "100"
+            "base_dmg"          "10"
         }
         "02"
         {
             "var_type"          "FIELD_FLOAT"
-            "radius"            "700"
+            "radius"            "500"
         }
         "03"
         {
             "var_type"          "FIELD_FLOAT"
             "tick_dmg"          "4"
+        }
+        "03"
+        {
+            "var_type"          "FIELD_FLOAT"
+            "tick_interval"     "0.1"
         }
     }
 }
@@ -246,7 +253,7 @@
 
         "RunScript"
         {
-            "ScriptFile"            "scripts/vscripts/unit_scripts/towers/ai_tackshooter.lua"
+            "ScriptFile"            "unit_scripts/towers/ai_tackshooter.lua"
             "Function"              "tackshooterSet16"
         }         
     }
@@ -320,12 +327,12 @@
         "02"
         {
             "var_type"          "FIELD_INTEGER"
-            "split_dist"        "200"
+            "split_dist"        "300"
         }
         "03"
         {
             "var_type"          "FIELD_INTEGER"
-            "split_radius"      "50"
+            "split_radius"      "100"
         }
         "04"
         {
@@ -345,8 +352,18 @@
 
     "AbilityGoldCost"               "50"
 
+    "precache"
+    {
+        "soundfile" "soundevents/game_sounds_heroes/game_sounds_venomancer.vsndevts"
+    }
+
     "OnSpellStart"
     {
+        "FireSound"
+        {
+            "EffectName"    "Hero_Venomancer.PoisonNova"
+            "Target"         "CASTER"
+        }
         "ApplyModifier"
         {
             "ModifierName"          "modifier_upgrade_tackshooter_4"

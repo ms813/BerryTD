@@ -540,8 +540,6 @@
 	    "ModelScale"            "0.8"     
 	    "UnitLabel"             "defender"   
 	
-	    "RingRadius"            "40"
-	    "HealthBarOffset"       "170"
 	    "BoundsHullName"        "DOTA_HULL_SIZE_REGULAR"
 	
 	    "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_GROUND"
@@ -549,11 +547,12 @@
 	
 	    "WakesNeutrals"         "0"
 	
-	    "StatusHealth"          "50"
+	    "StatusHealth"          "25"
 	    "StatusHealthRegen"     "0"
 	    "StatusMana"            "0"
 	    "StatusManaRegen"       "0"
 	    "ArmorPhysical"         "0"
+	    "MagicalResistance"     "25"
 	
 	    "AttackCapabilities"    "DOTA_UNIT_CAP_MELEE_ATTACK"
 	    "AttackDamageMin"       "4"
@@ -579,8 +578,6 @@
 	    "ModelScale"            "0.8"     
 	    "UnitLabel"             "defender"   
 	
-	    "RingRadius"            "40"
-	    "HealthBarOffset"       "170"
 	    "BoundsHullName"        "DOTA_HULL_SIZE_REGULAR"
 	
 	    "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_GROUND"
@@ -593,6 +590,7 @@
 	    "StatusMana"            "0"
 	    "StatusManaRegen"       "0"
 	    "ArmorPhysical"         "0"
+	    "MagicalResistance"     "0"
 	
 	    "AttackCapabilities"    "DOTA_UNIT_CAP_MELEE_ATTACK"
 	    "AttackDamageMin"       "10"
@@ -622,8 +620,6 @@
 	    "AbilityLayout"         "4"
 	    "Ability1"              "ability_melee_defender_regen"
 	
-	    "RingRadius"            "40"
-	    "HealthBarOffset"       "170"
 	    "BoundsHullName"        "DOTA_HULL_SIZE_HERO"
 	
 	    "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_GROUND"
@@ -631,15 +627,16 @@
 	
 	    "WakesNeutrals"         "0"
 	
-	    "StatusHealth"          "80"
+	    "StatusHealth"          "150"
 	    "StatusHealthRegen"     "0"
 	    "StatusMana"            "0"
 	    "StatusManaRegen"       "0"
-	    "ArmorPhysical"         "2"
+	    "ArmorPhysical"         "5"
+	    "MagicalResistance"     "30"
 	
 	    "AttackCapabilities"    "DOTA_UNIT_CAP_MELEE_ATTACK"
-	    "AttackDamageMin"       "10"
-	    "AttackDamageMax"       "10"
+	    "AttackDamageMin"       "15"
+	    "AttackDamageMax"       "15"
 	    "AttackRate"            "1"
 	    "AttackRange"           "125"
 	    "AttackAcquisitionRange"    "750"
@@ -675,8 +672,6 @@
 	
 	    "Ability1"              "ability_melee_defender_regen"
 	
-	    "RingRadius"            "40"
-	    "HealthBarOffset"       "170"
 	    "BoundsHullName"        "DOTA_HULL_SIZE_HERO"
 	
 	    "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_GROUND"
@@ -684,15 +679,16 @@
 	
 	    "WakesNeutrals"         "0"
 	
-	    "StatusHealth"          "250"
+	    "StatusHealth"          "180"
 	    "StatusHealthRegen"     "0"
 	    "StatusMana"            "0"
 	    "StatusManaRegen"       "0"
-	    "ArmorPhysical"         "15"
+	    "ArmorPhysical"         "8"
+	    "MagicalResistance"     "40"
 	
 	    "AttackCapabilities"    "DOTA_UNIT_CAP_MELEE_ATTACK"
-	    "AttackDamageMin"       "10"
-	    "AttackDamageMax"       "10"
+	    "AttackDamageMin"       "18"
+	    "AttackDamageMax"       "18"
 	    "AttackRate"            "1"
 	    "AttackRange"           "125"
 	    "AttackAcquisitionRange"    "750"
@@ -729,8 +725,6 @@
 	    "Ability1"              "ability_melee_defender_regen"
 	    "Ability2"              "ability_defender_melee_5_fear"
 	
-	    "RingRadius"            "40"
-	    "HealthBarOffset"       "170"
 	    "BoundsHullName"        "DOTA_HULL_SIZE_HERO"
 	
 	    "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_GROUND"
@@ -742,12 +736,13 @@
 	    "StatusHealthRegen"     "0"
 	    "StatusMana"            "0"
 	    "StatusManaRegen"       "0"
-	    "ArmorPhysical"         "15"
+	    "ArmorPhysical"         "10"
+	    "MagicalResistance"     "50"
 	
 	    "AttackCapabilities"    "DOTA_UNIT_CAP_MELEE_ATTACK"
 	    "AttackDamageMin"       "30"
 	    "AttackDamageMax"       "30"
-	    "AttackRate"            "0.5"
+	    "AttackRate"            "0.8"
 	    "AttackRange"           "125"
 	    "AttackAcquisitionRange"    "750"
 	    "AttackAnimationPoint"  "0.56"    
@@ -777,8 +772,6 @@
 	    "ModelScale"            "0.8"    
 	    "UnitLabel"             "defender"
 	
-	    "RingRadius"            "40"
-	    "HealthBarOffset"       "170"
 	    "BoundsHullName"        "DOTA_HULL_SIZE_REGULAR"
 	
 	    "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_GROUND"
@@ -786,17 +779,18 @@
 	
 	    "WakesNeutrals"         "0"
 	
-	    "StatusHealth"          "25"
+	    "StatusHealth"          "20"
 	    "StatusHealthRegen"     "0"
 	    "StatusMana"            "0"
 	    "StatusManaRegen"       "0"
 	    "ArmorPhysical"         "0"
+	    "MagicalResistance"     "25"
 	
 	    "AttackCapabilities"    "DOTA_UNIT_CAP_RANGED_ATTACK"
 	    "AttackDamageMin"       "6"
 	    "AttackDamageMax"       "6"
-	    "AttackRate"            "1.5"
-	    "AttackRange"           "750"
+	    "AttackRate"            "1.0"
+	    "AttackRange"           "400"
 	    "AttackAcquisitionRange"    "1200"
 	    "AttackAnimationPoint"  "0.5"
 	    "ProjectileSpeed"       "900"
@@ -818,8 +812,6 @@
 	    "ModelScale"            "0.8"    
 	    "UnitLabel"             "defender"
 	
-	    "RingRadius"            "40"
-	    "HealthBarOffset"       "170"
 	    "BoundsHullName"        "DOTA_HULL_SIZE_REGULAR"
 	
 	    "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_GROUND"
@@ -832,12 +824,13 @@
 	    "StatusMana"            "0"
 	    "StatusManaRegen"       "0"
 	    "ArmorPhysical"         "0"
+	    "MagicalResistance"     "25"
 	
 	    "AttackCapabilities"    "DOTA_UNIT_CAP_RANGED_ATTACK"
 	    "AttackDamageMin"       "15"
 	    "AttackDamageMax"       "15"
-	    "AttackRate"            "1"
-	    "AttackRange"           "750"
+	    "AttackRate"            "0.9"
+	    "AttackRange"           "500"
 	    "AttackAcquisitionRange"    "1200"
 	    "AttackAnimationPoint"  "0.5"
 	    "ProjectileSpeed"       "900"
@@ -861,8 +854,6 @@
 	
 	    "Ability1"              "ability_defender_ranged_2_truesight"
 	
-	    "RingRadius"            "40"
-	    "HealthBarOffset"       "170"
 	    "BoundsHullName"        "DOTA_HULL_SIZE_REGULAR"
 	
 	    "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_GROUND"
@@ -870,17 +861,18 @@
 	
 	    "WakesNeutrals"         "0"
 	
-	    "StatusHealth"          "30"
+	    "StatusHealth"          "50"
 	    "StatusHealthRegen"     "0"
 	    "StatusMana"            "0"
 	    "StatusManaRegen"       "0"
 	    "ArmorPhysical"         "1"
+	    "MagicalResistance"     "25"
 	
 	    "AttackCapabilities"    "DOTA_UNIT_CAP_RANGED_ATTACK"
-	    "AttackDamageMin"       "15"
-	    "AttackDamageMax"       "15"
-	    "AttackRate"            "0.5"
-	    "AttackRange"           "750"
+	    "AttackDamageMin"       "25"
+	    "AttackDamageMax"       "25"
+	    "AttackRate"            "0.8"
+	    "AttackRange"           "600"
 	    "AttackAcquisitionRange"    "1200"
 	    "AttackAnimationPoint"  "0.7"
 	    "ProjectileSpeed"       "900"
@@ -905,27 +897,26 @@
 	
 	    "Ability1"              "ability_defender_ranged_2_truesight"
 	    "Ability2"              "ability_defender_ranged_3_attackspeed_stacks"
-	
-	    "RingRadius"            "40"
-	    "HealthBarOffset"       "170"
+	    
 	    "BoundsHullName"        "DOTA_HULL_SIZE_HERO"
 	
 	    "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_GROUND"
-	    "MovementSpeed"         "320"
+	    "MovementSpeed"         "350"
 	
 	    "WakesNeutrals"         "0"
 	
-	    "StatusHealth"          "30"
+	    "StatusHealth"          "75"
 	    "StatusHealthRegen"     "0"
 	    "StatusMana"            "0"
 	    "StatusManaRegen"       "0"
 	    "ArmorPhysical"         "1"
+	    "MagicalResistance"     "25"
 	
 	    "AttackCapabilities"    "DOTA_UNIT_CAP_RANGED_ATTACK"
 	    "AttackDamageMin"       "30"
 	    "AttackDamageMax"       "30"
 	    "AttackRate"            "1"
-	    "AttackRange"           "750"
+	    "AttackRange"           "700"
 	    "AttackAcquisitionRange"    "1200"
 	    "AttackAnimationPoint"  "0.7"
 	    "ProjectileSpeed"       "1250"
@@ -960,20 +951,19 @@
 	    "Ability1"              "ability_defender_ranged_2_truesight"
 	    "Ability2"              "ability_defender_ranged_4_aoe"
 	
-	    "RingRadius"            "40"
-	    "HealthBarOffset"       "170"
 	    "BoundsHullName"        "DOTA_HULL_SIZE_HERO"
 	
 	    "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_GROUND"
-	    "MovementSpeed"         "320"
+	    "MovementSpeed"         "280"
 	
 	    "WakesNeutrals"         "0"
 	
-	    "StatusHealth"          "30"
+	    "StatusHealth"          "250"
 	    "StatusHealthRegen"     "0"
 	    "StatusMana"            "0"
 	    "StatusManaRegen"       "0"
-	    "ArmorPhysical"         "1"
+	    "ArmorPhysical"         "10"
+	    "MagicalResistance"     "25"
 	
 	    "AttackCapabilities"    "DOTA_UNIT_CAP_RANGED_ATTACK"
 	    "AttackDamageMin"       "100"
@@ -1006,20 +996,19 @@
 	    "Ability2"              "ability_defender_ranged_3_attackspeed_stacks"
 	    "Ability3"              "ability_defender_ranged_5_dmg_stacks"
 	
-	    "RingRadius"            "40"
-	    "HealthBarOffset"       "170"
 	    "BoundsHullName"        "DOTA_HULL_SIZE_HERO"
 	
 	    "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_GROUND"
-	    "MovementSpeed"         "320"
+	    "MovementSpeed"         "350"
 	
 	    "WakesNeutrals"         "0"
 	
-	    "StatusHealth"          "30"
+	    "StatusHealth"          "150"
 	    "StatusHealthRegen"     "0"
 	    "StatusMana"            "0"
 	    "StatusManaRegen"       "0"
 	    "ArmorPhysical"         "1"
+	    "MagicalResistance"     "25"
 	
 	    "AttackCapabilities"    "DOTA_UNIT_CAP_RANGED_ATTACK"
 	    "AttackDamageMin"       "40"
@@ -1062,20 +1051,19 @@
 	    "Ability1"              "ability_defender_ranged_2_truesight"
 	    "Ability2"              "ability_defender_ranged_6_aoe"
 	
-	    "RingRadius"            "40"
-	    "HealthBarOffset"       "170"
 	    "BoundsHullName"        "DOTA_HULL_SIZE_HERO"
 	
 	    "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_GROUND"
-	    "MovementSpeed"         "320"
+	    "MovementSpeed"         "250"
 	
 	    "WakesNeutrals"         "0"
 	
-	    "StatusHealth"          "30"
+	    "StatusHealth"          "300"
 	    "StatusHealthRegen"     "0"
 	    "StatusMana"            "0"
 	    "StatusManaRegen"       "0"
-	    "ArmorPhysical"         "1"
+	    "ArmorPhysical"         "10"
+	    "MagicalResistance"     "25"
 	
 	    "AttackCapabilities"    "DOTA_UNIT_CAP_RANGED_ATTACK"
 	    "AttackDamageMin"       "250"

@@ -90,9 +90,10 @@ function launchTacks(keys)
         radius = projectile_radius,
         speed = projectile_speed,
         particle = projectile_particle,
-        dirs = TackshooterHelper.directions_8
+        dirs = TackshooterHelper.directions_8,
+        IsChild = false
     }
-
+    
     if caster.fire16Ways == true then
         tackshooterFire{
             source = caster,
@@ -101,7 +102,8 @@ function launchTacks(keys)
             radius = projectile_radius,
             speed = projectile_speed,
             particle = projectile_particle,
-            dirs = TackshooterHelper.directions_16
+            dirs = TackshooterHelper.directions_16,
+            IsChild = false
         }
     end
        
@@ -109,6 +111,10 @@ end
 
 function tackshooterFire(args)
     --source, dmg, dist, radius, speed, particle, dirs
+
+    if not args.source_pos then 
+        args.source_pos = args.source:GetAbsOrigin()
+    end
 
     for k, dir in pairs(args.dirs) do
         local projectile = {
@@ -122,7 +128,7 @@ function tackshooterFire(args)
             fStartRadius = args.radius,
             fEndRadius = args.radius,
             Source = args.source,            
-            vSpawnOrigin = args.source:GetAbsOrigin(),
+            vSpawnOrigin = args.source_pos,
             vVelocity = dir * args.speed,
             WallBehavior = PROJECTILES_NOTHING,
             TreeBehavior = PROJECTILES_NOTHING,
@@ -144,8 +150,8 @@ function tackshooterFire(args)
             end,
 
             OnFinish = function(self, position)
-                if args.source.split ~= nil then
-                    tackshooterFireSplit(args.source, position, args.particle)
+                if args.source.split ~= nil and not args.IsChild then
+                    tackshooterFireSplit(args.source, position)
                 end
                self:Destroy() 
             end
@@ -155,27 +161,28 @@ function tackshooterFire(args)
     end 
 end
 
-function tackshooterFireSplit(caster, position, particle)
+function tackshooterFireSplit(caster, position)
     --source, dmg, dist, radius, speed, particle, dirs
     tackshooterFire{
-        source = caster,     
+        source = caster, 
+        source_pos = position,    
         dmg = caster.split.damage,
         dist = caster.split.distance,
         radius = caster.split.radius,
-        speed = caster.keys.speed,
-        particle = particle,
+        speed = caster.split.speed,
+        particle = "particles/frostivus_gameplay/drow_linear_arrow.vpcf",
+        IsChild = true,
         dirs = {
-            TackshooterHelper.directions_8.N,
-            TackshooterHelper.directions_8.S,
-            TackshooterHelper.directions_8.E,
-            TackshooterHelper.directions_8.W,
+            TackshooterHelper.directions_8.NE,
+            TackshooterHelper.directions_8.SE,
+            TackshooterHelper.directions_8.NW,
+            TackshooterHelper.directions_8.SW,
         }
     }    
 end
 
-function tackshooterSet16(keys)
-    local caster = keys.caster
-    caster.fire16Ways = true   
+function tackshooterSet16(keys)    
+    keys.caster.fire16Ways = true   
 end
 
 function tackshooterSetSplit(keys)   
@@ -208,9 +215,9 @@ function tackshooterAddPoisonStack(keys)
     end
 end
 
-function tackshooterPosionTick(keys)    
+function tackshooterPoisonTick(keys)  
     local modifier = keys.AbilityContext.modifier
-    local poison_stacks = target:GetModifierStackCount(modifier,ab)
+    local poison_stacks = keys.target:GetModifierStackCount(modifier,ab)
 
     local tick_dmg = keys.ability:GetLevelSpecialValueFor("tick_dmg", 1)
     local dmg = tick_dmg * math.pow(2, poison_stacks - 1)

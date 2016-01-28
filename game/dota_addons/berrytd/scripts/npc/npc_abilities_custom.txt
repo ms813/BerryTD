@@ -629,9 +629,7 @@
 	        "particle"  "particles/status_fx/status_effect_ghost.vpcf"    
 	        "particle"  "particles/units/heroes/hero_abaddon/abaddon_borrowed_time.vpcf"
 	        "particle"  "particles/units/heroes/hero_skeletonking/wraith_king_ghosts_ambient.vpcf"
-	        "soundfile" "soundevents/game_sounds_items.vsndevts"
-	        "soundfile" "soundevents/game_sounds_heroes/game_sounds_abaddon.vsndevts"
-	        "soundfile" "soundevents/game_sounds_heroes/game_sounds_death_prophet.vsndevts"
+	        "soundfile" "soundevents/game_sounds_items.vsndevts"        
 	    }
 	
 	    "Modifiers"
@@ -657,7 +655,7 @@
 	        //if the creep dies with this buff on then chance to res as ghost
 	        "modifier_melee_defender_5_res_chance"
 	        {
-	            "TextureName"   "invoker_deafening_blast"
+	            "TextureName"   "invoker_ghost_walk"
 	            "Passive"   "0"
 	            "IsHidden"  "0"
 	            
@@ -676,8 +674,7 @@
 	                            "AbilityContext"   
 	                            {
 	                                "particle"  "particles/units/heroes/hero_abaddon/abaddon_borrowed_time.vpcf"
-	                                "sound"     "DOTA_Item.GhostScepter.Activate"
-	                                "sound2"    "Hero_Abaddon.BorrowedTime"
+	                                "sound"     "DOTA_Item.GhostScepter.Activate"                       
 	                            }
 	                        }
 	                    }
@@ -737,7 +734,7 @@
 	        "02"
 	        {
 	            "var_type"          "FIELD_INTEGER"
-	            "res_chance"       "100"
+	            "res_chance"       "20"
 	        }    
 	
 	        "03"
@@ -1348,11 +1345,11 @@
 	    "AbilityUnitTargetType"     "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 	    "AbilityUnitDamageType"     "DAMAGE_TYPE_MAGICAL"     
 	
-	    "AbilityCastRange"          "800"
+	    "AbilityCastRange"          "800 1500 1500"
 	    "AbilityCastPoint"          "0"
 	    "AbilityCooldown"           "5"
 	
-	    "AbilityDamage"             "5"
+	    "AbilityDamage"             "25 60 60"
 	    "AbilityManaCost"           "0"
 	
 	    "OnSpellStart"
@@ -1413,8 +1410,8 @@
 	            "StatusEffectName"  "particles/status_fx/status_effect_burn.vpcf"
 	            "StatusEffectPriority"  "10"
 	            "TextureName"       "Demon_Eater_Shadowraze3_icon"
-	            "ThinkInterval"     "%burn_tick"
 	
+	            "ThinkInterval"     "%burn_tick"
 	            "OnIntervalThink"
 	            {   
 	                "RunScript"
@@ -1446,7 +1443,7 @@
 	        "03"
 	        {
 	            "var_type"          "FIELD_INTEGER"
-	            "damage"            "5"
+	            "damage"            "25 60 60"
 	        }
 	        "04"
 	        {
@@ -1456,27 +1453,27 @@
 	        "05"
 	        {
 	            "var_type"          "FIELD_INTEGER"
-	            "width_start"       "275"
+	            "width_start"       "250 400 400"
 	        }
 	        "06"
 	        {
 	            "var_type"          "FIELD_INTEGER"
-	            "width_end"         "275"
+	            "width_end"         "250 400 400"
 	        }
 	        "07"
 	        {
 	            "var_type"          "FIELD_INTEGER"
-	            "burn_duration"     "0 4"
+	            "burn_duration"     "0 0 4"
 	        }
 	        "08"
 	        {
 	            "var_type"          "FIELD_FLOAT"
-	            "burn_percent_dmg"  "0 0.15"
+	            "burn_percent_dmg"  "0 0 0.15"
 	        }
 	        "09"
 	        {
 	            "var_type"          "FIELD_FLOAT"
-	            "burn_tick"         "0 0.1"
+	            "burn_tick"         "0 0 0.1"
 	        }
 	    }
 	
@@ -1489,12 +1486,13 @@
 	    }
 	}
 	
+	//increase the damage and travel distance of the projectile and make it wider
 	"ability_upgrade_dragon_1"
 	{
 	    "BaseClass"             "ability_datadriven"
 	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 	    "AbilityType"           "DOTA_ABILITY_TYPE_BASIC"
-	    "AbilityTextureName"    "Demon_Eater_Shadowraze3_icon"
+	    "AbilityTextureName"    "jakiro_macropyre"
 	
 	    "AbilityGoldCost"       "50"
 	   
@@ -1519,14 +1517,87 @@
 	
 	            "AbilityContext"
 	            {
-	                "nextUpgrade"   "ability_upgrade_dragon_2"
+	                "nextUpgrade"   "ability_upgrade_dragon_2"                
+	            }
+	        }       
+	    }
+	
+	    "Modifiers"
+	    {
+	        //cosmetic only - appears on the tower to let players know it has been upgraded
+	        "modifier_dragon_upgrade_1"
+	        {
+	            "Passive"       "0"
+	            "IsHidden"      "0"
+	            "IsDebuff"      "0"             
+	        }
+	    }
+	
+	    //this value appears in the tooltip
+	    "AbilitySpecial"
+	    {
+	        "01"
+	        {
+	            "var_type"      "FIELD_INTEGER"
+	            "new_width"     "400"
+	        }
+	
+	        "02"
+	        {
+	            "var_type"       "FIELD_INTEGER"
+	            "new_damage"     "60"
+	        } 
+	
+	        "03"
+	        {
+	            "var_type"      "FIELD_INTEGER"
+	            "new_range"     "1500"
+	        } 
+	    }
+	}
+	
+	
+	//adds burn to the dragonfire ability, dealing currentHp% damage
+	"ability_upgrade_dragon_2"
+	{
+	    "BaseClass"             "ability_datadriven"
+	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+	    "AbilityType"           "DOTA_ABILITY_TYPE_BASIC"
+	    "AbilityTextureName"    "Demon_Eater_Shadowraze3_icon"
+	
+	    "AbilityGoldCost"       "50"
+	   
+	    "OnSpellStart"
+	    {
+	        "LevelUpAbility"
+	        {
+	            "Target"         "CASTER"
+	            "AbilityName"    "ability_dragonfire"
+	        }      
+	
+	        "ApplyModifier"
+	        {
+	            "ModifierName"  "modifier_dragon_upgrade_2"
+	            "Target"        "CASTER"            
+	        }
+	
+	        "RunScript"
+	        {
+	            "ScriptFile"    "scripts/vscripts/addon_game_mode.lua"
+	            "Function"      "upgradeTower"
+	
+	            "AbilityContext"
+	            {
+	                "nextUpgrade"   "ability_upgrade_dragon_3"
+	                "splitUpgrade"  "ability_upgrade_dragon_4"
 	            }
 	        }
 	    }
 	
 	    "Modifiers"
 	    {
-	        "modifier_dragon_upgrade_1"
+	        //cosmetic only - appears on the tower to let players know it has been upgraded
+	        "modifier_dragon_upgrade_2"
 	        {
 	            "Passive"       "0"
 	            "IsHidden"      "0"
@@ -1541,57 +1612,6 @@
 	        {
 	            "var_type"          "FIELD_INTEGER"
 	            "burn_damage"       "0.15"
-	        }
-	
-	        "02"
-	        {
-	            "var_type"          "FIELD_INTEGER"
-	            "burn_duration"     "4"
-	        } 
-	    }
-	}
-	
-	"ability_upgrade_dragon_2"
-	{
-	    "BaseClass"             "ability_datadriven"
-	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
-	    "AbilityType"           "DOTA_ABILITY_TYPE_BASIC"
-	    "AbilityTextureName"    "jakiro_macropyre"
-	
-	    "AbilityGoldCost"       "50"
-	   
-	    "OnSpellStart"
-	    {
-	        "RunScript"
-	        {
-	            "ScriptFile"    "scripts/vscripts/addon_game_mode.lua"
-	            "Function"      "upgradeTower"
-	
-	            "AbilityContext"
-	            {
-	                "nextUpgrade"   "ability_upgrade_dragon_3"
-	                "splitUpgrade"  "ability_upgrade_dragon_4"
-	            }
-	        }       
-	    }
-	
-	    "Modifiers"
-	    {
-	        "modifier_dragon_upgrade_2"
-	        {
-	            "Passive"       "0"
-	            "IsHidden"      "0"
-	            "IsDebuff"      "0"             
-	        }
-	    }
-	
-	    //this value appears in the tooltip
-	    "AbilitySpecial"
-	    {
-	        "01"
-	        {
-	            "var_type"      "FIELD_INTEGER"
-	            "burn_damage"   "0.15"
 	        }
 	
 	        "02"
@@ -1640,8 +1660,7 @@
 	    }
 	
 	    "OnSpellStart"
-	    { 
-	       
+	    {     
 	
 	        "FireEffect"
 	        {
@@ -1857,7 +1876,7 @@
 	        "03"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "defender_cap"  "4"
+	            "defender_cap"  "3"
 	        }   
 	        "04"
 	        {
@@ -2077,7 +2096,7 @@
 	        "01"
 	        {
 	            "var_type"          "FIELD_INTEGER"
-	            "new_unit_cap"      "8"
+	            "new_unit_cap"      "6"
 	        } 
 	
 	        "02"
@@ -2225,7 +2244,7 @@
 	        "03"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "defender_cap"  "4"
+	            "defender_cap"  "3"
 	        }     
 	        "04"
 	        {
@@ -2836,7 +2855,7 @@
 	        "03"
 	        {
 	            "var_type"    "FIELD_INTEGER"
-	            "distance"    "650"
+	            "distance"    "500"
 	        }  
 	        "04"
 	        {
@@ -2846,6 +2865,129 @@
 	    }   
 	}
 	
+	//ability granted by upgrade 4
+	"ability_ring_of_poison"
+	{
+	    "BaseClass"                     "ability_datadriven"
+	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+	    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"    
+	    "AbilityTextureName"            "venomancer_venomous_gale"
+	
+	    "AbilityCooldown"                "1"
+	    "AbilityManaCost"                "0"
+	    "AbilityDamage"                  "200"
+	
+	    "precache"
+	    {
+	        "particle"  "particles/status_fx/status_effect_poison_venomancer.vpcf" 
+	        "particle"  "particles/units/heroes/hero_broodmother/broodmother_incapacitatingbite_debuff.vpcf"       
+	        "particle"  "particles/units/heroes/hero_venomancer/venomancer_poison_nova.vpcf"
+	    }
+	
+	    "OnSpellStart"
+	    {
+	        "FireEffect"
+	        {
+	            "TargetPoint"           "CASTER"
+	            "EffectName"            "particles/units/heroes/hero_venomancer/venomancer_poison_nova.vpcf"
+	            "EffectAttachType"      "world_origin"
+	            "ControlPoints"
+	            {
+	                "01"                "1 1 %radius"
+	            }
+	        }
+	
+	        "ActOnTargets"
+	        {
+	            "Target"
+	            {
+	                "Center"        "CASTER"
+	                "Radius"        "%radius"
+	                "Teams"         "DOTA_UNIT_TARGET_TEAM_ENEMY" 
+	                "Type"          "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+	            }
+	            
+	            "Action"
+	            {              
+	
+	                "Damage"
+	                {
+	                    "Target"    "TARGET"
+	                    "Damage"    "%base_dmg"
+	                    "Type"      "DAMAGE_TYPE_PHYSICAL"
+	                }                     
+	
+	                "RunScript"
+	                {
+	                    "ScriptFile"    "unit_scripts/towers/ai_tackshooter.lua"
+	                    "Function"      "tackshooterAddPoisonStack"
+	                    "AbilityContext"
+	                    {
+	                        "modifier"  "modifier_ring_of_poison"
+	                    }
+	                }        
+	            }            
+	        }
+	    }
+	
+	    "Modifiers"
+	    {
+	        "modifier_ring_of_poison"
+	        {
+	            "Passive"           "0"
+	            "IsHidden"          "0"
+	            "IsDebuff"          "1"           
+	            
+	            "EffectName"            "particles/units/heroes/hero_broodmother/broodmother_incapacitatingbite_debuff.vpcf"
+	            "EffectAttachType"      "follow_origin" 
+	
+	            "StatusEffectName"      "particles/status_fx/status_effect_poison_venomancer.vpcf"        
+	            "StatusEffectPriority"  "10"      
+	
+	            "Duration"          "6"
+	            "ThinkInterval"  "%tick_interval"
+	            "OnIntervalThink"
+	            {
+	                "RunScript"
+	                {
+	                    "ScriptFile"    "unit_scripts/towers/ai_tackshooter.lua"
+	                    "Function"      "tackshooterPoisonTick"
+	                    "AbilityContext"
+	                    {
+	                        "modifier"  "modifier_ring_of_poison"
+	                        "tick_dmg"  "%tick_dmg * %tock_interval"
+	                    }
+	                }
+	            }            
+	        }
+	    }
+	
+	    "AbilitySpecial"
+	    {
+	        "01"
+	        {
+	            "var_type"          "FIELD_INTEGER"
+	            "base_dmg"          "10"
+	        }
+	        "02"
+	        {
+	            "var_type"          "FIELD_FLOAT"
+	            "radius"            "500"
+	        }
+	        "03"
+	        {
+	            "var_type"          "FIELD_FLOAT"
+	            "tick_dmg"          "4"
+	        }
+	        "03"
+	        {
+	            "var_type"          "FIELD_FLOAT"
+	            "tick_interval"     "0.1"
+	        }
+	    }
+	}
+	
+	//upgrades firing speed
 	"ability_upgrade_tackshooter_1"
 	{
 	    "BaseClass"                     "ability_datadriven"
@@ -2883,6 +3025,7 @@
 	
 	    "Modifiers"
 	    {
+	        //cosmetic - lets the user know the tower has been upgraded
 	        "modifier_upgrade_tackshooter_1"
 	        {
 	            "Passive"           "0"         
@@ -2892,6 +3035,7 @@
 	    } 
 	}
 	
+	//fire 16 tacks instead of 8
 	"ability_upgrade_tackshooter_2"
 	{
 	    "BaseClass"                     "ability_datadriven"
@@ -2924,14 +3068,151 @@
 	
 	        "RunScript"
 	        {
-	            "ScriptFile"            "scripts/vscripts/unit_scripts/towers/ai_tackshooter.lua"
-	            "Function"              "tackshooter_16"
+	            "ScriptFile"            "unit_scripts/towers/ai_tackshooter.lua"
+	            "Function"              "tackshooterSet16"
 	        }         
 	    }
 	
 	    "Modifiers"
 	    {
+	        //cosmetic - lets the user know the tower has been upgraded
 	        "modifier_upgrade_tackshooter_2"
+	        {
+	            "Passive"           "0"         
+	            "IsPurgable"        "0"
+	            "IsBuff"            "1"
+	        }               
+	    }  
+	}
+	
+	//makes each shot burst into smaller shots on hit/end
+	"ability_upgrade_tackshooter_3"
+	{
+	    "BaseClass"                     "ability_datadriven"
+	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+	    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"    
+	    "AbilityTextureName"            "legion_commander_overwhelming_odds"
+	
+	    "AbilityGoldCost"               "50"
+	
+	    "OnSpellStart"
+	    {
+	        "ApplyModifier"
+	        {
+	            "ModifierName"          "modifier_upgrade_tackshooter_3"
+	            "Target"                "CASTER"
+	        }
+	
+	        "RunScript"
+	        {
+	            "ScriptFile"            "scripts/vscripts/addon_game_mode.lua"
+	            "Function"              "upgradeTower"
+	
+	            "AbilityContext"
+	            {
+	                "nextUpgrade"       "ability_upgrade_tackshooter_5"                
+	            }
+	        }
+	
+	        "RunScript"
+	        {
+	            "ScriptFile"            "scripts/vscripts/unit_scripts/towers/ai_tackshooter.lua"
+	            "Function"              "tackshooterSetSplit"
+	        }         
+	    }
+	
+	    "Modifiers"
+	    {
+	        //cosmetic - lets the user know the tower has been upgraded
+	        "modifier_upgrade_tackshooter_3"
+	        {
+	            "Passive"           "0"         
+	            "IsPurgable"        "0"
+	            "IsBuff"            "1"
+	        }               
+	    }  
+	
+	    "AbilitySpecial"
+	    {
+	        "01"
+	        {
+	            "var_type"          "FIELD_INTEGER"
+	            "split_dmg"         "10"
+	        }
+	        "02"
+	        {
+	            "var_type"          "FIELD_INTEGER"
+	            "split_dist"        "300"
+	        }
+	        "03"
+	        {
+	            "var_type"          "FIELD_INTEGER"
+	            "split_radius"      "100"
+	        }
+	        "04"
+	        {
+	            "var_type"          "FIELD_INTEGER"
+	            "split_speed"       "900"
+	        }
+	    }
+	}
+	
+	//changes the ability from shooting tacks to shooting poison
+	"ability_upgrade_tackshooter_4"
+	{
+	    "BaseClass"                     "ability_datadriven"
+	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+	    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"    
+	    "AbilityTextureName"            "venomancer_venomous_gale"
+	
+	    "AbilityGoldCost"               "50"
+	
+	    "precache"
+	    {
+	        "soundfile" "soundevents/game_sounds_heroes/game_sounds_venomancer.vsndevts"
+	    }
+	
+	    "OnSpellStart"
+	    {
+	        "FireSound"
+	        {
+	            "EffectName"    "Hero_Venomancer.PoisonNova"
+	            "Target"         "CASTER"
+	        }
+	        "ApplyModifier"
+	        {
+	            "ModifierName"          "modifier_upgrade_tackshooter_4"
+	            "Target"                "CASTER"
+	        }
+	
+	        "RunScript"
+	        {
+	            "ScriptFile"            "scripts/vscripts/addon_game_mode.lua"
+	            "Function"              "upgradeTower"
+	
+	            "AbilityContext"
+	            {
+	                "nextUpgrade"       "ability_upgrade_tackshooter_6"                
+	            }
+	        }
+	
+	        "RunScript"
+	        {
+	            "ScriptFile"            "scripts/vscripts/unit_scripts/towers/ai_tackshooter.lua"
+	            "Function"              "tackshooterPoison"
+	            
+	            "AbilityContext"
+	            {
+	                "old_ability"   "ability_shoot_tacks"
+	                "new_ability"   "ability_ring_of_poison"
+	            }
+	        }         
+	    }
+	
+	    "Modifiers"
+	    {
+	        //cosmetic - lets the user know the tower has been upgraded
+	        "modifier_upgrade_tackshooter_4"
 	        {
 	            "Passive"           "0"         
 	            "IsPurgable"        "0"
