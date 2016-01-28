@@ -50,6 +50,122 @@
     }   
 }
 
+//ability granted by upgrade 4
+"ability_ring_of_poison"
+{
+    "BaseClass"                     "ability_datadriven"
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"    
+    "AbilityTextureName"            "venomancer_venomous_gale"
+
+    "AbilityCooldown"                "1"
+    "AbilityManaCost"                "0"
+    "AbilityDamage"                  "200"
+
+    "OnSpellStart"
+    {
+        "FireEffect"
+        {
+            "TargetPoint"           "CASTER"
+
+            //poison nova
+            //"EffectName"            ""
+            "EffectAttachType"      "world_origin"
+            "ControlPoints"
+            {
+                "01"                "%radius 2 %radius*2"
+            }
+        }
+
+        "ActOnTargets"
+        {
+            "Target"
+            {
+                "Center"        "CASTER"
+                "Radius"        "%radius"
+                "Teams"         "DOTA_UNIT_TARGET_TEAM_ENEMY" 
+                "Type"          "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+            }
+            
+            "Action"
+            {              
+
+                "Damage"
+                {
+                    "Target"    "TARGET"
+                    "Damage"    "%base_dmg"
+                    "Type"      "DAMAGE_TYPE_PHYSICAL"
+                }                     
+
+                "RunScript"
+                {
+                    "ScriptFile"    "unit_scripts/towers/ai_tackshooter.lua"
+                    "Function"      "tackshooterAddPoisonStack"
+                    "AbilityContext"
+                    {
+                        "modifier"  "modifier_ring_of_poison"
+                    }
+                }        
+            }            
+        }
+    }
+
+    "Modifiers"
+    {
+        "modifier_ring_of_poison"
+        {
+            "Passive"           "0"
+            "IsHidden"          "0"
+            "IsDebuff"          "0"
+
+            "Duration"          "6"
+            
+            //some sort of poison spray
+            //"EffectName"        "particle_name"
+            //"EffectAttachType"    "follow_origin"  
+
+            //status effect poisoned
+            //"StatusEffectName"         "particle_name"        
+            //"StatusEffectPriority"  "10"      
+
+            "ThinkInterval"  "0.1"
+            "OnIntervalThink"
+            {
+                "RunScript"
+                {
+                    "ScriptFile"    "unit_scripts/towers/ai_tackshooter.lua"
+                    "Function"      "tackshooterPoisonTick"
+                    "AbilityContext"
+                    {
+                        "modifier"  "modifier_ring_of_poison"
+                        "tick_dmg"  "%tick_dmg"
+                    }
+                }
+            }            
+        }
+    }
+
+    "AbilitySpecial"
+    {
+        "01"
+        {
+            "var_type"          "FIELD_INTEGER"
+            "base_dmg"          "100"
+        }
+        "02"
+        {
+            "var_type"          "FIELD_FLOAT"
+            "radius"            "700"
+        }
+        "03"
+        {
+            "var_type"          "FIELD_FLOAT"
+            "tick_dmg"          "4"
+        }
+    }
+}
+
+//upgrades firing speed
 "ability_upgrade_tackshooter_1"
 {
     "BaseClass"                     "ability_datadriven"
@@ -87,6 +203,7 @@
 
     "Modifiers"
     {
+        //cosmetic - lets the user know the tower has been upgraded
         "modifier_upgrade_tackshooter_1"
         {
             "Passive"           "0"         
@@ -96,6 +213,7 @@
     } 
 }
 
+//fire 16 tacks instead of 8
 "ability_upgrade_tackshooter_2"
 {
     "BaseClass"                     "ability_datadriven"
@@ -129,13 +247,140 @@
         "RunScript"
         {
             "ScriptFile"            "scripts/vscripts/unit_scripts/towers/ai_tackshooter.lua"
-            "Function"              "tackshooter_16"
+            "Function"              "tackshooterSet16"
         }         
     }
 
     "Modifiers"
     {
+        //cosmetic - lets the user know the tower has been upgraded
         "modifier_upgrade_tackshooter_2"
+        {
+            "Passive"           "0"         
+            "IsPurgable"        "0"
+            "IsBuff"            "1"
+        }               
+    }  
+}
+
+//makes each shot burst into smaller shots on hit/end
+"ability_upgrade_tackshooter_3"
+{
+    "BaseClass"                     "ability_datadriven"
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"    
+    "AbilityTextureName"            "legion_commander_overwhelming_odds"
+
+    "AbilityGoldCost"               "50"
+
+    "OnSpellStart"
+    {
+        "ApplyModifier"
+        {
+            "ModifierName"          "modifier_upgrade_tackshooter_3"
+            "Target"                "CASTER"
+        }
+
+        "RunScript"
+        {
+            "ScriptFile"            "scripts/vscripts/addon_game_mode.lua"
+            "Function"              "upgradeTower"
+
+            "AbilityContext"
+            {
+                "nextUpgrade"       "ability_upgrade_tackshooter_5"                
+            }
+        }
+
+        "RunScript"
+        {
+            "ScriptFile"            "scripts/vscripts/unit_scripts/towers/ai_tackshooter.lua"
+            "Function"              "tackshooterSetSplit"
+        }         
+    }
+
+    "Modifiers"
+    {
+        //cosmetic - lets the user know the tower has been upgraded
+        "modifier_upgrade_tackshooter_3"
+        {
+            "Passive"           "0"         
+            "IsPurgable"        "0"
+            "IsBuff"            "1"
+        }               
+    }  
+
+    "AbilitySpecial"
+    {
+        "01"
+        {
+            "var_type"          "FIELD_INTEGER"
+            "split_dmg"         "10"
+        }
+        "02"
+        {
+            "var_type"          "FIELD_INTEGER"
+            "split_dist"        "200"
+        }
+        "03"
+        {
+            "var_type"          "FIELD_INTEGER"
+            "split_radius"      "50"
+        }
+        "04"
+        {
+            "var_type"          "FIELD_INTEGER"
+            "split_speed"       "900"
+        }
+    }
+}
+
+//changes the ability from shooting tacks to shooting poison
+"ability_upgrade_tackshooter_4"
+{
+    "BaseClass"                     "ability_datadriven"
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"    
+    "AbilityTextureName"            "venomancer_venomous_gale"
+
+    "AbilityGoldCost"               "50"
+
+    "OnSpellStart"
+    {
+        "ApplyModifier"
+        {
+            "ModifierName"          "modifier_upgrade_tackshooter_4"
+            "Target"                "CASTER"
+        }
+
+        "RunScript"
+        {
+            "ScriptFile"            "scripts/vscripts/addon_game_mode.lua"
+            "Function"              "upgradeTower"
+
+            "AbilityContext"
+            {
+                "nextUpgrade"       "ability_upgrade_tackshooter_6"                
+            }
+        }
+
+        "RunScript"
+        {
+            "ScriptFile"            "scripts/vscripts/unit_scripts/towers/ai_tackshooter.lua"
+            "Function"              "tackshooterPoison"
+            
+            "AbilityContext"
+            {
+                "old_ability"   "ability_shoot_tacks"
+                "new_ability"   "ability_ring_of_poison"
+            }
+        }         
+    }
+
+    "Modifiers"
+    {
+        //cosmetic - lets the user know the tower has been upgraded
+        "modifier_upgrade_tackshooter_4"
         {
             "Passive"           "0"         
             "IsPurgable"        "0"

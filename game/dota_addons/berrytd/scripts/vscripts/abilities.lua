@@ -122,20 +122,27 @@ function GameMode:goToPage(keys)
 	--depending on which page we open, populate it with some abilities	
 	if ability_name == "ability_open_page_one" then
 
-		caster:AddAbility("ability_spawn_sniper_tower")
-		caster:AddAbility("ability_spawn_dragon_tower")
+		--page one has physical DPS towers
+		caster:AddAbility("ability_spawn_sniper_tower")		
 		caster:AddAbility("ability_spawn_tackshooter_tower")
-		caster:AddAbility("ability_spawn_iceberg_tower")
+		
 
 	elseif ability_name == "ability_open_page_two" then
 
-		caster:AddAbility("ability_spawn_melee_barracks")
-		caster:AddAbility("ability_spawn_ranged_barracks")
+		--page two has magical DPS towers
+		caster:AddAbility("ability_spawn_dragon_tower")		
 
 	elseif ability_name == "ability_open_page_three" then
 
+		--page three has unit spawning barracks
+		caster:AddAbility("ability_spawn_melee_barracks")
+		caster:AddAbility("ability_spawn_ranged_barracks")
+		
+
 	elseif ability_name == "ability_open_page_four" then
 
+		--page four has utility towers
+		caster:AddAbility("ability_spawn_iceberg_tower")
 	end
 
 	--finally level up all the abilities on the caster so we can actually cast them

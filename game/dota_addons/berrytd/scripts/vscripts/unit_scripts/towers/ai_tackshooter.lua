@@ -1,3 +1,29 @@
+TackshooterHelper = {}
+TackshooterHelper.directions_8 = 
+{
+    --Vector(x, y, z)
+    E = Vector( 1,  0,  0):Normalized(),  --E
+    SE = Vector( 1,  1,  0):Normalized(),  --SE
+    S = Vector( 0,  1,  0):Normalized(),  --S
+    SW = Vector(-1,  1,  0):Normalized(),  --SW
+    W = Vector(-1,  0,  0):Normalized(),  --W
+    NW = Vector(-1, -1,  0):Normalized(),  --NW
+    N = Vector( 0, -1,  0):Normalized(),  --N
+    NE = Vector( 1, -1,  0):Normalized()   --NE
+}
+
+TackshooterHelper.directions_16 = 
+{
+    SEE = Vector( 2.415,  1,  0):Normalized(),  --SEE
+    SSE = Vector( 1,  2.415,  0):Normalized(),  --SSE
+    SSW = Vector(-1,  2.415,  0):Normalized(),  --SSW
+    SWW = Vector(-2.415,  1,  0):Normalized(),  --SWW
+    NWW = Vector(-2.415, -1,  0):Normalized(),  --NWW
+    NNW = Vector(-1, -2.415,  0):Normalized(),  --NNW
+    NNE = Vector( 1, -2.415,  0):Normalized(),  --NNE
+    NEE = Vector( 2.415, -1,  0):Normalized()   --NEE
+}
+
 function Spawn(entityKeyValues)	
 
 	lvlUpUnitAbilities(thisEntity)
@@ -15,6 +41,11 @@ function TackShooterThink(tower)
 	end
 
 	local shoot_tacks = tower:FindAbilityByName("ability_shoot_tacks")
+        
+    --for upgrade 5 a different ability is granted
+    if shoot_tacks == nil then
+        shoot_tacks = tower:FindAbilityByName("ability_ring_of_poison")
+    end
 
 	if shoot_tacks ~= nil then
 		if shoot_tacks:GetCooldownTimeRemaining() > 0.0 then
@@ -50,65 +81,62 @@ function launchTacks(keys)
     local projectile_radius = keys.ability:GetLevelSpecialValueFor('radius', keys.ability:GetLevel())
     local projectile_speed = keys.ability:GetLevelSpecialValueFor('speed', keys.ability:GetLevel())
     local projectile_damage = keys.ability:GetLevelSpecialValueFor('damage', keys.ability:GetLevel())
-    local projectile_particle = keys.AbilityContext.projectile_particle
+    local projectile_particle = keys.AbilityContext.projectile_particle    
 
-    local directions = {
-        --Vector(x, y, z)
-        Vector( 1,  0,  0):Normalized(),  --E
-        Vector( 1,  1,  0):Normalized(),  --SE
-        Vector( 0,  1,  0):Normalized(),  --S
-        Vector(-1,  1,  0):Normalized(),  --SW
-        Vector(-1,  0,  0):Normalized(),  --W
-        Vector(-1, -1,  0):Normalized(),  --NW
-        Vector( 0, -1,  0):Normalized(),  --N
-        Vector( 1, -1,  0):Normalized()   --NE
+    tackshooterFire{
+        source = caster,
+        dmg = projectile_damage,
+        dist = projectile_distance,
+        radius = projectile_radius,
+        speed = projectile_speed,
+        particle = projectile_particle,
+        dirs = TackshooterHelper.directions_8
     }
 
-    if caster.fire16Ways == true then       
-        local newDirections = {
-        Vector( 2.415,  1,  0):Normalized(),  --SEE
-        Vector( 1,  2.415,  0):Normalized(),  --SSE
-        Vector(-1,  2.415,  0):Normalized(),  --SSW
-        Vector(-2.415,  1,  0):Normalized(),  --SWW
-        Vector(-2.415, -1,  0):Normalized(),  --NWW
-        Vector(-1, -2.415,  0):Normalized(),  --NNW
-        Vector( 1, -2.415,  0):Normalized(),  --NNE
-        Vector( 2.415, -1,  0):Normalized()   --NEE
+    if caster.fire16Ways == true then
+        tackshooterFire{
+            source = caster,
+            dmg = projectile_damage,
+            dist = projectile_distance,
+            radius = projectile_radius,
+            speed = projectile_speed,
+            particle = projectile_particle,
+            dirs = TackshooterHelper.directions_16
         }
-
-        for i = 1, #newDirections do
-            directions[#directions + 1] = newDirections[i]
-        end
     end
+       
+end
 
-    for i = 1, #directions do
+function tackshooterFire(args)
+    --source, dmg, dist, radius, speed, particle, dirs
 
+    for k, dir in pairs(args.dirs) do
         local projectile = {
             bGroundLock = true,
             fGroundOffset = 80,
             bZCheck = false,
             bIgnoreSource = true,
             draw = false, --{rad = projectile_radius}
-            EffectName = projectile_particle,
-            fDistance = projectile_distance,
-            fStartRadius = projectile_radius,
-            fEndRadius = projectile_radius,
-            Source = caster,            
-            vSpawnOrigin = caster_point,
-            vVelocity = directions[i] * projectile_speed,
+            EffectName = args.particle,
+            fDistance = args.dist,
+            fStartRadius = args.radius,
+            fEndRadius = args.radius,
+            Source = args.source,            
+            vSpawnOrigin = args.source:GetAbsOrigin(),
+            vVelocity = dir * args.speed,
             WallBehavior = PROJECTILES_NOTHING,
             TreeBehavior = PROJECTILES_NOTHING,
             UnitBehavior = PROJECTILES_DESTROY,
 
             UnitTest = function(self, unit)
-                return unit:GetUnitName() ~= "npc_dummy_unit" and unit:GetTeamNumber() ~= caster:GetTeamNumber()
+                return unit:GetUnitName() ~= "npc_dummy_unit" and unit:GetTeamNumber() ~= args.source:GetTeamNumber()
             end,
             OnUnitHit = function(self, unit)
             --print("hit unit", unit:GetUnitName())
                 local dmgTable = {
                     victim = unit,
                     attacker = self.Source,
-                    damage = projectile_damage,
+                    damage = args.dmg,
                     damage_type = DAMAGE_TYPE_PHYSICAL
                 }
 
@@ -116,15 +144,81 @@ function launchTacks(keys)
             end,
 
             OnFinish = function(self, position)
+                if args.source.split ~= nil then
+                    tackshooterFireSplit(args.source, position, args.particle)
+                end
                self:Destroy() 
             end
         }
 
         Projectiles:CreateProjectile(projectile)
-    end    
+    end 
 end
 
-function tackshooter_16(keys)
+function tackshooterFireSplit(caster, position, particle)
+    --source, dmg, dist, radius, speed, particle, dirs
+    tackshooterFire{
+        source = caster,     
+        dmg = caster.split.damage,
+        dist = caster.split.distance,
+        radius = caster.split.radius,
+        speed = caster.keys.speed,
+        particle = particle,
+        dirs = {
+            TackshooterHelper.directions_8.N,
+            TackshooterHelper.directions_8.S,
+            TackshooterHelper.directions_8.E,
+            TackshooterHelper.directions_8.W,
+        }
+    }    
+end
+
+function tackshooterSet16(keys)
     local caster = keys.caster
     caster.fire16Ways = true   
+end
+
+function tackshooterSetSplit(keys)   
+    keys.caster.split = {}
+    keys.caster.split.radius = keys.ability:GetLevelSpecialValueFor("split_radius", 1)
+    keys.caster.split.damage = keys.ability:GetLevelSpecialValueFor("split_dmg", 1)
+    keys.caster.split.distance = keys.ability:GetLevelSpecialValueFor("split_dist", 1)
+    keys.caster.split.speed = keys.ability:GetLevelSpecialValueFor("split_speed", 1)
+end
+
+function tackshooterPoison(keys)
+    local caster = keys.caster
+    caster:RemoveAbility(keys.AbilityContext.old_ability)
+    local new_ab = caster:AddAbility(keys.AbilityContext.new_ability)
+    new_ab:SetLevel(1)
+end
+
+function tackshooterAddPoisonStack(keys)
+    local caster = keys.caster
+    local target = keys.target
+    local modifier = keys.AbilityContext.modifier
+    local ab = keys.ability
+
+    if target:HasModifier(modifier) then
+        local stack_count = target:GetModifierStackCount(modifier, ab)
+        target:SetModifierStackCount(modifier, ab, stack_count + 1)
+    else
+        ab:ApplyDataDrivenModifier(caster, target, modifier, {})
+        target:SetModifierStackCount(modifier, ab, 1)
+    end
+end
+
+function tackshooterPosionTick(keys)    
+    local modifier = keys.AbilityContext.modifier
+    local poison_stacks = target:GetModifierStackCount(modifier,ab)
+
+    local tick_dmg = keys.ability:GetLevelSpecialValueFor("tick_dmg", 1)
+    local dmg = tick_dmg * math.pow(2, poison_stacks - 1)
+
+    ApplyDamage({
+        victim = keys.target,
+        attacker = keys.caster,
+        damage = dmg,
+        damage_type = DAMAGE_TYPE_MAGICAL
+    })
 end
