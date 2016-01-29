@@ -193,11 +193,14 @@ function tackshooterSetSplit(keys)
     keys.caster.split.speed = keys.ability:GetLevelSpecialValueFor("split_speed", 1)
 end
 
+--remove the tackshooter ability and replace it with an aoe poison spray
 function tackshooterPoison(keys)
     local caster = keys.caster
     caster:RemoveAbility(keys.AbilityContext.old_ability)
     local new_ab = caster:AddAbility(keys.AbilityContext.new_ability)
     new_ab:SetLevel(1)
+
+    
 end
 
 function tackshooterAddPoisonStack(keys)
@@ -228,4 +231,15 @@ function tackshooterPoisonTick(keys)
         damage = dmg,
         damage_type = DAMAGE_TYPE_MAGICAL
     })
+end
+
+function tackshooterApplyDeathDebuff(keys)
+    local modifier = keys.AbilityContext.modifier
+    local target = keys.target
+
+    local ability_lvl = keys.ability:GetLevel()
+
+    if ability_lvl > 1 then        
+        keys.ability:ApplyDataDrivenModifier(keys.caster, target, modifier, {})
+    end
 end

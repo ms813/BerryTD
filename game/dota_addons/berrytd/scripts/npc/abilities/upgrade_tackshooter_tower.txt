@@ -64,9 +64,10 @@
 
     "precache"
     {
+        "particle"  "particles/units/heroes/hero_sandking/sandking_caustic_finale_explode.vpcf"
         "particle"  "particles/status_fx/status_effect_poison_venomancer.vpcf" 
         "particle"  "particles/units/heroes/hero_broodmother/broodmother_incapacitatingbite_debuff.vpcf"       
-        "particle"  "particles/units/heroes/hero_venomancer/venomancer_poison_nova.vpcf"
+        "particle"  "particles/units/heroes/hero_venomancer/venomancer_poison_nova.vpcf"       
     }
 
     "OnSpellStart"
@@ -143,7 +144,87 @@
                         "tick_dmg"  "%tick_dmg * %tock_interval"
                     }
                 }
-            }            
+            }    
+
+            "OnCreated"
+            {
+                "RunScript"
+                {
+                    "ScriptFile"    "unit_scripts/towers/ai_tackshooter.lua"
+                    "Function"      "tackshooterApplyDeathDebuff"
+                    "AbilityContext"
+                    {
+                        "modifier"  "modifier_ring_of_poison_kill"
+                    }
+                }
+            }       
+        }
+
+        "modifier_ring_of_poison_kill"
+        {
+            "Passive"   "0"
+            "IsHidden"  "0"
+            "IsDebuff"  "1"
+            "TextureName"   "necrolyte_death_pulse"
+
+            "Duration"  "%death_duration"        
+
+            "OnDeath"
+            {    
+
+                "FireEffect"
+                {
+                    "EffectName"        "particles/units/heroes/hero_sandking/sandking_caustic_finale_explode.vpcf"
+                    "EffectAttachType"  "follow_origin"
+                    "Target"            
+                    {
+                        "Center"    "UNIT"
+                        "Flags"     "DOTA_UNIT_TARGET_FLAG_DEAD"    
+                    }
+                }
+
+                "FireSound"
+                {
+                    "Target"            
+                    {
+                        "Center"    "UNIT"
+                        "Flags"     "DOTA_UNIT_TARGET_FLAG_DEAD"
+                    }
+                    "EffectName"    "Ability.SandKing_CausticFinale"
+                }
+
+                "ActOnTargets"
+                {
+                    "Target"
+                    {
+                        "Center"        "UNIT"
+                        "Radius"        "%death_radius"
+                        "Teams"         "DOTA_UNIT_TARGET_TEAM_ENEMY" 
+                        "Type"          "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+                    }
+                    
+                    "Action"
+                    {              
+
+                        "Damage"
+                        {
+                            "Target"    "UNIT"
+                            "Damage"    "%base_dmg"
+                            "Type"      "DAMAGE_TYPE_PHYSICAL"
+                        }                     
+
+                        "RunScript"
+                        {
+                            "ScriptFile"    "unit_scripts/towers/ai_tackshooter.lua"
+                            "Function"      "tackshooterAddPoisonStack"
+                            "AbilityContext"
+                            {
+                                "modifier"  "modifier_ring_of_poison"
+                            }
+                        }        
+                    }            
+                }
+            }
         }
     }
 
@@ -152,22 +233,37 @@
         "01"
         {
             "var_type"          "FIELD_INTEGER"
-            "base_dmg"          "10"
+            "base_dmg"          "5 10"
         }
         "02"
         {
-            "var_type"          "FIELD_FLOAT"
-            "radius"            "500"
+            "var_type"          "FIELD_INTEGER"
+            "radius"            "650"
         }
         "03"
         {
-            "var_type"          "FIELD_FLOAT"
-            "tick_dmg"          "4"
+            "var_type"          "FIELD_INTEGER"
+            "tick_dmg"          "1 1"
         }
         "03"
         {
             "var_type"          "FIELD_FLOAT"
             "tick_interval"     "0.1"
+        }
+        "04"
+        {
+            "var_type"          "FIELD_INTEGER"
+            "poison_duration"   "6"
+        }
+        "05"
+        {
+            "var_type"          "FIELD_INTEGER"
+            "death_duration"    "0 6"
+        }
+        "06"
+        {
+            "var_type"         "FIELD_INTEGER"
+            "death_radius"      "350"
         }
     }
 }
@@ -398,6 +494,60 @@
     {
         //cosmetic - lets the user know the tower has been upgraded
         "modifier_upgrade_tackshooter_4"
+        {
+            "Passive"           "0"         
+            "IsPurgable"        "0"
+            "IsBuff"            "1"
+        }               
+    }  
+}
+
+//when poisoned creatures die, explode and transfer their stacks to nearby creatures
+"ability_upgrade_tackshooter_6"
+{
+    "BaseClass"                     "ability_datadriven"
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"    
+    "AbilityTextureName"            "necrolyte_death_pulse"
+
+    "AbilityGoldCost"               "50"
+
+    "precache"
+    {
+        "soundfile" "soundevents/game_sounds_heroes/game_sounds_sandking.vsndevts"
+    }
+
+    "OnSpellStart"
+    {        
+        "ApplyModifier"
+        {
+            "ModifierName"          "modifier_upgrade_tackshooter_6"
+            "Target"                "CASTER"
+        }
+
+        "RunScript"
+        {
+            "ScriptFile"            "scripts/vscripts/addon_game_mode.lua"
+            "Function"              "upgradeTower"
+
+            "AbilityContext"
+            {
+                "nextUpgrade"       ""                
+            }
+        }
+
+        "LevelUpAbility"
+        {
+            "Target"         "CASTER"
+            "AbilityName"    "ability_ring_of_poison"
+        }
+               
+    }
+
+    "Modifiers"
+    {
+        //cosmetic - lets the user know the tower has been upgraded
+        "modifier_upgrade_tackshooter_6"
         {
             "Passive"           "0"         
             "IsPurgable"        "0"

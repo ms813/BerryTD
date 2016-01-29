@@ -47,9 +47,6 @@ function MeleeDefenderResCreep(keys)
 end
 
 function MeleeDefenderAttachParticles(keys)
-
-	print (keys.target:GetUnitName())
-
 	local particle = keys.AbilityContext.particle
 	ParticleManager:CreateParticle(particle, PATTACH_CUSTOMORIGIN_FOLLOW, keys.target)
 end

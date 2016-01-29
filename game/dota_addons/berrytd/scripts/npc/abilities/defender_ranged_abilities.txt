@@ -341,6 +341,7 @@
 
     "precache"
     {
+        "particle"  "particles/units/heroes/hero_warlock/warlock_rain_of_chaos.vpcf"
         "particle"  "particles/units/heroes/hero_lina/lina_spell_light_strike_array_explosion.vpcf"
         "particle"  "particles/units/heroes/hero_techies/techies_bomb_ground_debris.vpcf"
         "particle"  "particles/units/heroes/hero_phoenix/phoenix_fire_spirit_ground.vpcf"
@@ -413,14 +414,15 @@
 
                 "FireEffect"
                 {
-                    "EffectName"        "particles/units/heroes/hero_techies/techies_bomb_ground_debris.vpcf"
+                    "EffectName"        "particles/units/heroes/hero_warlock/warlock_rain_of_chaos.vpcf"
+                    //"EffectName"        "particles/units/heroes/hero_techies/techies_bomb_ground_debris.vpcf"
                     "EffectAttachType"  "follow_origin"
                     "Target"            "TARGET"
                 }
 
                 "FireEffect"
                 {
-                    "EffectName"        "particles/units/heroes/hero_lina/lina_spell_light_strike_array_explosion.vpcf"
+                    "EffectName"        "particles/units/heroes/hero_lina/lina_spell_light_strike_array_explosion.vpcf"                    
                     "EffectAttachType"  "follow_origin"
                     "Target"            "TARGET"
                 }
