@@ -1396,8 +1396,7 @@
 	            "ModifierName"  "modifier_dragonfire_burn"
 	            "Target"        "TARGET"
 	            "Duration"      "%burn_duration"
-	        }
-	        
+	        }      
 	    }
 	
 	    "Modifiers"
@@ -1418,8 +1417,8 @@
 	            {   
 	                "RunScript"
 	                {
-	                    "ScriptFile"    "scripts/vscripts/unit_scripts/towers/ai_dragon.lua"
-	                    "Function"      "BurnTick"
+	                    "ScriptFile"    "unit_scripts/towers/ai_dragon.lua"
+	                    "Function"      "DragonBurnTick"
 	
 	                    "AbilityContext"
 	                    {
@@ -1445,7 +1444,7 @@
 	        "03"
 	        {
 	            "var_type"          "FIELD_INTEGER"
-	            "damage"            "25 60 60"
+	            "damage"            "25 50 50"
 	        }
 	        "04"
 	        {
@@ -1487,6 +1486,263 @@
 	        "particle"              "particles/status_fx/status_effect_burn.vpcf"      
 	    }
 	}
+	
+	//replaces the dragonfire ability when upgrade 3/5 are purchased
+	//level 1 still applies the burn, and applies a debuff that increases creeps bounty on death
+	//level 2 no longer does damage on the burn, but applies a debuff that grants the user money
+	//for each tick the debuff is on
+	"ability_golden_dragonfire"
+	{
+	    "BaseClass"                 "ability_datadriven"
+	    "AbilityTextureName"        "golden_fire_icon"
+	    "AbilityBehavior"           "DOTA_ABILITY_BEHAVIOR_POINT"
+	    "AbilityUnitTargetTeam"     "DOTA_UNIT_TARGET_TEAM_ENEMY"
+	    "AbilityUnitTargetType"     "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+	    "AbilityUnitDamageType"     "DAMAGE_TYPE_MAGICAL"     
+	
+	    "AbilityCastRange"          "1500"
+	    "AbilityCastPoint"          "0"
+	    "AbilityCooldown"           "5"
+	
+	    "AbilityDamage"             "60"
+	    "AbilityManaCost"           "0"
+	
+	    "OnSpellStart"
+	    {      
+	        "FireSound"
+	        {
+	            "EffectName"    "Hero_Lina.DragonSlave"
+	            "Target"        "CASTER"
+	        }        
+	
+	        "LinearProjectile"
+	        {
+	            "Target"            "POINT"
+	            "EffectName"        "particles/golden_dragonfire/lina_spell_dragon_slave.vpcf"
+	            "MoveSpeed"         "%projectile_speed"
+	            "StartPosition"     "attach_origin"
+	            "StartRadius"       "%width_start"
+	            "EndRadius"         "%width_end"
+	            "FixedDistance"     "%cast_range"
+	            "FixedDistance"     "%dragon_slave_distance"
+	            "TargetTeams"       "DOTA_UNIT_TARGET_TEAM_ENEMY"
+	            "TargetTypes"       "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+	            "TargetFlags"       "DOTA_UNIT_TARGET_FLAG_NONE"
+	            "HasFrontalCone"    "1"
+	            "ProvidesVision"    "0"
+	        }
+	
+	        "FireEffect"
+	        {
+	            "EffectName"        "particles/econ/items/undying/undying_manyone/undying_pale_gold_tombstone_ambient.vpcf"       
+	            "EffectAttachType"  "follow_origin"
+	            "Target"            "CASTER"
+	        }
+	    }
+	
+	    "OnProjectileHitUnit"
+	    {
+	        "DeleteOnHit"   "0"     
+	
+	        "Damage"
+	        {
+	            "Type"      "DAMAGE_TYPE_MAGICAL"
+	            "Damage"    "%damage"
+	            "Target"    "TARGET"
+	        }
+	
+	        "ApplyModifier"
+	        {
+	            "ModifierName"  "modifier_dragonfire_burn"
+	            "Target"        "TARGET"
+	            "Duration"      "%burn_duration"
+	        }      
+	
+	        "ApplyModifier"
+	        {
+	            "ModifierName"  "modifier_golden_dragonfire"
+	            "Target"        "TARGET"
+	            "Duration"      "%ondeath_duration"
+	        }        
+	
+	        "ApplyModifier"
+	        {
+	            "ModifierName"  "modifier_gold_burn"
+	            "Target"        "TARGET"
+	            "Duration"      "%gold_burn_duration"
+	        }
+	    }    
+	
+	    "Modifiers"
+	    {
+	        "modifier_dragonfire_burn"
+	        {
+	            "Passive"           "0"
+	            "IsDebuff"          "1"          
+	            
+	            "TextureName"       "Demon_Eater_Shadowraze3_icon"
+	
+	            "ThinkInterval"     "%burn_tick"
+	            "OnIntervalThink"
+	            {   
+	                "RunScript"
+	                {
+	                    "ScriptFile"    "unit_scripts/towers/ai_dragon.lua"
+	                    "Function"      "DragonBurnTick"
+	
+	                    "AbilityContext"
+	                    {
+	                        "currentHpPercentDmg"   "%burn_percent_dmg * %burn_tick / %burn_duration"
+	                    }
+	                }
+	            }
+	        }
+	
+	        "modifier_golden_dragonfire"
+	        {
+	            "Passive"   "0"
+	            "IsDebuff"  "1"
+	
+	            "EffectName"            "particles/golden_dragonfire/debuff/rubick_force_ambient_gold.vpcf"
+	            "EffectAttachType"      "follow_overhead"
+	            "StatusEffectName"      "particles/econ/items/effigies/status_fx_effigies/status_effect_effigy_gold.vpcf"
+	            "StatusEffectPriority"  "10"
+	
+	            "TextureName"       "golden_dragonfire_death_icon"
+	            
+	            "OnCreated"
+	            {
+	                "RunScript"
+	                {
+	                    "ScriptFile"    "unit_scripts/towers/ai_dragon.lua"
+	                    "Function"      "DragonIncreaseBounty"                    
+	                }
+	            }
+	
+	            "OnDestroy"
+	            {
+	                "RunScript"
+	                {
+	                    "ScriptFile"    "unit_scripts/towers/ai_dragon.lua"
+	                    "Function"      "DragonResetBounty"                    
+	                }
+	            }
+	
+	            "OnDeath"
+	            {
+	                "RunScript"
+	                {
+	                    "ScriptFile"    "unit_scripts/towers/ai_dragon.lua"
+	                    "Function"        "DragonApplyCoinsParticle"
+	                }
+	            }
+	        }
+	
+	        "modifier_gold_burn"
+	        {
+	            "Passive"   "0"
+	            "IsDebuff"  "1"
+	            "ThinkInterval"  "%gold_tick"
+	            "OnIntervalThink"
+	            {
+	                "RunScript"
+	                {
+	                    "ScriptFile"    "unit_scripts/towers/ai_dragon.lua"
+	                    "Function"      "DragonGoldBurn"
+	                }
+	            }
+	        }
+	    }
+	
+	    "AbilitySpecial"
+	    {
+	        "01"
+	        {
+	            "var_type"          "FIELD_INTEGER"
+	            "cast_range"        "1200"
+	        }
+	        "02"
+	        {
+	            "var_type"          "FIELD_INTEGER"
+	            "cooldown"          "5"
+	        }
+	        "03"
+	        {
+	            "var_type"          "FIELD_INTEGER"
+	            "damage"            "25"
+	        }
+	        "04"
+	        {
+	            "var_type"          "FIELD_INTEGER"
+	            "projectile_speed"  "1200"
+	        }
+	        "05"
+	        {
+	            "var_type"          "FIELD_INTEGER"
+	            "width_start"       "400"
+	        }
+	        "06"
+	        {
+	            "var_type"          "FIELD_INTEGER"
+	            "width_end"         "400"
+	        }      
+	        //0 at level 2 as the burn damage is removed  
+	        "07"
+	        {
+	            "var_type"          "FIELD_INTEGER"
+	            "burn_duration"     "4 0"
+	        }        
+	        "08"
+	        {
+	            "var_type"          "FIELD_FLOAT"
+	            "burn_percent_dmg"  "0.15 0"
+	        }
+	        "09"
+	        {
+	            "var_type"          "FIELD_FLOAT"
+	            "burn_tick"         "0.1"
+	        }
+	        "10"
+	        {
+	            "var_type"          "FIELD_FLOAT"
+	            "gold_multiplier"   "1.5"
+	        }
+	        "11"
+	        {
+	            "var_type"          "FIELD_FLOAT"
+	            "gold_tick"         "0.5"
+	        }
+	
+	        //0 at level 1 so is not applied
+	        "12"
+	        {
+	            "var_type"          "FIELD_FLOAT"
+	            "gold_burn_duration"    "0 4"
+	        }   
+	        "13"
+	        {
+	            "var_type"          "FIELD_FLOAT"
+	            "gold_per_tick"         "1"
+	        }   
+	        "14"
+	        {
+	            "var_type"          "FIELD_FLOAT"
+	            "ondeath_duration"         "4"
+	        }        
+	    }
+	
+	    "precache"
+	    {
+	        "particle"          "particles/econ/items/effigies/status_fx_effigies/status_effect_effigy_gold.vpcf"
+	        "soundfile"         "soundevents/game_sounds_heroes/game_sounds_lina.vsndevts"
+	        "particle"          "particles/golden_dragonfire/lina_spell_dragon_slave.vpcf"       
+	        "particle"          "particles/golden_dragonfire/debuff/rubick_force_ambient_gold.vpcf" 
+	        "particle"          "particles/units/heroes/hero_phoenix/phoenix_fire_spirit_burn_creep.vpcf"
+	        "particle"          "particles/econ/items/alchemist/alchemist_midas_knuckles/alch_knuckles_lasthit_coins.vpcf"
+	        "particle"          "particles/econ/items/undying/undying_manyone/undying_pale_gold_tombstone_ambient.vpcf"               
+	    }
+	}
+	
 	
 	//increase the damage and travel distance of the projectile and make it wider
 	"ability_upgrade_dragon_1"
@@ -1621,6 +1877,111 @@
 	            "var_type"          "FIELD_INTEGER"
 	            "burn_duration"     "4"
 	        } 
+	    }
+	}
+	
+	//puts a golden debuff on a creep, if it dies while under this effect drop extra gold
+	"ability_upgrade_dragon_3"
+	{
+	    "BaseClass"             "ability_datadriven"
+	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+	    "AbilityType"           "DOTA_ABILITY_TYPE_BASIC"
+	    "AbilityTextureName"    "golden_dragonfire_death_icon"
+	
+	    "AbilityGoldCost"       "50"
+	   
+	    "OnSpellStart"
+	    {
+	        "ApplyModifier"
+	        {
+	            "ModifierName"  "modifier_dragon_upgrade_3"
+	            "Target"        "CASTER"            
+	        }
+	
+	        "RunScript"
+	        {
+	            "ScriptFile"    "scripts/vscripts/addon_game_mode.lua"
+	            "Function"      "upgradeTower"
+	
+	            "AbilityContext"
+	            {
+	                "nextUpgrade"   "ability_upgrade_dragon_5"                
+	            }
+	        }
+	
+	        "RunScript"
+	        {
+	            "ScriptFile"    "unit_scripts/towers/ai_dragon.lua"
+	            "Function"      "DragonActivateGold"         
+	            "AbilityContext"
+	            {
+	                "model"     "models/props_structures/statue_dragon001.vmdl"
+	            }  
+	        }
+	    }
+	
+	    "Modifiers"
+	    {
+	        //cosmetic only - appears on the tower to let players know it has been upgraded
+	        "modifier_dragon_upgrade_3"
+	        {
+	            "Passive"       "0"
+	            "IsHidden"      "0"
+	            "IsDebuff"      "0"             
+	        }
+	    }
+	
+	    "precache"
+	    {
+	        "model" "models/props_structures/statue_dragon001.vmdl"       
+	    }
+	}
+	
+	//replace damage with money persecond
+	"ability_upgrade_dragon_5"
+	{
+	    "BaseClass"             "ability_datadriven"
+	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+	    "AbilityType"           "DOTA_ABILITY_TYPE_BASIC"
+	    "AbilityTextureName"    "golden_fire_icon"
+	
+	    "AbilityGoldCost"       "50"
+	   
+	    "OnSpellStart"
+	    {
+	        "LevelUpAbility"
+	        {
+	            "Target"         "CASTER"
+	            "AbilityName"    "ability_golden_dragonfire"
+	        }
+	
+	        "ApplyModifier"
+	        {
+	            "ModifierName"  "modifier_dragon_upgrade_5"
+	            "Target"        "CASTER"            
+	        }
+	
+	        "RunScript"
+	        {
+	            "ScriptFile"    "scripts/vscripts/addon_game_mode.lua"
+	            "Function"      "upgradeTower"
+	
+	            "AbilityContext"
+	            {
+	                "nextUpgrade"   ""                
+	            }
+	        }  
+	    }
+	
+	    "Modifiers"
+	    {
+	        //cosmetic only - appears on the tower to let players know it has been upgraded
+	        "modifier_dragon_upgrade_5"
+	        {
+	            "Passive"       "0"
+	            "IsHidden"      "0"
+	            "IsDebuff"      "0"                         
+	        }
 	    }
 	}
 	"ability_iceberg_aoe_slow"
@@ -2892,7 +3253,7 @@
 	        "FireEffect"
 	        {
 	            "TargetPoint"           "CASTER"
-	            //"EffectName"            "particles/units/heroes/hero_venomancer/venomancer_poison_nova.vpcf"
+	            "EffectName"            "particles/units/heroes/hero_venomancer/venomancer_poison_nova.vpcf"
 	            "EffectAttachType"      "world_origin"
 	            "ControlPoints"
 	            {
@@ -3055,7 +3416,7 @@
 	        "02"
 	        {
 	            "var_type"          "FIELD_INTEGER"
-	            "radius"            "350"
+	            "radius"            "650"
 	        }
 	        "03"
 	        {
@@ -3080,7 +3441,7 @@
 	        "06"
 	        {
 	            "var_type"         "FIELD_INTEGER"
-	            "death_radius"      "1000"
+	            "death_radius"      "350"
 	        }
 	    }
 	}

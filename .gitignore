@@ -8,9 +8,6 @@ gcfscape185.exe
 steam_appid.txt
 
 /content/*
-!content/dota_addons
-/content/dota_addons/*
-!content/dota_addons/berrytd
 
 /game/*
 !game/dota_addons
@@ -23,7 +20,6 @@ steam_appid.txt
 
 /game/dota_addons/berrytd/panorama/*
 /game/dota_addons/berrytd/materials/*
-/game/dota_addons/berrytd/particles/*
 
 *.vpk
 berrytd.sublime*
