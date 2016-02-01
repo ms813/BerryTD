@@ -12,6 +12,8 @@ function Spawn(entityKeyValues)
 		thisEntity.barracks_type = "melee"		
 	elseif barracks_name == "barracks_ranged" then
 		thisEntity.barracks_type = "ranged"
+	elseif barracks_name == "barracks_magic" then
+		thisEntity.barracks_type = "magic"		
 	end
 
 	local ab_name = "ability_barracks_spawn_"..thisEntity.barracks_type.."_defender"

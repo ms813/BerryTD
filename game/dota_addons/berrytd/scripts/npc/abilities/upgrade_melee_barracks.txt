@@ -313,8 +313,7 @@
             "Target"          "CASTER"            
         }
 
-        //this script adds the ability to the barracks aesthetically
-        //and sorts out the next upgrade ability 
+        //this script sorts out the next upgrade ability 
         "RunScript"
         {
             "ScriptFile"    "scripts/vscripts/addon_game_mode.lua"
@@ -333,8 +332,7 @@
 
             "AbilityContext"
             {
-                "defender_name" "defender_melee_5"           
-
+                "defender_name" "defender_melee_5"
             }
         } 
     }

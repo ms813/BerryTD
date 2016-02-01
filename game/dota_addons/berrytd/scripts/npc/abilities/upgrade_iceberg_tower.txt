@@ -108,6 +108,7 @@
     } 
 }
 
+//increase radius and slow duration
 "ability_upgrade_iceberg_1"
 {
     "BaseClass"                     "ability_datadriven"
@@ -155,6 +156,7 @@
     }
 }
 
+//increase slow amount and reduce cooldown
 "ability_upgrade_iceberg_2"
 {
     "BaseClass"                     "ability_datadriven"

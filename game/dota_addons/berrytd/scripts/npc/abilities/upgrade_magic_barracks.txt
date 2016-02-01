@@ -1,0 +1,60 @@
+"ability_barracks_spawn_magic_defender"
+{
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "BaseClass"             "ability_datadriven"
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"    
+    "AbilityTextureName"    "silencer_curse_of_the_silent"
+    "MaxLevel"              "1"
+
+    // Time     
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityCooldown"       "20.0"
+    "AbilityCastRange"      "300"    
+
+    // Cost
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityManaCost"       "0" 
+    "AbilityGoldCost"       "0"
+ 
+    // Special
+    //-------------------------------------------------------------------------------------------------------------
+
+    "OnSpellStart"
+    {      
+        "RunScript"
+        {
+            "ScriptFile"    "scripts/vscripts/unit_scripts/towers/ai_barracks.lua"
+            "Function"      "SpawnDefender" 
+
+            "AbilityContext"
+            {
+                "defender_name"     "defender_magic_0"
+            }
+        }
+    }
+
+    "AbilitySpecial"
+    {
+        "01"
+        {
+            "var_type"      "FIELD_INTEGER"
+            "damage"        "4"
+        }
+        "02"
+        {
+            "var_type"      "FIELD_INTEGER"
+            "health"        "50"
+        }
+        "03"
+        {
+            "var_type"      "FIELD_INTEGER"
+            "defender_cap"  "3"
+        }   
+        "04"
+        {
+            "var_type"      "FIELD_FLOAT"
+            "max_aggro_dist"        "800"
+        }     
+    }
+}

@@ -137,6 +137,7 @@ function GameMode:goToPage(keys)
 		--page three has unit spawning barracks
 		caster:AddAbility("ability_spawn_melee_barracks")
 		caster:AddAbility("ability_spawn_ranged_barracks")
+		caster:AddAbility("ability_spawn_magic_barracks")
 		
 
 	elseif ability_name == "ability_open_page_four" then

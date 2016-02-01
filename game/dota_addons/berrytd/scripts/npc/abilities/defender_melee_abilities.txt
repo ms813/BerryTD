@@ -134,7 +134,7 @@
         //if the creep dies with this buff on then chance to res as ghost
         "modifier_melee_defender_5_res_chance"
         {
-            "TextureName"   "invoker_ghost_walk"
+            "TextureName"   "death_prophet_exorcism"
             "Passive"   "0"
             "IsHidden"  "0"
             
@@ -189,7 +189,7 @@
 
             "StatusEffectName"      "particles/status_fx/status_effect_ghost.vpcf"        
             "StatusEffectPriority"  "10"            
-            "TextureName"           "undying_tombstone_zombie_deathstrike"  
+            "TextureName"           "death_prophet_exorcism"  
 
             "OnDeath"
             {

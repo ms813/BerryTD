@@ -246,6 +246,59 @@
 	    }
 	}
 	
+	"ability_spawn_magic_barracks"
+	{
+	    // General
+	    //-------------------------------------------------------------------------------------------------------------
+	    "BaseClass"             "ability_datadriven"
+	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+	    "AbilityType"           "DOTA_ABILITY_TYPE_BASIC"
+	    "AbilityTextureName"    "silencer_curse_of_the_silent"    
+	    "MaxLevel"              "1"
+	    
+	
+	    // Time     
+	    //-------------------------------------------------------------------------------------------------------------
+	    "AbilityCooldown"       "1.0"
+	
+	    // Cost
+	    //-------------------------------------------------------------------------------------------------------------
+	    "AbilityManaCost"       "0" 
+	    "AbilityGoldCost"       "200"
+	 
+	    // Special
+	    //-------------------------------------------------------------------------------------------------------------
+	
+	
+	    "OnSpellStart"
+	    {      
+	        "RunScript"
+	        {
+	            "ScriptFile"    "unit_scripts/towers/spawn_tower.lua"
+	            "Function"      "SpawnTower"
+	
+	            "AbilityContext"
+	            {
+	                "tower_name"    "barracks_magic"
+	            }
+	        } 
+	    }
+	
+	    "AbilitySpecial"
+	    {
+	        "01"
+	        {
+	            "var_type"      "FIELD_INTEGER"
+	            "creep_dmg"        "5"
+	        }
+	        "02"
+	        {
+	            "var_type"      "FIELD_FLOAT"
+	            "creep_hp"        "100"
+	        }        
+	    }
+	}
+	
 	"ability_spawn_melee_barracks"
 	{
 	    // General
@@ -519,6 +572,84 @@
 	    //-------------------------------------------------------------------------------------------------------------
 	    "AbilityManaCost"       "0 0 0 0"
 	}
+	"ability_magic_defender_0"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityTextureName"			"ability_magic_defender_0_icon"
+	
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+	
+		"AbilityType" 					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityCastPoint"				"0.5"
+		
+		"AbilityDamage"					"20"
+		"AbilityManaCost"				"0"
+		"AbilityCastRange"				"600"
+		"AbilityCooldown"				"4"
+	
+		"OnSpellStart"
+		{		
+			"LinearProjectile"
+			{
+			    "Target"      	 "TARGET"
+				"EffectName"	 "particles/defender_magic/ability_0.vpcf"
+				"MoveSpeed"		 "%projectile_speed"
+				"StartRadius"	 "%width"
+				"StartPosition"  "attach_attack1"
+				"EndRadius"      "%width"
+				"HasFrontalCone" "0"
+				"FixedDistance"  "%range"
+				"TargetTeams"	 "DOTA_UNIT_TARGET_TEAM_ENEMY"
+				"TargetTypes"	 "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+				"TargetFlags"	 "DOTA_UNIT_TARGET_FLAG_NONE"						
+			    "ProvidesVision" "0"
+			}
+		}
+		
+		"OnProjectileHitUnit"
+		{
+			"DeleteOnHit"	"0"
+			"Damage"
+			{
+				"Target"		"TARGET"
+				"Type"			"DAMAGE_TYPE_MAGICAL"
+				"Damage"		"%dmg"
+			}
+		}
+	
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"projectile_speed"		"900"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"dmg"		"20"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"range"		"600"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"width"		"200"
+			}
+	
+		}
+	
+		"precache"
+		{
+			"particle"  "particles/defender_magic/ability_0.vpcf"
+		}
+	}	
 	//a passive that toggles regen off when taking damage, then 
 	//switches it back on after %timeout
 	"ability_melee_defender_regen"
@@ -655,7 +786,7 @@
 	        //if the creep dies with this buff on then chance to res as ghost
 	        "modifier_melee_defender_5_res_chance"
 	        {
-	            "TextureName"   "invoker_ghost_walk"
+	            "TextureName"   "death_prophet_exorcism"
 	            "Passive"   "0"
 	            "IsHidden"  "0"
 	            
@@ -710,7 +841,7 @@
 	
 	            "StatusEffectName"      "particles/status_fx/status_effect_ghost.vpcf"        
 	            "StatusEffectPriority"  "10"            
-	            "TextureName"           "undying_tombstone_zombie_deathstrike"  
+	            "TextureName"           "death_prophet_exorcism"  
 	
 	            "OnDeath"
 	            {
@@ -2094,6 +2225,7 @@
 	    } 
 	}
 	
+	//increase radius and slow duration
 	"ability_upgrade_iceberg_1"
 	{
 	    "BaseClass"                     "ability_datadriven"
@@ -2141,6 +2273,7 @@
 	    }
 	}
 	
+	//increase slow amount and reduce cooldown
 	"ability_upgrade_iceberg_2"
 	{
 	    "BaseClass"                     "ability_datadriven"
@@ -2186,6 +2319,66 @@
 	            "IsHidden"              "0"
 	            "IsBuff"                "1"                
 	        }
+	    }
+	}
+	"ability_barracks_spawn_magic_defender"
+	{
+	    // General
+	    //-------------------------------------------------------------------------------------------------------------
+	    "BaseClass"             "ability_datadriven"
+	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"    
+	    "AbilityTextureName"    "silencer_curse_of_the_silent"
+	    "MaxLevel"              "1"
+	
+	    // Time     
+	    //-------------------------------------------------------------------------------------------------------------
+	    "AbilityCooldown"       "20.0"
+	    "AbilityCastRange"      "300"    
+	
+	    // Cost
+	    //-------------------------------------------------------------------------------------------------------------
+	    "AbilityManaCost"       "0" 
+	    "AbilityGoldCost"       "0"
+	 
+	    // Special
+	    //-------------------------------------------------------------------------------------------------------------
+	
+	    "OnSpellStart"
+	    {      
+	        "RunScript"
+	        {
+	            "ScriptFile"    "scripts/vscripts/unit_scripts/towers/ai_barracks.lua"
+	            "Function"      "SpawnDefender" 
+	
+	            "AbilityContext"
+	            {
+	                "defender_name"     "defender_magic_0"
+	            }
+	        }
+	    }
+	
+	    "AbilitySpecial"
+	    {
+	        "01"
+	        {
+	            "var_type"      "FIELD_INTEGER"
+	            "damage"        "4"
+	        }
+	        "02"
+	        {
+	            "var_type"      "FIELD_INTEGER"
+	            "health"        "50"
+	        }
+	        "03"
+	        {
+	            "var_type"      "FIELD_INTEGER"
+	            "defender_cap"  "3"
+	        }   
+	        "04"
+	        {
+	            "var_type"      "FIELD_FLOAT"
+	            "max_aggro_dist"        "800"
+	        }     
 	    }
 	}
 	"ability_barracks_spawn_melee_defender"
@@ -2503,8 +2696,7 @@
 	            "Target"          "CASTER"            
 	        }
 	
-	        //this script adds the ability to the barracks aesthetically
-	        //and sorts out the next upgrade ability 
+	        //this script sorts out the next upgrade ability 
 	        "RunScript"
 	        {
 	            "ScriptFile"    "scripts/vscripts/addon_game_mode.lua"
@@ -2523,8 +2715,7 @@
 	
 	            "AbilityContext"
 	            {
-	                "defender_name" "defender_melee_5"           
-	
+	                "defender_name" "defender_melee_5"
 	            }
 	        } 
 	    }

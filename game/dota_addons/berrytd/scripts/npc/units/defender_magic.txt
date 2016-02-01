@@ -1,0 +1,35 @@
+//standard weak magic defender
+"defender_magic_0"
+{                                       
+    "Model"                 "models/creeps/neutral_creeps/n_creep_satyr_b/n_creep_satyr_b.vmdl"
+    "BaseClass"             "npc_dota_creature"
+    "GameSoundsFile"        "soundevents/game_sounds_creeps.vsndevts"
+    "Level"                 "1"
+    "ModelScale"            "0.8"     
+    "UnitLabel"             "defender"   
+
+    "Ability1"              "ability_magic_defender_0"
+
+    "BoundsHullName"        "DOTA_HULL_SIZE_REGULAR"
+
+    "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_GROUND"
+    "MovementSpeed"         "350"
+
+    "WakesNeutrals"         "0"
+
+    "StatusHealth"          "25"
+    "StatusHealthRegen"     "0"
+    "StatusMana"            "0"
+    "StatusManaRegen"       "0"
+    "ArmorPhysical"         "0"
+    "MagicalResistance"     "25"
+
+    "AttackCapabilities"    "DOTA_UNIT_CAP_NO_ATTACK"
+
+    "Creature"
+    {
+        "DisableClumpingBehavior"   "1"
+    } 
+
+    "vscripts"      "unit_scripts/defenders/defender_magic.lua"
+}

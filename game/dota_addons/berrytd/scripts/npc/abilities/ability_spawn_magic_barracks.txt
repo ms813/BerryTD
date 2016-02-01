@@ -1,0 +1,53 @@
+"ability_spawn_magic_barracks"
+{
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "BaseClass"             "ability_datadriven"
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+    "AbilityType"           "DOTA_ABILITY_TYPE_BASIC"
+    "AbilityTextureName"    "silencer_curse_of_the_silent"    
+    "MaxLevel"              "1"
+    
+
+    // Time     
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityCooldown"       "1.0"
+
+    // Cost
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityManaCost"       "0" 
+    "AbilityGoldCost"       "200"
+ 
+    // Special
+    //-------------------------------------------------------------------------------------------------------------
+
+
+    "OnSpellStart"
+    {      
+        "RunScript"
+        {
+            "ScriptFile"    "unit_scripts/towers/spawn_tower.lua"
+            "Function"      "SpawnTower"
+
+            "AbilityContext"
+            {
+                "tower_name"    "barracks_magic"
+            }
+        } 
+    }
+
+    "AbilitySpecial"
+    {
+        "01"
+        {
+            "var_type"      "FIELD_INTEGER"
+            "creep_dmg"        "5"
+        }
+        "02"
+        {
+            "var_type"      "FIELD_FLOAT"
+            "creep_hp"        "100"
+        }        
+    }
+}
+

@@ -1,0 +1,78 @@
+"ability_magic_defender_0"
+{
+	"BaseClass"             		"ability_datadriven"
+	"AbilityTextureName"			"ability_magic_defender_0_icon"
+
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+	"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+	"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+	"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+
+	"AbilityType" 					"DOTA_ABILITY_TYPE_BASIC"
+	"AbilityCastPoint"				"0.5"
+	
+	"AbilityDamage"					"20"
+	"AbilityManaCost"				"0"
+	"AbilityCastRange"				"600"
+	"AbilityCooldown"				"4"
+
+	"OnSpellStart"
+	{		
+		"LinearProjectile"
+		{
+		    "Target"      	 "TARGET"
+			"EffectName"	 "particles/defender_magic/ability_0.vpcf"
+			"MoveSpeed"		 "%projectile_speed"
+			"StartRadius"	 "%width"
+			"StartPosition"  "attach_attack1"
+			"EndRadius"      "%width"
+			"HasFrontalCone" "0"
+			"FixedDistance"  "%range"
+			"TargetTeams"	 "DOTA_UNIT_TARGET_TEAM_ENEMY"
+			"TargetTypes"	 "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+			"TargetFlags"	 "DOTA_UNIT_TARGET_FLAG_NONE"						
+		    "ProvidesVision" "0"
+		}
+	}
+	
+	"OnProjectileHitUnit"
+	{
+		"DeleteOnHit"	"0"
+		"Damage"
+		{
+			"Target"		"TARGET"
+			"Type"			"DAMAGE_TYPE_MAGICAL"
+			"Damage"		"%dmg"
+		}
+	}
+
+	"AbilitySpecial"
+	{
+		"01"
+		{
+			"var_type"				"FIELD_INTEGER"
+			"projectile_speed"		"900"
+		}
+		"02"
+		{
+			"var_type"	"FIELD_INTEGER"
+			"dmg"		"20"
+		}
+		"03"
+		{
+			"var_type"	"FIELD_INTEGER"
+			"range"		"600"
+		}
+		"03"
+		{
+			"var_type"	"FIELD_INTEGER"
+			"width"		"200"
+		}
+
+	}
+
+	"precache"
+	{
+		"particle"  "particles/defender_magic/ability_0.vpcf"
+	}
+}	
