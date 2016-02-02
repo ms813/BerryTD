@@ -595,7 +595,7 @@
 			"LinearProjectile"
 			{
 			    "Target"      	 "TARGET"
-				"EffectName"	 "particles/defender_magic/ability_0.vpcf"
+				"EffectName"	 "particles/defender_magic/ability_0/white.vpcf"
 				"MoveSpeed"		 "%projectile_speed"
 				"StartRadius"	 "%width"
 				"StartPosition"  "attach_attack1"
@@ -647,7 +647,65 @@
 	
 		"precache"
 		{
-			"particle"  "particles/defender_magic/ability_0.vpcf"
+			"particle"  "particles/defender_magic/ability_0/white.vpcf"
+		}
+	}	
+	
+	//shoot 3 bolts in a cone
+	"ability_magic_defender_1"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityTextureName"			"ability_magic_defender_0_icon"
+	
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+	
+		"AbilityType" 					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityCastPoint"				"0.5"
+		
+		"AbilityDamage"					"20"
+		"AbilityManaCost"				"0"
+		"AbilityCastRange"				"600"
+		"AbilityCooldown"				"4"
+	
+		"OnSpellStart"
+		{	
+			"RunScript"
+			{
+				"ScriptFile"	"unit_scripts/defenders/defender_magic.lua"
+				"Function"		"DefenderMagicTrishot"			
+			}		
+		}	
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"speed"		"900"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"dmg"		"20"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"range"		"800"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"width"		"200"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"spread"	"250"
+			}
 		}
 	}	
 	//a passive that toggles regen off when taking damage, then 
@@ -2074,7 +2132,7 @@
 	    "BaseClass"             "ability_datadriven"
 	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 	    "AbilityType"           "DOTA_ABILITY_TYPE_BASIC"
-	    "AbilityTextureName"    "golden_fire_icon"
+	    "AbilityTextureName"    "golden_claws_icon"
 	
 	    "AbilityGoldCost"       "50"
 	   
@@ -2381,6 +2439,56 @@
 	        }     
 	    }
 	}
+	
+	"ability_upgrade_magic_barracks_1"
+	{
+	    "BaseClass"                     "ability_datadriven"
+	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"        
+	    "AbilityTextureName"            "satyr_trickster_purge"
+	
+	    "AbilityGoldCost"       "50"
+	
+	    "OnSpellStart"
+	    {   
+	        "ApplyModifier"
+	        {
+	            "ModifierName"    "modifier_upgrade_magic_barracks_1"
+	            "Target"          "CASTER"            
+	        }
+	
+	        "RunScript"
+	        {
+	            "ScriptFile"    "scripts/vscripts/addon_game_mode.lua"
+	            "Function"      "upgradeTower"
+	
+	
+	            "AbilityContext"
+	            {
+	                "nextUpgrade"   "ability_upgrade_magic_barracks_2"                
+	            }
+	        }        
+	
+	        "RunScript"
+	        {
+	            "ScriptFile"        "unit_scripts/towers/ai_barracks.lua"
+	            "Function"          "Upgrade"
+	
+	            "AbilityContext"
+	            {
+	                "defender_name"   "defender_magic_1"                                
+	            }
+	        } 
+	    }
+	
+	    "Modifiers"
+	    {
+	        "modifier_upgrade_magic_barracks_1"
+	        {
+	            "IsHidden"      "0"
+	            "Passive"       "0"            
+	        }
+	    }
+	}
 	"ability_barracks_spawn_melee_defender"
 	{
 	    // General
@@ -2442,7 +2550,7 @@
 	    }
 	}
 	
-	
+	//this is used for all barracks, not just melee
 	"ability_barracks_set_spawn"
 	{
 	    // General

@@ -59,7 +59,7 @@
     }
 }
 
-
+//this is used for all barracks, not just melee
 "ability_barracks_set_spawn"
 {
     // General

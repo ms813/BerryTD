@@ -603,7 +603,7 @@
     "BaseClass"             "ability_datadriven"
     "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
     "AbilityType"           "DOTA_ABILITY_TYPE_BASIC"
-    "AbilityTextureName"    "golden_fire_icon"
+    "AbilityTextureName"    "golden_claws_icon"
 
     "AbilityGoldCost"       "50"
    
