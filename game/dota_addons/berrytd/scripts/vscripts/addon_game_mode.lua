@@ -72,6 +72,10 @@ function Precache( context )
   PrecacheUnitByNameSync("defender_ranged_4", context)
   PrecacheUnitByNameSync("defender_ranged_5", context)
   PrecacheUnitByNameSync("defender_ranged_6", context) 
+
+  PrecacheUnitByNameSync("defender_magic_0", context)
+  PrecacheUnitByNameSync("defender_magic_1", context)
+  PrecacheItemByNameSync("defender_magic_2", context)
 end
 
 -- Create the game mode when we activate

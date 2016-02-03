@@ -8,6 +8,7 @@
 	"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 	"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 	"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+	"SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
 
 	"AbilityType" 					"DOTA_ABILITY_TYPE_BASIC"
 	"AbilityCastPoint"				"0.3"
@@ -20,14 +21,20 @@
 	"OnSpellStart"
 	{	
 		"TrackingProjectile"
-		{
-			"Target"           	"TARGET"
-			//todo change particle to Venge magic missle
-			"EffectName"		"particles/base_attacks/ranged_tower_bad.vpcf"
-			"Dodgeable"			"1"						
-			"MoveSpeed"        	"%speed"
-			"SourceAttachment"	"DOTA_PROJECTILE_ATTACHMENT_ATTACK_1"
-		}		
+        {
+            "Target"            "TARGET"
+            "EffectName"        "particles/units/heroes/hero_vengeful/vengeful_magic_missle.vpcf"
+            "Dodgeable"         "1"
+            "ProvidesVision"    "0"
+            "MoveSpeed"         "%speed"
+            "SourceAttachment"  "DOTA_PROJECTILE_ATTACHMENT_ATTACK_1"
+        } 	
+
+        "FireSound"
+        {
+            "EffectName"    "Hero_VengefulSpirit.MagicMissile"
+            "Target"        "CASTER"
+        }	
 	}
 	
 	"OnProjectileHitUnit"
@@ -68,7 +75,8 @@
 
 	"precache"
 	{
-		"particle"  "particles/defender_magic/ability_0/white.vpcf"
+		"particle"  "particles/units/heroes/hero_vengeful/vengeful_magic_missle.vpcf"
+		"soundfile"	"soundevents/game_sounds_heroes/game_sounds_vengefulspirit.vsndevts"
 	}
 }	
 
@@ -174,6 +182,11 @@
 
 	"OnSpellStart"
 	{	
+		"FireSound"
+		{
+			"EffectName"	"n_creep_SatyrHellcaller.Shockwave"
+			"Target" 		"TARGET"
+		}
 		"RunScript"
 		{
 			"ScriptFile"	"unit_scripts/defenders/defender_magic.lua"
@@ -208,5 +221,11 @@
 			"var_type"	"FIELD_INTEGER"
 			"spread"	"250"
 		}
+	}
+
+	"precache"
+	{
+		"particle"  "particle_name"
+		"soundfile" "soundevents/game_sounds_creeps.vsndevts"
 	}
 }	

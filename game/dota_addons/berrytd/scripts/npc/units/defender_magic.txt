@@ -1,12 +1,11 @@
 //weak magic defender shoots a tracking projectile at a single target
 "defender_magic_0"
-{   
-    //TODO change model to something else                                    
-    "Model"                 "models/creeps/neutral_creeps/n_creep_satyr_b/n_creep_satyr_b.vmdl"
+{                           
+    "Model"                 "models/courier/donkey_crummy_wizard_2014/donkey_crummy_wizard_2014.vmdl"
     "BaseClass"             "npc_dota_creature"
     "GameSoundsFile"        "soundevents/game_sounds_creeps.vsndevts"
     "Level"                 "1"
-    "ModelScale"            "0.8"     
+    "ModelScale"            "1.0"     
     "UnitLabel"             "defender"   
 
     "Ability1"              "ability_magic_defender_0"
@@ -42,7 +41,7 @@
     "BaseClass"             "npc_dota_creature"
     "GameSoundsFile"        "soundevents/game_sounds_creeps.vsndevts"
     "Level"                 "1"
-    "ModelScale"            "0.8"     
+    "ModelScale"            "1"     
     "UnitLabel"             "defender"   
 
     "Ability1"              "ability_magic_defender_1"
@@ -78,7 +77,7 @@
     "BaseClass"             "npc_dota_creature"
     "GameSoundsFile"        "soundevents/game_sounds_creeps.vsndevts"
     "Level"                 "1"
-    "ModelScale"            "0.8"     
+    "ModelScale"            "1"     
     "UnitLabel"             "defender"   
 
     "Ability1"              "ability_magic_defender_2"
