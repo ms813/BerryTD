@@ -1,4 +1,80 @@
+//tracking projectile that can damage multiple units
 "ability_magic_defender_0"
+{
+	"BaseClass"             		"ability_datadriven"
+	"AbilityTextureName"			"vengefulspirit_magic_missile"
+
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+	"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+	"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+	"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+
+	"AbilityType" 					"DOTA_ABILITY_TYPE_BASIC"
+	"AbilityCastPoint"				"0.3"
+	
+	"AbilityDamage"					"20"
+	"AbilityManaCost"				"0"
+	"AbilityCastRange"				"600"
+	"AbilityCooldown"				"4"
+
+	"OnSpellStart"
+	{	
+		"TrackingProjectile"
+		{
+			"Target"           	"TARGET"
+			//todo change particle to Venge magic missle
+			"EffectName"		"particles/base_attacks/ranged_tower_bad.vpcf"
+			"Dodgeable"			"1"						
+			"MoveSpeed"        	"%speed"
+			"SourceAttachment"	"DOTA_PROJECTILE_ATTACHMENT_ATTACK_1"
+		}		
+	}
+	
+	"OnProjectileHitUnit"
+	{
+		"DeleteOnHit"	"1"
+		"Damage"
+		{
+			"Target"		"TARGET"
+			"Type"			"DAMAGE_TYPE_MAGICAL"
+			"Damage"		"%dmg"
+		}
+	}
+
+	"AbilitySpecial"
+	{
+		"01"
+		{
+			"var_type"				"FIELD_INTEGER"
+			"speed"		"900"
+		}
+		"02"
+		{
+			"var_type"	"FIELD_INTEGER"
+			"dmg"		"20"
+		}
+		"03"
+		{
+			"var_type"	"FIELD_INTEGER"
+			"range"		"600"
+		}
+		"03"
+		{
+			"var_type"	"FIELD_INTEGER"
+			"width"		"200"
+		}
+
+	}
+
+	"precache"
+	{
+		"particle"  "particles/defender_magic/ability_0/white.vpcf"
+	}
+}	
+
+
+//linear projectile that can damage multiple units
+"ability_magic_defender_1"
 {
 	"BaseClass"             		"ability_datadriven"
 	"AbilityTextureName"			"ability_magic_defender_0_icon"
@@ -22,7 +98,7 @@
 		{
 		    "Target"      	 "TARGET"
 			"EffectName"	 "particles/defender_magic/ability_0/white.vpcf"
-			"MoveSpeed"		 "%projectile_speed"
+			"MoveSpeed"		 "%speed"
 			"StartRadius"	 "%width"
 			"StartPosition"  "attach_attack1"
 			"EndRadius"      "%width"
@@ -51,7 +127,7 @@
 		"01"
 		{
 			"var_type"				"FIELD_INTEGER"
-			"projectile_speed"		"900"
+			"speed"		"900"
 		}
 		"02"
 		{
@@ -78,7 +154,7 @@
 }	
 
 //shoot 3 bolts in a cone
-"ability_magic_defender_1"
+"ability_magic_defender_2"
 {
 	"BaseClass"             		"ability_datadriven"
 	"AbilityTextureName"			"ability_magic_defender_0_icon"

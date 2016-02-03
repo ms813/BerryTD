@@ -108,3 +108,54 @@
         }
     }
 }
+
+"ability_upgrade_magic_barracks_2"
+{
+    "BaseClass"                     "ability_datadriven"
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"        
+    "AbilityTextureName"            "ogre_magi_multicast"
+
+    "AbilityGoldCost"       "50"
+
+    "OnSpellStart"
+    {   
+        "ApplyModifier"
+        {
+            "ModifierName"    "modifier_upgrade_magic_barracks_2"
+            "Target"          "CASTER"            
+        }
+
+        "RunScript"
+        {
+            "ScriptFile"    "scripts/vscripts/addon_game_mode.lua"
+            "Function"      "upgradeTower"
+
+
+            "AbilityContext"
+            {
+                "nextUpgrade"   "ability_upgrade_magic_barracks_3"                
+                "splitUpgrade"  "ability_upgrade_magic_barracks_4"
+            }
+        }        
+
+        "RunScript"
+        {
+            "ScriptFile"        "unit_scripts/towers/ai_barracks.lua"
+            "Function"          "Upgrade"
+
+            "AbilityContext"
+            {
+                "defender_name"   "defender_magic_2"                                
+            }
+        } 
+    }
+
+    "Modifiers"
+    {
+        "modifier_upgrade_magic_barracks_2"
+        {
+            "IsHidden"      "0"
+            "Passive"       "0"            
+        }
+    }
+}
