@@ -1,0 +1,60 @@
+//simple unit heal
+"ability_utility_defender_0"
+{
+	"BaseClass"             		"ability_datadriven"
+	"AbilityTextureName"			"forest_troll_high_priest_heal"
+
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+	"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+	"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+	"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+	"SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"	
+
+	"AbilityType" 					"DOTA_ABILITY_TYPE_BASIC"
+	"AbilityCastPoint"				"0.3"	
+
+	"AbilityManaCost"				"0"
+	"AbilityCastRange"				"600"
+	"AbilityCooldown"				"1"
+
+	"OnSpellStart"
+	{
+		"FireEffect"
+		{
+			"EffectName"        "particles/neutral_fx/troll_heal.vpcf"
+			"EffectAttachType"  "follow_origin"
+			"Target"            "TARGET"
+		}
+        "FireSound"
+        {
+            "EffectName"    "n_creep_ForestTrollHighPriest.Heal"
+            "Target"        "CASTER"
+        }	
+
+        "Heal"
+        {
+        	"Target"        "TARGET"
+        	"HealAmount"	"%heal"
+        }
+	}	
+	
+	"AbilitySpecial"
+	{		
+		"01"
+		{
+			"var_type"	"FIELD_INTEGER"
+			"range"		"600"
+		}
+		"02"
+		{
+			"var_type"	"FIELD_INTEGER"
+			"heal"		"10"
+		}
+	}
+
+	"precache"
+	{
+		"particle"  "particles/neutral_fx/troll_heal.vpcf"
+		"soundfile"	"soundevents/game_sounds_creeps.vsndevts"
+	}
+}

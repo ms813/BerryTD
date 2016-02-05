@@ -40,42 +40,17 @@ function Precache( context )
   PrecacheUnitByNameSync("npc_dota_hero_ancient_apparition", context)
   PrecacheUnitByNameSync("npc_dota_hero_enigma", context)
 
+  --Precache towers
+  for i, tower in pairs(GameMode.TowerList) do    
+    PrecacheUnitByNameSync(tower, context)
+  end
 
-
-  --Precaching towers
-  PrecacheUnitByNameSync("tower_sniper", context)
-  --PrecacheResource("particle", "particles/units/heroes/hero_sniper/sniper_base_attack.vpcf", context)
-
-  PrecacheUnitByNameSync("tower_dragon", context)
-  --PrecacheResource("particle", "particles/units/heroes/hero_jakiro/jakiro_base_attack_fire.vpcf", context)
-
-  PrecacheUnitByNameSync("tower_iceberg", context)
-
-  PrecacheUnitByNameSync("tower_tackshooter", context) 
-
-  --Precaching barracks
-  PrecacheUnitByNameSync("barracks_melee", context)
-
-  --Precaching defenders
-  PrecacheUnitByNameSync("defender_melee_0", context)
-  PrecacheUnitByNameSync("defender_melee_1", context)
-  PrecacheUnitByNameSync("defender_melee_2", context)
-  PrecacheUnitByNameSync("defender_melee_3", context)
-  PrecacheUnitByNameSync("defender_melee_4", context)
-  PrecacheUnitByNameSync("defender_melee_5", context)
-  PrecacheUnitByNameSync("defender_melee_6", context)
-  
-  PrecacheUnitByNameSync("defender_ranged_0", context)
-  PrecacheUnitByNameSync("defender_ranged_1", context)
-  PrecacheUnitByNameSync("defender_ranged_2", context)
-  PrecacheUnitByNameSync("defender_ranged_3", context)
-  PrecacheUnitByNameSync("defender_ranged_4", context)
-  PrecacheUnitByNameSync("defender_ranged_5", context)
-  PrecacheUnitByNameSync("defender_ranged_6", context) 
-
-  PrecacheUnitByNameSync("defender_magic_0", context)
-  PrecacheUnitByNameSync("defender_magic_1", context)
-  PrecacheItemByNameSync("defender_magic_2", context)
+  --Precache defenders
+  for i, defender in pairs(GameMode.DefenderList) do
+    for j=0,6 do  
+      PrecacheUnitByNameSync(defender..j, context)
+    end
+  end
 end
 
 -- Create the game mode when we activate
@@ -83,3 +58,21 @@ function Activate()
   GameRules.GameMode = GameMode()
   GameRules.GameMode:InitGameMode()
 end
+
+GameMode.TowerList = {
+  "tower_sniper",
+  "tower_tackshooter",
+  "tower_dragon",
+  "barracks_melee",
+  "barracks_magic",
+  "barracks_ranged",
+  "barracks_utility",
+  "tower_iceberg"
+}
+
+GameMode.DefenderList = {
+  "defender_melee_" ,
+  "defender_ranged_",
+  "defender_magic_",
+  "defender_utility_"
+}

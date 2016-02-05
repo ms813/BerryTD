@@ -5,6 +5,12 @@ function Spawn(keys)
 end
 
 function DefenderMagicThink(defender)
+
+	--if caster is dead stop the thinker
+	if defender:IsNull() or not defender:IsAlive() then
+		return nil
+	end
+
 	local main_ability = defender:GetAbilityByIndex(0)
 	if main_ability:IsCooldownReady() then
 		local range = main_ability:GetLevelSpecialValueFor("range", main_ability:GetLevel())

@@ -294,7 +294,7 @@
 	        "02"
 	        {
 	            "var_type"      "FIELD_FLOAT"
-	            "creep_hp"        "100"
+	            "creep_hp"        "25"
 	        }        
 	    }
 	}
@@ -513,6 +513,45 @@
 	            "var_type"          "FIELD_FLOAT"
 	            "shot_count"        "8"
 	        }
+	    }
+	}
+	
+	"ability_spawn_utility_barracks"
+	{
+	    // General
+	    //-------------------------------------------------------------------------------------------------------------
+	    "BaseClass"             "ability_datadriven"
+	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+	    "AbilityType"           "DOTA_ABILITY_TYPE_BASIC"
+	    "AbilityTextureName"    "witch_doctor_voodoo_restoration"    
+	    "MaxLevel"              "1"
+	    
+	
+	    // Time     
+	    //-------------------------------------------------------------------------------------------------------------
+	    "AbilityCooldown"       "1.0"
+	
+	    // Cost
+	    //-------------------------------------------------------------------------------------------------------------
+	    "AbilityManaCost"       "0" 
+	    "AbilityGoldCost"       "200"
+	 
+	    // Special
+	    //-------------------------------------------------------------------------------------------------------------
+	
+	
+	    "OnSpellStart"
+	    {      
+	        "RunScript"
+	        {
+	            "ScriptFile"    "unit_scripts/towers/spawn_tower.lua"
+	            "Function"      "SpawnTower"
+	
+	            "AbilityContext"
+	            {
+	                "tower_name"    "barracks_utility"
+	            }
+	        } 
 	    }
 	}
 	
@@ -1499,6 +1538,66 @@
 	            }         
 	        }
 	    }
+	}
+	//simple unit heal
+	"ability_utility_defender_0"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityTextureName"			"forest_troll_high_priest_heal"
+	
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"	
+	
+		"AbilityType" 					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityCastPoint"				"0.3"	
+	
+		"AbilityManaCost"				"0"
+		"AbilityCastRange"				"600"
+		"AbilityCooldown"				"1"
+	
+		"OnSpellStart"
+		{
+			"FireEffect"
+			{
+				"EffectName"        "particles/neutral_fx/troll_heal.vpcf"
+				"EffectAttachType"  "follow_origin"
+				"Target"            "TARGET"
+			}
+	        "FireSound"
+	        {
+	            "EffectName"    "n_creep_ForestTrollHighPriest.Heal"
+	            "Target"        "CASTER"
+	        }	
+	
+	        "Heal"
+	        {
+	        	"Target"        "TARGET"
+	        	"HealAmount"	"%heal"
+	        }
+		}	
+		
+		"AbilitySpecial"
+		{		
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"range"		"600"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"heal"		"10"
+			}
+		}
+	
+		"precache"
+		{
+			"particle"  "particles/neutral_fx/troll_heal.vpcf"
+			"soundfile"	"soundevents/game_sounds_creeps.vsndevts"
+		}
 	}
 	//-------------------
 	// Dummy stuff
@@ -4177,5 +4276,111 @@
 	            "IsBuff"            "1"
 	        }               
 	    }  
+	}
+	"ability_barracks_spawn_utility_defender"
+	{
+	    // General
+	    //-------------------------------------------------------------------------------------------------------------
+	    "BaseClass"             "ability_datadriven"
+	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"    
+	    "AbilityTextureName"    "forest_troll_high_priest_heal"
+	    "MaxLevel"              "1"
+	
+	    // Time     
+	    //-------------------------------------------------------------------------------------------------------------
+	    "AbilityCooldown"       "20.0"
+	    "AbilityCastRange"      "300"    
+	
+	    // Cost
+	    //-------------------------------------------------------------------------------------------------------------
+	    "AbilityManaCost"       "0" 
+	    "AbilityGoldCost"       "0"
+	 
+	    // Special
+	    //-------------------------------------------------------------------------------------------------------------
+	
+	    "OnSpellStart"
+	    {      
+	        "RunScript"
+	        {
+	            "ScriptFile"    "scripts/vscripts/unit_scripts/towers/ai_barracks.lua"
+	            "Function"      "SpawnDefender" 
+	
+	            "AbilityContext"
+	            {
+	                "defender_name"     "defender_utility_0"
+	            }
+	        }
+	    }
+	
+	    "AbilitySpecial"
+	    {        
+	        "01"
+	        {
+	            "var_type"      "FIELD_INTEGER"
+	            "health"        "25"
+	        }
+	        "02"
+	        {
+	            "var_type"      "FIELD_INTEGER"
+	            "defender_cap"  "3"
+	        }   
+	        "03"
+	        {
+	            "var_type"      "FIELD_FLOAT"
+	            "max_aggro_dist"        "800"
+	        }     
+	    }
+	}
+	
+	
+	"ability_upgrade_utility_barracks_1"
+	{
+	    "BaseClass"                     "ability_datadriven"
+	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"        
+	    "AbilityTextureName"            "satyr_trickster_purge"
+	
+	    "AbilityGoldCost"       "50"
+	
+	    "OnSpellStart"
+	    {   
+	        "ApplyModifier"
+	        {
+	            "ModifierName"    "modifier_upgrade_utility_barracks_1"
+	            "Target"          "CASTER"            
+	        }
+	
+	        "RunScript"
+	        {
+	            "ScriptFile"    "scripts/vscripts/addon_game_mode.lua"
+	            "Function"      "upgradeTower"
+	
+	
+	            "AbilityContext"
+	            {
+	                "nextUpgrade"   "ability_upgrade_utility_barracks_2"                
+	            }
+	        }        
+	
+	        "RunScript"
+	        {
+	            "ScriptFile"        "unit_scripts/towers/ai_barracks.lua"
+	            "Function"          "Upgrade"
+	
+	            "AbilityContext"
+	            {
+	                "defender_name"   "defender_utility_1"                                
+	            }
+	        } 
+	    }
+	
+	    "Modifiers"
+	    {
+	        "modifier_upgrade_magic_barracks_1"
+	        {
+	            "IsHidden"      "0"
+	            "Passive"       "0"            
+	        }
+	    }
 	}
 }

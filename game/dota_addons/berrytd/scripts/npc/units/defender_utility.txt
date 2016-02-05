@@ -1,0 +1,71 @@
+//simple defender with a single target heal
+"defender_utility_0"
+{                           
+    "Model"                 "models/creeps/neutral_creeps/n_creep_forest_trolls/n_creep_forest_troll_high_priest.vmdl"
+    "BaseClass"             "npc_dota_creature"
+    "GameSoundsFile"        "soundevents/game_sounds_creeps.vsndevts"
+    "Level"                 "1"
+    "ModelScale"            "1.0"     
+    "UnitLabel"             "defender"   
+    
+    "Ability1"              "ability_utility_defender_0"
+
+    "BoundsHullName"        "DOTA_HULL_SIZE_REGULAR"
+
+    "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_GROUND"
+    "MovementSpeed"         "350"
+
+    "WakesNeutrals"         "0"
+
+    "StatusHealth"          "25"
+    "StatusHealthRegen"     "0"
+    "StatusMana"            "0"
+    "StatusManaRegen"       "0"
+    "ArmorPhysical"         "0"
+    "MagicalResistance"     "25"
+
+    "AttackCapabilities"    "DOTA_UNIT_CAP_NO_ATTACK"
+
+    "Creature"
+    {
+        "DisableClumpingBehavior"   "1"
+    } 
+
+    "vscripts"      "unit_scripts/defenders/defender_utility.lua"
+}
+
+
+// "defender_utility_1"
+// {                           
+//     "Model"                 "models/creeps/neutral_creeps/n_creep_forest_trolls/n_creep_forest_troll_high_priest.vmdl"
+//     "BaseClass"             "npc_dota_creature"
+//     "GameSoundsFile"        "soundevents/game_sounds_creeps.vsndevts"
+//     "Level"                 "1"
+//     "ModelScale"            "1.0"     
+//     "UnitLabel"             "defender"   
+
+//     "Ability1"              "ability_utility_defender_1"
+
+//     "BoundsHullName"        "DOTA_HULL_SIZE_REGULAR"
+
+//     "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_GROUND"
+//     "MovementSpeed"         "350"
+
+//     "WakesNeutrals"         "0"
+
+//     "StatusHealth"          "25"
+//     "StatusHealthRegen"     "0"
+//     "StatusMana"            "0"
+//     "StatusManaRegen"       "0"
+//     "ArmorPhysical"         "0"
+//     "MagicalResistance"     "25"
+
+//     "AttackCapabilities"    "DOTA_UNIT_CAP_NO_ATTACK"
+
+//     "Creature"
+//     {
+//         "DisableClumpingBehavior"   "1"
+//     } 
+    
+//     "vscripts"      "unit_scripts/defenders/defender_utility.lua"
+// }

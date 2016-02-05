@@ -1,11 +1,11 @@
-"ability_spawn_magic_barracks"
+"ability_spawn_utility_barracks"
 {
     // General
     //-------------------------------------------------------------------------------------------------------------
     "BaseClass"             "ability_datadriven"
     "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
     "AbilityType"           "DOTA_ABILITY_TYPE_BASIC"
-    "AbilityTextureName"    "silencer_curse_of_the_silent"    
+    "AbilityTextureName"    "witch_doctor_voodoo_restoration"    
     "MaxLevel"              "1"
     
 
@@ -31,23 +31,9 @@
 
             "AbilityContext"
             {
-                "tower_name"    "barracks_magic"
+                "tower_name"    "barracks_utility"
             }
         } 
-    }
-
-    "AbilitySpecial"
-    {
-        "01"
-        {
-            "var_type"      "FIELD_INTEGER"
-            "creep_dmg"        "5"
-        }
-        "02"
-        {
-            "var_type"      "FIELD_FLOAT"
-            "creep_hp"        "25"
-        }        
     }
 }
 

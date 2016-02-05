@@ -7,26 +7,19 @@ function Spawn(entityKeyValues)
 	--pick a random spawn location when this racks is placed
 	thisEntity.spawn_pos = thisEntity:GetAbsOrigin() + RandomVector(1)*500
 
-	local barracks_name = thisEntity:GetUnitName()	
-	if barracks_name == "barracks_melee" then
-		thisEntity.barracks_type = "melee"		
-	elseif barracks_name == "barracks_ranged" then
-		thisEntity.barracks_type = "ranged"
-	elseif barracks_name == "barracks_magic" then
-		thisEntity.barracks_type = "magic"		
-	end
+	--determine the type of barracks by getting a substring from the unit name
+	--"barracks_melee" -> "melee"
+	thisEntity.barracks_type = string.sub(thisEntity:GetUnitName(),10)
 
 	local ab_name = "ability_barracks_spawn_"..thisEntity.barracks_type.."_defender"
 	thisEntity.spawn_ability = thisEntity:FindAbilityByName(ab_name)
 	thisEntity.defender_name = "defender_"..thisEntity.barracks_type.."_0"
 
-	--grab the spawn ability and cache the defender cap
-	local ability_name = "ability_barracks_spawn_"..thisEntity.barracks_type.."_defender"
-	local spawn_ability = thisEntity:FindAbilityByName(ability_name)
-	thisEntity.defender_cap = spawn_ability:GetLevelSpecialValueFor("defender_cap", 1)
+	--cache the defender cap	
+	thisEntity.defender_cap = thisEntity.spawn_ability:GetLevelSpecialValueFor("defender_cap", 1)
 
 	--grab the max aggro distance from the ability KV
-	thisEntity.max_aggro_dist = spawn_ability:GetLevelSpecialValueFor("max_aggro_dist", 1)	
+	thisEntity.max_aggro_dist = thisEntity.spawn_ability:GetLevelSpecialValueFor("max_aggro_dist", 1)	
 
 	local spawn_start_delay = 5
 	Timers:CreateTimer(spawn_start_delay, function()
@@ -90,15 +83,16 @@ function BarracksThink(tower)
 			--if defender has no target, look around for one
 			if defender.aggro_target == nil then
 
-				local creeps = FindUnitsInRadius(DOTA_TEAM_BADGUYS,
-										defender:GetAbsOrigin(),
-										nil,
-										defender:GetAcquisitionRange(),
-									    DOTA_UNIT_TARGET_TEAM_FRIENDLY,
-									    DOTA_UNIT_TARGET_ALL,
-									    DOTA_UNIT_TARGET_FLAG_NONE,
-									    FIND_CLOSEST,
-										false)
+				local creeps = FindUnitsInRadius(
+					DOTA_TEAM_BADGUYS,
+					defender:GetAbsOrigin(),
+					nil,
+					defender:GetAcquisitionRange(),
+				    DOTA_UNIT_TARGET_TEAM_FRIENDLY,
+				    DOTA_UNIT_TARGET_ALL,
+				    DOTA_UNIT_TARGET_FLAG_NONE,
+				    FIND_CLOSEST,
+					false)
 
 				for i, creep in pairs(creeps) do
 					

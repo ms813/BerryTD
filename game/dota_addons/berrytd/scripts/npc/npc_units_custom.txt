@@ -182,6 +182,57 @@
 	
 	    "AttackCapabilities"    "DOTA_UNIT_CAP_NO_ATTACK"
 	}
+	"barracks_utility"
+	{
+	    "BaseClass"             "npc_dota_creature"
+	    "Model"                 "models/props_structures/cathedral001.vmdl"
+	    "ModelScale"            "0.6"  
+	
+	    //this is used as a hook in events.lua OnEntityKilled()
+	    //to maintain the barracks spawn cap
+	    "UnitLabel"             "barracks"
+	
+	    "ConsideredHero"        "1"
+	
+	    "Level"                 "1"
+	
+	    "HasInventory"          "1"    
+	    "AutoAttacksByDefault"  "0"
+	    "SelectOnSpawn"         "0"
+	    "WakesNeutrals"         "0"
+	
+	    //Abilities  
+	    "AbilityLayout"         "6"
+	    "Ability1"              "ability_sell_tower"
+	    "Ability2"              "ability_barracks_spawn_utility_defender"  
+	    "Ability3"              "ability_barracks_set_spawn"
+	    "Ability4"              "ability_upgrade_utility_barracks_1"   
+	    "Ability7"              "tower_immunity"
+	    "Ability8"              "ability_cant_turn"
+	
+	    "AttackCapabilities"    "DOTA_UNIT_CAP_NO_ATTACK"  
+	
+	    "BoundsHullName"        "DOTA_HULL_SIZE_HERO"
+	
+	    //this cannot be _NONE as point target spells require the unit to be able to turn
+	    //See tower_immunity for modifier used to root towers
+	    "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_GROUND"
+	    "MovementSpeed"         "0"
+	
+	    "StatusHealth"          "1000" 
+	
+	    //this is a dirty hack - set this equal to the sell price of the tower
+	    "StatusManaRegen"       "100" 
+	
+	    //I tried using these as hooks to get the sell gold but they arent picked up by ability:GetGoldBountyMax()
+	    "BountyGoldMax"         "100"
+	    "BountyGoldMin"         "100"
+	
+	    "VisionDaytimeRange"    "1000"       
+	    "VisionNighttimeRange"  "750"  
+	
+	    "vscripts"              "unit_scripts/towers/ai_barracks.lua"
+	}
 	"creep_ancestralspirit"
 	   {                                       
 	    "Model"                 "models/heroes/elder_titan/ancestral_spirit.vmdl"
@@ -290,13 +341,13 @@
 	    "StatusManaRegen"       "0.0"
 	    "ArmorPhysical"         "5"
 	
-	    "AttackCapabilities"    "DOTA_UNIT_CAP_NO_ATTACK"    
-	
+	    //"AttackCapabilities"    "DOTA_UNIT_CAP_NO_ATTACK"    
+	    "AttackCapabilities"    "DOTA_UNIT_CAP_MELEE_ATTACK"
+	    "AttackRange"           "125"
 	    "Creature"
 	    {
 	        "DisableClumpingBehavior"   "1"
-	    }
-	 
+	    } 
 	}
 	"creep_constructradiant"
 	   {                                       
@@ -1240,6 +1291,77 @@
 	    {
 	        "DisableClumpingBehavior"   "1"
 	    } 
+	}
+	//simple defender with a heal
+	"defender_utility_0"
+	{                           
+	    "Model"                 "models/creeps/neutral_creeps/n_creep_forest_trolls/n_creep_forest_troll_high_priest.vmdl"
+	    "BaseClass"             "npc_dota_creature"
+	    "GameSoundsFile"        "soundevents/game_sounds_creeps.vsndevts"
+	    "Level"                 "1"
+	    "ModelScale"            "1.0"     
+	    "UnitLabel"             "defender"   
+	    
+	    "Ability1"              "ability_utility_defender_0"
+	
+	    "BoundsHullName"        "DOTA_HULL_SIZE_REGULAR"
+	
+	    "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_GROUND"
+	    "MovementSpeed"         "350"
+	
+	    "WakesNeutrals"         "0"
+	
+	    "StatusHealth"          "25"
+	    "StatusHealthRegen"     "0"
+	    "StatusMana"            "0"
+	    "StatusManaRegen"       "0"
+	    "ArmorPhysical"         "0"
+	    "MagicalResistance"     "25"
+	
+	    "AttackCapabilities"    "DOTA_UNIT_CAP_NO_ATTACK"
+	
+	    "Creature"
+	    {
+	        "DisableClumpingBehavior"   "1"
+	    } 
+	
+	    "vscripts"      "unit_scripts/defenders/defender_utility.lua"
+	}
+	
+	
+	"defender_utility_1"
+	{                           
+	    "Model"                 "models/creeps/neutral_creeps/n_creep_forest_trolls/n_creep_forest_troll_high_priest.vmdl"
+	    "BaseClass"             "npc_dota_creature"
+	    "GameSoundsFile"        "soundevents/game_sounds_creeps.vsndevts"
+	    "Level"                 "1"
+	    "ModelScale"            "1.0"     
+	    "UnitLabel"             "defender"   
+	
+	    "Ability1"              "ability_utility_defender_1"
+	
+	    "BoundsHullName"        "DOTA_HULL_SIZE_REGULAR"
+	
+	    "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_GROUND"
+	    "MovementSpeed"         "350"
+	
+	    "WakesNeutrals"         "0"
+	
+	    "StatusHealth"          "25"
+	    "StatusHealthRegen"     "0"
+	    "StatusMana"            "0"
+	    "StatusManaRegen"       "0"
+	    "ArmorPhysical"         "0"
+	    "MagicalResistance"     "25"
+	
+	    "AttackCapabilities"    "DOTA_UNIT_CAP_NO_ATTACK"
+	
+	    "Creature"
+	    {
+	        "DisableClumpingBehavior"   "1"
+	    } 
+	    
+	    "vscripts"      "unit_scripts/defenders/defender_utility.lua"
 	}
 	"npc_dummy_unit"
 	      {
