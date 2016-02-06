@@ -2,7 +2,7 @@ function Spawn(entityKeyValues)
 
 	--initiate an empty table to track the defenders
 	thisEntity.defenders = {}
-	thisEntity.upgrades = {}
+	thisEntity.upgrade_level = 0	
 		
 	--pick a random spawn location when this racks is placed
 	thisEntity.spawn_pos = thisEntity:GetAbsOrigin() + RandomVector(1)*500
@@ -117,8 +117,6 @@ function AttackOrder(attacker, target)
 		OrderType = DOTA_UNIT_ORDER_ATTACK_TARGET,
 		TargetIndex = target:entindex()
 	})
-
-
 end
 
 function SetDefenderSpawn(keys)
@@ -173,6 +171,9 @@ function SpawnDefender(keys)
 
 		--make our defender phased
 		defender:AddNewModifier(defender, nil, "modifier_phased", {})
+
+		--assign an upgrade level to this defender (used in spell targeting)
+		defender.upgrade_level = rax.upgrade_level
 		
 		--finally add this defender to this racks' table
 		table.insert(rax.defenders, defender)
@@ -181,6 +182,9 @@ end
 
 function Upgrade(keys)	
 	keys.caster.defender_name = keys.AbilityContext.defender_name
+	
+
+	keys.caster.upgrade_level = keys.caster.upgrade_level + 1 	
 end
 
 --[[

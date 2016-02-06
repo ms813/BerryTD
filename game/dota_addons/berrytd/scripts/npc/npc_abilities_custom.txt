@@ -1539,7 +1539,7 @@
 	        }
 	    }
 	}
-	//simple unit heal
+	//single target heal
 	"ability_utility_defender_0"
 	{
 		"BaseClass"             		"ability_datadriven"
@@ -1549,14 +1549,14 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
-		"SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"	
 	
 		"AbilityType" 					"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityCastPoint"				"0.3"	
+		"AnimationIgnoresModelScale"    "0"
 	
 		"AbilityManaCost"				"0"
 		"AbilityCastRange"				"600"
-		"AbilityCooldown"				"1"
+		"AbilityCooldown"				"3"
 	
 		"OnSpellStart"
 		{
@@ -1589,7 +1589,7 @@
 			"02"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"heal"		"10"
+				"heal"		"25"
 			}
 		}
 	
@@ -1597,6 +1597,232 @@
 		{
 			"particle"  "particles/neutral_fx/troll_heal.vpcf"
 			"soundfile"	"soundevents/game_sounds_creeps.vsndevts"
+		}
+	}
+	
+	//frost armour buff
+	"ability_utility_defender_1"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityTextureName"			"lich_frost_armor"
+	
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+	
+		"AbilityType" 					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityCastPoint"				"0.3"	
+		"AnimationIgnoresModelScale"    "0"
+	
+		"AbilityManaCost"				"0"
+		"AbilityCastRange"				"600"
+		"AbilityCooldown"				"5"
+	
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"ModifierName"	"modifier_utility_defender_frost_armour"
+				"Target" 		"TARGET"
+				"Duration"		"%armour_duration"
+			}
+	        "FireSound"
+	        {
+	            "EffectName"    "sounds/weapons/hero/lich/frost_armor.vsnd"
+	            "Target"        "CASTER"
+	        }	
+		}	
+	
+		"Modifiers"
+		{
+			"modifier_utility_defender_frost_armour"
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsBuff"			"1"
+				"IsPurgable"		"1"
+		
+				"EffectName"		"particles/units/heroes/hero_lich/lich_frost_armor.vpcf"
+				"EffectAttachType"	"follow_overhead"
+		
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "%bonus_armour"			    
+				}
+	
+				"OnTakeDamage"
+				// "%attack_damage" is set to the damage value after mitigation
+				{
+					"ApplyModifier"
+					{
+						"ModifierName"	"modifier_utility_defender_frost_armour_slow"
+						"Target" 		"ATTACKER"
+						"Duration"		"%slow_duration"
+					}
+				}
+			}
+	
+			"modifier_utility_defender_frost_armour_slow"
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsDebuff"			"1"
+				"IsPurgable"		"1"
+	
+				"StatusEffectName" 		"particles/status_fx/status_effect_frost_armor.vpcf" 	   
+				"StatusEffectPriority"  "10"
+			
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "%attack_speed_reduction"
+				    "MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT" "%movespeed_reduction" 
+				}
+	
+			}
+		}
+		
+		"AbilitySpecial"
+		{		
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"range"		"600"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"bonus_armour"		"10"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"armour_duration"		"20"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"slow_duration"		"5"
+			}
+			"05"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"attack_speed_reduction"		"-30"
+			}
+			"06"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"movespeed_reduction"		"-100"	
+			}
+		}
+	
+		"precache"
+		{
+			"particle"  "particles/status_fx/status_effect_frost_armor.vpcf"
+			"particle"	"particles/units/heroes/hero_lich/lich_frost_armor.vpcf"
+			"soundfile"	"soundevents/game_sounds_creeps.vsndevts"
+		}
+	}
+	
+	//provides attack speed, cooldown reduction and outgoing damage increase
+	"ability_utility_defender_2"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityTextureName"			"invoker_alacrity"
+	
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+	
+		"AbilityType" 					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityCastPoint"				"0.3"	
+		"AnimationIgnoresModelScale"    "0"
+	
+		"AbilityManaCost"				"0"
+		"AbilityCastRange"				"600"
+		"AbilityCooldown"				"10"
+	
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"ModifierName"	"modifier_utility_defender_alacrity"
+				"Target" 		"TARGET"
+				"Duration"		"%duration"
+			}
+	        "FireSound"
+	        {
+	            "EffectName"    "Hero_Invoker.Alacrity"
+	            "Target"        "CASTER"
+	        }	
+		}	
+	
+		"Modifiers"
+		{
+			"modifier_utility_defender_alacrity"
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsBuff"			"1"
+				"IsPurgable"		"1"
+		
+				"EffectName"			"particles/units/heroes/hero_invoker/invoker_alacrity_buff.vpcf"
+				"EffectAttachType"		"follow_overhead"
+				"StatusEffectName" 		"particles/status_fx/status_effect_alacrity.vpcf" 	   
+				"StatusEffectPriority"  "10"
+	
+				"AttachEffect"
+				{
+					"EffectName"        "particles/units/heroes/hero_invoker/invoker_alacrity.vpcf"
+					"EffectAttachType"  "follow_origin"
+					"Target"            "TARGET"
+				}
+		
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "%bonus_attack_speed"	
+					"MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE" "%cooldown_reduction" 
+				    "MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE"	"%dmg_increase"		    	
+				}		
+			}
+		}
+		
+		"AbilitySpecial"
+		{		
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"range"		"600"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"attack_speed_reduction"		"50"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"cooldown_reduction"		"33"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"dmg_increase"		"25"
+			}
+			"05"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"duration"		"25"
+			}
+		}
+	
+		"precache"
+		{
+			"particle"  "particles/units/heroes/hero_invoker/invoker_alacrity_buff.vpcf"
+			"particle"	"particles/units/heroes/hero_invoker/invoker_alacrity.vpcf"		
+			"particle"  "particles/status_fx/status_effect_alacrity.vpcf"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_invoker.vsndevts"
 		}
 	}
 	//-------------------
@@ -4338,7 +4564,7 @@
 	{
 	    "BaseClass"                     "ability_datadriven"
 	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"        
-	    "AbilityTextureName"            "satyr_trickster_purge"
+	    "AbilityTextureName"            "lich_frost_armor"
 	
 	    "AbilityGoldCost"       "50"
 	
@@ -4377,6 +4603,58 @@
 	    "Modifiers"
 	    {
 	        "modifier_upgrade_magic_barracks_1"
+	        {
+	            "IsHidden"      "0"
+	            "Passive"       "0"            
+	        }
+	    }
+	}
+	
+	
+	"ability_upgrade_utility_barracks_2"
+	{
+	    "BaseClass"                     "ability_datadriven"
+	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"        
+	    "AbilityTextureName"            "satyr_trickster_purge"
+	
+	    "AbilityGoldCost"       "50"
+	
+	    "OnSpellStart"
+	    {   
+	        "ApplyModifier"
+	        {
+	            "ModifierName"    "modifier_upgrade_utility_barracks_2"
+	            "Target"          "CASTER"            
+	        }
+	
+	        "RunScript"
+	        {
+	            "ScriptFile"    "scripts/vscripts/addon_game_mode.lua"
+	            "Function"      "upgradeTower"
+	
+	
+	            "AbilityContext"
+	            {
+	                "nextUpgrade"   "ability_upgrade_utility_barracks_3"                
+	                "splitUpgrade"  "ability_upgrade_utility_barracks_4"
+	            }
+	        }        
+	
+	        "RunScript"
+	        {
+	            "ScriptFile"        "unit_scripts/towers/ai_barracks.lua"
+	            "Function"          "Upgrade"
+	
+	            "AbilityContext"
+	            {
+	                "defender_name"   "defender_utility_2"                                
+	            }
+	        } 
+	    }
+	
+	    "Modifiers"
+	    {
+	        "modifier_upgrade_magic_barracks_2"
 	        {
 	            "IsHidden"      "0"
 	            "Passive"       "0"            

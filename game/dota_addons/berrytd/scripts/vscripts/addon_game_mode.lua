@@ -40,6 +40,8 @@ function Precache( context )
   PrecacheUnitByNameSync("npc_dota_hero_ancient_apparition", context)
   PrecacheUnitByNameSync("npc_dota_hero_enigma", context)
 
+  PrecacheResource("particle", "particles/golden_dragonfire/lina_spell_dragon_slave.vpcf", context)
+
   --Precache towers
   for i, tower in pairs(GameMode.TowerList) do    
     PrecacheUnitByNameSync(tower, context)
