@@ -14,6 +14,20 @@ function TargetingHelper.FindNearbyFriendlies(unit, radius)
 		false)
 end
 
+function TargetingHelper.FindDireInRadius(unit, radius)	
+	print("t", unit:GetAbsOrigin())
+	return FindUnitsInRadius(
+		DOTA_TEAM_BADGUYS,
+		unit:GetAbsOrigin(),
+		nil,
+		radius,
+	    DOTA_UNIT_TARGET_TEAM_FRIENDLY,
+	    DOTA_UNIT_TARGET_ALL,
+	    DOTA_UNIT_TARGET_FLAG_NONE,
+	    FIND_CLOSEST,
+		false)
+end
+
 function TargetingHelper.HighestLevelAllies(unit, radius)
 	local allies = FindUnitsInRadius(		
 		unit:GetTeamNumber(),
@@ -26,8 +40,6 @@ function TargetingHelper.HighestLevelAllies(unit, radius)
 	    DOTA_UNIT_TARGET_FLAG_NOT_ATTACK_IMMUNE,
 	    FIND_CLOSEST,
 		false)	
-
-	
 
 	--find the highest level
 	local highest_level = -1
@@ -60,9 +72,7 @@ function TargetingHelper.LowestHpAlly(unit, radius)
 	    --this flag lets us ignore buildings
 	    DOTA_UNIT_TARGET_FLAG_NOT_ATTACK_IMMUNE,
 	    FIND_CLOSEST,
-		false)	
-
-	
+		false)		
 
 	local unhealthiest
 	local lowest_hp = math.huge

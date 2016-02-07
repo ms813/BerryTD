@@ -2,7 +2,7 @@ require('targetingHelper')
 
 function Spawn(keys)
 
-	Timers:CreateTimer(2.0, function()
+	Timers:CreateTimer(0.5, function()
 		return DefenderUtilityThink(thisEntity)
 	end)
 end

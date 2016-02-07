@@ -40,5 +40,5 @@
     "VisionDaytimeRange"    "1000"       
     "VisionNighttimeRange"  "750"  
 
-    "vscripts"              "scripts/vscripts/unit_scripts/towers/ai_tackshooter.lua"
+    "vscripts"              "unit_scripts/towers/ai_tackshooter.lua"
 }
