@@ -1,4 +1,4 @@
-"tower_minus_armour"
+"tower_tesla_coil"
 {
     "BaseClass"             "npc_dota_creature"
     "Model"                 "models/items/disruptor/staticlord_weapon/staticlord_weapon.vmdl"
@@ -15,8 +15,8 @@
     //Abilities  
     "AbilityLayout"         "6"
     "Ability1"              "ability_sell_tower"
-    "Ability2"              "ability_minus_armour_0"
-    "Ability3"              "ability_upgrade_minus_armour_1"  
+    "Ability2"              "ability_tesla_coil_0"
+    "Ability3"              "ability_upgrade_tesla_coil_1"  
     "Ability6"              "tower_immunity"
 
     "AttackCapabilities"    "DOTA_UNIT_CAP_NONE"
@@ -38,5 +38,5 @@
     "VisionDaytimeRange"    "1500"       
     "VisionNighttimeRange"  "1100"    
 
-    "vscripts"              "unit_scripts/towers/ai_minus_armour.lua"
+    "vscripts"              "unit_scripts/towers/ai_tesla_coil.lua"
 }

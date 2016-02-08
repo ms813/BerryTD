@@ -1,0 +1,223 @@
+"ability_tesla_coil_0"
+{
+    "BaseClass"                     "ability_datadriven"
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+    "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"    
+    "AbilityTextureName"            "slardar_amplify_damage"
+
+    "AbilityCooldown"                "5"
+    "AbilityManaCost"                "0"
+    "AbilityDamage"                  "%damage" 
+
+    "OnSpellStart"
+    {   
+        "ApplyModifier"
+        {
+            "ModifierName"  "modifier_tesla_coil_0"
+            "Target"        "TARGET"
+            "Duration"      "%duration"
+        }
+    } 
+
+    "Modifiers"
+    {
+        "modifier_tesla_coil_0"
+        {
+            "Passive"           "0"
+            "IsHidden"          "0"
+            "IsDebuff"          "1"    
+            
+            "StatusEffectName" "particles/status_fx/status_effect_slardar_amp_damage.vpcf"
+            "StatusEffectPriority"  "20"
+            
+            "OnCreated"
+            {             
+                "RunScript"
+                {
+                    "ScriptFile"    "unit_scripts/towers/ai_tesla_coil.lua"
+                    "Function"      "TeslaCoilAttachParticle_0"
+                    "AbilityContext"
+                    {
+                        "particle" "particles/units/heroes/hero_slardar/slardar_amp_damage.vpcf"
+                    }
+                }
+
+                "FireSound"
+                {
+                    "EffectName"    "Hero_Slardar.Amplify_Damage"
+                    "Target"        "TARGET"
+                }
+            }      
+
+            "OnDestroy"
+            {
+                "RunScript"
+                {
+                    "ScriptFile"    "unit_scripts/towers/ai_tesla_coil.lua"
+                    "Function"      "EndTeslaCoilParticle0"
+                }
+            }      
+
+            "Properties"
+            {
+                "MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "%minus_armour"                     
+            }
+        }
+    }
+
+    "AbilitySpecial"
+    {
+        "01"
+        {
+            "var_type"      "FIELD_INTEGER"
+            "range"         "600"
+        }             
+        "02"
+        {
+            "var_type"      "FIELD_INTEGER"
+            "minus_armour"  "-5"
+        }   
+        "03"
+        {
+            "var_type"      "FIELD_INTEGER"
+            "duration"      "12"
+        }  
+    }
+
+    "precache"
+    {
+        "particle"  "particles/units/heroes/hero_slardar/slardar_amp_damage.vpcf"
+        "particle"  "particles/status_fx/status_effect_slardar_amp_damage.vpcf"
+        "soundfile" "soundevents/game_sounds_heroes/game_sounds_slardar.vsndevts"
+    }  
+}
+
+"ability_tesla_coil_1"
+{
+    "BaseClass"                     "ability_datadriven"
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+    "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"    
+    "AbilityTextureName"            "razor_eye_of_the_storm"
+
+    "AbilityCooldown"                "1"
+    "AbilityManaCost"                "0"
+    "AbilityDamage"                  "%damage" 
+
+    "OnSpellStart"
+    {      
+        "RunScript"
+        {
+            "ScriptFile"    "unit_scripts/towers/ai_tesla_coil.lua"
+            "Function"      "TeslaCoilLightningHit"
+            "AbilityContext"
+            {
+                "modifier"  "modifier_lightning_hit"
+                "particle"  "particles/units/heroes/hero_zuus/zuus_arc_lightning_head.vpcf"
+                "sound"     "Hero_Zuus.ArcLightning.Cast"
+            }
+        }         
+    } 
+
+    "Modifiers"
+    {       
+        "modifier_lightning_hit"
+        {
+            "Passive"           "0"
+            "IsHidden"          "0"
+            "IsDebuff"          "1"    
+
+            "StatusEffectName" "particles/status_fx/status_effect_slardar_amp_damage.vpcf"
+            "StatusEffectPriority"  "20"    
+
+            "Duration"          "%duration"
+
+            "Properties"
+            {
+                "MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "%minus_armour"                     
+            }
+        }
+    }
+
+    "AbilitySpecial"
+    {
+        "01"
+        {
+            "var_type"      "FIELD_INTEGER"
+            "range"         "600"
+        }             
+        "02"
+        {
+            "var_type"      "FIELD_INTEGER"
+            "minus_armour"  "-1"
+        }   
+        "03"
+        {
+            "var_type"      "FIELD_INTEGER"
+            "duration"      "12"
+        }  
+        "04"
+        {
+            "var_type"      "FIELD_INTEGER"
+            "damage"        "12"
+        }  
+    }
+
+    "precache"
+    {
+        "particle"  "particles/units/heroes/hero_zuus/zuus_arc_lightning_head.vpcf"
+        "particle"  "particles/status_fx/status_effect_slardar_amp_damage.vpcf"
+        "soundfile" "soundevents/game_sounds_heroes/game_sounds_zuus.vsndevts"
+    }  
+}
+
+"ability_upgrade_tesla_coil_1"
+{
+    "BaseClass"             "ability_datadriven"
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"        
+    "AbilityTextureName"    "razor_eye_of_the_storm"
+
+    "AbilityGoldCost"       "50"
+
+    "OnSpellStart"
+    {   
+        "ApplyModifier"
+        {
+            "ModifierName"    "modifier_upgrade_tesla_coil_1"
+            "Target"          "CASTER"            
+        }
+
+        "RunScript"
+        {
+            "ScriptFile"    "scripts/vscripts/addon_game_mode.lua"
+            "Function"      "upgradeTower"
+
+            "AbilityContext"
+            {
+                "nextUpgrade"   "ability_upgrade_tesla_coil_2"                
+            }
+        }        
+
+        "RunScript"
+        {
+            "ScriptFile"        "unit_scripts/towers/ai_tesla_coil.lua"
+            "Function"          "TeslaCoilUpgrade"
+
+            "AbilityContext"
+            {   
+                "old_ability"   "ability_tesla_coil_0"
+                "new_ability"   "ability_tesla_coil_1"                                
+            }
+        } 
+    }
+
+    "Modifiers"
+    {
+        "modifier_upgrade_tesla_coil_1"
+        {
+            "IsHidden"      "0"
+            "Passive"       "0"            
+        }
+    }
+}

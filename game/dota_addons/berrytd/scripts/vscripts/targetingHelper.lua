@@ -14,8 +14,7 @@ function TargetingHelper.FindNearbyFriendlies(unit, radius)
 		false)
 end
 
-function TargetingHelper.FindDireInRadius(unit, radius)	
-	print("t", unit:GetAbsOrigin())
+function TargetingHelper.FindDireInRadius(unit, radius)		
 	return FindUnitsInRadius(
 		DOTA_TEAM_BADGUYS,
 		unit:GetAbsOrigin(),

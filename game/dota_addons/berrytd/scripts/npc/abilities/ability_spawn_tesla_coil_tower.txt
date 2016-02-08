@@ -1,4 +1,4 @@
-"ability_spawn_minus_armour_tower"
+"ability_spawn_tesla_coil_tower"
 {
     // General
     //-------------------------------------------------------------------------------------------------------------
@@ -30,7 +30,7 @@
 
             "AbilityContext"
             {
-                "tower_name"    "tower_minus_armour"
+                "tower_name"    "tower_tesla_coil"
             }
         }  
     }
