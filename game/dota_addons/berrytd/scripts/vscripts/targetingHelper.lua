@@ -23,7 +23,7 @@ function TargetingHelper.FindDireInRadius(unit, radius)
 	    DOTA_UNIT_TARGET_TEAM_FRIENDLY,
 	    DOTA_UNIT_TARGET_ALL,
 	    DOTA_UNIT_TARGET_FLAG_NONE,
-	    FIND_CLOSEST,
+	    FIND_UNITS_EVERYWHERE,
 		false)
 end
 

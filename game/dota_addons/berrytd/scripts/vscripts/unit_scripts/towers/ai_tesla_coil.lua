@@ -11,36 +11,16 @@ function TeslaCoilThink(tower)
 
 	local ability = tower:GetAbilityByIndex(1)
 	if ability ~= nil then
-		local range = ability:GetLevelSpecialValueFor("range", 1)
-		local targets = TargetingHelper.FindDireInRadius(tower, range)
 
-		for i, target in pairs(targets) do		
-			if not target:HasModifier("modifier_minus_armour_0") then
-				tower:CastAbilityOnTarget(target, ability, tower:GetPlayerOwnerID())
-				return 0.5
-			end
+		local targets = TargetingHelper.FindDireInRadius(tower, ability:GetLevelSpecialValueFor("range", 1))
+		if #targets > 0 then
+			ability:CastAbility()	
 		end
 	end
 
-	return 0.5
+	return 0.05
 end
 
-function TeslaCoilAttachParticle_0(keys)
-	local target = keys.target
-    local location = target:GetAbsOrigin()
-    local particleName = keys.AbilityContext.particle
-
--- Particle. Need to wait one frame for the older particle to be destroyed
-    Timers:CreateTimer(0.01, function() 
-        target.AmpDamageParticle = ParticleManager:CreateParticle(particleName, PATTACH_OVERHEAD_FOLLOW, target)
-        ParticleManager:SetParticleControl(target.AmpDamageParticle, 0, target:GetAbsOrigin())
-        ParticleManager:SetParticleControl(target.AmpDamageParticle, 1, target:GetAbsOrigin())
-        ParticleManager:SetParticleControl(target.AmpDamageParticle, 2, target:GetAbsOrigin())
-
-        ParticleManager:SetParticleControlEnt(target.AmpDamageParticle, 1, target, PATTACH_OVERHEAD_FOLLOW, "attach_overhead", target:GetAbsOrigin(), true)
-        ParticleManager:SetParticleControlEnt(target.AmpDamageParticle, 2, target, PATTACH_OVERHEAD_FOLLOW, "attach_hitloc", target:GetAbsOrigin(), true)
-    end)
-end
 -- Destroys the particle when the modifier is destroyed
 function EndTeslaCoilParticle0(keys)
     local target = keys.target
@@ -57,21 +37,25 @@ function TeslaCoilUpgrade(keys)
 	new_ability:SetLevel(1)
 end
 
-
-
-function TeslaCoilLightningHit(keys)
+function TeslaCoilLightningSingle(keys, target)
 	local caster = keys.caster	
     local modifier = keys.AbilityContext.modifier
     local ab = keys.ability
-    local particleName = keys.AbilityContext.particle    
-
-    local range = ab:GetLevelSpecialValueFor("range", 1)
+    local particleName = keys.AbilityContext.particle 
+    local range = ab:GetLevelSpecialValueFor("range", 1)  
     local dmg = ab:GetLevelSpecialValueFor("damage", 1)
-    local targets = TargetingHelper.FindDireInRadius(caster, range)
 
-    for i, target in pairs(targets) do
+    if target == nil then
+		local targets = TargetingHelper.FindDireInRadius(caster, range)
 
-	    target.lightning_particle = ParticleManager:CreateParticle(particleName, PATTACH_CUSTOMORIGIN, target)
+		if #targets > 0 then 
+			local rnd = math.random(1, #targets)
+			target = targets[rnd]
+		end
+	end
+
+	if target ~= nil then
+		target.lightning_particle = ParticleManager:CreateParticle(particleName, PATTACH_CUSTOMORIGIN, target)
 	    ParticleManager:SetParticleControl(target.lightning_particle, 0, target:GetAbsOrigin()+Vector(0,0,100))
 	    ParticleManager:SetParticleControl(target.lightning_particle, 1, caster:GetAbsOrigin()+Vector(0,0,280))    
 
@@ -89,5 +73,15 @@ function TeslaCoilLightningHit(keys)
 	    	damage = dmg,
 	    	damage_type = DAMAGE_TYPE_PHYSICAL
 	    })
+	end
+end
+
+function TeslaCoilLightningMulti(keys)	
+    local ab = keys.ability    
+    local range = ab:GetLevelSpecialValueFor("range", 1)    
+    local targets = TargetingHelper.FindDireInRadius(keys.caster, range)
+
+    for i, target in pairs(targets) do
+		TeslaCoilLightningSingle(keys, target)	    
 	end   
 end

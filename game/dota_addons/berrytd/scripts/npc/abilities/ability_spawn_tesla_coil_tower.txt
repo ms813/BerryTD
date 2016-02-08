@@ -5,7 +5,7 @@
     "BaseClass"             "ability_datadriven"
     "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
     "AbilityType"           "DOTA_ABILITY_TYPE_BASIC"
-    "AbilityTextureName"    "slardar_amplify_damage"
+    "AbilityTextureName"    "disruptor_thunder_strike"
     "MaxLevel"              "1"
 
 
