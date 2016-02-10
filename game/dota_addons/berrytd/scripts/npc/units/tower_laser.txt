@@ -1,7 +1,7 @@
-"tower_tesla_coil"
+"tower_laser"
 {
     "BaseClass"             "npc_dota_creature"
-    "Model"                 "models/items/rattletrap/cog_tesla/cog_tesla.vmdl"
+    "Model"					"models/items/wards/atlas_burden_ward/atlas_burden_ward.vmdl"
     "ModelScale"            "3"  
     "ConsideredHero"        "1"
 
@@ -9,14 +9,13 @@
     "UnitLabel"             "tower"
 
     "HasInventory"          "1"    
-    "AutoAttacksByDefault"  "1"
     "SelectOnSpawn"         "1"
 
     //Abilities  
     "AbilityLayout"         "6"
     "Ability1"              "ability_sell_tower"
-    "Ability2"              "ability_tesla_coil_lightning_single"
-    "Ability3"              "ability_upgrade_tesla_coil_1"  
+    "Ability2"              "ability_laser_tower_single"
+    "Ability3"              "ability_upgrade_laser_tower_1"  
     "Ability6"              "tower_immunity"
 
     "AttackCapabilities"    "DOTA_UNIT_CAP_NONE"
@@ -38,5 +37,5 @@
     "VisionDaytimeRange"    "1500"       
     "VisionNighttimeRange"  "1100"    
 
-    "vscripts"              "unit_scripts/towers/ai_tesla_coil.lua"
+    "vscripts"              "unit_scripts/towers/ai_laser.lua"
 }

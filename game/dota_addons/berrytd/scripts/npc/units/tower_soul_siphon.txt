@@ -1,8 +1,9 @@
 "tower_soul_siphon"
 {
 	"BaseClass"             "npc_dota_creature"
-	"Model"                 "models/particle/skull.vmdl"
-	"ModelScale"			"3"
+	//"Model"                 "models/particle/skull.vmdl"
+    "Model"                 "models/items/pugna/ward/draining_wight/draining_wight.vmdl"
+	"ModelScale"			"1.4"
     "ConsideredHero"        "1"
     "UnitLabel"             "tower"
     "Level"					"0"

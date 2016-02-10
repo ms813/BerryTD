@@ -3,7 +3,7 @@ require ("targetingHelper")
 function Spawn(keys)
 
 	--add this to the model's position to lift it above the ground
-	local z_offset = Vector(0, 0, 250)
+	local z_offset = Vector(0, 0, 150)
 
 	lvlUpUnitAbilities(thisEntity)
 
@@ -18,6 +18,7 @@ function Spawn(keys)
 	end)	
 
 	--slowly rotate the skull
+	--[[
 	local period = math.random(1,20)
 	local rnd_sign = math.random(1,2)
 	if rnd_sign == 2 then period = period * -1 end
@@ -28,6 +29,7 @@ function Spawn(keys)
 			return FrameTime()
 		end
 	end)
+	]]
 end
 
 function SoulSiphonThink(tower)	

@@ -131,6 +131,7 @@ function GameMode:goToPage(keys)
 
 		--page two has magical DPS towers
 		caster:AddAbility("ability_spawn_dragon_tower")	
+		caster:AddAbility("ability_spawn_laser_tower")
 		caster:AddAbility("ability_spawn_soul_siphon_tower")	
 
 	elseif ability_name == "ability_open_page_three" then

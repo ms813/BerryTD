@@ -1,11 +1,11 @@
-"ability_spawn_soul_siphon_tower"
+"ability_spawn_laser_tower"
 {
     // General
     //-------------------------------------------------------------------------------------------------------------
     "BaseClass"             "ability_datadriven"
     "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
     "AbilityType"           "DOTA_ABILITY_TYPE_BASIC"
-    "AbilityTextureName"    "soul_siphon_icon"
+    "AbilityTextureName"    "tinker_laser"
     "MaxLevel"              "1"
 
 
@@ -30,7 +30,7 @@
 
             "AbilityContext"
             {
-                "tower_name"    "tower_soul_siphon"
+                "tower_name"    "tower_laser"
             }
         }  
     }

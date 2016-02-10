@@ -271,7 +271,7 @@ function GameMode:OnEntityKilled( keys )
         self.currentLives = self.currentLives - 1
 
         print(killedUnit:GetUnitName(), " reached the end!")
-        Notifications:TopToAll({text=killedUnit:GetName().. " reached the end! Lifes left: " ..self.currentLives, duration=5.0})   
+        Notifications:TopToAll({text=killedUnit:GetUnitName().. " reached the end! Lifes left: " ..self.currentLives, duration=5.0})   
 
         --if radiant runs out of lives then set dire victory
         if self.currentLives <= 0 then

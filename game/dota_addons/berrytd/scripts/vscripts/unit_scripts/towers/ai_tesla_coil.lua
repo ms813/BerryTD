@@ -59,7 +59,7 @@ function TeslaCoilLightningSingle(keys, target)
 	if target ~= nil then
 		target.lightning_particle = ParticleManager:CreateParticle(particleName, PATTACH_CUSTOMORIGIN, target)
 	    ParticleManager:SetParticleControl(target.lightning_particle, 0, target:GetAbsOrigin()+Vector(0,0,100))
-	    ParticleManager:SetParticleControl(target.lightning_particle, 1, caster:GetAbsOrigin()+Vector(0,0,280))    
+	    ParticleManager:SetParticleControl(target.lightning_particle, 1, caster:GetAbsOrigin()+Vector(0,0,180))    
 
 	    local modifier = target:FindModifierByName(modifier_name)
 	    if modifier ~= nil then	        
