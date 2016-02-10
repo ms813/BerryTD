@@ -42,11 +42,10 @@ end
 
 function TeslaCoilLightningSingle(keys, target)
 	local caster = keys.caster	
-    local modifier = keys.AbilityContext.modifier
+    local modifier_name = keys.AbilityContext.modifier
     local ab = keys.ability
     local particleName = keys.AbilityContext.particle 
-    local range = ab:GetLevelSpecialValueFor("range", 1)  
-    local dmg = ab:GetLevelSpecialValueFor("damage", 1)
+    local range = ab:GetLevelSpecialValueFor("range", 1)   
 
     if target == nil then
 		local targets = TargetingHelper.FindDireInRadius(caster, range)
@@ -62,14 +61,18 @@ function TeslaCoilLightningSingle(keys, target)
 	    ParticleManager:SetParticleControl(target.lightning_particle, 0, target:GetAbsOrigin()+Vector(0,0,100))
 	    ParticleManager:SetParticleControl(target.lightning_particle, 1, caster:GetAbsOrigin()+Vector(0,0,280))    
 
-	    if target:HasModifier(modifier) then
-	        local stack_count = target:GetModifierStackCount(modifier, ab)
-	        target:SetModifierStackCount(modifier, ab, stack_count + 1)
+	    local modifier = target:FindModifierByName(modifier_name)
+	    if modifier ~= nil then	        
+	    	local duration = ab:GetLevelSpecialValueFor("duration", ab:GetLevel())
+	        modifier:IncrementStackCount()
+	        modifier:SetDuration(duration,true)
+	        print("derp")
 	    else
-	        ab:ApplyDataDrivenModifier(caster, target, modifier, {})
-	        target:SetModifierStackCount(modifier, ab, 1)
+	        ab:ApplyDataDrivenModifier(caster, target, modifier_name, {})
+	        target:SetModifierStackCount(modifier_name, ab, 1)
 	    end
 
+	    local dmg = ab:GetLevelSpecialValueFor("damage", 1)
 	    ApplyDamage({
 	    	victim = target,
 	    	attacker = caster,

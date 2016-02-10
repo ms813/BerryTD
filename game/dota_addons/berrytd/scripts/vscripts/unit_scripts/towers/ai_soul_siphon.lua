@@ -1,7 +1,6 @@
 require ("targetingHelper")
 
 function Spawn(keys)
-	print("Soul siphon spawned", thisEntity)	
 
 	--add this to the model's position to lift it above the ground
 	local z_offset = Vector(0, 0, 250)
@@ -19,7 +18,9 @@ function Spawn(keys)
 	end)	
 
 	--slowly rotate the skull
-	local period = 20
+	local period = math.random(1,20)
+	local rnd_sign = math.random(1,2)
+	if rnd_sign == 2 then period = period * -1 end
 	Timers:CreateTimer(0.1, function()
 		local angle = thisEntity:GetAngles()
 		thisEntity:SetAngles(angle.x, angle.y + period * FrameTime(), angle.z)
@@ -48,11 +49,10 @@ function SoulSiphonThink(tower)
 	return 0.5
 end
 
-function SoulSiphonDrain(keys)
+function SoulSiphonCast(keys)
 	local ab_level = keys.ability:GetLevel()
 	local range = keys.ability:GetLevelSpecialValueFor("range", ab_level)
 	local max_targets = keys.ability:GetLevelSpecialValueFor("max_targets", ab_level-1)
-	
 	local targets = TargetingHelper.FindDireInRadius(keys.caster, range)
 
 	--shoot at as many targets as we can
@@ -69,13 +69,17 @@ function SoulSiphonDrain(keys)
 				ability = keys.ability,
 				particle = keys.AbilityContext.particle,
 				speed = keys.ability:GetLevelSpecialValueFor("projectile_speed", keys.ability:GetLevel())
-			}	
+			}				
 		end	
 	end
 end
 
-function SoulSiphonReturn(keys)		
+function SoulSiphonOnHit(keys)	
+	local tower_stack_modifier = keys.AbilityContext.tower_stack_modifier
+	local ab = keys.ability
+	local debuff_duration = ab:GetLevelSpecialValueFor("mr_debuff_duration", ab:GetLevel())
 	
+	--if the target is not the tower, return a projectile from the creep to the tower and damage the creep
 	if keys.caster ~= keys.target then	
 		SoulSiphonProjectile{
 			target = keys.caster,
@@ -85,12 +89,42 @@ function SoulSiphonReturn(keys)
 			speed = keys.ability:GetLevelSpecialValueFor("projectile_speed", keys.ability:GetLevel())
 		}
 
+		local stacks = keys.caster:GetModifierStackCount(tower_stack_modifier, keys.caster)		
+		if stacks > 0 then
+			local mr_debuff = keys.AbilityContext.mr_debuff_modifier
+			if keys.target:HasModifier(mr_debuff) then
+		        keys.target:SetModifierStackCount(mr_debuff, ab, stacks)
+		        keys.target:FindModifierByName(mr_debuff):SetDuration(debuff_duration, true)
+		    else
+	        	ab:ApplyDataDrivenModifier(keys.caster, keys.target, mr_debuff, {})	        
+	       		keys.target:SetModifierStackCount(mr_debuff, ab, stacks)		    
+	       	end
+		end
+
 		ApplyDamage({
 			attacker = keys.caster,
 			victim = keys.target,
 			damage = keys.ability:GetLevelSpecialValueFor("damage", keys.ability:GetLevel()),
 			damage_type = DAMAGE_TYPE_MAGICAL
 		})
+	else
+		if ab:GetLevel() > 2 then
+			--if the target is the tower, add a stack 				        
+	        local modifier = keys.caster:FindModifierByName(tower_stack_modifier)
+	        if modifier ~= nil then
+	        	
+	        	local stack_count = modifier:GetStackCount()
+	        	local max_stacks = ab:GetLevelSpecialValueFor("max_stacks", ab:GetLevel())
+
+	        	if stack_count < max_stacks then
+	        		modifier:IncrementStackCount()
+	        		modifier:SetDuration(debuff_duration,true)
+	        	end
+	        else
+	        	ab:ApplyDataDrivenModifier(keys.caster, keys.caster, tower_stack_modifier, {})
+	        	keys.caster:SetModifierStackCount(tower_stack_modifier, ab, 1)
+	        end 		        
+		end
 	end
 end
 

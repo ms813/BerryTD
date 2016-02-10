@@ -16,10 +16,10 @@
         "RunScript"
         {
             "ScriptFile"    "unit_scripts/towers/ai_soul_siphon.lua"
-            "Function"      "SoulSiphonDrain"           
+            "Function"      "SoulSiphonCast"           
             "AbilityContext"
             {
-                "particle"  "particles/econ/items/necrolyte/necrophos_sullen/necro_sullen_pulse_enemy.vpcf"
+                "particle"  "particles/econ/items/necrolyte/necrophos_sullen/necro_sullen_pulse_enemy.vpcf"                
             }
         }                
     } 
@@ -31,12 +31,44 @@
         "RunScript"
         {
             "ScriptFile"    "unit_scripts/towers/ai_soul_siphon.lua"
-            "Function"      "SoulSiphonReturn" 
+            "Function"      "SoulSiphonOnHit" 
             "AbilityContext"
             {
                 "particle"  "particles/econ/items/necrolyte/necrophos_sullen/necro_sullen_pulse_enemy.vpcf"
+                "tower_stack_modifier"  "modifier_soul_siphon_tower_stacks"
+                "mr_debuff_modifier"    "modifier_soul_siphon_debuff"
             }
         } 
+    }
+
+    "Modifiers"
+    {
+        "modifier_soul_siphon_tower_stacks"
+        {
+            "Passive"           "0"
+            "IsHidden"          "0"
+            "IsBuff"            "1"
+            
+            "Duration"          "%mr_debuff_duration"
+        }
+
+        "modifier_soul_siphon_debuff"
+        {
+            "Passive"           "0"
+            "IsHidden"          "0"
+            "IsDebuff"          "1"
+    
+            "EffectName"        "particles/soul_siphon/soul_siphon_debuff.vpcf"
+            "EffectAttachType"  "follow_origin"
+            "StatusEffectName"  "particles/status_fx/status_effect_veil.vpcf"        
+            "StatusEffectPriority"  "10"
+            
+            "Duration"          "%mr_debuff_duration"
+            "Properties"
+            {
+                "MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS" "%mr_debuff"                 
+            }
+        }
     }
 
     "AbilitySpecial"
@@ -59,13 +91,30 @@
         "04"
         {
             "var_type"          "FIELD_INTEGER"
-            "max_targets"       "2 5 15"
+            "max_targets"       "2 5 5 15"
         }
-    }
+        "05"
+        {
+            "var_type"          "FIELD_FLOAT"
+            "mr_debuff"         "0 0 -1"
+        }        
+        "05"
+        {
+            "var_type"          "FIELD_INTEGER"
+            "mr_debuff_duration"    "0 0 12"
+        }
+        "06"
+        {
+            "var_type"          "FIELD_INTEGER"
+            "max_stacks"        "0 0 15"
+        }
+    }   
  
     "precache"
     {
         "particle"  "particles/econ/items/necrolyte/necrophos_sullen/necro_sullen_pulse_enemy.vpcf"        
+        "particle"  "particles/soul_siphon/soul_siphon_debuff.vpcf"
+        "particle"  "particles/status_fx/status_effect_veil.vpcf"
     }
 }
 
@@ -73,7 +122,7 @@
 {
     "BaseClass"             "ability_datadriven"
     "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"        
-    "AbilityTextureName"    "razor_static_link"
+    "AbilityTextureName"    "soul_siphon_icon_1"
 
     "AbilityGoldCost"       "50"
 
@@ -116,7 +165,7 @@
 {
     "BaseClass"             "ability_datadriven"
     "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"        
-    "AbilityTextureName"    "razor_static_link"
+    "AbilityTextureName"    "soul_siphon_icon_2"
 
     "AbilityGoldCost"       "50"
 
