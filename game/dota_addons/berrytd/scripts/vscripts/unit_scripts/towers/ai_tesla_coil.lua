@@ -1,10 +1,13 @@
 require("targetingHelper")
 
 function Spawn(keys)	
+
+	--set tower to face the camera
+	thisEntity:SetAngles(0, 90, 0)	
+
 	Timers:CreateTimer(function()
 		return TeslaCoilThink(thisEntity)
 	end)
-
 end
 
 function TeslaCoilThink(tower)

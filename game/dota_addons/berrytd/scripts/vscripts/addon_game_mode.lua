@@ -65,11 +65,13 @@ GameMode.TowerList = {
   "tower_sniper",
   "tower_tackshooter",
   "tower_dragon",
+  "tower_soul_siphon",
   "barracks_melee",
   "barracks_magic",
   "barracks_ranged",
   "barracks_utility",
-  "tower_iceberg"
+  "tower_iceberg",
+  "tower_tesla_coil"
 }
 
 GameMode.DefenderList = {

@@ -464,6 +464,59 @@
 	    }
 	}
 	
+	"ability_spawn_soul_siphon_tower"
+	{
+	    // General
+	    //-------------------------------------------------------------------------------------------------------------
+	    "BaseClass"             "ability_datadriven"
+	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+	    "AbilityType"           "DOTA_ABILITY_TYPE_BASIC"
+	    "AbilityTextureName"    "death_prophet_spirit_siphon"
+	    "MaxLevel"              "1"
+	
+	
+	    // Time     
+	    //-------------------------------------------------------------------------------------------------------------
+	    "AbilityCooldown"               "2.0"
+	
+	    // Cost
+	    //-------------------------------------------------------------------------------------------------------------
+	    "AbilityManaCost"               "0" 
+	    "AbilityGoldCost"               "100"
+	 
+	    // Special
+	    //-------------------------------------------------------------------------------------------------------------
+	
+	    "OnSpellStart"
+	    {      
+	        "RunScript"
+	        {
+	            "ScriptFile"    "unit_scripts/towers/spawn_tower.lua"
+	            "Function"      "SpawnTower"
+	
+	            "AbilityContext"
+	            {
+	                "tower_name"    "tower_soul_siphon"
+	            }
+	        }  
+	    }
+	
+	    "AbilitySpecial"
+	    {
+	        "01"
+	        {
+	            "var_type"          "FIELD_INTEGER"
+	            "damage"            "5"
+	        }
+	        "02"
+	        {
+	            "var_type"          "FIELD_FLOAT"
+	            "cooldown"          "5"
+	        }
+	    }
+	}
+	
+	
 	"ability_spawn_tackshooter_tower"
 	{
 	    // General
@@ -3999,6 +4052,163 @@
 	        }
 	    }  
 	}
+	"ability_soul_siphon_drain"
+	{
+	    "BaseClass"                     "ability_datadriven"
+	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+	    "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+	    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"    
+	    "AbilityTextureName"            "soul_siphon_icon"
+	
+	    "AbilityCooldown"               "3"
+	    "AbilityManaCost"               "0"
+	    "AbilityDamage"                 "%damage" 
+	    "AbilityCastRange"              "%range"
+	    
+	    "OnSpellStart"
+	    {      
+	        "RunScript"
+	        {
+	            "ScriptFile"    "unit_scripts/towers/ai_soul_siphon.lua"
+	            "Function"      "SoulSiphonDrain"           
+	            "AbilityContext"
+	            {
+	                "particle"  "particles/econ/items/necrolyte/necrophos_sullen/necro_sullen_pulse_enemy.vpcf"
+	            }
+	        }                
+	    } 
+	
+	    "OnProjectileHitUnit"
+	    {
+	        "DeleteOnHit"    "1"       
+	
+	        "RunScript"
+	        {
+	            "ScriptFile"    "unit_scripts/towers/ai_soul_siphon.lua"
+	            "Function"      "SoulSiphonReturn" 
+	            "AbilityContext"
+	            {
+	                "particle"  "particles/econ/items/necrolyte/necrophos_sullen/necro_sullen_pulse_enemy.vpcf"
+	            }
+	        } 
+	    }
+	
+	    "AbilitySpecial"
+	    {
+	        "01"
+	        {
+	            "var_type"          "FIELD_INTEGER"
+	            "projectile_speed"  "500"
+	        }
+	        "02"
+	        {
+	            "var_type"          "FIELD_INTEGER"
+	            "damage"            "10"
+	        }
+	        "03"
+	        {
+	            "var_type"          "FIELD_INTEGER"
+	            "range"             "500 750"
+	        }  
+	        "04"
+	        {
+	            "var_type"          "FIELD_INTEGER"
+	            "max_targets"       "2 5 15"
+	        }
+	    }
+	 
+	    "precache"
+	    {
+	        "particle"  "particles/econ/items/necrolyte/necrophos_sullen/necro_sullen_pulse_enemy.vpcf"        
+	    }
+	}
+	
+	"ability_upgrade_soul_siphon_1"
+	{
+	    "BaseClass"             "ability_datadriven"
+	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"        
+	    "AbilityTextureName"    "razor_static_link"
+	
+	    "AbilityGoldCost"       "50"
+	
+	    "OnSpellStart"
+	    {   
+	        "LevelUpAbility"
+	        {
+	            "Target"         "CASTER"
+	            "AbilityName"    "ability_soul_siphon_drain"
+	        }
+	
+	        "ApplyModifier"
+	        {
+	            "ModifierName"    "modifier_upgrade_soul_siphon_1"
+	            "Target"          "CASTER"            
+	        }
+	
+	        "RunScript"
+	        {
+	            "ScriptFile"    "scripts/vscripts/addon_game_mode.lua"
+	            "Function"      "upgradeTower"
+	            "AbilityContext"
+	            {
+	                "nextUpgrade"   "ability_upgrade_soul_siphon_2"                
+	            }
+	        }       
+	    }
+	
+	    "Modifiers"
+	    {
+	        "modifier_upgrade_soul_siphon_1"
+	        {
+	            "IsHidden"      "0"
+	            "Passive"       "0"            
+	        }
+	    }
+	}
+	
+	"ability_upgrade_soul_siphon_2"
+	{
+	    "BaseClass"             "ability_datadriven"
+	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"        
+	    "AbilityTextureName"    "razor_static_link"
+	
+	    "AbilityGoldCost"       "50"
+	
+	    "OnSpellStart"
+	    {   
+	        "LevelUpAbility"
+	        {
+	            "Target"         "CASTER"
+	            "AbilityName"    "ability_soul_siphon_drain"
+	        }
+	
+	        "ApplyModifier"
+	        {
+	            "ModifierName"    "modifier_upgrade_soul_siphon_2"
+	            "Target"          "CASTER"            
+	        }
+	
+	        "RunScript"
+	        {
+	            "ScriptFile"    "scripts/vscripts/addon_game_mode.lua"
+	            "Function"      "upgradeTower"
+	            "AbilityContext"
+	            {
+	                "nextUpgrade"   "ability_upgrade_soul_siphon_3"                
+	                "splitUpgrade"  "ability_upgrade_soul_siphon_4"
+	            }
+	        }       
+	    }
+	
+	    "Modifiers"
+	    {
+	        "modifier_upgrade_soul_siphon_2"
+	        {
+	            "IsHidden"      "0"
+	            "Passive"       "0"            
+	        }
+	    }
+	}
 	"ability_shoot_tacks"
 	{
 	    "BaseClass"                     "ability_datadriven"
@@ -4566,7 +4776,7 @@
 	
 	    "AbilityCooldown"                "1 0.5 0.05"
 	    "AbilityManaCost"                "0"
-	    "AbilityDamage"                  "%damage" 
+	    "AbilityDamage"                  "%damage"     
 	    
 	    "OnSpellStart"
 	    {      
@@ -4645,7 +4855,7 @@
 	    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"    
 	    "AbilityTextureName"            "razor_eye_of_the_storm"
 	
-	    "AbilityCooldown"                "1"
+	    "AbilityCooldown"                "0.2"
 	    "AbilityManaCost"                "0"
 	    "AbilityDamage"                  "%damage" 
 	
@@ -4703,7 +4913,7 @@
 	        "04"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "damage"        "12 20"
+	            "damage"        "12"
 	        }  
 	    }
 	
