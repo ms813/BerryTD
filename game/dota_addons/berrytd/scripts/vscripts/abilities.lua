@@ -147,6 +147,7 @@ function GameMode:goToPage(keys)
 		--page four has utility towers
 		caster:AddAbility("ability_spawn_iceberg_tower")
 		caster:AddAbility("ability_spawn_tesla_coil_tower")
+		caster:AddAbility("ability_spawn_tombstone_tower")
 	end
 
 	--finally level up all the abilities on the caster so we can actually cast them

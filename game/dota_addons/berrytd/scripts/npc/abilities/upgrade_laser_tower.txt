@@ -1,3 +1,4 @@
+//single target laser with purdge at level 3
 "ability_laser_tower_single"
 {
     "BaseClass"                     "ability_datadriven"
@@ -6,7 +7,7 @@
     "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"    
     "AbilityTextureName"            "tinker_laser"
 
-    "AbilityCooldown"               "3"
+    "AbilityCooldown"               "3 2"
     "AbilityManaCost"               "0"
     "AbilityDamage"                 "%damage" 
     "AbilityCastRange"              "600"
@@ -19,21 +20,27 @@
             "Target"                "CASTER"
             "EffectName"            "Hero_Tinker.Laser"
         }
-    
+        
+        //this projectile is invisible and is used to apply damage
         "TrackingProjectile"
         {
-            "Target"                "TARGET"
-            //"EffectName"            "particles/units/heroes/hero_tinker/tinker_laser.vpcf"
+            "Target"                "TARGET"            
             "MoveSpeed"             "1100"
             "Dodgeable"             "1"
             "ProvidesVision"        "0"
             "SourceAttachment"      "DOTA_PROJECTILE_ATTACHMENT_ATTACK_2"
         }
 
+        //this creates the actual laser particle, 
+        //as it has to be moved to look like it is being shot from the eye
         "RunScript"
         {
             "ScriptFile"    "unit_scripts/towers/ai_laser.lua"
-            "Function"      "LaserTowerLaserParticle"            
+            "Function"      "LaserTowerLaserParticle"       
+            "AbilityContext"     
+            {
+                "particle" "particles/units/heroes/hero_tinker/tinker_laser.vpcf"
+            }
         }
     }
 
@@ -51,6 +58,7 @@
             "Damage"        "%damage"
             "Type"          "DAMAGE_TYPE_MAGICAL"
         }   
+
     }
     
     "AbilitySpecial"
@@ -79,6 +87,7 @@
     }  
 }
 
+//level up to 2, reduce cooldown
 "ability_upgrade_laser_tower_1"
 {
     "BaseClass"             "ability_datadriven"
@@ -89,6 +98,11 @@
 
     "OnSpellStart"
     {          
+        "LevelUpAbility"
+        {
+            "Target"         "CASTER"
+            "AbilityName"    "ability_laser_tower_single"
+        }
         "ApplyModifier"
         {
             "ModifierName"    "modifier_upgrade_laser_tower_1"
@@ -109,6 +123,51 @@
     "Modifiers"
     {
         "modifier_upgrade_laser_tower_1"
+        {
+            "IsHidden"      "0"
+            "Passive"       "0"            
+        }
+    }
+}
+
+//level up to 3 so that the purge can be enabled in the Lua script
+"ability_upgrade_laser_tower_2"
+{
+    "BaseClass"             "ability_datadriven"
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"        
+    "AbilityTextureName"    "oracle_fortunes_end"
+
+    "AbilityGoldCost"       "50"
+
+    "OnSpellStart"
+    {          
+        "LevelUpAbility"
+        {
+            "Target"         "CASTER"
+            "AbilityName"    "ability_laser_tower_single"
+        }
+
+        "ApplyModifier"
+        {
+            "ModifierName"    "modifier_upgrade_laser_tower_2"
+            "Target"          "CASTER"            
+        }
+
+        "RunScript"
+        {
+            "ScriptFile"    "scripts/vscripts/addon_game_mode.lua"
+            "Function"      "upgradeTower"
+            "AbilityContext"
+            {
+                "nextUpgrade"   "ability_upgrade_laser_tower_3"                
+                "splitUpgrade"  "ability_upgrade_laser_tower_4"
+            }
+        }   
+    }
+
+    "Modifiers"
+    {
+        "modifier_upgrade_laser_tower_2"
         {
             "IsHidden"      "0"
             "Passive"       "0"            

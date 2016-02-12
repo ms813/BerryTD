@@ -1,0 +1,144 @@
+//slow moving missile that damages things multiple times
+"ability_tombstone_tower_decay"
+{
+    "BaseClass"                     "ability_datadriven"
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+    "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"    
+    "AbilityTextureName"            "pudge_rot"
+
+    "AbilityCooldown"               "3 2"
+    "AbilityManaCost"               "0"
+    "AbilityDamage"                 "%damage" 
+    "AbilityCastRange"              "%range"
+    "AbilityCastAnimation"          "ACT_DOTA_CAST_ABILITY_1 "
+
+    "OnSpellStart"
+    {
+        "FireSound"
+        {
+            "Target"                "CASTER"
+            "EffectName"            "Hero_Undying.Decay.Cast"
+        }       
+        
+        "RunScript"
+        {
+            "ScriptFile"            "unit_scripts/towers/ai_tombstone.lua"
+            "Function"              "TombstoneDecay"       
+            "AbilityContext"     
+            {
+                "particle"      "particles/tombstone/decay/tombstone_decay.vpcf"
+                "sound"         "Hero_Undying.Decay.Target"
+                "modifier"      "modifier_tombstone_decay_slow"
+            }
+        }
+    }
+
+    "Modifiers"
+      {
+          "modifier_tombstone_decay_slow"
+          {
+              "Passive"             "0"
+              "IsHidden"            "0"
+              "IsDebuff"            "0"
+              "Duration"            "%slow_duration"
+
+      
+              //"EffectName"          "particle_name"
+              //"EffectAttachType"    "follow_origin"
+      
+              "Properties"
+              {
+                  "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%slow"                  
+              }
+          }
+      }  
+    
+    "AbilitySpecial"
+    {
+        "01"
+        {
+            "var_type"          "FIELD_INTEGER"
+            "damage"            "2"
+        }
+        "02"
+        {
+            "var_type"          "FIELD_INTEGER"
+            "width"             "200"
+        }
+        "03"
+        {
+            "var_type"          "FIELD_INTEGER"
+            "range"             "1200"
+        }
+        "04"
+        {
+            "var_type"          "FIELD_FLOAT"
+            "tick"              "0.3"
+        }
+        "05"
+        {
+            "var_type"          "FIELD_INTEGER"
+            "speed"             "300"
+        }
+        "06"
+        {
+            "var_type"          "FIELD_INTEGER"
+            "slow"              "-20"
+        }
+        "06"
+        {
+            "var_type"          "FIELD_INTEGER"
+            "slow_duration"     "1"
+        }
+    }  
+
+    "precache"
+    {
+        "soundfile"     "soundevents/game_sounds_heroes/game_sounds_undying.vsndevts"        
+        "particle"      "particles/tombstone/decay/tombstone_decay.vpcf"
+    }  
+}
+
+//level up to 2, reduce cooldown
+"ability_upgrade_tombstone_tower_1"
+{
+    "BaseClass"             "ability_datadriven"
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"        
+    "AbilityTextureName"    "tombstone_decay_icon_1"
+
+    "AbilityGoldCost"       "50"
+
+    "OnSpellStart"
+    {          
+        "LevelUpAbility"
+        {
+            "Target"         "CASTER"
+            "AbilityName"    "ability_tombstone_tower_decay"
+        }
+        "ApplyModifier"
+        {
+            "ModifierName"    "modifier_upgrade_tombstone_tower_1"
+            "Target"          "CASTER"            
+        }
+
+        "RunScript"
+        {
+            "ScriptFile"    "scripts/vscripts/addon_game_mode.lua"
+            "Function"      "upgradeTower"
+            "AbilityContext"
+            {
+                "nextUpgrade"   "ability_upgrade_tombstone_tower_2"                
+            }
+        }   
+    }
+
+    "Modifiers"
+    {
+        "modifier_upgrade_tombstone_tower_1"
+        {
+            "IsHidden"      "0"
+            "Passive"       "0"            
+        }
+    }
+}

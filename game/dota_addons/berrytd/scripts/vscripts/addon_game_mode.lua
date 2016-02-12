@@ -72,7 +72,8 @@ GameMode.TowerList = {
   "barracks_ranged",
   "barracks_utility",
   "tower_iceberg",
-  "tower_tesla_coil"
+  "tower_tesla_coil",
+  "tower_tombstone"
 }
 
 GameMode.DefenderList = {

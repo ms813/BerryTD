@@ -1,0 +1,39 @@
+"ability_spawn_tombstone_tower"
+{
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "BaseClass"             "ability_datadriven"
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+    "AbilityType"           "DOTA_ABILITY_TYPE_BASIC"
+    "AbilityTextureName"    "tombstone_icon"    
+    "MaxLevel"              "1"
+    
+
+    // Time     
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityCooldown"       "1.0"
+
+    // Cost
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityManaCost"       "0" 
+    "AbilityGoldCost"       "200"
+ 
+    // Special
+    //-------------------------------------------------------------------------------------------------------------
+
+
+    "OnSpellStart"
+    {      
+        "RunScript"
+        {
+            "ScriptFile"    "unit_scripts/towers/spawn_tower.lua"
+            "Function"      "SpawnTower"
+
+            "AbilityContext"
+            {
+                "tower_name"    "tower_tombstone"
+            }
+        } 
+    }
+}
+
