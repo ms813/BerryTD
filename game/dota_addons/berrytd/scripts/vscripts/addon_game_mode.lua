@@ -64,6 +64,7 @@ end
 GameMode.TowerList = {
   "tower_sniper",
   "tower_tackshooter",
+  "tower_demon",
   "tower_dragon",
   "tower_laser",
   "tower_soul_siphon",

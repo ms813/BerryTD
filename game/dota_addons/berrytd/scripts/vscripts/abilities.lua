@@ -125,7 +125,7 @@ function GameMode:goToPage(keys)
 		--page one has physical DPS towers
 		caster:AddAbility("ability_spawn_sniper_tower")		
 		caster:AddAbility("ability_spawn_tackshooter_tower")
-		
+		caster:AddAbility("ability_spawn_demon_tower")
 
 	elseif ability_name == "ability_open_page_two" then
 

@@ -18,7 +18,7 @@
     "Ability3"              "ability_upgrade_tombstone_tower_1"  
     "Ability6"              "tower_immunity"
 
-    "AttackCapabilities"    "DOTA_UNIT_CAP_NONE"
+    "AttackCapabilities"    "DOTA_UNIT_CAP_NO_ATTACK"
 
     "BoundsHullName"        "DOTA_HULL_SIZE_HERO"
 

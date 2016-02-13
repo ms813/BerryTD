@@ -1,0 +1,43 @@
+"tower_demon"
+{
+	"BaseClass"             "npc_dota_creature"
+	"Model"                 "models/heroes/terrorblade/demon.vmdl"
+	"ModelScale"			"1"
+    "ConsideredHero"        "1"
+    "Level"                 "0"
+
+    //used as a hook in Lua scripts
+    "UnitLabel"             "tower"
+
+	"HasInventory"          "1"    
+    "SelectOnSpawn"         "1"
+
+	//Abilities  
+    "AbilityLayout"         "6"
+    "Ability1"              "ability_sell_tower"
+    "Ability2"              "ability_demon_tower_attack"
+    "Ability3"              "ability_upgrade_demon_tower_1"  
+    "Ability6"              "tower_immunity"
+
+	"AttackCapabilities"    "DOTA_UNIT_CAP_NO_ATTACK"       
+
+    //same as jakiro's projectile speed
+    "ProjectileSpeed"		"1100"	  
+
+    "BoundsHullName"        "DOTA_HULL_SIZE_HERO"
+    "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_GROUND"
+
+    "StatusHealth"          "1000" 
+
+    //this is a dirty hack - set this equal to the sell price of the tower
+    "StatusManaRegen"       "50" 
+
+    //I tried using these as hooks to get the sell gold but they arent picked up by ability:GetGoldBountyMax()
+    "BountyGoldMax"         "50"
+    "BountyGoldMin"         "50"
+
+    "VisionDaytimeRange"    "1000"       
+    "VisionNighttimeRange"  "750"  
+
+    "vscripts"              "unit_scripts/towers/ai_demon.lua"
+}
