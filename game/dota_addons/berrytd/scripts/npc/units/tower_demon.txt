@@ -19,7 +19,7 @@
     "Ability3"              "ability_upgrade_demon_tower_1"  
     "Ability6"              "tower_immunity"
 
-	"AttackCapabilities"    "DOTA_UNIT_CAP_NO_ATTACK"       
+	"AttackCapabilities"    "DOTA_UNIT_CAP_NO_ATTACK"   	
 
     //same as jakiro's projectile speed
     "ProjectileSpeed"		"1100"	  

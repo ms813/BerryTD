@@ -325,6 +325,11 @@
             "cap_bonus_dmg_percent"     "50"
         }        
     }
+
+    "precache"
+    {
+        "particle"  "particles/units/heroes/hero_clinkz/clinkz_searing_arrow.vpcf"
+    }
 }
 
 "ability_defender_ranged_6_aoe"

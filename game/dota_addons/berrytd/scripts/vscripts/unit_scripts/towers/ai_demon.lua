@@ -1,8 +1,31 @@
 require('targetingHelper')
 
 function Spawn(keys)
-	print(thisEntity:GetUnitName(), "spawned")
 	lvlUpUnitAbilities(thisEntity)
+	thisEntity.spear_count = 1
+
+	Timers:CreateTimer(0.5, function()
+		return DemonThink(thisEntity)
+	end)
+end
+
+function DemonThink(tower)
+	if tower:IsNull() or not tower:IsAlive() then
+		return nil
+	end
+
+	local ab = tower:GetAbilityByIndex(1)
+	
+	if ab ~= nil and ab:IsCooldownReady() then
+		local targeting_range = ab:GetLevelSpecialValueFor("targeting_range", ab:GetLevel())
+		local targets = TargetingHelper.FindDireInRadius(tower, targeting_range)
+
+		if #targets > 0 then
+			tower:CastAbilityOnTarget(targets[1], ab, tower:GetPlayerOwnerID())
+		end
+	end
+
+	return 0.5
 end
 
 function DemonAttack(keys)
@@ -10,23 +33,48 @@ function DemonAttack(keys)
 	local speed = ab:GetLevelSpecialValueFor("speed", ab:GetLevel())
 	local range = ab:GetLevelSpecialValueFor("range", ab:GetLevel())
 	
+	
+	
+	local origin = {}
 	local vel = (keys.target:GetAbsOrigin() - keys.caster:GetAbsOrigin()):Normalized() * speed
-	print(keys.AbilityContext.particle)
+	if keys.caster.spear_count == 1 or keys.caster.spear_count == 5 then
+		
+		origin[1] = keys.caster:GetAbsOrigin() + Vector(0,0,100)
+	elseif keys.caster.spear_count == 2 then
+		local dir = (keys.target:GetAbsOrigin() - keys.caster:GetAbsOrigin()):Normalized()
+		local perp = Vector(-dir.y, dir.x, 0)
+		local offset_dist = 25
+		local offset = perp * offset_dist
+		origin[1] = keys.caster:GetAbsOrigin() + offset
+		origin[2] = keys.caster:GetAbsOrigin() - offset
+	end
 
-	keys.caster.projectile = DemonProj{
-		particle = keys.AbilityContext.particle,
-		origin = keys.caster:GetAbsOrigin() + Vector(0,0,100),
-		dist = range,
-		width = ab:GetLevelSpecialValueFor("width", ab:GetLevel()),
-		source = keys.caster,
-		velocity = vel,
-		dmg = ab:GetLevelSpecialValueFor("damage", ab:GetLevel()),
-		target = keys.target,
-		--pierce = ab:GetLevelSpecialValueFor("pierce", ab:GetLevel())
-		pierce = 1
-	}
+	if keys.caster.spear_count == 5 then
+		local dir = (keys.target:GetAbsOrigin() - keys.caster:GetAbsOrigin()):Normalized()
+		local perp = Vector(-dir.y, dir.x, 0)
+		local offset_dist = 15
+		local offset = perp * offset_dist		
+		origin[2] = keys.caster:GetAbsOrigin() - offset
+		origin[3] = keys.caster:GetAbsOrigin() + offset
+		origin[4] = keys.caster:GetAbsOrigin() - 2*offset
+		origin[5] = keys.caster:GetAbsOrigin() + 2*offset
+	end
 
-	Projectiles:CreateProjectile(keys.caster.projectile)
+	for i=1,#origin do
+		keys.caster.projectile = DemonProj{
+			particle = keys.AbilityContext.particle,
+			origin = origin[i],
+			dist = range,
+			width = ab:GetLevelSpecialValueFor("width", ab:GetLevel()),
+			source = keys.caster,
+			velocity = vel,
+			dmg = ab:GetLevelSpecialValueFor("damage", ab:GetLevel()),
+			target = keys.target,
+			pierce = ab:GetLevelSpecialValueFor("pierce", ab:GetLevel())
+		}
+
+		Projectiles:CreateProjectile(keys.caster.projectile)
+	end
 end
 
 function DemonProj(args)
@@ -72,7 +120,6 @@ function DemonProj(args)
         end,
 		OnUnitHit = function(self, unit)
 			if args.pierce > -1 then
-				print("Unit hit", unit:GetUnitName())
 				--damage the target
 				ApplyDamage({
 			    	attacker = args.source,
@@ -91,4 +138,8 @@ function DemonProj(args)
 		--OnGroundHit = function(self, groundPos) ... end,
 		--OnFinish = function(self, pos) ... end,
 	}
+end
+
+function DemonUpgradeSpearCount(keys)
+	keys.caster.spear_count = keys.SpearCount
 end

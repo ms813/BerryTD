@@ -50,7 +50,7 @@ function Precache( context )
   --Precache defenders
   for i, defender in pairs(GameMode.DefenderList) do
     for j=0,6 do  
-      PrecacheUnitByNameSync(defender..j, context)
+      PrecacheUnitByNameSync(defender..j, context)      
     end
   end
 end

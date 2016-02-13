@@ -54,7 +54,6 @@ function DefenderRangedSpeedStack(keys)
 			end
 			return stack_decay_rate
 		end) 
-
 end
 
 
@@ -91,7 +90,8 @@ function DefenderRangedDmgStack(keys)
 			if not caster:HasModifier(max_stacks_modifier) then
 				ability:ApplyDataDrivenModifier(caster, caster, max_stacks_modifier, {})
 
-				caster:SetRangedProjectileName(max_projectile)				
+				caster:SetRangedProjectileName(max_projectile)	
+
 			end
 		end
 	else
@@ -129,7 +129,7 @@ function OnDeath(keys)
 	keys.caster:AddNoDraw()	
 	local particle = keys.AbilityContext.particle
 	ParticleManager:CreateParticle(
-		particle
+		particle,
 		PATTACH_CUSTOMORIGIN_FOLLOW,
 		keys.caster)
 end
