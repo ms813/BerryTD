@@ -7,13 +7,13 @@
     "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"    
     "AbilityTextureName"            "mirana_arrow"
 
-    "AbilityCooldown"               "4 2.5 2.5"
+    "AbilityCooldown"               "3"
     "AbilityManaCost"               "0"
     "AbilityDamage"                 "%damage" 
     "AbilityCastRange"              "%targeting_range"
     "AbilityCastAnimation"          "ACT_DOTA_CAST_ABILITY_1 "
 
-    "MaxLevel"                      "3"
+    "MaxLevel"                      "2"
 
     "OnSpellStart"
     {        
@@ -28,50 +28,87 @@
         }
     }
 
+    "Modifiers"
+    {
+        "modifier_demon_low_bounce_priority"
+        {
+            "Passive"           "0"
+            "IsHidden"          "1"
+            "IsDebuff"          "1"    
+        }
+    }
+
+    "OnProjectileHitUnit"
+    {
+        "DeleteOnHit"    "0"
+        "Damage"
+        {
+            "Target"        "TARGET"
+            "Type"          "DAMAGE_TYPE_PHYSICAL"
+            "Damage"        "%damage"
+        }
+
+        "ApplyModifier"
+        {
+            "ModifierName"   "modifier_demon_low_bounce_priority"
+            "Target"         "TARGET"
+            "Duration"       "%ability_cooldown"
+        }
+        "RunScript"
+        {
+            "ScriptFile"    "unit_scripts/towers/ai_demon.lua"
+            "Function"      "DemonOnBounce"
+        }
+    }  
+
     "AbilitySpecial"
     {
         "01"
         {
             "var_type"          "FIELD_INTEGER"
-            "speed"             "750 750 1200"
+            "speed"             "750"
         }
         "02"
         {
             "var_type"          "FIELD_INTEGER"
             "range"             "1800"
         }
-        "02"
+        "03"
         {
             "var_type"          "FIELD_INTEGER"
             "targeting_range"   "900"
         }
-        "03"
+        "04"
         {
             "var_type"          "FIELD_INTEGER"
             "width"             "75"
         }
-        "03"
+        "05"
         {
             "var_type"          "FIELD_INTEGER"
-            "damage"            "10 15 15"
+            "damage"            "10"
         }
-        //Number of pierce targets
-        //A value of 1 means the projectile will be destroyed on the 2nd target hit
-        "04"
+        //Number of pierce targets    
+        "06"
         {
             "var_type"          "FIELD_INTEGER"
-            "pierce"            "1 1 3"
+            "pierce"            "2 2 4"
+        }
+        "07"
+        {
+            "var_type"          "FIELD_INTEGER"
+            "ability_cooldown"  "3"
         }
     }
 
     "precache"
     {
-        "particle"  "particles/econ/items/mirana/mirana_crescent_arrow/mirana_spell_crescent_arrow.vpcf"
-        //"soundfile" "soundevents/game_sounds_heroes/game_sounds_HERO.vsndevts"
+        "particle"  "particles/econ/items/mirana/mirana_crescent_arrow/mirana_spell_crescent_arrow.vpcf"        
+        "particle"  "particles/econ/items/bounty_hunter/bounty_hunter_shuriken_creeper/bounty_hunter_suriken_toss_creepers_cruel.vpcf"
     }
 }
 
-//upgrade damage and reduce cooldown
+//upgrade number of pierce targets
 "ability_upgrade_demon_tower_1"
 {
     "BaseClass"             "ability_datadriven"
@@ -115,7 +152,7 @@
     }
 }
 
-//upgrade number of pierce targets
+//change to tracking projectile
 "ability_upgrade_demon_tower_2"
 {
     "BaseClass"             "ability_datadriven"
@@ -126,10 +163,10 @@
 
     "OnSpellStart"
     {          
-        "LevelUpAbility"
+        "RunScript"
         {
-            "Target"         "CASTER"
-            "AbilityName"    "ability_demon_tower_attack"
+            "ScriptFile"    "unit_scripts/towers/ai_demon.lua"
+            "Function"      "DemonUpgradeBounce"
         }
 
         "ApplyModifier"

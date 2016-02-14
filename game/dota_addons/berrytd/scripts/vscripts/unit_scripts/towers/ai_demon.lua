@@ -31,9 +31,7 @@ end
 function DemonAttack(keys)
 	local ab = keys.ability
 	local speed = ab:GetLevelSpecialValueFor("speed", ab:GetLevel())
-	local range = ab:GetLevelSpecialValueFor("range", ab:GetLevel())
-	
-	
+	local range = ab:GetLevelSpecialValueFor("range", ab:GetLevel())	
 	
 	local origin = {}
 	local vel = (keys.target:GetAbsOrigin() - keys.caster:GetAbsOrigin()):Normalized() * speed
@@ -60,24 +58,99 @@ function DemonAttack(keys)
 		origin[5] = keys.caster:GetAbsOrigin() + 2*offset
 	end
 
-	for i=1,#origin do
-		keys.caster.projectile = DemonProj{
-			particle = keys.AbilityContext.particle,
-			origin = origin[i],
-			dist = range,
-			width = ab:GetLevelSpecialValueFor("width", ab:GetLevel()),
-			source = keys.caster,
-			velocity = vel,
-			dmg = ab:GetLevelSpecialValueFor("damage", ab:GetLevel()),
-			target = keys.target,
-			pierce = ab:GetLevelSpecialValueFor("pierce", ab:GetLevel())
-		}
-
-		Projectiles:CreateProjectile(keys.caster.projectile)
+	if keys.caster.bounce then	
+		for i=1, #origin do
+			DemonTrackingProj{
+				target = keys.target,
+				source = keys.caster,
+				ability = ab,
+				particle = keys.AbilityContext.particle,
+				speed = speed,
+				origin = keys.caster:GetAbsOrigin()
+			}						
+		end
+		keys.caster.max_pierce = ab:GetLevelSpecialValueFor("pierce", ab:GetLevel()) * #origin
+		keys.caster.pierce = keys.caster.max_pierce
+	else
+		for i=1,#origin do
+			keys.caster.projectile = DemonLinearProj{
+				particle = keys.AbilityContext.particle,
+				origin = origin[i],
+				dist = range,
+				width = ab:GetLevelSpecialValueFor("width", ab:GetLevel()),
+				source = keys.caster,
+				velocity = vel,
+				dmg = ab:GetLevelSpecialValueFor("damage", ab:GetLevel()),
+				target = keys.target,
+				pierce = ab:GetLevelSpecialValueFor("pierce", ab:GetLevel())
+			}		
+			Projectiles:CreateProjectile(keys.caster.projectile)
+		end		
 	end
 end
 
-function DemonProj(args)
+function DemonOnBounce(keys)
+
+	if keys.caster.prev_target == nil then
+		keys.caster.prev_target = keys.target
+	end
+
+	if keys.caster.pierce == keys.caster.max_pierce then
+		keys.caster.prev_target = keys.target
+	end
+
+	keys.caster.pierce = keys.caster.pierce - 1	
+    if keys.caster.pierce > 0 then   	    
+		local targets = TargetingHelper.FindDireInRadius(keys.caster.prev_target, 500)    	
+		
+    	--find the nearest target without a low bounce priority modifier
+    	local new_target = keys.caster.prev_target
+    	if #targets > 1 then    
+    		--choose a random target that is not the current target
+    		--i.e. can't hit same target twice in a row			    
+    		while new_target == keys.caster.prev_target do
+    			new_target = targets[math.random(1, #targets)]
+    		end	    	
+	    end
+    	
+    	if new_target ~= nil then    		
+    		local ab = keys.ability
+    		DemonTrackingProj{
+				target = new_target,
+				source = keys.caster.prev_target,
+				ability = ab,
+				particle = "",
+				speed = ab:GetLevelSpecialValueFor("speed",ab:GetLevel())				
+			}			
+		keys.caster.prev_target = new_target					
+    	end 	    	   	    			
+    end
+end
+
+function DemonTrackingProj(args)
+	--[[
+		args = {
+			target = entity,
+			source = entity,
+			ability = ability,
+			particle = string,
+			speed = int,
+			origin = Vector
+		}
+	]]
+	local proj =   
+	{
+		Target = args.target,
+		Source = args.source,
+		Ability = args.ability,	
+		--EffectName = args.particle,
+		EffectName = "particles/econ/items/bounty_hunter/bounty_hunter_shuriken_creeper/bounty_hunter_suriken_toss_creepers_cruel.vpcf",
+	    iMoveSpeed = args.speed		
+	}
+	ProjectileManager:CreateTrackingProjectile(proj)
+end
+
+function DemonLinearProj(args)
 
 	--[[
 		args = {
@@ -119,7 +192,7 @@ function DemonProj(args)
         	return unit:GetUnitName() ~= "npc_dummy_unit" and unit:GetTeamNumber() ~= args.source:GetTeamNumber()
         end,
 		OnUnitHit = function(self, unit)
-			if args.pierce > -1 then
+			if args.pierce > 0 then
 				--damage the target
 				ApplyDamage({
 			    	attacker = args.source,
@@ -127,10 +200,11 @@ function DemonProj(args)
 			    	damage = args.dmg,
 			    	damage_type = DAMAGE_TYPE_PHYSICAL
 			    })   
-			    args.pierce = args.pierce - 1
+			    args.pierce = args.pierce - 1			   
 			end
-			if args.pierce < 0 then
-				self.UnitBehavior = PROJECTILES_DESTROY
+
+			if args.pierce <= 0 then
+				self:Destroy()
 			end
 		end,
 		--OnTreeHit = function(self, tree) ... end,
@@ -142,4 +216,8 @@ end
 
 function DemonUpgradeSpearCount(keys)
 	keys.caster.spear_count = keys.SpearCount
+end
+
+function DemonUpgradeBounce(keys)
+	keys.caster.bounce = true
 end
