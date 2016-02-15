@@ -174,49 +174,6 @@
     } 
 }
 
-//catapult with aoe stun
-"defender_ranged_4"
-{                                       
-    "Model"                 "models/creeps/lane_creeps/creep_good_siege/creep_good_siege.vmdl"
-    "BaseClass"             "npc_dota_creature"
-    "Level"                 "1"
-    "ModelScale"            "1"    
-    "UnitLabel"             "defender"   
-
-    "Ability1"              "ability_defender_ranged_2_truesight"
-    "Ability2"              "ability_defender_ranged_4_aoe"
-
-    "BoundsHullName"        "DOTA_HULL_SIZE_HERO"
-
-    "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_GROUND"
-    "MovementSpeed"         "280"
-
-    "WakesNeutrals"         "0"
-
-    "StatusHealth"          "250"
-    "StatusHealthRegen"     "0"
-    "StatusMana"            "0"
-    "StatusManaRegen"       "0"
-    "ArmorPhysical"         "10"
-    "MagicalResistance"     "25"
-
-    "AttackCapabilities"    "DOTA_UNIT_CAP_RANGED_ATTACK"
-    "AttackDamageMin"       "100"
-    "AttackDamageMax"       "100"
-    "AttackRate"            "4"
-    "AttackRange"           "1200"
-    "AttackAcquisitionRange"    "1500"
-    "AttackAnimationPoint"  "0.7"
-    "ProjectileSpeed"       "1200"
-
-    "ProjectileModel"       "particles/base_attacks/ranged_siege_good.vpcf"
-
-    "Creature"
-    {
-        "DisableClumpingBehavior"   "1"
-    } 
-}
-
 //attack damage increases with consecutive attacks
 //at max stacks gets bonus range and pure damage on hit
 "defender_ranged_5"
@@ -268,51 +225,5 @@
             "Wearable4"  {"ItemDef"  "7350"}
             "Wearable5"  {"ItemDef"  "7345"}
         }
-    } 
-}
-
-
-
-//catapult with aoe damage and knockback
-//boom
-"defender_ranged_6"
-{                                       
-    "Model"                 "models/creeps/lane_creeps/creep_bad_siege/creep_bad_siege.vmdl"
-    "BaseClass"             "npc_dota_creature"
-    "Level"                 "1"
-    "ModelScale"            "1"    
-    "UnitLabel"             "defender"
-
-    "Ability1"              "ability_defender_ranged_2_truesight"
-    "Ability2"              "ability_defender_ranged_6_aoe"
-
-    "BoundsHullName"        "DOTA_HULL_SIZE_HERO"
-
-    "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_GROUND"
-    "MovementSpeed"         "250"
-
-    "WakesNeutrals"         "0"
-
-    "StatusHealth"          "300"
-    "StatusHealthRegen"     "0"
-    "StatusMana"            "0"
-    "StatusManaRegen"       "0"
-    "ArmorPhysical"         "10"
-    "MagicalResistance"     "25"
-
-    "AttackCapabilities"    "DOTA_UNIT_CAP_RANGED_ATTACK"
-    "AttackDamageMin"       "250"
-    "AttackDamageMax"       "250"
-    "AttackRate"            "4"
-    "AttackRange"           "1200"
-    "AttackAcquisitionRange"    "1500"
-    "AttackAnimationPoint"  "0.7"
-    "ProjectileSpeed"       "800"
-
-    "ProjectileModel"       "particles/units/heroes/hero_rattletrap/rattletrap_rocket_flare.vpcf"
-    
-    "Creature"
-    {
-        "DisableClumpingBehavior"   "1"
     } 
 }

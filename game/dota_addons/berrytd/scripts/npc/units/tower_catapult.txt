@@ -1,0 +1,42 @@
+//catapult with aoe 
+"tower_catapult"
+{   
+    "BaseClass"             "npc_dota_creature"                                    
+    "Model"                 "models/creeps/lane_creeps/creep_good_siege/creep_good_siege.vmdl"    
+    "Level"                 "1"
+    "ModelScale"            "1"    
+    "ConsideredHero"        "1"
+    "UnitLabel"             "tower"   
+
+    "Ability1"              "ability_sell_tower"
+    "Ability2"              "ability_catapult_aoe_damage"
+    "Ability3"              "ability_upgrade_catapult_1"
+    "Ability6"              "tower_immunity"
+
+    "BoundsHullName"        "DOTA_HULL_SIZE_HERO"
+
+    "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_GROUND"
+
+    "StatusHealth"          "1000"
+
+    "AttackCapabilities"    "DOTA_UNIT_CAP_RANGED_ATTACK"
+    "AttackDamageMin"       "10"
+    "AttackDamageMax"       "10"
+    "AttackRate"            "4"
+    "AttackRange"           "750"
+    "AttackAcquisitionRange"    "900"
+    "AttackAnimationPoint"  "0.7"
+    "ProjectileSpeed"       "1100"
+
+    "ProjectileModel"       "particles/base_attacks/ranged_siege_good.vpcf"
+    //"ProjectileModel"       "particles/units/heroes/hero_rattletrap/rattletrap_rocket_flare.vpcf"
+
+    //this is a dirty hack - set this equal to the sell price of the tower
+    "StatusManaRegen"       "50" 
+
+    //I tried using these as hooks to get the sell gold but they arent picked up by ability:GetGoldBountyMax()
+    "BountyGoldMax"         "50"
+
+    "vscripts"              "unit_scripts/towers/ai_catapult.lua"
+}
+

@@ -1,0 +1,53 @@
+"ability_spawn_catapult_tower"
+{
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "BaseClass"             "ability_datadriven"
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+    "AbilityType"           "DOTA_ABILITY_TYPE_BASIC"
+    "AbilityTextureName"    "gyrocopter_homing_missile"
+    "MaxLevel"              "1"
+
+
+    // Time     
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityCooldown"               "2.0"
+
+    // Cost
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityManaCost"               "0" 
+    "AbilityGoldCost"               "100"
+ 
+    // Special
+    //-------------------------------------------------------------------------------------------------------------
+
+    "OnSpellStart"
+    {      
+        "RunScript"
+        {
+            "ScriptFile"    "unit_scripts/towers/spawn_tower.lua"
+            "Function"      "SpawnTower"
+
+            "AbilityContext"
+            {
+                "tower_name"    "tower_catapult"
+            }
+        }  
+    }
+
+    "AbilitySpecial"
+    {
+        "01"
+        {
+            "var_type"          "FIELD_INTEGER"
+            "damage"            "5"
+        }
+        "02"
+        {
+            "var_type"          "FIELD_FLOAT"
+            "cooldown"          "5"
+        }
+    }
+}
+
+

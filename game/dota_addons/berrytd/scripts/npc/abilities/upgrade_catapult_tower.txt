@@ -1,0 +1,606 @@
+"ability_catapult_aoe_damage"
+{
+    "BaseClass"                     "ability_datadriven"
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+    "AbilityTextureName"            "brewmaster_earth_hurl_boulder"  
+
+    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+    "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+    "AbilityUnitDamageType"         "DAMAGE_TYPE_PHYSICAL"
+    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+
+    "Modifiers"
+    {
+        "modifier_catapult_aoe_damage"
+        {
+            "Passive"           "1"
+            "IsHidden"          "0"
+            "IsBuff"            "1"
+    
+            "OnAttackLanded"
+            {
+
+                "FireEffect"
+                {
+                    "EffectName"        "particles/units/heroes/hero_techies/techies_bomb_ground_debris.vpcf"
+                    "EffectAttachType"  "follow_origin"
+                    "Target"
+                    {
+                        "Center"    "TARGET"
+                        "Radius"    "%aoe_radius"                        
+                        "Teams"     "DOTA_UNIT_TARGET_TEAM_ENEMY"
+                        "Types"     "DOTA_UNIT_TARGET_ALL" 
+                    }
+                }
+    
+                "Damage"
+                {
+                    "Target"
+                    {
+                        "Center"    "TARGET"
+                        "Radius"    "%aoe_radius"                        
+                        "Teams"     "DOTA_UNIT_TARGET_TEAM_ENEMY"
+                        "Types"     "DOTA_UNIT_TARGET_ALL" 
+                    }
+
+                    "Type"      "DAMAGE_TYPE_PHYSICAL"
+                    "Damage"    "%aoe_damage"
+                }
+            }
+        } 
+
+        "modifier_catapult_death"
+        {
+            "Passive"   "1"
+            "IsHidden"  "1"
+
+            "OnDeath"
+            {
+                "RunScript"
+                {
+                    "ScriptFile"    "unit_scripts/towers/ai_catapult.lua"
+                    "Function"        "OnDeath"                    
+                    
+                    "AbilityContext"
+                    {
+                        "particle"  "particles/siege_fx/siege_good_death_01.vpcf"
+                    }
+                }
+            }
+        }          
+    }
+
+    "AbilitySpecial"
+    {
+        "01"
+        {
+            "var_type"      "FIELD_INTEGER"
+            "aoe_radius"    "300 400"
+        }
+        "02"
+        {
+            "var_type"      "FIELD_INTEGER"
+            "aoe_damage"    "10"
+        }
+        "03"
+        {
+            "var_type"      "FIELD_INTEGER"
+            "bonus_attack_speed"    "100"
+        }
+        "04"
+        {
+            "var_type"      "FIELD_INTEGER"
+            "bonus_range"    "450"
+        }
+    }
+
+    "precache"
+    {
+        "particle"  "particles/units/heroes/hero_techies/techies_bomb_ground_debris.vpcf"
+    }
+}
+
+"ability_catapult_stun"
+{
+    "BaseClass"                     "ability_datadriven"
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+    "AbilityTextureName"            "brewmaster_earth_hurl_boulder"
+
+    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+    "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+    "AbilityUnitDamageType"         "DAMAGE_TYPE_PHYSICAL"
+    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+
+    "precache"
+    {
+        "particle"  "particles/units/heroes/hero_techies/techies_bomb_ground_debris.vpcf"
+        "soundfile" "sounds/weapons/hero/gyrocopter/homing_missile_target.vsnd" 
+    }
+
+    "Modifiers"
+    {
+        "modifier_catapult_stun"
+        {
+            "Passive"       "1"
+            "IsHidden"      "1"
+
+            "OnAttackLanded"
+            {
+
+                "FireEffect"
+                {
+                    "EffectName"        "particles/units/heroes/hero_techies/techies_bomb_ground_debris.vpcf"
+                    "EffectAttachType"  "follow_origin"
+                    "Target"
+                    {
+                        "Center"    "TARGET"
+                        "Radius"    "%aoe_radius"                        
+                        "Teams"     "DOTA_UNIT_TARGET_TEAM_ENEMY"
+                        "Types"     "DOTA_UNIT_TARGET_ALL" 
+                    }
+                }
+
+                "FireSound"
+                {
+                    "EffectName"    "Hero_Gyrocopter.HomingMissile.Target"  
+                    "Target"        "TARGET"
+                }
+
+                "Damage"
+                {
+                    "Target"
+                    {
+                        "Center"    "TARGET"
+                        "Radius"    "%aoe_radius"                        
+                        "Teams"     "DOTA_UNIT_TARGET_TEAM_ENEMY"
+                        "Types"     "DOTA_UNIT_TARGET_ALL" 
+                    }
+
+                    "Type"      "DAMAGE_TYPE_PHYSICAL"
+                    "Damage"    "%aoe_damage"
+                }
+
+                "Stun"
+                {
+                    "Target"
+                    {
+                        "Center"    "TARGET"
+                        "Radius"    "%aoe_radius"                        
+                        "Teams"     "DOTA_UNIT_TARGET_TEAM_ENEMY"
+                        "Types"     "DOTA_UNIT_TARGET_ALL" 
+                    }
+
+                    "Duration"      "%stun_duration"
+                }                
+            }            
+        }
+
+        "modifier_catapult_death"
+        {
+            "Passive"   "1"
+            "IsHidden"  "1"
+
+            "OnDeath"
+            {
+                "RunScript"
+                {
+                    "ScriptFile"    "unit_scripts/towers/ai_catapult.lua"
+                    "Function"        "OnDeath"                    
+                    
+                    "AbilityContext"
+                    {
+                        "particle"  "particles/siege_fx/siege_good_death_01.vpcf"
+                    }
+                }
+            }
+        } 
+    }   
+
+    "AbilitySpecial"
+    {
+        "01"
+        {
+            "var_type"          "FIELD_INTEGER"
+            "aoe_radius"        "200"
+        }
+        
+        "02"
+        {
+            "var_type"          "FIELD_FLOAT"
+            "stun_duration"     "1.5"
+        }
+
+        "03"
+        {
+            "var_type"          "FIELD_INTEGER"
+            "aoe_damage"        "25"
+        }
+    }
+}
+
+
+"ability_catapult_nuke"
+{
+
+    "BaseClass"                     "ability_datadriven"    
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+    "AbilityTextureName"            "lina_light_strike_array"
+
+    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+    "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+    "AbilityUnitDamageType"         "DAMAGE_TYPE_PHYSICAL"
+    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+
+    "precache"
+    {
+        "particle"  "particles/units/heroes/hero_warlock/warlock_rain_of_chaos.vpcf"
+        "particle"  "particles/units/heroes/hero_lina/lina_spell_light_strike_array_explosion.vpcf"
+        "particle"  "particles/units/heroes/hero_phoenix/phoenix_fire_spirit_ground.vpcf"        
+        "soundfile" "sounds/weapons/hero/gyrocopter/homing_missile_destroy.vsnd"        
+    }      
+
+    "AbilitySpecial"
+    {
+        "01"
+        {
+            "var_type"              "FIELD_INTEGER"
+            "aoe_radius"            "300"
+        }
+        
+        "02"
+        {
+            "var_type"              "FIELD_INTEGER"
+            "aoe_damage"            "50"
+        }
+
+        "03"
+        {
+            "var_type"              "FIELD_INTEGER"
+            "knockback_distance"    "500"
+        }
+
+        "04"
+        {
+            "var_type"              "FIELD_INTEGER"
+            "air_time"              "3"
+        }
+    }
+
+    "Modifiers"
+    {        
+        "modifier_catapult_death"
+        {
+            "Passive"   "1"
+            "IsHidden"  "1"
+
+            "OnDeath"
+            {
+                "RunScript"
+                {
+                    "ScriptFile"    "unit_scripts/towers/ai_catapult.lua"
+                    "Function"        "OnDeath"                    
+                    
+                    "AbilityContext"
+                    {
+                        "particle"  "particles/siege_fx/siege_good_death_01.vpcf"
+                    }
+                }
+            }
+        } 
+
+        "modifier_catapult_nuke"
+        {
+            "Passive"            "1"
+            "IsHidden"           "1"
+
+            "OnAttackLanded"
+            // "%attack_damage" is set to the damage value before mitigation
+            {   
+                "FireSound"
+                {
+                    "EffectName"    "Hero_Gyrocopter.HomingMissile.Destroy"                   
+                    "Target"        "TARGET"
+                }
+
+                "FireEffect"
+                {
+                    "EffectName"        "particles/units/heroes/hero_warlock/warlock_rain_of_chaos.vpcf"                    
+                    "EffectAttachType"  "follow_origin"
+                    "Target"            "TARGET"
+                }
+
+                "FireEffect"
+                {
+                    "EffectName"        "particles/units/heroes/hero_lina/lina_spell_light_strike_array_explosion.vpcf"                    
+                    "EffectAttachType"  "follow_origin"
+                    "Target"            "TARGET"
+                }
+                "FireEffect"
+                {
+                    "EffectName"        "particles/units/heroes/hero_phoenix/phoenix_fire_spirit_ground.vpcf"
+                    "EffectAttachType"  "follow_origin"
+                    "Target"            "TARGET"
+                }                
+
+                "Knockback"
+                {
+                    "Target"            
+                    {
+                        "Center"    "TARGET"
+                        "Radius"    "%aoe_radius"                        
+                        "Teams"  "DOTA_UNIT_TARGET_TEAM_ENEMY"                      
+                        "Types"  "DOTA_UNIT_TARGET_ALL"                       
+
+                    }
+
+                    "Center"            "TARGET"
+                    "Distance"          "%knockback_distance"
+                    "Duration"          "%air_time"
+                    "Height"            "500"
+                    "IsFixedDistance"   "1"
+                    "ShouldStun"        "1"    
+                }
+
+                "Damage"
+                {
+                    "Target"
+                    {
+                        "Center"    "TARGET"
+                        "Radius"    "%aoe_radius"
+                        "Teams"  "DOTA_UNIT_TARGET_TEAM_ENEMY"
+                        "Types"  "DOTA_UNIT_TARGET_ALL"                       
+
+                    }
+
+                    "Type"      "DAMAGE_TYPE_PHYSICAL"
+                    "Damage"    "%aoe_damage"
+                }
+            }         
+        }
+    }
+}
+
+//larger AoE
+"ability_upgrade_catapult_1"
+{
+    "BaseClass"                     "ability_datadriven"
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"    
+    "AbilityTextureName"            "rattletrap_battery_assault"
+
+    "AbilityGoldCost"               "50"
+
+    "OnSpellStart"
+    {
+        "ApplyModifier"
+        {
+            "ModifierName"          "modifier_upgrade_catapult_1"
+            "Target"                "CASTER"            
+        }
+
+        "LevelUpAbility"
+        {
+            "Target"                "CASTER"
+            "AbilityName"           "ability_catapult_aoe_damage"
+        }
+
+        "RunScript"
+        {
+            "ScriptFile"            "scripts/vscripts/addon_game_mode.lua"
+            "Function"              "upgradeTower"
+
+            "AbilityContext"
+            {
+                "nextUpgrade"       "ability_upgrade_catapult_2"
+            }
+        }             
+    }
+
+    "Modifiers"
+    {
+        //cosmetic - lets the user know the tower has been upgraded
+        "modifier_upgrade_catapult_1"
+        {
+            "Passive"           "0"         
+            "IsPurgable"        "0"
+            "IsBuff"            "1"
+        }               
+    } 
+}
+
+//upgrades range and firing speed
+"ability_upgrade_catapult_2"
+{
+    "BaseClass"                     "ability_datadriven"
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"    
+    "AbilityTextureName"            "phoenix_launch_fire_spirit"
+
+    "AbilityGoldCost"               "50"
+
+    "OnSpellStart"
+    {
+        "ApplyModifier"
+        {
+            "ModifierName"          "modifier_upgrade_catapult_2"
+            "Target"                "CASTER"            
+        }
+
+        "RunScript"
+        {
+            "ScriptFile"            "scripts/vscripts/addon_game_mode.lua"
+            "Function"              "upgradeTower"
+
+            "AbilityContext"
+            {
+                "nextUpgrade"       "ability_upgrade_catapult_3"
+                "splitUpgrade"      "ability_upgrade_catapult_4"
+            }
+        }             
+    }
+
+    "Modifiers"
+    {        
+        "modifier_upgrade_catapult_2"  
+        {
+            "Passive"           "0"
+            "IsHidden"          "0"
+            "IsBuff"            "1"
+            
+            "Properties"
+            {
+                "MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"  "%bonus_attack_speed"
+                "MODIFIER_PROPERTY_ATTACK_RANGE_BONUS"          "%bonus_range" 
+            }
+        }              
+    } 
+
+    "AbilitySpecial"
+    {   
+        "01"
+        {
+            "var_type"      "FIELD_INTEGER"
+            "bonus_attack_speed"    "50"
+        }
+        "02"
+        {
+            "var_type"      "FIELD_INTEGER"
+            "bonus_range"    "450"
+        }
+    }
+}
+
+//AoE stun
+"ability_upgrade_catapult_4"
+{
+    "BaseClass"                     "ability_datadriven"
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"    
+    "AbilityTextureName"            "tiny_avalanche"
+
+    "AbilityGoldCost"               "50"
+
+    "OnSpellStart"
+    {
+        "ApplyModifier"
+        {
+            "ModifierName"          "modifier_upgrade_catapult_4"
+            "Target"                "CASTER"            
+        }
+
+        "RunScript"
+        {
+            "ScriptFile"    "unit_scripts/towers/ai_catapult.lua"
+            "Function"      "CatapultRemoveAbility"
+            "AbilityContext"
+            {
+                "remove_ability"    "ability_catapult_aoe_damage"
+                "remove_modifier"   "modifier_catapult_aoe_damage"
+            }
+        }
+
+        "AddAbility"
+        {
+            "Target"         "CASTER"
+            "AbilityName"    "ability_catapult_stun"
+        }
+
+        "LevelUpAbility"
+        {
+            "Target"         "CASTER"
+            "AbilityName"    "ability_catapult_stun"
+        }
+
+        "RunScript"
+        {
+            "ScriptFile"            "scripts/vscripts/addon_game_mode.lua"
+            "Function"              "upgradeTower"
+
+            "AbilityContext"
+            {
+                "nextUpgrade"       "ability_upgrade_catapult_6"
+            }
+        }             
+    }
+
+    "Modifiers"
+    {
+        //cosmetic - lets the user know the tower has been upgraded
+        "modifier_upgrade_catapult_4"
+        {
+            "Passive"           "0"         
+            "IsPurgable"        "0"
+            "IsBuff"            "1"
+        }               
+    } 
+}
+
+//AoE knockback
+"ability_upgrade_catapult_6"
+{
+    "BaseClass"                     "ability_datadriven"
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"    
+    "AbilityTextureName"            "lina_light_strike_array"
+
+    "AbilityGoldCost"               "50"
+
+    "OnSpellStart"
+    {
+        "ApplyModifier"
+        {
+            "ModifierName"          "modifier_upgrade_catapult_6"
+            "Target"                "CASTER"            
+        }    
+
+        "RunScript"
+        {
+            "ScriptFile"    "unit_scripts/towers/ai_catapult.lua"
+            "Function"      "CatapultRemoveAbility"
+            "AbilityContext"
+            {
+                "remove_ability"    "ability_catapult_stun"
+                "remove_modifier"   "modifier_catapult_stun"
+            }
+        }
+
+        "AddAbility"
+        {
+            "Target"         "CASTER"
+            "AbilityName"    "ability_catapult_nuke"
+        }
+
+        "LevelUpAbility"
+        {
+            "Target"         "CASTER"
+            "AbilityName"    "ability_catapult_nuke"
+        }
+
+        "RunScript"
+        {
+            "ScriptFile"            "scripts/vscripts/addon_game_mode.lua"
+            "Function"              "upgradeTower"
+
+            "AbilityContext"
+            {
+                "nextUpgrade"       ""
+            }
+        }             
+    }
+
+    "Modifiers"
+    {
+        //cosmetic - lets the user know the tower has been upgraded
+        "modifier_upgrade_catapult_6"
+        {
+            "Passive"           "0"         
+            "IsPurgable"        "0"
+            "IsBuff"            "1"
+        }               
+    } 
+
+    "precache"
+    {
+        "particle"  "particles/units/heroes/hero_rattletrap/rattletrap_rocket_flare.vpcf"        
+    }
+}

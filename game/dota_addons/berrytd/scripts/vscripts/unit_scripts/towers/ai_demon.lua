@@ -186,7 +186,7 @@ function DemonLinearProj(args)
 		bZCheck = false,
 		bGroundLock = true,
 		bProvidesVision = false,
-		draw = true,		
+		draw = false,		
 		ControlPoints = {[1]=args.target:GetAbsOrigin()},
         UnitTest = function(self, unit)
         	return unit:GetUnitName() ~= "npc_dummy_unit" and unit:GetTeamNumber() ~= args.source:GetTeamNumber()
