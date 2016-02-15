@@ -1,4 +1,4 @@
-"creep_knight_1"
+"creep_knight_0"
 {                                       
     "Model"                 "models/creeps/lane_creeps/creep_dire_hulk/creep_dire_ancient_hulk.vmdl"
     "BaseClass"             "npc_dota_creature"
@@ -41,7 +41,7 @@
     } 
 }
 
-"creep_knight_2"
+"creep_knight_1"
 {                                       
     "Model"                 "models/creeps/lane_creeps/creep_dire_hulk/creep_dire_ancient_hulk.vmdl"
     "BaseClass"             "npc_dota_creature"

@@ -1,4 +1,4 @@
-"creep_warrior_1"
+"creep_warrior_0"
 {                                       
     "Model"                 "models/creeps/lane_creeps/creep_bad_melee/creep_bad_melee.vmdl"
     "BaseClass"             "npc_dota_creature"
@@ -42,7 +42,7 @@
     } 
 }
 
-"creep_warrior_2"
+"creep_warrior_1"
 {                                       
     "Model"                 "models/creeps/lane_creeps/creep_bad_melee/creep_bad_melee_mega.vmdl"
     "BaseClass"             "npc_dota_creature"

@@ -622,7 +622,7 @@
 	    }
 	 
 	}
-	"creep_knight_1"
+	"creep_knight_0"
 	{                                       
 	    "Model"                 "models/creeps/lane_creeps/creep_dire_hulk/creep_dire_ancient_hulk.vmdl"
 	    "BaseClass"             "npc_dota_creature"
@@ -665,7 +665,7 @@
 	    } 
 	}
 	
-	"creep_knight_2"
+	"creep_knight_1"
 	{                                       
 	    "Model"                 "models/creeps/lane_creeps/creep_dire_hulk/creep_dire_ancient_hulk.vmdl"
 	    "BaseClass"             "npc_dota_creature"
@@ -707,7 +707,7 @@
 	        "DisableClumpingBehavior"   "1"
 	    } 
 	}
-	"creep_archer_1"
+	"creep_archer_0"
 	{                                       
 	    "Model"                 "models/creeps/lane_creeps/creep_bad_ranged/lane_dire_ranged.vmdl"
 	    "BaseClass"             "npc_dota_creature"
@@ -750,7 +750,7 @@
 	    } 
 	}
 	
-	"creep_archer_2"
+	"creep_archer_1"
 	{                                       
 	    "Model"                 "models/creeps/lane_creeps/creep_bad_ranged/lane_dire_ranged.vmdl"
 	    "BaseClass"             "npc_dota_creature"
@@ -1025,7 +1025,7 @@
 	
 	    "vscripts"  "unit_scripts/creeps/splitter.lua"
 	}
-	"creep_sprinter_1"
+	"creep_sprinter_0"
 	{                                       
 	    "Model"                 "models/heroes/slardar/slardar.vmdl"
 	    "BaseClass"             "npc_dota_creature"
@@ -1070,7 +1070,7 @@
 	    } 
 	}
 	
-	"creep_sprinter_2"
+	"creep_sprinter_1"
 	{                                       
 	    "Model"                 "models/heroes/slardar/slardar.vmdl"
 	    "BaseClass"             "npc_dota_creature"
@@ -1114,7 +1114,7 @@
 	        }
 	    } 
 	}
-	"creep_warrior_1"
+	"creep_warrior_0"
 	{                                       
 	    "Model"                 "models/creeps/lane_creeps/creep_bad_melee/creep_bad_melee.vmdl"
 	    "BaseClass"             "npc_dota_creature"
@@ -1158,7 +1158,7 @@
 	    } 
 	}
 	
-	"creep_warrior_2"
+	"creep_warrior_1"
 	{                                       
 	    "Model"                 "models/creeps/lane_creeps/creep_bad_melee/creep_bad_melee_mega.vmdl"
 	    "BaseClass"             "npc_dota_creature"

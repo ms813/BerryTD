@@ -1,4 +1,4 @@
-"creep_sprinter_1"
+"creep_sprinter_0"
 {                                       
     "Model"                 "models/heroes/slardar/slardar.vmdl"
     "BaseClass"             "npc_dota_creature"
@@ -43,7 +43,7 @@
     } 
 }
 
-"creep_sprinter_2"
+"creep_sprinter_1"
 {                                       
     "Model"                 "models/heroes/slardar/slardar.vmdl"
     "BaseClass"             "npc_dota_creature"
