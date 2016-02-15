@@ -1,5 +1,40 @@
 "DOTAAbilities"
 {
+	"ability_creep_splitter_split"
+	{
+		"BaseClass"             "ability_datadriven"
+	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	    "AbilityType"           "DOTA_ABILITY_TYPE_BASIC"
+	    "AbilityTextureName"    "mud_golem_shard_split"
+		
+		"Modifiers"
+		{
+			"modifier_creep_split"
+			{
+				"Passive"			"1"
+				"IsHidden"			"0"
+				"IsBuff"			"1"
+				
+				"OnDeath"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"unit_scripts/creeps/splitter.lua"
+						"Function"		"Split"
+					}
+				}			
+			}
+		}
+	
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"splits"			"1 2 3 4"
+			}		
+		}
+	}
 	//this locks the creep's move speed at 400 and makes it immune to slows
 	"ability_creep_sprinter"
 	{

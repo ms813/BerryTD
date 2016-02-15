@@ -44,7 +44,7 @@
 
 "creep_warrior_2"
 {                                       
-    "Model"                 "models/creeps/lane_creeps/creep_bad_melee/creep_bad_melee.vmdl"
+    "Model"                 "models/creeps/lane_creeps/creep_bad_melee/creep_bad_melee_mega.vmdl"
     "BaseClass"             "npc_dota_creature"
     "Level"                 "1"
     "ModelScale"            "1.1"

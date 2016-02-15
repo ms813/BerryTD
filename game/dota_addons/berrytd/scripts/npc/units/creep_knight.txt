@@ -1,6 +1,6 @@
 "creep_knight_1"
 {                                       
-    "Model"                 "models/creeps/lane_creeps/creep_bad_melee/creep_bad_melee_mega.vmdl"
+    "Model"                 "models/creeps/lane_creeps/creep_dire_hulk/creep_dire_ancient_hulk.vmdl"
     "BaseClass"             "npc_dota_creature"
     "Level"                 "1"
     "ModelScale"            "0.8"
@@ -26,8 +26,8 @@
     "ArmorPhysical"         "10"
     "MagicalResistance"     "25"
 
-    "AttackCapabilities"        "DOTA_UNIT_CAP_NO_ATTACK"
-    //"AttackCapabilities"        "DOTA_UNIT_CAP_MELEE_ATTACK"
+    //"AttackCapabilities"        "DOTA_UNIT_CAP_NO_ATTACK"
+    "AttackCapabilities"        "DOTA_UNIT_CAP_MELEE_ATTACK"
     "AttackAcquisitionRange"    "125"
     "AttackRange"               "125"   
     "AttackDamageMin"           "4"
@@ -43,7 +43,7 @@
 
 "creep_knight_2"
 {                                       
-    "Model"                 "models/creeps/lane_creeps/creep_bad_melee/creep_bad_melee_mega.vmdl"
+    "Model"                 "models/creeps/lane_creeps/creep_dire_hulk/creep_dire_ancient_hulk.vmdl"
     "BaseClass"             "npc_dota_creature"
     "Level"                 "1"
     "ModelScale"            "1.1"
@@ -69,8 +69,8 @@
     "ArmorPhysical"         "20"
     "MagicalResistance"     "40"
 
-    "AttackCapabilities"        "DOTA_UNIT_CAP_NO_ATTACK"
-    //"AttackCapabilities"        "DOTA_UNIT_CAP_MELEE_ATTACK"
+    //"AttackCapabilities"        "DOTA_UNIT_CAP_NO_ATTACK"
+    "AttackCapabilities"        "DOTA_UNIT_CAP_MELEE_ATTACK"
     "AttackAcquisitionRange"    "125"
     "AttackRange"               "125"   
     "AttackDamageMin"           "4"

@@ -265,8 +265,7 @@ function GameMode:OnEntityKilled( keys )
     if killedUnit:GetOwner() ~= nil then      
 
     --if creep reaches the ancient, then suicide and remove a life
-    elseif(self.base == killerEntity) then
-
+    elseif(self.base == killerEntity) then    
         --subtract a life
         self.currentLives = self.currentLives - 1
 
@@ -394,6 +393,10 @@ function GameMode:OnNPCGoalReached(keys)
   local goalEntity = EntIndexToHScript(keys.goal_entindex)
   local nextGoalEntity = EntIndexToHScript(keys.next_goal_entindex)
   local npc = EntIndexToHScript(keys.npc_entindex)
+
+  --cache the last/next waypoint on the creep
+  npc.last_waypoint = goalEntity  
+  npc.next_waypoint = nextGoalEntity 
 end
 
 -- This function is called whenever any player sends a chat message to team or All
