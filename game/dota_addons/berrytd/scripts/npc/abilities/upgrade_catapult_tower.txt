@@ -1,7 +1,7 @@
 "ability_catapult_aoe_damage"
 {
     "BaseClass"                     "ability_datadriven"
-    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
     "AbilityTextureName"            "brewmaster_earth_hurl_boulder"  
 
     "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
@@ -103,8 +103,8 @@
 "ability_catapult_stun"
 {
     "BaseClass"                     "ability_datadriven"
-    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-    "AbilityTextureName"            "brewmaster_earth_hurl_boulder"
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+    "AbilityTextureName"            "tiny_toss"
 
     "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
     "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
@@ -223,7 +223,7 @@
 {
 
     "BaseClass"                     "ability_datadriven"    
-    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
     "AbilityTextureName"            "lina_light_strike_array"
 
     "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
@@ -476,7 +476,7 @@
     "BaseClass"                     "ability_datadriven"
     "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
     "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"    
-    "AbilityTextureName"            "tiny_avalanche"
+    "AbilityTextureName"            "tiny_toss"
 
     "AbilityGoldCost"               "50"
 

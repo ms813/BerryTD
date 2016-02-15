@@ -99,10 +99,9 @@ function BarracksThink(tower)
 					--creep can't attack so hasn't been aggroed before
 					if creep:GetAttackCapability() ~= DOTA_UNIT_CAP_MELEE_ATTACK then
 						defender.aggro_target = creep
-						--creep:SetAttackCapability(DOTA_UNIT_CAP_MELEE_ATTACK)
-						AttackOrder(defender, creep)
-						AttackOrder(creep, defender)
-						break
+						creep:SetAttackCapability(creep.default_attack_capability)
+						AttackOrder(defender, creep)						
+						break						
 					end
 				end
 			end
@@ -166,8 +165,7 @@ function SpawnDefender(keys)
 											 rax:GetOwner(),
 											 DOTA_TEAM_GOODGUYS)	
 
-		defender.parent_barracks = rax
-		defender.default_attack_capability = defender:GetAttackCapability()				
+		defender.parent_barracks = rax		
 
 		--make our defender phased
 		defender:AddNewModifier(defender, nil, "modifier_phased", {})

@@ -120,16 +120,3 @@ function DefenderRangedDmgStack(keys)
 			return stack_decay_rate
 		end) 
 end
-
---[[
-	Death animation for catapults
-	AddNoDraw() to the dying unit and play the explosion animation
-]]
-function OnDeath(keys)	
-	keys.caster:AddNoDraw()	
-	local particle = keys.AbilityContext.particle
-	ParticleManager:CreateParticle(
-		particle,
-		PATTACH_CUSTOMORIGIN_FOLLOW,
-		keys.caster)
-end

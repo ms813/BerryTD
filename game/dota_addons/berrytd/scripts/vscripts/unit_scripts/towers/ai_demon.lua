@@ -17,7 +17,7 @@ function DemonThink(tower)
 	local ab = tower:GetAbilityByIndex(1)
 	
 	if ab ~= nil and ab:IsCooldownReady() then
-		local targeting_range = ab:GetLevelSpecialValueFor("targeting_range", ab:GetLevel())
+		local targeting_range = ab:GetLevelSpecialValueFor("targeting_range", ab:GetLevel()-1)
 		local targets = TargetingHelper.FindDireInRadius(tower, targeting_range)
 
 		if #targets > 0 then
@@ -30,8 +30,8 @@ end
 
 function DemonAttack(keys)
 	local ab = keys.ability
-	local speed = ab:GetLevelSpecialValueFor("speed", ab:GetLevel())
-	local range = ab:GetLevelSpecialValueFor("range", ab:GetLevel())	
+	local speed = ab:GetLevelSpecialValueFor("speed", ab:GetLevel()-1)
+	local range = ab:GetLevelSpecialValueFor("range", ab:GetLevel()-1)	
 	
 	local origin = {}
 	local vel = (keys.target:GetAbsOrigin() - keys.caster:GetAbsOrigin()):Normalized() * speed
@@ -59,17 +59,17 @@ function DemonAttack(keys)
 	end
 
 	if keys.caster.bounce then	
-		for i=1, #origin do
-			DemonTrackingProj{
-				target = keys.target,
-				source = keys.caster,
-				ability = ab,
-				particle = keys.AbilityContext.particle,
-				speed = speed,
-				origin = keys.caster:GetAbsOrigin()
-			}						
-		end
-		keys.caster.max_pierce = ab:GetLevelSpecialValueFor("pierce", ab:GetLevel()) * #origin
+		
+		DemonTrackingProj{
+			target = keys.target,
+			source = keys.caster,
+			ability = ab,
+			particle = keys.AbilityContext.particle,
+			speed = speed,
+			origin = keys.caster:GetAbsOrigin()
+		}						
+		
+		keys.caster.max_pierce = ab:GetLevelSpecialValueFor("pierce", ab:GetLevel()-1) * 2 
 		keys.caster.pierce = keys.caster.max_pierce
 	else
 		for i=1,#origin do
@@ -77,12 +77,12 @@ function DemonAttack(keys)
 				particle = keys.AbilityContext.particle,
 				origin = origin[i],
 				dist = range,
-				width = ab:GetLevelSpecialValueFor("width", ab:GetLevel()),
+				width = ab:GetLevelSpecialValueFor("width", ab:GetLevel()-1),
 				source = keys.caster,
 				velocity = vel,
-				dmg = ab:GetLevelSpecialValueFor("damage", ab:GetLevel()),
+				dmg = ab:GetLevelSpecialValueFor("damage", ab:GetLevel()-1),
 				target = keys.target,
-				pierce = ab:GetLevelSpecialValueFor("pierce", ab:GetLevel())
+				pierce = ab:GetLevelSpecialValueFor("pierce", ab:GetLevel()-1)
 			}		
 			Projectiles:CreateProjectile(keys.caster.projectile)
 		end		
@@ -120,7 +120,7 @@ function DemonOnBounce(keys)
 				source = keys.caster.prev_target,
 				ability = ab,
 				particle = "",
-				speed = ab:GetLevelSpecialValueFor("speed",ab:GetLevel())				
+				speed = ab:GetLevelSpecialValueFor("speed",ab:GetLevel()-1)				
 			}			
 		keys.caster.prev_target = new_target					
     	end 	    	   	    			

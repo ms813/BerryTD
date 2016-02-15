@@ -20,8 +20,3 @@ function OnDeath(keys)
 		PATTACH_CUSTOMORIGIN_FOLLOW,
 		keys.caster)
 end
-
-function CatapultChangeProjectile(keys)
-	print(keys.AbilityContext.particle)
-	keys.caster:SetRangedProjectileName(keys.AbilityContext.particle)
-end

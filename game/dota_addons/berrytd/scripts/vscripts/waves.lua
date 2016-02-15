@@ -53,17 +53,14 @@ end
 
 waveTable = {}
 
---[[
 waveTable[1] = {
-	bonusEndGold = 100,
-	creepGroups = {CreateCreepGroup("creep_cluckles", 1, 0, 1, 1)}
-}
-]]
-waveTable[1] = {
-	bonusEndGold = 100,
-	creepGroups = {CreateCreepGroup("creep_cluckles", 100, 0, 1, 2)}
+	bonusEndGold = 50,
+	creepGroups = {
+		CreateCreepGroup("creep_critter_1", 100, 0, 5, 2)
+	}
 }
 
+--[[
 waveTable[2] = CreepExampleWaveBuilder()
 
 waveTable[3] = {
@@ -73,3 +70,4 @@ waveTable[3] = {
 		CreateCreepGroup("creep_sheep", 100, 0, 5, 1)
 	}
 }
+]]

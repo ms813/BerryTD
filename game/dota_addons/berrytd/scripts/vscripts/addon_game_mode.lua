@@ -53,6 +53,11 @@ function Precache( context )
       PrecacheUnitByNameSync(defender..j, context)      
     end
   end
+
+  --Precache creeps
+  for i, creep in pairs(GameMode.CreepList) do
+    PrecacheUnitByNameSync(creep, context)
+  end
 end
 
 -- Create the game mode when we activate
@@ -83,4 +88,15 @@ GameMode.DefenderList = {
   "defender_ranged_",
   "defender_magic_",
   "defender_utility_"
+}
+
+GameMode.CreepList = {
+  "creep_warrior_1",
+  "creep_warrior_2",
+  "creep_archer_1",
+  "creep_archer_2",
+  "creep_sprinter_1",
+  "creep_sprinter_2",
+  "creep_knight_1",
+  "creep_knight_2",
 }

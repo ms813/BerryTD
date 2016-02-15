@@ -1,0 +1,85 @@
+"creep_knight_1"
+{                                       
+    "Model"                 "models/creeps/lane_creeps/creep_bad_melee/creep_bad_melee_mega.vmdl"
+    "BaseClass"             "npc_dota_creature"
+    "Level"                 "1"
+    "ModelScale"            "0.8"
+
+    //used in events:OnEntityKilled() to adjust lives if creeps leak
+    "UnitLabel"             "creep"
+
+    "RingRadius"            "40"
+    "HealthBarOffset"       "170"
+    "BoundsHullName"        "DOTA_HULL_SIZE_SMALL"
+
+    "BountyXP"              "0"
+    "BountyGoldMin"         "4"
+    "BountyGoldMax"         "6"
+
+    "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_GROUND"
+    "MovementSpeed"         "180"
+
+    "StatusHealth"          "300"
+    "StatusHealthRegen"     "2"
+    "StatusMana"            "0"
+    "StatusManaRegen"       "0.0"
+    "ArmorPhysical"         "10"
+    "MagicalResistance"     "25"
+
+    "AttackCapabilities"        "DOTA_UNIT_CAP_NO_ATTACK"
+    //"AttackCapabilities"        "DOTA_UNIT_CAP_MELEE_ATTACK"
+    "AttackAcquisitionRange"    "125"
+    "AttackRange"               "125"   
+    "AttackDamageMin"           "4"
+    "AttackDamageMax"           "6"
+    "AttackRate"                "1"   
+    "AttackAnimationPoint"      "0.467"
+
+    "Creature"
+    {
+        "DisableClumpingBehavior"   "1"
+    } 
+}
+
+"creep_knight_2"
+{                                       
+    "Model"                 "models/creeps/lane_creeps/creep_bad_melee/creep_bad_melee_mega.vmdl"
+    "BaseClass"             "npc_dota_creature"
+    "Level"                 "1"
+    "ModelScale"            "1.1"
+
+    //used in events:OnEntityKilled() to adjust lives if creeps leak
+    "UnitLabel"             "creep"
+
+    "RingRadius"            "40"
+    "HealthBarOffset"       "170"
+    "BoundsHullName"        "DOTA_HULL_SIZE_SMALL"
+
+    "BountyXP"              "0"
+    "BountyGoldMin"         "10"
+    "BountyGoldMax"         "15"
+
+    "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_GROUND"
+    "MovementSpeed"         "180"
+
+    "StatusHealth"          "1000"
+    "StatusHealthRegen"     "5"
+    "StatusMana"            "0"
+    "StatusManaRegen"       "0.0"
+    "ArmorPhysical"         "20"
+    "MagicalResistance"     "40"
+
+    "AttackCapabilities"        "DOTA_UNIT_CAP_NO_ATTACK"
+    //"AttackCapabilities"        "DOTA_UNIT_CAP_MELEE_ATTACK"
+    "AttackAcquisitionRange"    "125"
+    "AttackRange"               "125"   
+    "AttackDamageMin"           "4"
+    "AttackDamageMax"           "6"
+    "AttackRate"                "1"   
+    "AttackAnimationPoint"      "0.467"
+
+    "Creature"
+    {
+        "DisableClumpingBehavior"   "1"
+    } 
+}

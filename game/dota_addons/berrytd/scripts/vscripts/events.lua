@@ -251,7 +251,7 @@ function GameMode:OnEntityKilled( keys )
 
         --reset the killing unit's attack capabilities
         if killedUnit.aggro_target ~= nil then
-            killedUnit.aggro_target:SetAttackCapability(killedUnit.default_attack_capability)
+            killedUnit.aggro_target:SetAttackCapability(DOTA_UNIT_CAP_NO_ATTACK)
         end
         for k, defender in pairs(rax.defenders) do
             if defender == killedUnit then

@@ -11,9 +11,7 @@
     "AbilityManaCost"               "0"
     "AbilityDamage"                 "%damage" 
     "AbilityCastRange"              "%targeting_range"
-    "AbilityCastAnimation"          "ACT_DOTA_CAST_ABILITY_1 "
-
-    "MaxLevel"                      "2"
+    "AbilityCastAnimation"          "ACT_DOTA_CAST_ABILITY_1 "    
 
     "OnSpellStart"
     {        
@@ -66,7 +64,7 @@
         "01"
         {
             "var_type"          "FIELD_INTEGER"
-            "speed"             "750"
+            "speed"             "750 750 1200"
         }
         "02"
         {
@@ -86,13 +84,13 @@
         "05"
         {
             "var_type"          "FIELD_INTEGER"
-            "damage"            "10"
+            "damage"            "10 10 20"
         }
         //Number of pierce targets    
         "06"
         {
             "var_type"          "FIELD_INTEGER"
-            "pierce"            "2 2 4"
+            "pierce"            "2 4 4"
         }
         "07"
         {
@@ -113,7 +111,7 @@
 {
     "BaseClass"             "ability_datadriven"
     "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"        
-    "AbilityTextureName"    "demon_upgrade_1_icon"
+    "AbilityTextureName"    "phoenix_sun_ray_toggle_move"
 
     "AbilityGoldCost"       "50"
 
@@ -152,21 +150,21 @@
     }
 }
 
-//change to tracking projectile
+//upgrade projectile speed and damage
 "ability_upgrade_demon_tower_2"
 {
     "BaseClass"             "ability_datadriven"
     "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"        
-    "AbilityTextureName"    "demon_upgrade_2_icon"
+    "AbilityTextureName"    "demon_upgrade_1_icon"
 
     "AbilityGoldCost"       "50"
 
     "OnSpellStart"
     {          
-        "RunScript"
+        "LevelUpAbility"
         {
-            "ScriptFile"    "unit_scripts/towers/ai_demon.lua"
-            "Function"      "DemonUpgradeBounce"
+            "Target"         "CASTER"
+            "AbilityName"    "ability_demon_tower_attack"
         }
 
         "ApplyModifier"
@@ -181,8 +179,8 @@
             "Function"      "upgradeTower"
             "AbilityContext"
             {
-                "nextUpgrade"   "ability_upgrade_demon_tower_3"    
-                "splitUpgrade"  "ability_upgrade_demon_tower_4"            
+                "nextUpgrade"   "ability_upgrade_demon_tower_3"  
+                "splitUpgrade"  "ability_upgrade_demon_tower_4"              
             }
         }   
     }
@@ -242,12 +240,56 @@
     }
 }
 
+//change to tracking projectile and upgrade number of pierce targets ("bounces")
+"ability_upgrade_demon_tower_4"
+{
+    "BaseClass"             "ability_datadriven"
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"        
+    "AbilityTextureName"    "bounty_hunter_shuriken_toss"
+
+    "AbilityGoldCost"       "50"
+
+    "OnSpellStart"
+    {          
+        "RunScript"
+        {
+            "ScriptFile"    "unit_scripts/towers/ai_demon.lua"
+            "Function"      "DemonUpgradeBounce"
+        }
+
+        "ApplyModifier"
+        {
+            "ModifierName"    "modifier_upgrade_demon_tower_4"
+            "Target"          "CASTER"            
+        }
+
+        "RunScript"
+        {
+            "ScriptFile"    "scripts/vscripts/addon_game_mode.lua"
+            "Function"      "upgradeTower"
+            "AbilityContext"
+            {
+                "nextUpgrade"   "ability_upgrade_demon_tower_6"                
+            }
+        }   
+    }
+
+    "Modifiers"
+    {
+        "modifier_upgrade_demon_tower_4"
+        {
+            "IsHidden"      "0"
+            "Passive"       "0"            
+        }
+    }
+}
+
 //shoots 5 spears instead of 2
 "ability_upgrade_demon_tower_5"
 {
     "BaseClass"             "ability_datadriven"
     "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"        
-    "AbilityTextureName"    "demon_upgrade_2_icon"
+    "AbilityTextureName"    "medusa_split_shot"
 
     "AbilityGoldCost"       "50"
 

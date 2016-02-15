@@ -1,0 +1,42 @@
+//this locks the creep's move speed at 400 and makes it immune to slows
+"ability_creep_sprinter"
+{
+	"BaseClass"             "ability_datadriven"
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+    "AbilityType"           "DOTA_ABILITY_TYPE_BASIC"
+    "AbilityTextureName"    "slardar_sprint"
+	
+	"Modifiers"
+	{
+		"modifier_creep_sprinter"
+		{
+			"Passive"			"1"
+			"IsHidden"			"0"
+			"IsBuff"			"1"
+			
+			"OnCreated"
+			{
+				"ApplyModifier"
+				{
+					"ModifierName"	"modifier_phased"
+					"Target" 		"CASTER"	
+					"TextureName"	"phase_boots"				
+				}
+			}
+
+			"Properties"
+			{
+				"MODIFIER_PROPERTY_MOVESPEED_ABSOLUTE" "%movespeed"			    
+			}
+		}
+	}
+
+	"AbilitySpecial"
+	{
+		"01"
+		{
+			"var_type"			"FIELD_INTEGER"
+			"movespeed"			"400"
+		}		
+	}
+}

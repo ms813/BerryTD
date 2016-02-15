@@ -1,0 +1,85 @@
+"creep_archer_1"
+{                                       
+    "Model"                 "models/creeps/lane_creeps/creep_bad_ranged/lane_dire_ranged.vmdl"
+    "BaseClass"             "npc_dota_creature"
+    "Level"                 "1"
+    "ModelScale"            "0.8"
+
+    //used in events:OnEntityKilled() to adjust lives if creeps leak
+    "UnitLabel"             "creep"
+
+    "RingRadius"            "40"
+    "HealthBarOffset"       "170"
+    "BoundsHullName"        "DOTA_HULL_SIZE_SMALL"
+
+    "BountyXP"              "0"
+    "BountyGoldMin"         "1"
+    "BountyGoldMax"         "3"
+
+    "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_GROUND"
+    "MovementSpeed"         "300"
+
+    "StatusHealth"          "20"
+    "StatusHealthRegen"     "0"
+    "StatusMana"            "0"
+    "StatusManaRegen"       "0.0"
+    "ArmorPhysical"         "0"
+
+    //"AttackCapabilities"        "DOTA_UNIT_CAP_NO_ATTACK"
+    "AttackCapabilities"        "DOTA_UNIT_CAP_RANGED_ATTACK"
+    "AttackAcquisitionRange"    "500"
+    "AttackRange"               "500"   
+    "AttackDamageMin"           "7"
+    "AttackDamageMax"           "9"
+    "AttackRate"                "1"   
+    "AttackAnimationPoint"      "0.5"  
+    "ProjectileSpeed"           "900"  
+
+    "Creature"
+    {
+        "DisableClumpingBehavior"   "1"
+    } 
+}
+
+"creep_archer_2"
+{                                       
+    "Model"                 "models/creeps/lane_creeps/creep_bad_ranged/lane_dire_ranged.vmdl"
+    "BaseClass"             "npc_dota_creature"
+    "Level"                 "1"
+    "ModelScale"            "1.1"
+
+    //used in events:OnEntityKilled() to adjust lives if creeps leak
+    "UnitLabel"             "creep"
+
+    "RingRadius"            "40"
+    "HealthBarOffset"       "170"
+    "BoundsHullName"        "DOTA_HULL_SIZE_SMALL"
+
+    "BountyXP"              "0"
+    "BountyGoldMin"         "3"
+    "BountyGoldMax"         "5"
+
+    "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_GROUND"
+    "MovementSpeed"         "300"
+
+    "StatusHealth"          "60"
+    "StatusHealthRegen"     "0"
+    "StatusMana"            "0"
+    "StatusManaRegen"       "0.0"
+    "ArmorPhysical"         "2"
+
+    //"AttackCapabilities"        "DOTA_UNIT_CAP_NO_ATTACK"
+    "AttackCapabilities"        "DOTA_UNIT_CAP_RANGED_ATTACK"
+    "AttackAcquisitionRange"    "500"
+    "AttackRange"               "500"   
+    "AttackDamageMin"           "14"
+    "AttackDamageMax"           "16"
+    "AttackRate"                "0.8"   
+    "AttackAnimationPoint"      "0.5" 
+    "ProjectileSpeed"           "900"
+
+    "Creature"
+    {
+        "DisableClumpingBehavior"   "1"
+    } 
+}

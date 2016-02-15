@@ -204,6 +204,12 @@ function GameMode:SpawnWave(waveIndex)
 
                 --cache the creeps attack capability for use in aggro AI later
                 creep.default_attack_capability = creep:GetAttackCapability()
+                if creep.default_attack_capability == DOTA_UNIT_CAP_MELEE_ATTACK then
+                  creep:SetAttackCapability(DOTA_UNIT_CAP_NO_ATTACK)
+                end
+
+                --apply phased modifier for a second so creeps can untangle themselves at the start
+                creep:AddNewModifier(creep, nil, "modifier_phased", {duration=1})
 
                 --keep track of how many creeps are alive on the map at once
                 self.numCreepsAlive = self.numCreepsAlive + 1

@@ -1,5 +1,47 @@
 "DOTAAbilities"
 {
+	//this locks the creep's move speed at 400 and makes it immune to slows
+	"ability_creep_sprinter"
+	{
+		"BaseClass"             "ability_datadriven"
+	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+	    "AbilityType"           "DOTA_ABILITY_TYPE_BASIC"
+	    "AbilityTextureName"    "slardar_sprint"
+		
+		"Modifiers"
+		{
+			"modifier_creep_sprinter"
+			{
+				"Passive"			"1"
+				"IsHidden"			"0"
+				"IsBuff"			"1"
+				
+				"OnCreated"
+				{
+					"ApplyModifier"
+					{
+						"ModifierName"	"modifier_phased"
+						"Target" 		"CASTER"	
+						"TextureName"	"phase_boots"				
+					}
+				}
+	
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_ABSOLUTE" "%movespeed"			    
+				}
+			}
+		}
+	
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"movespeed"			"400"
+			}		
+		}
+	}
 	"ability_open_page_one"
 	{
 	    "BaseClass"                 "ability_datadriven"
@@ -1997,7 +2039,7 @@
 	"ability_catapult_aoe_damage"
 	{
 	    "BaseClass"                     "ability_datadriven"
-	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
 	    "AbilityTextureName"            "brewmaster_earth_hurl_boulder"  
 	
 	    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
@@ -2099,8 +2141,8 @@
 	"ability_catapult_stun"
 	{
 	    "BaseClass"                     "ability_datadriven"
-	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-	    "AbilityTextureName"            "brewmaster_earth_hurl_boulder"
+	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	    "AbilityTextureName"            "tiny_toss"
 	
 	    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
 	    "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
@@ -2219,7 +2261,7 @@
 	{
 	
 	    "BaseClass"                     "ability_datadriven"    
-	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
 	    "AbilityTextureName"            "lina_light_strike_array"
 	
 	    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
@@ -2472,7 +2514,7 @@
 	    "BaseClass"                     "ability_datadriven"
 	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 	    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"    
-	    "AbilityTextureName"            "tiny_avalanche"
+	    "AbilityTextureName"            "tiny_toss"
 	
 	    "AbilityGoldCost"               "50"
 	
@@ -2547,17 +2589,7 @@
 	        {
 	            "ModifierName"          "modifier_upgrade_catapult_6"
 	            "Target"                "CASTER"            
-	        }
-	
-	        "RunScript"
-	        {
-	            "ScriptFile"    "unit_scripts/towers/ai_catapult.lua"
-	            "Function"      "CatapultChangeProjectile"
-	            "AbilityContext"
-	            {
-	                "particle"  "particles/units/heroes/hero_rattletrap/rattletrap_rocket_flare.vpcf"
-	            }
-	        }
+	        }    
 	
 	        "RunScript"
 	        {
@@ -2623,9 +2655,7 @@
 	    "AbilityManaCost"               "0"
 	    "AbilityDamage"                 "%damage" 
 	    "AbilityCastRange"              "%targeting_range"
-	    "AbilityCastAnimation"          "ACT_DOTA_CAST_ABILITY_1 "
-	
-	    "MaxLevel"                      "2"
+	    "AbilityCastAnimation"          "ACT_DOTA_CAST_ABILITY_1 "    
 	
 	    "OnSpellStart"
 	    {        
@@ -2678,7 +2708,7 @@
 	        "01"
 	        {
 	            "var_type"          "FIELD_INTEGER"
-	            "speed"             "750"
+	            "speed"             "750 750 1200"
 	        }
 	        "02"
 	        {
@@ -2698,13 +2728,13 @@
 	        "05"
 	        {
 	            "var_type"          "FIELD_INTEGER"
-	            "damage"            "10"
+	            "damage"            "10 10 20"
 	        }
 	        //Number of pierce targets    
 	        "06"
 	        {
 	            "var_type"          "FIELD_INTEGER"
-	            "pierce"            "2 2 4"
+	            "pierce"            "2 4 4"
 	        }
 	        "07"
 	        {
@@ -2725,7 +2755,7 @@
 	{
 	    "BaseClass"             "ability_datadriven"
 	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"        
-	    "AbilityTextureName"    "demon_upgrade_1_icon"
+	    "AbilityTextureName"    "phoenix_sun_ray_toggle_move"
 	
 	    "AbilityGoldCost"       "50"
 	
@@ -2764,21 +2794,21 @@
 	    }
 	}
 	
-	//change to tracking projectile
+	//upgrade projectile speed and damage
 	"ability_upgrade_demon_tower_2"
 	{
 	    "BaseClass"             "ability_datadriven"
 	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"        
-	    "AbilityTextureName"    "demon_upgrade_2_icon"
+	    "AbilityTextureName"    "demon_upgrade_1_icon"
 	
 	    "AbilityGoldCost"       "50"
 	
 	    "OnSpellStart"
 	    {          
-	        "RunScript"
+	        "LevelUpAbility"
 	        {
-	            "ScriptFile"    "unit_scripts/towers/ai_demon.lua"
-	            "Function"      "DemonUpgradeBounce"
+	            "Target"         "CASTER"
+	            "AbilityName"    "ability_demon_tower_attack"
 	        }
 	
 	        "ApplyModifier"
@@ -2793,8 +2823,8 @@
 	            "Function"      "upgradeTower"
 	            "AbilityContext"
 	            {
-	                "nextUpgrade"   "ability_upgrade_demon_tower_3"    
-	                "splitUpgrade"  "ability_upgrade_demon_tower_4"            
+	                "nextUpgrade"   "ability_upgrade_demon_tower_3"  
+	                "splitUpgrade"  "ability_upgrade_demon_tower_4"              
 	            }
 	        }   
 	    }
@@ -2854,12 +2884,56 @@
 	    }
 	}
 	
+	//change to tracking projectile and upgrade number of pierce targets ("bounces")
+	"ability_upgrade_demon_tower_4"
+	{
+	    "BaseClass"             "ability_datadriven"
+	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"        
+	    "AbilityTextureName"    "bounty_hunter_shuriken_toss"
+	
+	    "AbilityGoldCost"       "50"
+	
+	    "OnSpellStart"
+	    {          
+	        "RunScript"
+	        {
+	            "ScriptFile"    "unit_scripts/towers/ai_demon.lua"
+	            "Function"      "DemonUpgradeBounce"
+	        }
+	
+	        "ApplyModifier"
+	        {
+	            "ModifierName"    "modifier_upgrade_demon_tower_4"
+	            "Target"          "CASTER"            
+	        }
+	
+	        "RunScript"
+	        {
+	            "ScriptFile"    "scripts/vscripts/addon_game_mode.lua"
+	            "Function"      "upgradeTower"
+	            "AbilityContext"
+	            {
+	                "nextUpgrade"   "ability_upgrade_demon_tower_6"                
+	            }
+	        }   
+	    }
+	
+	    "Modifiers"
+	    {
+	        "modifier_upgrade_demon_tower_4"
+	        {
+	            "IsHidden"      "0"
+	            "Passive"       "0"            
+	        }
+	    }
+	}
+	
 	//shoots 5 spears instead of 2
 	"ability_upgrade_demon_tower_5"
 	{
 	    "BaseClass"             "ability_datadriven"
 	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"        
-	    "AbilityTextureName"    "demon_upgrade_2_icon"
+	    "AbilityTextureName"    "medusa_split_shot"
 	
 	    "AbilityGoldCost"       "50"
 	
