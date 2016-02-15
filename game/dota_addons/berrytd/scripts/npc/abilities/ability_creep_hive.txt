@@ -1,0 +1,53 @@
+//lays eggs periodically
+"ability_creep_hive_lay_egg"
+{
+	"BaseClass"             "ability_datadriven"
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+    "AbilityType"           "DOTA_ABILITY_TYPE_BASIC"
+    "AbilityTextureName"    "broodmother_spawn_spiderite"
+	
+    "AbilityCooldown"		"8.0"
+    
+    "OnSpellStart"
+    {
+    	"RunScript"
+		{
+			"ScriptFile"	"unit_scripts/creeps/hive.lua"
+			"Function"		"HiveLayEgg"
+		}	
+    }
+}
+
+//hatch the egg
+"ability_creep_hive_egg_hatch"
+{
+	"BaseClass"             "ability_datadriven"
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+    "AbilityType"           "DOTA_ABILITY_TYPE_BASIC"
+    "AbilityTextureName"    "broodmother_spawn_spiderlings"
+
+    "AbilityCooldown"		"8"  
+	
+	"OnSpellStart"
+	{
+		"RunScript"
+		{
+			"ScriptFile"	"unit_scripts/creeps/hive_egg.lua"
+			"Function"		"HiveEggHatch"
+		}
+	}	
+
+	"AbilitySpecial"
+	{
+		"01"
+		{
+			"var_type"			"FIELD_INTEGER"
+			"babies"			"5"
+		}	
+		"02"
+		{
+			"var_type"			"FIELD_INTEGER"
+			"attacks_to_destroy"		"6"
+		}	
+	}
+}

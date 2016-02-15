@@ -287,7 +287,7 @@ function GameMode:OnEntityKilled( keys )
     end
 
     if self.currentWave > 0 and self.numCreepsAlive == 0 then  
-    --no creeps are on the map, so lets give the reward for completing the wave
+      --no creeps are on the map, so lets give the reward for completing the wave
       for i, player in pairs(self.players) do
         player:ModifyGold(waveTable[self.currentWave].bonusEndGold, true, DOTA_ModifyGold_Unspecified)
       end
@@ -302,7 +302,7 @@ function GameMode:OnEntityKilled( keys )
             self:SpawnWave(self.currentWave)                
         else
             --if there are no more waves then end the game with radiant victory
-            GameRules:SetGameWinner( DOTA_TEAM_GOODGUYS )
+            --GameRules:SetGameWinner( DOTA_TEAM_GOODGUYS )
         end
     end  
 end

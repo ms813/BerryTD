@@ -10,8 +10,6 @@ function Split(keys)
 	local ab = keys.ability
 	local split_count = ab:GetLevelSpecialValueFor("splits", ab:GetLevel() - 1)
 	local next_waypoint = keys.caster.next_waypoint
-
-
 	
 	for i=1, 2 do
 		if split_count > 0 then

@@ -210,6 +210,7 @@ function GameMode:SpawnWave(waveIndex)
 
                 --apply phased modifier for a second so creeps can untangle themselves at the start
                 creep:AddNewModifier(creep, nil, "modifier_phased", {duration=1})
+                creep.next_waypoint = Entities:FindByName(nil, "creep_waypoint_0")
 
                 --keep track of how many creeps are alive on the map at once
                 self.numCreepsAlive = self.numCreepsAlive + 1
@@ -240,28 +241,23 @@ function GameMode:TimedTick()
 end
 
 function GameMode:checkCreepsReachedEnd()
-local endPos = self.base:GetAbsOrigin()
-local radius = 500;
-
-
-  local unitsAtEnd = FindUnitsInRadius(DOTA_TEAM_BADGUYS,
-                    endPos, 
-                    nil,
-                    radius,
-                    DOTA_UNIT_TARGET_TEAM_FRIENDLY,
-                    DOTA_UNIT_TARGET_ALL,
-                    DOTA_UNIT_TARGET_FLAG_NONE,
-                    FIND_CLOSEST,
-                    false)   
+    local endPos = self.base:GetAbsOrigin()
+    local radius = 500
+    local unitsAtEnd = FindUnitsInRadius(DOTA_TEAM_BADGUYS,
+        endPos, 
+        nil,
+        radius,
+        DOTA_UNIT_TARGET_TEAM_FRIENDLY,
+        DOTA_UNIT_TARGET_ALL,
+        DOTA_UNIT_TARGET_FLAG_NONE,
+        FIND_CLOSEST,
+        false)   
     
     return unitsAtEnd
 end
 
 function GameMode:InitTowerSpawns(owner)
     local spawns = Entities:FindAllByName("tower_spawn_site")
-
-
-
     for i, spawn_site in pairs(spawns) do        
         local tower_stub = GameMode:BuildTowerSpawn(spawn_site:GetAbsOrigin(), owner)         
     end
