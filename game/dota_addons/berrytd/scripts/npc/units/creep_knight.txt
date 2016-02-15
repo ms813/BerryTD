@@ -43,7 +43,7 @@
 
 "creep_knight_1"
 {                                       
-    "Model"                 "models/creeps/lane_creeps/creep_dire_hulk/creep_dire_ancient_hulk.vmdl"
+    "Model"                 "models/items/warlock/golem/ahmhedoq/ahmhedoq.vmdl"
     "BaseClass"             "npc_dota_creature"
     "Level"                 "1"
     "ModelScale"            "1.1"

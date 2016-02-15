@@ -233,200 +233,6 @@
 	
 	    "vscripts"              "unit_scripts/towers/ai_barracks.lua"
 	}
-	"creep_ancestralspirit"
-	   {                                       
-	    "Model"                 "models/heroes/elder_titan/ancestral_spirit.vmdl"
-	    "BaseClass"             "npc_dota_creature"
-	    "Level"                 "1"
-	    "ModelScale"            "3"
-	    "UnitLabel"             "creep"
-	
-	    //used in events:OnEntityKilled() to adjust lives if creeps leak
-	    "UnitLabel"             "creep"
-	
-	    "Ability1"              "satyr_hellcaller_unholy_aura"
-	    "Ability2"              ""    
-	
-	    "RingRadius"            "70"
-	    "HealthBarOffset"       "170"
-	    "BoundsHullName"        "DOTA_HULL_SIZE_SMALL"
-	
-	    "BountyXP"              "0"
-	    "BountyGoldMin"         "1"
-	    "BountyGoldMax"         "1"
-	
-	    "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_GROUND"
-	    "MovementSpeed"         "150"
-	
-	    "StatusHealth"          "7000"
-	    "StatusHealthRegen"     "0"
-	    "StatusMana"            "0"
-	    "StatusManaRegen"       "0.0"
-	    "ArmorPhysical"         "5"
-	
-	    "AttackCapabilities"    "DOTA_UNIT_CAP_NO_ATTACK"
-	
-	    "Creature"
-	    {
-	        "DisableClumpingBehavior"   "1"
-	    }
-	 
-	}
-	"creep_beaver"
-	{                                       
-	    "Model"                 "models/items/courier/beaverknight_s2/beaverknight_s2.vmdl"
-	    "BaseClass"             "npc_dota_creature"
-	    "Level"                 "1"
-	    "ModelScale"            "1.0"
-	    "UnitLabel"             "creep"
-	
-	    //used in events:OnEntityKilled() to adjust lives if creeps leak
-	    "UnitLabel"             "creep"
-	
-	    "Ability1"              ""
-	    "Ability2"              ""    
-	
-	    "RingRadius"            "40"
-	    "HealthBarOffset"       "170"
-	    "BoundsHullName"        "DOTA_HULL_SIZE_SMALL"
-	
-	    "BountyXP"              "0"
-	    "BountyGoldMin"         "4"
-	    "BountyGoldMax"         "4"
-	
-	    "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_GROUND"
-	    "MovementSpeed"         "320"
-	
-	    "StatusHealth"          "130"
-	    "StatusHealthRegen"     "0"
-	    "StatusMana"            "0"
-	    "StatusManaRegen"       "0.0"
-	    "ArmorPhysical"         "1"
-	
-	    "AttackCapabilities"    "DOTA_UNIT_CAP_NO_ATTACK"
-	
-	    "Creature"
-	    {
-	        "DisableClumpingBehavior"   "1"
-	    } 
-	}
-	"creep_cluckles"
-	   {                                       
-	    "Model"                 "models/items/courier/mighty_chicken/mighty_chicken.vmdl"
-	    "BaseClass"             "npc_dota_creature"
-	    "Level"                 "1"
-	    "ModelScale"            "2"
-	    "UnitLabel"             "creep"
-	
-	    //used in events:OnEntityKilled() to adjust lives if creeps leak
-	    "UnitLabel"             "creep"
-	
-	    "Ability1"              ""
-	    "Ability2"              ""    
-	
-	    "RingRadius"            "80"
-	    "HealthBarOffset"       "170"
-	    "BoundsHullName"        "DOTA_HULL_SIZE_REGULAR"
-	
-	    "BountyXP"              "0"
-	    "BountyGoldMin"         "2"
-	    "BountyGoldMax"         "2"
-	
-	    "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_GROUND"
-	    "MovementSpeed"         "170"
-	
-	    "StatusHealth"          "100"
-	    "StatusHealthRegen"     "0"
-	    "StatusMana"            "0"
-	    "StatusManaRegen"       "0.0"
-	    "ArmorPhysical"         "5"
-	
-	    //"AttackCapabilities"    "DOTA_UNIT_CAP_NO_ATTACK"    
-	    "AttackCapabilities"    "DOTA_UNIT_CAP_MELEE_ATTACK"
-	    "AttackRange"           "125"
-	    "Creature"
-	    {
-	        "DisableClumpingBehavior"   "1"
-	    } 
-	}
-	"creep_constructradiant"
-	   {                                       
-	    "Model"                 "models/items/courier/vaal_the_animated_constructradiant/vaal_the_animated_constructradiant.vmdl"
-	    "BaseClass"             "npc_dota_creature"
-	    "Level"                 "1"
-	    "ModelScale"            "4"
-	    "UnitLabel"             "creep"
-	
-	    //used in events:OnEntityKilled() to adjust lives if creeps leak
-	    "UnitLabel"             "creep"
-	
-	    "Ability1"              "shredder_reactive_armor"
-	    "Ability2"              ""    
-	
-	    "RingRadius"            "60"
-	    "HealthBarOffset"       "170"
-	    "BoundsHullName"        "DOTA_HULL_SIZE_SMALL"
-	
-	    "BountyXP"              "0"
-	    "BountyGoldMin"         "1"
-	    "BountyGoldMax"         "1"
-	
-	    "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_GROUND"
-	    "MovementSpeed"         "300"
-	
-	    "StatusHealth"          "375"
-	    "StatusHealthRegen"     "0"
-	    "StatusMana"            "0"
-	    "StatusManaRegen"       "0.0"
-	    "ArmorPhysical"         "10"
-	
-	    "AttackCapabilities"    "DOTA_UNIT_CAP_NO_ATTACK"
-	
-	    "Creature"
-	    {
-	        "DisableClumpingBehavior"   "1"
-	    }
-	 
-	}
-	"creep_crab"
-	   {                                       
-	    "Model"                 "models/courier/smeevil_crab/smeevil_crab.vmdl"
-	    "BaseClass"             "npc_dota_creature"
-	    "Level"                 "1"
-	    "ModelScale"            "2"
-	    "UnitLabel"             "creep"
-	
-	    //used in events:OnEntityKilled() to adjust lives if creeps leak
-	    "UnitLabel"             "creep"
-	
-	    "Ability1"              "tidehunter_kraken_shell"
-	    "Ability2"              ""    
-	
-	    "RingRadius"            "50"
-	    "HealthBarOffset"       "170"
-	    "BoundsHullName"        "DOTA_HULL_SIZE_SMALL"
-	
-	    "BountyXP"              "0"
-	    "BountyGoldMin"         "8"
-	    "BountyGoldMax"         "8"
-	
-	    "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_GROUND"
-	    "MovementSpeed"         "300"
-	
-	    "StatusHealth"          "275"
-	    "StatusHealthRegen"     "0"
-	    "StatusMana"            "0"
-	    "StatusManaRegen"       "0.0"
-	    "ArmorPhysical"         "3"
-	
-	    "AttackCapabilities"    "DOTA_UNIT_CAP_NO_ATTACK"  
-	
-	    "Creature"
-	    {
-	        "DisableClumpingBehavior"   "1"
-	    }
-	 
-	}
 	"creep_critter_1"
 	{                                       
 	    "Model"                 "models/props_gameplay/pig.vmdl"
@@ -457,170 +263,6 @@
 	    "AttackCapabilities"    "DOTA_UNIT_CAP_NO_ATTACK"
 	
 	    "vscripts"              "unit_scripts/creeps/critter.lua"
-	}
-	"creep_donkey"
-	   {                                       
-	    "Model"                 "models/courier/sw_donkey/sw_donkey.vmdl"
-	    "BaseClass"             "npc_dota_creature"
-	    "Level"                 "1"
-	    "ModelScale"            "1"
-	    "UnitLabel"             "creep"
-	
-	    //used in events:OnEntityKilled() to adjust lives if creeps leak
-	    "UnitLabel"             "creep"
-	
-	    "Ability1"              ""
-	    "Ability2"              ""    
-	
-	    "RingRadius"            "40"
-	    "HealthBarOffset"       "170"
-	    "BoundsHullName"        "DOTA_HULL_SIZE_SMALL"
-	
-	    "BountyXP"              "0"
-	    "BountyGoldMin"         "3"
-	    "BountyGoldMax"         "3"
-	
-	    "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_GROUND"
-	    "MovementSpeed"         "300"
-	
-	    "StatusHealth"          "130"
-	    "StatusHealthRegen"     "0"
-	    "StatusMana"            "0"
-	    "StatusManaRegen"       "0.0"
-	    "ArmorPhysical"         "2"
-	
-	    "AttackCapabilities"    "DOTA_UNIT_CAP_NO_ATTACK"
-	    "AttackAcquisitionRange"     "125"
-	    "AttackRange"                "125"  
-	    "AttackDamageMin"       "8"
-	    "AttackDamageMax"       "5"
-	    "AttackRate"            "1"    
-	    "AttackAnimationPoint"  "0.1"
-	
-	
-	    "Creature"
-	    {
-	        "DisableClumpingBehavior"   "1"
-	    }
-	 
-	}
-	"creep_facerex"
-	   {                                       
-	    "Model"                 "models/items/courier/faceless_rex/faceless_rex_flying.vmdl"
-	    "BaseClass"             "npc_dota_creature"
-	    "Level"                 "1"
-	    "ModelScale"            "4.2"
-	    "UnitLabel"             "creep"
-	
-	    //used in events:OnEntityKilled() to adjust lives if creeps leak
-	    "UnitLabel"             "creep"
-	
-	    "Ability1"              "faceless_void_backtrack"
-	    "Ability2"              ""    
-	
-	    "RingRadius"            "90"
-	    "HealthBarOffset"       "170"
-	    "BoundsHullName"        "DOTA_HULL_SIZE_SMALL"
-	
-	    "BountyXP"              "0"
-	    "BountyGoldMin"         "50"
-	    "BountyGoldMax"         "50"
-	
-	    "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_GROUND"
-	    "MovementSpeed"         "200"
-	
-	    "StatusHealth"          "1100"
-	    "StatusHealthRegen"     "1"
-	    "StatusMana"            "0"
-	    "StatusManaRegen"       "0.0"
-	    "ArmorPhysical"         "4"
-	
-	    "AttackCapabilities"    "DOTA_UNIT_CAP_NO_ATTACK"
-	
-	    "Creature"
-	    {
-	        "DisableClumpingBehavior"   "1"
-	    }
-	}
-	 
-	"creep_geodesic"
-	   {                                       
-	    "Model"                 "models/items/enigma/eidolon/geodesic/geodesic.vmdl"
-	    "BaseClass"             "npc_dota_creature"
-	    "Level"                 "6"
-	    "ModelScale"            "3"
-	    "UnitLabel"             "creep"
-	
-	    "Ability1"              "templar_assassin_refraction"
-	    "Ability2"              ""    
-	
-	    "RingRadius"            "60"
-	    "HealthBarOffset"       "170"
-	    "BoundsHullName"        "DOTA_HULL_SIZE_SMALL"
-	
-	    "BountyXP"              "0"
-	    "BountyGoldMin"         "15"
-	    "BountyGoldMax"         "15"
-	
-	    "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_GROUND"
-	    "MovementSpeed"         "300"
-	
-	    "StatusHealth"          "300"
-	    "StatusHealthRegen"     "0"
-	    "StatusMana"            "1000"
-	    "StatusManaRegen"       "30.0"
-	    "ArmorPhysical"         "3"
-	
-	    "AttackCapabilities"    "DOTA_UNIT_CAP_NO_ATTACK"
-	      
-	    "vscripts"              "scripts/vscripts/unit_scripts/creeps/ai_geodesic.lua"
-	
-	      "vscripts"  "scripts/vscripts/unit_scripts/creeps/ai_geodesic.lua"
-	
-	    "Creature"
-	    {
-	        "DisableClumpingBehavior"   "1"
-	    }
-	 
-	}
-	"creep_goldwight"
-	   {                                       
-	    "Model"                 "models/items/undying/idol_of_ruination/ruin_wight_minion_torso_gold.vmdl"
-	    "BaseClass"             "npc_dota_creature"
-	    "Level"                 "1"
-	    "ModelScale"            "1"
-	    "UnitLabel"             "creep"
-	
-	    //used in events:OnEntityKilled() to adjust lives if creeps leak
-	    "UnitLabel"             "creep"
-	
-	    "Ability1"              ""
-	    "Ability2"              ""    
-	
-	    "RingRadius"            "40"
-	    "HealthBarOffset"       "170"
-	    "BoundsHullName"        "DOTA_HULL_SIZE_SMALL"
-	
-	    "BountyXP"              "0"
-	    "BountyGoldMin"         "6"
-	    "BountyGoldMax"         "6"
-	
-	    "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_GROUND"
-	    "MovementSpeed"         "370"
-	
-	    "StatusHealth"          "120"
-	    "StatusHealthRegen"     "0"
-	    "StatusMana"            "0"
-	    "StatusManaRegen"       "0.0"
-	    "ArmorPhysical"         "1"
-	
-	    "AttackCapabilities"    "DOTA_UNIT_CAP_NO_ATTACK"
-	
-	    "Creature"
-	    {
-	        "DisableClumpingBehavior"   "1"
-	    }
-	 
 	}
 	"creep_knight_0"
 	{                                       
@@ -667,7 +309,7 @@
 	
 	"creep_knight_1"
 	{                                       
-	    "Model"                 "models/creeps/lane_creeps/creep_dire_hulk/creep_dire_ancient_hulk.vmdl"
+	    "Model"                 "models/items/warlock/golem/ahmhedoq/ahmhedoq.vmdl"
 	    "BaseClass"             "npc_dota_creature"
 	    "Level"                 "1"
 	    "ModelScale"            "1.1"
@@ -791,47 +433,6 @@
 	    {
 	        "DisableClumpingBehavior"   "1"
 	    } 
-	}
-	"creep_sheep"
-	   {                                       
-	    "Model"                 "models/items/hex/sheep_hex/sheep_hex.vmdl"
-	    "BaseClass"             "npc_dota_creature"
-	    "Level"                 "1"
-	    "ModelScale"            "1"
-	    "UnitLabel"             "creep"
-	
-	    //used in events:OnEntityKilled() to adjust lives if creeps leak
-	    "UnitLabel"             "creep"
-	
-	    "Ability1"              ""
-	    "Ability2"              ""    
-	
-	    "RingRadius"            "40"
-	    "HealthBarOffset"       "170"
-	    "BoundsHullName"        "DOTA_HULL_SIZE_SMALL"
-	
-	    "BountyXP"              "0"
-	    "BountyGoldMin"         "1"
-	    "BountyGoldMax"         "1"
-	
-	    "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_GROUND"
-	    "MovementSpeed"         "300"
-	
-	    "StatusHealth"          "30"
-	    "StatusHealthRegen"     "0"
-	    "StatusMana"            "0"
-	    "StatusManaRegen"       "0.0"
-	    "ArmorPhysical"         "1"
-	
-	    "AttackCapabilities"    "DOTA_UNIT_CAP_NO_ATTACK"
-	    "AttackAcquisitionRange"     "125"
-	    "AttackRange"                "125"     
-	
-	    "Creature"
-	    {
-	        "DisableClumpingBehavior"   "1"
-	    }
-	 
 	}
 	//smallest shard, cannot split anymore
 	"creep_splitter_0"
@@ -2459,5 +2060,404 @@
 	    "VisionNighttimeRange"  "1100"    
 	
 	    "vscripts"              "unit_scripts/towers/ai_tombstone.lua"
+	}
+	"creep_ancestralspirit"
+	   {                                       
+	    "Model"                 "models/heroes/elder_titan/ancestral_spirit.vmdl"
+	    "BaseClass"             "npc_dota_creature"
+	    "Level"                 "1"
+	    "ModelScale"            "3"
+	    "UnitLabel"             "creep"
+	
+	    //used in events:OnEntityKilled() to adjust lives if creeps leak
+	    "UnitLabel"             "creep"
+	
+	    "Ability1"              "satyr_hellcaller_unholy_aura"
+	    "Ability2"              ""    
+	
+	    "RingRadius"            "70"
+	    "HealthBarOffset"       "170"
+	    "BoundsHullName"        "DOTA_HULL_SIZE_SMALL"
+	
+	    "BountyXP"              "0"
+	    "BountyGoldMin"         "1"
+	    "BountyGoldMax"         "1"
+	
+	    "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_GROUND"
+	    "MovementSpeed"         "150"
+	
+	    "StatusHealth"          "7000"
+	    "StatusHealthRegen"     "0"
+	    "StatusMana"            "0"
+	    "StatusManaRegen"       "0.0"
+	    "ArmorPhysical"         "5"
+	
+	    "AttackCapabilities"    "DOTA_UNIT_CAP_NO_ATTACK"
+	
+	    "Creature"
+	    {
+	        "DisableClumpingBehavior"   "1"
+	    }
+	 
+	}
+	"creep_beaver"
+	{                                       
+	    "Model"                 "models/items/courier/beaverknight_s2/beaverknight_s2.vmdl"
+	    "BaseClass"             "npc_dota_creature"
+	    "Level"                 "1"
+	    "ModelScale"            "1.0"
+	    "UnitLabel"             "creep"
+	
+	    //used in events:OnEntityKilled() to adjust lives if creeps leak
+	    "UnitLabel"             "creep"
+	
+	    "Ability1"              ""
+	    "Ability2"              ""    
+	
+	    "RingRadius"            "40"
+	    "HealthBarOffset"       "170"
+	    "BoundsHullName"        "DOTA_HULL_SIZE_SMALL"
+	
+	    "BountyXP"              "0"
+	    "BountyGoldMin"         "4"
+	    "BountyGoldMax"         "4"
+	
+	    "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_GROUND"
+	    "MovementSpeed"         "320"
+	
+	    "StatusHealth"          "130"
+	    "StatusHealthRegen"     "0"
+	    "StatusMana"            "0"
+	    "StatusManaRegen"       "0.0"
+	    "ArmorPhysical"         "1"
+	
+	    "AttackCapabilities"    "DOTA_UNIT_CAP_NO_ATTACK"
+	
+	    "Creature"
+	    {
+	        "DisableClumpingBehavior"   "1"
+	    } 
+	}
+	"creep_cluckles"
+	   {                                       
+	    "Model"                 "models/items/courier/mighty_chicken/mighty_chicken.vmdl"
+	    "BaseClass"             "npc_dota_creature"
+	    "Level"                 "1"
+	    "ModelScale"            "2"
+	    "UnitLabel"             "creep"
+	
+	    //used in events:OnEntityKilled() to adjust lives if creeps leak
+	    "UnitLabel"             "creep"
+	
+	    "Ability1"              ""
+	    "Ability2"              ""    
+	
+	    "RingRadius"            "80"
+	    "HealthBarOffset"       "170"
+	    "BoundsHullName"        "DOTA_HULL_SIZE_REGULAR"
+	
+	    "BountyXP"              "0"
+	    "BountyGoldMin"         "2"
+	    "BountyGoldMax"         "2"
+	
+	    "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_GROUND"
+	    "MovementSpeed"         "170"
+	
+	    "StatusHealth"          "100"
+	    "StatusHealthRegen"     "0"
+	    "StatusMana"            "0"
+	    "StatusManaRegen"       "0.0"
+	    "ArmorPhysical"         "5"
+	
+	    //"AttackCapabilities"    "DOTA_UNIT_CAP_NO_ATTACK"    
+	    "AttackCapabilities"    "DOTA_UNIT_CAP_MELEE_ATTACK"
+	    "AttackRange"           "125"
+	    "Creature"
+	    {
+	        "DisableClumpingBehavior"   "1"
+	    } 
+	}
+	"creep_constructradiant"
+	   {                                       
+	    "Model"                 "models/items/courier/vaal_the_animated_constructradiant/vaal_the_animated_constructradiant.vmdl"
+	    "BaseClass"             "npc_dota_creature"
+	    "Level"                 "1"
+	    "ModelScale"            "4"
+	    "UnitLabel"             "creep"
+	
+	    //used in events:OnEntityKilled() to adjust lives if creeps leak
+	    "UnitLabel"             "creep"
+	
+	    "Ability1"              "shredder_reactive_armor"
+	    "Ability2"              ""    
+	
+	    "RingRadius"            "60"
+	    "HealthBarOffset"       "170"
+	    "BoundsHullName"        "DOTA_HULL_SIZE_SMALL"
+	
+	    "BountyXP"              "0"
+	    "BountyGoldMin"         "1"
+	    "BountyGoldMax"         "1"
+	
+	    "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_GROUND"
+	    "MovementSpeed"         "300"
+	
+	    "StatusHealth"          "375"
+	    "StatusHealthRegen"     "0"
+	    "StatusMana"            "0"
+	    "StatusManaRegen"       "0.0"
+	    "ArmorPhysical"         "10"
+	
+	    "AttackCapabilities"    "DOTA_UNIT_CAP_NO_ATTACK"
+	
+	    "Creature"
+	    {
+	        "DisableClumpingBehavior"   "1"
+	    }
+	 
+	}
+	"creep_crab"
+	   {                                       
+	    "Model"                 "models/courier/smeevil_crab/smeevil_crab.vmdl"
+	    "BaseClass"             "npc_dota_creature"
+	    "Level"                 "1"
+	    "ModelScale"            "2"
+	    "UnitLabel"             "creep"
+	
+	    //used in events:OnEntityKilled() to adjust lives if creeps leak
+	    "UnitLabel"             "creep"
+	
+	    "Ability1"              "tidehunter_kraken_shell"
+	    "Ability2"              ""    
+	
+	    "RingRadius"            "50"
+	    "HealthBarOffset"       "170"
+	    "BoundsHullName"        "DOTA_HULL_SIZE_SMALL"
+	
+	    "BountyXP"              "0"
+	    "BountyGoldMin"         "8"
+	    "BountyGoldMax"         "8"
+	
+	    "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_GROUND"
+	    "MovementSpeed"         "300"
+	
+	    "StatusHealth"          "275"
+	    "StatusHealthRegen"     "0"
+	    "StatusMana"            "0"
+	    "StatusManaRegen"       "0.0"
+	    "ArmorPhysical"         "3"
+	
+	    "AttackCapabilities"    "DOTA_UNIT_CAP_NO_ATTACK"  
+	
+	    "Creature"
+	    {
+	        "DisableClumpingBehavior"   "1"
+	    }
+	 
+	}
+	"creep_donkey"
+	   {                                       
+	    "Model"                 "models/courier/sw_donkey/sw_donkey.vmdl"
+	    "BaseClass"             "npc_dota_creature"
+	    "Level"                 "1"
+	    "ModelScale"            "1"
+	    "UnitLabel"             "creep"
+	
+	    //used in events:OnEntityKilled() to adjust lives if creeps leak
+	    "UnitLabel"             "creep"
+	
+	    "Ability1"              ""
+	    "Ability2"              ""    
+	
+	    "RingRadius"            "40"
+	    "HealthBarOffset"       "170"
+	    "BoundsHullName"        "DOTA_HULL_SIZE_SMALL"
+	
+	    "BountyXP"              "0"
+	    "BountyGoldMin"         "3"
+	    "BountyGoldMax"         "3"
+	
+	    "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_GROUND"
+	    "MovementSpeed"         "300"
+	
+	    "StatusHealth"          "130"
+	    "StatusHealthRegen"     "0"
+	    "StatusMana"            "0"
+	    "StatusManaRegen"       "0.0"
+	    "ArmorPhysical"         "2"
+	
+	    "AttackCapabilities"    "DOTA_UNIT_CAP_NO_ATTACK"
+	    "AttackAcquisitionRange"     "125"
+	    "AttackRange"                "125"  
+	    "AttackDamageMin"       "8"
+	    "AttackDamageMax"       "5"
+	    "AttackRate"            "1"    
+	    "AttackAnimationPoint"  "0.1"
+	
+	
+	    "Creature"
+	    {
+	        "DisableClumpingBehavior"   "1"
+	    }
+	 
+	}
+	"creep_facerex"
+	   {                                       
+	    "Model"                 "models/items/courier/faceless_rex/faceless_rex_flying.vmdl"
+	    "BaseClass"             "npc_dota_creature"
+	    "Level"                 "1"
+	    "ModelScale"            "4.2"
+	    "UnitLabel"             "creep"
+	
+	    //used in events:OnEntityKilled() to adjust lives if creeps leak
+	    "UnitLabel"             "creep"
+	
+	    "Ability1"              "faceless_void_backtrack"
+	    "Ability2"              ""    
+	
+	    "RingRadius"            "90"
+	    "HealthBarOffset"       "170"
+	    "BoundsHullName"        "DOTA_HULL_SIZE_SMALL"
+	
+	    "BountyXP"              "0"
+	    "BountyGoldMin"         "50"
+	    "BountyGoldMax"         "50"
+	
+	    "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_GROUND"
+	    "MovementSpeed"         "200"
+	
+	    "StatusHealth"          "1100"
+	    "StatusHealthRegen"     "1"
+	    "StatusMana"            "0"
+	    "StatusManaRegen"       "0.0"
+	    "ArmorPhysical"         "4"
+	
+	    "AttackCapabilities"    "DOTA_UNIT_CAP_NO_ATTACK"
+	
+	    "Creature"
+	    {
+	        "DisableClumpingBehavior"   "1"
+	    }
+	}
+	 
+	"creep_geodesic"
+	   {                                       
+	    "Model"                 "models/items/enigma/eidolon/geodesic/geodesic.vmdl"
+	    "BaseClass"             "npc_dota_creature"
+	    "Level"                 "6"
+	    "ModelScale"            "3"
+	    "UnitLabel"             "creep"
+	
+	    "Ability1"              "templar_assassin_refraction"
+	    "Ability2"              ""    
+	
+	    "RingRadius"            "60"
+	    "HealthBarOffset"       "170"
+	    "BoundsHullName"        "DOTA_HULL_SIZE_SMALL"
+	
+	    "BountyXP"              "0"
+	    "BountyGoldMin"         "15"
+	    "BountyGoldMax"         "15"
+	
+	    "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_GROUND"
+	    "MovementSpeed"         "300"
+	
+	    "StatusHealth"          "300"
+	    "StatusHealthRegen"     "0"
+	    "StatusMana"            "1000"
+	    "StatusManaRegen"       "30.0"
+	    "ArmorPhysical"         "3"
+	
+	    "AttackCapabilities"    "DOTA_UNIT_CAP_NO_ATTACK"
+	      
+	    "vscripts"              "scripts/vscripts/unit_scripts/creeps/ai_geodesic.lua"
+	
+	      "vscripts"  "scripts/vscripts/unit_scripts/creeps/ai_geodesic.lua"
+	
+	    "Creature"
+	    {
+	        "DisableClumpingBehavior"   "1"
+	    }
+	 
+	}
+	"creep_goldwight"
+	   {                                       
+	    "Model"                 "models/items/undying/idol_of_ruination/ruin_wight_minion_torso_gold.vmdl"
+	    "BaseClass"             "npc_dota_creature"
+	    "Level"                 "1"
+	    "ModelScale"            "1"
+	    "UnitLabel"             "creep"
+	
+	    //used in events:OnEntityKilled() to adjust lives if creeps leak
+	    "UnitLabel"             "creep"
+	
+	    "Ability1"              ""
+	    "Ability2"              ""    
+	
+	    "RingRadius"            "40"
+	    "HealthBarOffset"       "170"
+	    "BoundsHullName"        "DOTA_HULL_SIZE_SMALL"
+	
+	    "BountyXP"              "0"
+	    "BountyGoldMin"         "6"
+	    "BountyGoldMax"         "6"
+	
+	    "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_GROUND"
+	    "MovementSpeed"         "370"
+	
+	    "StatusHealth"          "120"
+	    "StatusHealthRegen"     "0"
+	    "StatusMana"            "0"
+	    "StatusManaRegen"       "0.0"
+	    "ArmorPhysical"         "1"
+	
+	    "AttackCapabilities"    "DOTA_UNIT_CAP_NO_ATTACK"
+	
+	    "Creature"
+	    {
+	        "DisableClumpingBehavior"   "1"
+	    }
+	 
+	}
+	"creep_sheep"
+	   {                                       
+	    "Model"                 "models/items/hex/sheep_hex/sheep_hex.vmdl"
+	    "BaseClass"             "npc_dota_creature"
+	    "Level"                 "1"
+	    "ModelScale"            "1"
+	    "UnitLabel"             "creep"
+	
+	    //used in events:OnEntityKilled() to adjust lives if creeps leak
+	    "UnitLabel"             "creep"
+	
+	    "Ability1"              ""
+	    "Ability2"              ""    
+	
+	    "RingRadius"            "40"
+	    "HealthBarOffset"       "170"
+	    "BoundsHullName"        "DOTA_HULL_SIZE_SMALL"
+	
+	    "BountyXP"              "0"
+	    "BountyGoldMin"         "1"
+	    "BountyGoldMax"         "1"
+	
+	    "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_GROUND"
+	    "MovementSpeed"         "300"
+	
+	    "StatusHealth"          "30"
+	    "StatusHealthRegen"     "0"
+	    "StatusMana"            "0"
+	    "StatusManaRegen"       "0.0"
+	    "ArmorPhysical"         "1"
+	
+	    "AttackCapabilities"    "DOTA_UNIT_CAP_NO_ATTACK"
+	    "AttackAcquisitionRange"     "125"
+	    "AttackRange"                "125"     
+	
+	    "Creature"
+	    {
+	        "DisableClumpingBehavior"   "1"
+	    }
+	 
 	}
 }
