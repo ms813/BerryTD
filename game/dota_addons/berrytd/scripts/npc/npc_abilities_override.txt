@@ -5,11 +5,6 @@
 "DOTAAbilities"
 {
   "Version"   "1"
-
-  "ogre_magi_bloodlust"
-  {
-    "AbilityManaCost" "0"
-  }  
   
   // -----------------------------------------------------------
   // - UNCOMMENT ANY ITEM YOU DON'T WANT TO APPEAR IN THE SHOP -

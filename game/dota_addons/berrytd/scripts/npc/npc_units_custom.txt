@@ -264,6 +264,118 @@
 	
 	    "vscripts"              "unit_scripts/creeps/critter.lua"
 	}
+	"creep_healer_0"
+	{                                       
+	    "Model"                 "models/heroes/witchdoctor/witchdoctor.vmdl"
+	    "BaseClass"             "npc_dota_creature"
+	    "Level"                 "1"
+	    "ModelScale"            "0.8"
+	    "Level"                 "0"
+	
+	    //used in events:OnEntityKilled() to adjust lives if creeps leak
+	    "UnitLabel"             "creep"
+	
+	    "Ability1"              "ability_creep_heal"
+	
+	    "RingRadius"            "40"
+	    "HealthBarOffset"       "170"
+	    "BoundsHullName"        "DOTA_HULL_SIZE_SMALL"
+	
+	    "BountyXP"              "0"
+	    "BountyGoldMin"         "1"
+	    "BountyGoldMax"         "3"
+	
+	    "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_GROUND"
+	    "MovementSpeed"         "180"
+	
+	    "StatusHealth"          "100"
+	    "StatusHealthRegen"     "0"
+	    "StatusMana"            "0"
+	    "StatusManaRegen"       "0.0"
+	    "ArmorPhysical"         "5"
+	    "MagicalResistance"     "25"
+	
+	    "AttackCapabilities"        "DOTA_UNIT_CAP_RANGED_ATTACK"
+	    "AttackAcquisitionRange"    "600"
+	    "AttackRange"               "600"   
+	    "AttackDamageMin"           "1"
+	    "AttackDamageMax"           "2"
+	    "AttackRate"                "1"   
+	    "AttackAnimationPoint"      "0.4"  
+	    "ProjectileSpeed"           "1200"  
+	
+	    "Creature"
+	    {
+	        "DisableClumpingBehavior"   "1"
+	
+	        "AttachWearables"
+	        {
+	            "Wearable1"  {"ItemDef"  "94"}
+	            "Wearable2"  {"ItemDef"  "95"}
+	            "Wearable3"  {"ItemDef"  "96"}
+	            "Wearable4"  {"ItemDef"  "97"}            
+	        }
+	    } 
+	
+	    "vscripts"      "unit_scripts/creeps/healer.lua"
+	}
+	
+	"creep_healer_1"
+	{                                       
+	    "Model"                 "models/heroes/witchdoctor/witchdoctor.vmdl"
+	    "BaseClass"             "npc_dota_creature"
+	    "Level"                 "1"
+	    "ModelScale"            "1.1"
+	    "Level"                 "0"
+	
+	    //used in events:OnEntityKilled() to adjust lives if creeps leak
+	    "UnitLabel"             "creep"
+	
+	    "Ability1"              "ability_creep_heal"
+	
+	    "RingRadius"            "40"
+	    "HealthBarOffset"       "170"
+	    "BoundsHullName"        "DOTA_HULL_SIZE_SMALL"
+	
+	    "BountyXP"              "0"
+	    "BountyGoldMin"         "1"
+	    "BountyGoldMax"         "3"
+	
+	    "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_GROUND"
+	    "MovementSpeed"         "180"
+	
+	    "StatusHealth"          "250"
+	    "StatusHealthRegen"     "0"
+	    "StatusMana"            "1000"
+	    "StatusManaRegen"       "1000"
+	    "ArmorPhysical"         "10"
+	    "MagicalResistance"     "40"
+	
+	    "AttackCapabilities"        "DOTA_UNIT_CAP_RANGED_ATTACK"
+	    "AttackAcquisitionRange"    "600"
+	    "AttackRange"               "600"   
+	    "AttackDamageMin"           "1"
+	    "AttackDamageMax"           "2"
+	    "AttackRate"                "1"   
+	    "AttackAnimationPoint"      "0.4"  
+	    "ProjectileSpeed"           "1200"  
+	
+	    "Creature"
+	    {
+	        "DisableClumpingBehavior"   "1"
+	
+	        "AttachWearables"
+	        {
+	            "Wearable1"  {"ItemDef"  "8097"}
+	            "Wearable2"  {"ItemDef"  "8304"}
+	            "Wearable3"  {"ItemDef"  "8305"}
+	            "Wearable4"  {"ItemDef"  "8306"}            
+	            "Wearable5"  {"ItemDef"  "8307"}    
+	        }
+	    } 
+	
+	    "vscripts"      "unit_scripts/creeps/healer.lua"
+	}
 	"creep_hive_0"
 	{                                       
 	    "Model"                 "models/items/broodmother/spiderling/virulent_matriarchs_spiderling/virulent_matriarchs_spiderling.vmdl"

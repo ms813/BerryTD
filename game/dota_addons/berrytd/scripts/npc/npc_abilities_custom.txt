@@ -1,5 +1,118 @@
 "DOTAAbilities"
 {
+	"ability_creep_heal"
+	{
+		"BaseClass"             "ability_datadriven"
+	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	    "AbilityType"           "DOTA_ABILITY_TYPE_BASIC"
+	    "AbilityTextureName"    "witch_doctor_voodoo_restoration"	
+	    
+	    "AbilityManaCost"		"0"
+	    
+	   	"Modifiers"
+	   	{
+	   		"modifier_creep_healer"
+	   		{
+	   			"Passive"			"1"
+	   			"IsHidden"			"1"
+	   			"IsBuff"			"1"  	
+	   	
+	   			"OnCreated"
+	   			{
+	   				"RunScript"
+			    	{
+			    		"ScriptFile"	"unit_scripts/creeps/healer.lua"
+			    		"Function"		"HealerAttachParticle"
+			    		"Particle"		"particles/units/heroes/hero_witchdoctor/witchdoctor_voodoo_restoration.vpcf"
+			    	}
+	
+			    	"AttachEffect"
+			    	{
+			    		"EffectName"        "particle_name"
+			    		"EffectAttachType"  "follow_origin"
+			    		"Target"            "CASTER"
+			    		"ControlPointEntities"
+			            {
+			                "CASTER"	"follow_origin"
+			                "CASTER"	"%aoe_radius %aoe_radius %aoe_radius"
+			                "CASTER"	"attach_staff"
+			            }
+			    	}
+	   			}	
+	
+	   			"ThinkInterval"  "%tick"
+	   			"OnIntervalThink"
+	   			{   				
+	   				"ApplyModifier"
+	   				{
+	   					"ModifierName"	"modifier_creep_heal"
+	   					"Target"
+	                    {
+	                        "Center"    "CASTER"
+	                        "Radius"    "%aoe_radius"                        
+	                        "Teams"     "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+	                        "Types"     "DOTA_UNIT_TARGET_ALL" 
+	                    }
+	   					"Duration"		"1"
+	   				}
+	   			}
+	   		}
+	
+	   		"modifier_creep_heal"
+	   		{
+	   			"Passive"			"0"
+	   			"IsHidden"			"0"
+	   			"IsBuff"			"1"
+	
+	   			"OnCreated"
+	   			{
+	   				"AttachEffect"
+	   				{
+	   					"EffectName"        "particles/units/heroes/hero_witchdoctor/witchdoctor_voodoo_restoration_heal.vpcf"
+	   					"EffectAttachType"  "follow_origin"
+	   					"Target"            "TARGET"
+	   				}
+	   			}
+	
+	   			"ThinkInterval"  "%tick"
+	   			"OnIntervalThink"
+	   			{
+	   				"Heal"
+	   				{
+	   					"Target"        "TARGET"
+	   					//this has to be at least 1, otherwise the heal seems to be rounded down to 0
+	   					"HealAmount"	"(%heal_per_second * %tick)"
+	   				}
+	   			}
+	   		}
+	   	}
+	    
+	    "AbilitySpecial"
+	    {
+	    	"01"
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"aoe_radius"	"500"
+	    	}
+	    	"02"
+	    	{
+	    		"var_type"		"FIELD_FLOAT"
+	    		"tick"			"0.2"
+	    	}
+	    	"03"
+	    	{
+	    		"var_type"		"FIELD_FLOAT"
+	    		"heal_per_second"	"5 10"
+	    	}
+	    }
+	
+	    "precache"
+	    {
+	    	"particle"  "particles/units/heroes/hero_witchdoctor/witchdoctor_voodoo_restoration_heal.vpcf"
+	    	"particle"  "particles/units/heroes/hero_witchdoctor/witchdoctor_voodoo_restoration.vpcf"
+	    }
+	    
+	}
 	//lays eggs periodically
 	"ability_creep_hive_lay_egg"
 	{
