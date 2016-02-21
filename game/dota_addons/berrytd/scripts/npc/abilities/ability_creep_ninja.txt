@@ -42,7 +42,7 @@
 				"FireSound"
 				{
 					"EffectName"	"Hero_BountyHunter.WindWalk"
-					"Target" 		"CASTER"
+					"Target" 		"TARGET"
 				}
 			}		
 			"States"

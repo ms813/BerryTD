@@ -197,7 +197,7 @@
 					"FireSound"
 					{
 						"EffectName"	"Hero_BountyHunter.WindWalk"
-						"Target" 		"CASTER"
+						"Target" 		"TARGET"
 					}
 				}		
 				"States"
@@ -312,6 +312,58 @@
 				"var_type"			"FIELD_INTEGER"
 				"movespeed"			"400"
 			}		
+		}
+	}
+	"ability_creep_zealot"
+	{
+		"BaseClass"             "ability_datadriven"
+	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	    "AbilityType"           "DOTA_ABILITY_TYPE_BASIC"
+	    "AbilityTextureName"    "bloodseeker_thirst"    
+	
+		"Modifiers"
+		{
+			"modifier_creep_zealot"
+			{
+				"Passive"			"1"
+				"IsHidden"			"0"
+				"IsBuff"			"1"
+				
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"EffectName"        "particles/units/heroes/hero_bloodseeker/bloodseeker_thirst_owner.vpcf"
+						"EffectAttachType"  "follow_origin"
+						"Target"            "CASTER"
+					}	
+				}
+	
+				"OnTakeDamage"
+				// "%attack_damage" is set to the damage value after mitigation
+				{		
+					
+					"RunScript"
+					{
+						"ScriptFile"	"unit_scripts/creeps/zealot.lua"
+						"Function"		"ZealotUpdateSpeed"
+					}	
+				}					
+			}		
+		}
+	
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"max_speed"			"522 700 900"
+			}					
+		}
+	
+		"precache"
+		{
+			"particle"  "particles/units/heroes/hero_bloodseeker/bloodseeker_thirst_owner.vpcf"		
 		}
 	}
 	"ability_open_page_one"

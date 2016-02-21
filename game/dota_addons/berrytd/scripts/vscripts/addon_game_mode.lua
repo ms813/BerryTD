@@ -64,6 +64,8 @@ end
 function Activate()
   GameRules.GameMode = GameMode()
   GameRules.GameMode:InitGameMode()
+
+  LinkLuaModifier("modifier_movespeed_cap", "unit_scripts/movespeed_cap.lua", LUA_MODIFIER_MOTION_NONE)
 end
 
 GameMode.TowerList = {
