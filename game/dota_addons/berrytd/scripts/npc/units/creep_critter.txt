@@ -1,4 +1,4 @@
-"creep_critter_1"
+"creep_critter_0"
 {                                       
     "Model"                 "models/props_gameplay/pig.vmdl"
     "BaseClass"             "npc_dota_creature"

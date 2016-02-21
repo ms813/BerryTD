@@ -1,0 +1,97 @@
+"creep_ninja_0"
+{                                       
+    "Model"                 "models/heroes/rikimaru/rikimaru.vmdl"
+    "BaseClass"             "npc_dota_creature"
+    "Level"                 "0"
+    "ModelScale"            "0.8"
+
+    //used in events:OnEntityKilled() to adjust lives if creeps leak
+    "UnitLabel"             "creep"
+
+    "Ability1"              "ability_creep_ninja_invis"
+
+    "RingRadius"            "40"
+    "HealthBarOffset"       "170"
+    "BoundsHullName"        "DOTA_HULL_SIZE_SMALL"
+
+    "BountyXP"              "0"
+    "BountyGoldMin"         "1"
+    "BountyGoldMax"         "3"
+
+    "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_GROUND"
+    "MovementSpeed"         "200"
+
+    "StatusHealth"          "100"
+    "StatusHealthRegen"     "0"
+    "StatusMana"            "0"
+    "StatusManaRegen"       "0.0"
+    "ArmorPhysical"         "5"
+    "MagicalResistance"     "25"
+
+    "AttackCapabilities"        "DOTA_UNIT_CAP_NO_ATTACK"
+
+    "Creature"
+    {
+        "DisableClumpingBehavior"   "1"
+
+        "AttachWearables"
+        {
+            "Wearable1"  {"ItemDef"  "163"}
+            "Wearable2"  {"ItemDef"  "164"}
+            "Wearable3"  {"ItemDef"  "165"}
+            "Wearable4"  {"ItemDef"  "166"}            
+        }
+    } 
+
+    "vscripts"      "unit_scripts/creeps/ninja.lua"
+}
+
+"creep_ninja_1"
+{                                       
+    "Model"                 "models/heroes/rikimaru/rikimaru.vmdl"
+    "BaseClass"             "npc_dota_creature"
+    "Level"                 "0"
+    "ModelScale"            "1.1"
+
+    //used in events:OnEntityKilled() to adjust lives if creeps leak
+    "UnitLabel"             "creep"
+
+    "Ability1"              "ability_creep_ninja_invis"
+
+    "RingRadius"            "40"
+    "HealthBarOffset"       "170"
+    "BoundsHullName"        "DOTA_HULL_SIZE_SMALL"
+
+    "BountyXP"              "0"
+    "BountyGoldMin"         "1"
+    "BountyGoldMax"         "3"
+
+    "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_GROUND"
+    "MovementSpeed"         "250"
+
+    "StatusHealth"          "150"
+    "StatusHealthRegen"     "0"
+    "StatusMana"            "0"
+    "StatusManaRegen"       "0.0"
+    "ArmorPhysical"         "10"
+    "MagicalResistance"     "40"
+
+    "AttackCapabilities"        "DOTA_UNIT_CAP_NO_ATTACK"
+
+    "Creature"
+    {
+        "DisableClumpingBehavior"   "1"
+
+        "AttachWearables"
+        {
+            "Wearable1"  {"ItemDef"  "8441"}
+            "Wearable2"  {"ItemDef"  "8442"}
+            "Wearable3"  {"ItemDef"  "8443"}
+            "Wearable4"  {"ItemDef"  "8444"}            
+            "Wearable5"  {"ItemDef"  "8445"}  
+            "Wearable6"  {"ItemDef"  "8446"}  
+        }
+    } 
+
+    "vscripts"      "unit_scripts/creeps/ninja.lua"
+}
