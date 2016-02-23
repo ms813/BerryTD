@@ -5,6 +5,7 @@
     "Level"                 "1"
     "ModelScale"            "0.8"
     "Level"                 "0"
+    "HasInventory"          "1"
 
     //used in events:OnEntityKilled() to adjust lives if creeps leak
     "UnitLabel"             "creep"
@@ -61,6 +62,7 @@
     "Level"                 "1"
     "ModelScale"            "1.1"
     "Level"                 "0"
+    "HasInventory"          "1"
 
     //used in events:OnEntityKilled() to adjust lives if creeps leak
     "UnitLabel"             "creep"

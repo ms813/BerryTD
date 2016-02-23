@@ -4,12 +4,10 @@ function Spawn(keys)
 	--put the egg's hatch ability on cooldown
 	local hatch = thisEntity:FindAbilityByName("ability_creep_hive_egg_hatch")
 	local cd = hatch:GetCooldown(hatch:GetLevel()) 
-	print("cooldown", cd)
+	
 	hatch:StartCooldown(cd)
 
-	Timers:CreateTimer(0.1, function()
-
-		thisEntity.attacks_to_destroy = ab:GetLevelSpecialValueFor("attacks_to_destroy", ab:GetLevel() - 1 )
+	Timers:CreateTimer(0.1, function()		
 
 		if ab:IsCooldownReady() then
 			ab:CastAbility()			
@@ -29,23 +27,23 @@ function HiveEggHatch(keys)
 		"creep_hive_baby",
 		keys.caster:GetAbsOrigin() + RandomVector(50),
 		true,
-		keys.caster:GetOwner(),
-		keys.caster:GetOwner(),
+		nil,
+		nil,
 		DOTA_TEAM_BADGUYS)
 
 		--set the babies next waypoint
 		if next_waypoint ~= nil then
 			baby:SetInitialGoalEntity(next_waypoint)
 		else
-			baby:SetInitialGoalEntity(Entities:FindByName(nil, "dota_goodguys_fort"))
-		end		
+			baby:SetInitialGoalEntity(keys.caster.last_waypoint)
+		end	
+		GameMode.numCreepsAlive = GameMode.numCreepsAlive + 1			
 	end
 
 	--force kill the egg	
 	keys.caster:AddNoDraw()
 	local particle = "particles/units/heroes/hero_broodmother/broodmother_spiderlings_spawn.vpcf"
 	ParticleManager:CreateParticle(particle,PATTACH_ABSORIGIN,keys.caster)
-	for i=1, keys.caster.attacks_to_destroy do
-		keys.caster:ForceKill(false)
-	end
+	keys.caster:ForceKill(false)
+
 end

@@ -5,8 +5,7 @@ function Spawn(keys)
 	split_ab:SetLevel(tonumber(lvl))
 end
 
-function Split(keys)
-	print("splitting")
+function Split(keys)	
 	local ab = keys.ability
 	local split_count = ab:GetLevelSpecialValueFor("splits", ab:GetLevel() - 1)
 	local next_waypoint = keys.caster.next_waypoint
@@ -20,13 +19,14 @@ function Split(keys)
 				nil,
 				nil,
 				DOTA_TEAM_BADGUYS) 
-
 			
 			if next_waypoint ~= nil then
 				shard:SetInitialGoalEntity(next_waypoint)
 			else
-				shard:SetInitialGoalEntity(Entities:FindByName(nil, "dota_goodguys_fort"))
+				shard:SetInitialGoalEntity(Entities:FindByName(nil, "gem_spawner"))
 			end
+
+			GameMode.numCreepsAlive = GameMode.numCreepsAlive + 1				
 		end
 	end
 end

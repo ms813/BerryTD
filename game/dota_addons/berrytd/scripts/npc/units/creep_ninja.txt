@@ -4,6 +4,7 @@
     "BaseClass"             "npc_dota_creature"
     "Level"                 "0"
     "ModelScale"            "0.8"
+    "HasInventory"          "1"
 
     //used in events:OnEntityKilled() to adjust lives if creeps leak
     "UnitLabel"             "creep"
@@ -52,6 +53,7 @@
     "BaseClass"             "npc_dota_creature"
     "Level"                 "0"
     "ModelScale"            "1.1"
+    "HasInventory"          "1"
 
     //used in events:OnEntityKilled() to adjust lives if creeps leak
     "UnitLabel"             "creep"

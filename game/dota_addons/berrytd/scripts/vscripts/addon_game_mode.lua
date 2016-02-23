@@ -93,12 +93,28 @@ GameMode.DefenderList = {
 }
 
 GameMode.CreepList = {
+  "creep_warrior_0",
   "creep_warrior_1",
-  "creep_warrior_2",
+  "creep_archer_0",
   "creep_archer_1",
-  "creep_archer_2",
+  "creep_sprinter_0",
   "creep_sprinter_1",
-  "creep_sprinter_2",
+  "creep_knight_0",
   "creep_knight_1",
-  "creep_knight_2",
+  "creep_critter_0",
+  "creep_hive_0",
+  "creep_splitter_0",
+  "creep_splitter_1",
+  "creep_splitter_2",
+  "creep_splitter_3",
+  "creep_saint_0",
+  "creep_saint_1",
+  "creep_healer_0",
+  "creep_healer_1",
+  "creep_voidwalker_0",
+  "creep_voidwalker_1",
+  "creep_ninja_0",
+  "creep_ninja_1",
+  "creep_zealot_0",
+  "creep_zealot_1"
 }

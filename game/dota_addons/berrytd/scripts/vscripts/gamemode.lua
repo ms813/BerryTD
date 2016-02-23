@@ -114,14 +114,9 @@ end
   gold will begin to go up in ticks if configured, creeps will spawn, towers will become damageable etc.  This function
   is useful for starting any game logic timers/thinkers, beginning the first round, etc.
   ]]
-  function GameMode:OnGameInProgress()
-  	DebugPrint("[BAREBONES] The game has officially begun")
-  	GameMode:PopulateWayPoints()
-
-   local repeat_interval = 30 -- Rerun this timer every *repeat_interval* game-time seconds   
-
-   Timers:CreateTimer(5, function()
-   	return GameMode:TimedTick()
+  function GameMode:OnGameInProgress()  
+    Timers:CreateTimer(function()
+   	    return GameMode:TimedTick()
    	end)
 
    self.currentWave = 1
@@ -137,23 +132,30 @@ function GameMode:InitGameMode()
   -- Call the internal function to set up the rules/behaviors specified in constants.lua
   -- This also sets up event hooks for all event handlers in events.lua
   -- Check out internals/gamemode to see/modify the exact code
-  GameMode:_InitGameMode()
+    GameMode:_InitGameMode()
 
   -- Commands can be registered for debugging purposes or as functions that can be called by the custom Scaleform UI
   -- Convars:RegisterCommand( "command_example", Dynamic_Wrap(GameMode, 'ExampleConsoleCommand'), "A console command example", FCVAR_CHEAT )
 
-  self.numCreepsAlive = 0
-  self.numCreepsSpawned = 0
-  self.currentWave = 0
-  self.maxWave = #waveTable;
-  self.currentLives = 50 
-  self.players = {}
+    --initialise the list of waypoints
+    self.WAYPOINTS = {}
+    local waypoint = Entities:FindByName(nil, "creep_waypoint_0")
+    local i = 0
+    while waypoint ~= nil do
+        table.insert(self.WAYPOINTS, waypoint)
+        i = i + 1
+        waypoint = Entities:FindByName(nil, "creep_waypoint_"..i)
+    end
 
-  --find the radiant base entity and hide it
-  self.base = Entities:FindByName(nil, "dota_goodguys_fort") 
-  self.base:AddNoDraw()
+    self.numCreepsAlive = 0  
+    self.currentWave = 0
+    self.maxWave = #waveTable;  
+    self.players = {}
 
-  DebugPrint('[BAREBONES] Done loading Barebones gamemode!\n\n')
+    local gemSpawn = self.WAYPOINTS[#self.WAYPOINTS]:GetAbsOrigin()
+    GameMode:InitGems(gemSpawn)
+
+    DebugPrint('[BAREBONES] Done loading Barebones gamemode!\n\n')
 end
 
 -- This is an example console command
@@ -171,17 +173,18 @@ function GameMode:ExampleConsoleCommand()
 print( '*********************************************' )
 end
 
-WAYPOINTS = {}
-function GameMode:PopulateWayPoints()  	
-  local WAYPOINTS = Entities:FindAllByClassname("path_corner")   
-end
-
 function GameMode:SpawnWave(waveIndex)
   Notifications:TopToAll({text="Starting wave "..waveIndex, duration=5.0, color="yellow"})   
 	local spawnLocation = Entities:FindByName(nil, "creep_spawner")
     --waveTable is defined in waves.lua
 
     local wave = waveTable[waveIndex]
+
+    --calculate the total number of creeps in the wave
+    for i, group in pairs(wave.creepGroups) do
+        self.numCreepsAlive = self.numCreepsAlive + group.numTotal
+    end
+    print ("total creeps this wave", self.numCreepsAlive)
 
     --start a timer for each group of creeps in the wave
     for i, group in pairs(wave.creepGroups) do       
@@ -191,16 +194,18 @@ function GameMode:SpawnWave(waveIndex)
         Timers:CreateTimer(group.spawnDelay, function()
             --spawn a subgroup of creeps from this group
             for i=0, group.spawnGroupSize -1 do
-                local creep = CreateUnitByName(group.creep,
-                                                spawnLocation:GetAbsOrigin(),
-                                                true,
-                                                nil,
-                                                nil,
-                                                DOTA_TEAM_BADGUYS)
+                local creep = CreateUnitByName(
+                    group.creep,
+                    spawnLocation:GetAbsOrigin(),
+                    true,
+                    nil,
+                    nil,
+                    DOTA_TEAM_BADGUYS)
 
                 --order the creep to run towards the throne
                 local path_start = Entities:FindByName(nil, "creep_waypoint_0")
-                creep:SetInitialGoalEntity(path_start)
+                
+                creep:SetInitialGoalEntity(path_start)           
 
                 --cache the creeps attack capability for use in aggro AI later
                 creep.default_attack_capability = creep:GetAttackCapability()
@@ -211,9 +216,7 @@ function GameMode:SpawnWave(waveIndex)
                 --apply phased modifier for a second so creeps can untangle themselves at the start
                 creep:AddNewModifier(creep, nil, "modifier_phased", {duration=1})
                 creep.next_waypoint = Entities:FindByName(nil, "creep_waypoint_0")
-
-                --keep track of how many creeps are alive on the map at once
-                self.numCreepsAlive = self.numCreepsAlive + 1
+                creep.hasGem = false                   
             end
             group.subGroupCount = group.subGroupCount + 1
 
@@ -230,30 +233,31 @@ function GameMode:SpawnWave(waveIndex)
 end
 
 function GameMode:TimedTick()
-	--print("timed tick, current wave:",self.currentWave, ", numCreepsSpawned:", self.numCreepsSpawned, ", numCreepsAlive:" , self.numCreepsAlive)	
-
-    local unitsAtEnd = GameMode:checkCreepsReachedEnd()    
-    for _, unit in pairs(unitsAtEnd) do
-        unit:Kill(nil, self.base)
-    end
 	
-	return 0.5
-end
+    --check if creeps are near any of the gems
+    local radius = 300
+    for i, gem in pairs(self.gems) do
+        local unitsNearGem = FindUnitsInRadius(
+            DOTA_TEAM_BADGUYS,
+            gem.position, 
+            nil,
+            radius,
+            DOTA_UNIT_TARGET_TEAM_FRIENDLY,
+            DOTA_UNIT_TARGET_ALL,
+            DOTA_UNIT_TARGET_FLAG_NONE,
+            FIND_CLOSEST,
+            false) 
 
-function GameMode:checkCreepsReachedEnd()
-    local endPos = self.base:GetAbsOrigin()
-    local radius = 500
-    local unitsAtEnd = FindUnitsInRadius(DOTA_TEAM_BADGUYS,
-        endPos, 
-        nil,
-        radius,
-        DOTA_UNIT_TARGET_TEAM_FRIENDLY,
-        DOTA_UNIT_TARGET_ALL,
-        DOTA_UNIT_TARGET_FLAG_NONE,
-        FIND_CLOSEST,
-        false)   
-    
-    return unitsAtEnd
+        if #unitsNearGem > 0 then                        
+            for i, unit in pairs(unitsNearGem) do
+                if not unit.hasGem and not gem.pickedUp then
+                    unit:PickupDroppedItem(gem:GetContainer())
+                end
+            end            
+        end
+    end   
+
+	return 0.5
 end
 
 function GameMode:InitTowerSpawns(owner)
@@ -273,4 +277,26 @@ function GameMode:BuildTowerSpawn(pos, owner)
         DOTA_TEAM_GOODGUYS)
     spawn:SetControllableByPlayer(owner:GetPlayerID(), false)
     return spawn
+end
+
+function GameMode:InitGems(spawnPos)
+    self.gems = {}
+    local max_gems = 10
+    local radius = 150
+    for i=1, max_gems do
+        local gem = CreateItem("item_berrytd_gem", nil, nil)
+        gem:SetPurchaseTime(0)
+        
+        --put the gems in a circle around the spawn
+        local x = math.sin((i/max_gems) * 2 * math.pi) * radius
+        local y = math.cos((i/max_gems) * 2 * math.pi) * radius
+        local destination = spawnPos + Vector(x,y,0)
+        local drop = CreateItemOnPositionForLaunch(spawnPos, gem)
+        gem:LaunchLoot(false, 300, 1, destination)
+
+        gem.position = destination
+        gem.pickedUp = false
+
+        table.insert(self.gems, gem)        
+    end
 end

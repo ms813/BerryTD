@@ -145,12 +145,7 @@
 			{
 				"var_type"			"FIELD_INTEGER"
 				"babies"			"5"
-			}	
-			"02"
-			{
-				"var_type"			"FIELD_INTEGER"
-				"attacks_to_destroy"		"6"
-			}	
+			}		
 		}
 	}
 	"ability_creep_ninja_invis"

@@ -57,12 +57,19 @@ end
 -- An item was picked up off the ground
 function GameMode:OnItemPickedUp(keys)
   DebugPrint( '[BAREBONES] OnItemPickedUp' )
-  DebugPrintTable(keys)
+  DebugPrintTable(keys) 
 
-  local heroEntity = EntIndexToHScript(keys.HeroEntityIndex)
+  local unit = EntIndexToHScript(keys.UnitEntityIndex)
   local itemEntity = EntIndexToHScript(keys.ItemEntityIndex)
-  local player = PlayerResource:GetPlayer(keys.PlayerID)
-  local itemname = keys.itemname
+  
+  --local itemname = keys.itemname
+  if itemEntity:GetName() == "item_berrytd_gem" then    
+    unit.hasGem = true
+    unit.gem = itemEntity
+    itemEntity.pickedUp = true
+    local exit = Entities:FindByName(nil, "creep_spawner")
+    unit:SetInitialGoalEntity(exit)
+  end  
 end
 
 -- A player has reconnected to the game.  This function can be used to repaint Player-based particles or change
@@ -264,22 +271,7 @@ function GameMode:OnEntityKilled( keys )
     --if killed unit has an owner then someone is selling a tower
     if killedUnit:GetOwner() ~= nil then      
 
-    --if creep reaches the ancient, then suicide and remove a life
-    elseif(self.base == killerEntity) then    
-        --subtract a life
-        self.currentLives = self.currentLives - 1
-
-        print(killedUnit:GetUnitName(), " reached the end!")
-        Notifications:TopToAll({text=killedUnit:GetUnitName().. " reached the end! Lifes left: " ..self.currentLives, duration=5.0})   
-
-        --if radiant runs out of lives then set dire victory
-        if self.currentLives <= 0 then
-            GameRules:SetGameWinner( DOTA_TEAM_BADGUYS )
-            Timers:RemoveTimers(true)
-        end
-
-        self.numCreepsAlive = self.numCreepsAlive - 1
-
+   
     --creep was killed by a tower
     else        
         self.numCreepsAlive = self.numCreepsAlive - 1
@@ -397,6 +389,58 @@ function GameMode:OnNPCGoalReached(keys)
   --cache the last/next waypoint on the creep
   npc.last_waypoint = goalEntity  
   npc.next_waypoint = nextGoalEntity 
+
+  local end_waypoint = self.WAYPOINTS[#self.WAYPOINTS]:GetName()
+
+    --if creep has reached the end, look for the nearest gem
+    if goalEntity:GetName() == end_waypoint  then
+
+        --print(npc:GetUnitName(), "reached the end", end_waypoint)
+        npc:Stop()
+
+        local min_dist = math.huge
+        local closest_gem = nil
+        for i,gem in pairs(GameMode.gems) do
+            if not gem.pickedUp then
+                local d = (npc:GetAbsOrigin() - gem.position):Length2D()
+                if d < min_dist then
+                    d = min_dist
+                    closest_gem = gem
+                end                
+            end
+        end
+
+
+
+        --if all gems are in inventories, return to the exit
+        if closest_gem == nil then
+            local exit = Entities:FindByName(nil, "creep_spawner")
+            npc:SetInitialGoalEntity(exit)
+        else
+            npc:PickupDroppedItem(closest_gem:GetContainer())
+        end
+    end
+
+  --check for creeps exiting the map carrying gems
+  if goalEntity:GetName() == "creep_spawner" and npc.hasGem then
+    
+    local toRemove = nil
+    for i, gem in pairs(self.gems) do
+      if npc.gem == gem then
+        toRemove = i
+      end
+    end
+
+    table.remove(self.gems, i)
+    npc:ForceKill(false)
+
+    Notifications:TopToAll({text=npc:GetUnitName().. " escaped with a gem! Gems left: " ..#self.gems, duration=5.0})   
+
+     if #self.gems == 0 then
+        GameRules:SetGameWinner( DOTA_TEAM_BADGUYS )
+        Timers:RemoveTimers(true)
+    end
+  end
 end
 
 -- This function is called whenever any player sends a chat message to team or All
