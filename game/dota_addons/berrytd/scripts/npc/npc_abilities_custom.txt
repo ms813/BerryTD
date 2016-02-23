@@ -237,6 +237,141 @@
 			"soundfile" "soundevents/game_sounds_heroes/game_sounds_bounty_hunter.vsndevts"
 		}
 	}
+	//makes target temporarily magic immune
+	"ability_creep_saint_repel"
+	{
+		"BaseClass"             "ability_datadriven"
+	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+	    "AbilityType"           "DOTA_ABILITY_TYPE_BASIC"
+	    "AbilityTextureName"    "omniknight_repel"
+		
+	    "AbilityCooldown"		"10"
+	    "AbilityCastRange"      "%range"
+	    "AbilityCastPoint"      "0.5"
+	    "AbilityCastAnimation"  "ACT_DOTA_CAST_ABILITY_2"
+	    "OnSpellStart"
+	    {
+	       "ApplyModifier"
+	        {
+	            "ModifierName"  "modifier_creep_saint_repel"
+	            "Target"        "TARGET"
+	            "Duration"      "%duration"
+	        }
+	
+	        "FireSound"
+	        {
+	            "EffectName"    "Hero_Omniknight.Repel"
+	            "Target"            "TARGET"
+	        }
+	    }
+	    
+	    "Modifiers"
+	    {
+	        "modifier_creep_saint_repel"
+	        {
+	            "Passive"           "0"
+	            "IsHidden"          "0"
+	            "IsPurgable"        "1"
+	            "IsBuff"            "1"           
+	    
+	            "EffectName"        "particles/units/heroes/hero_omniknight/omniknight_repel_buff.vpcf"
+	            "EffectAttachType"  "follow_origin"
+	    
+	            "States"
+	            {
+	                "MODIFIER_STATE_MAGIC_IMMUNE"        "MODIFIER_STATE_VALUE_ENABLED"
+	            }
+	        }
+	    }
+	    "AbilitySpecial"
+	    {
+	        "01"
+	        {
+	            "var_type"  "FIELD_INTEGER"
+	            "duration"  "5"
+	        }    
+	        "01"
+	        {
+	            "var_type"  "FIELD_INTEGER"
+	            "range"     "500"
+	        }        
+	    }
+	    
+	
+	    "precache"
+	    {
+	        "particle"  "particles/units/heroes/hero_omniknight/omniknight_repel_buff.vpcf"
+	        "soundfile" "soundevents/game_sounds_heroes/game_sounds_omniknight.vsndevts"
+	    }
+	}
+	
+	//makes target temporarily physical damage immune
+	"ability_creep_saint_guardian_angel"
+	{
+	    "BaseClass"             "ability_datadriven"
+	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+	    "AbilityType"           "DOTA_ABILITY_TYPE_BASIC"
+	    "AbilityTextureName"    "omniknight_guardian_angel"
+	    
+	    "AbilityCooldown"       "10"
+	    "AbilityCastRange"      "%range"
+	    "AbilityCastPoint"      "0.5"
+	    "AbilityCastAnimation"  "ACT_DOTA_CAST_ABILITY_1"
+	    "OnSpellStart"
+	    {
+	       "ApplyModifier"
+	        {
+	            "ModifierName"  "modifier_creep_saint_guardian_angel"
+	            "Target"        "TARGET"
+	            "Duration"      "%duration"
+	        }
+	
+	        "FireSound"
+	        {
+	            "EffectName"    "Hero_Omniknight.GuardianAngel"
+	            "Target"        "TARGET"
+	        }
+	    }
+	    
+	    "Modifiers"
+	    {
+	        "modifier_creep_saint_guardian_angel"
+	        {
+	            "Passive"           "0"
+	            "IsHidden"          "0"
+	            "IsPurgable"        "1"
+	            "IsBuff"            "1"           
+	    
+	            "EffectName"        "particles/units/heroes/hero_omniknight/omniknight_guardian_angel_omni.vpcf"
+	            "EffectAttachType"  "follow_origin"
+	    
+	            "States"
+	            {
+	                "MODIFIER_STATE_ATTACK_IMMUNE"        "MODIFIER_STATE_VALUE_ENABLED"
+	            }
+	        }
+	    }
+	    "AbilitySpecial"
+	    {
+	        "01"
+	        {
+	            "var_type"  "FIELD_INTEGER"
+	            "duration"  "5"
+	        }    
+	        "01"
+	        {
+	            "var_type"  "FIELD_INTEGER"
+	            "range"     "500"
+	        }        
+	    }
+	    
+	
+	    "precache"
+	    {
+	        "particle"  "particles/units/heroes/hero_omniknight/omniknight_repel_buff.vpcf"
+	        "soundfile" "soundevents/game_sounds_heroes/game_sounds_omniknight.vsndevts"
+	    }
+	}
 	"ability_creep_splitter_split"
 	{
 		"BaseClass"             "ability_datadriven"
@@ -364,6 +499,65 @@
 		"precache"
 		{
 			"particle"  "particles/units/heroes/hero_bloodseeker/bloodseeker_thirst_owner.vpcf"		
+		}
+	}
+	
+	"ability_creep_zealot_attackspeed"
+	{
+		"BaseClass"             "ability_datadriven"
+	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	    "AbilityType"           "DOTA_ABILITY_TYPE_BASIC"
+	    "AbilityTextureName"    "troll_warlord_battle_trance"    
+	
+		"Modifiers"
+		{
+			"modifier_creep_zealot_attackspeed_passive"
+			{
+				"Passive"			"1"
+				"IsHidden"			"1"
+				"IsBuff"			"1"		
+				
+				"OnTakeDamage"
+				// "%attack_damage" is set to the damage value after mitigation
+				{		
+					
+					"RunScript"
+					{
+						"ScriptFile"	"unit_scripts/creeps/zealot.lua"
+						"Function"		"ZealotUpdateAttackSpeed"
+						"AbilityContext"
+						{
+							"modifier"	"modifier_creep_zealot_attackspeed"
+						}
+					}	
+				}					
+			}		
+	
+			"modifier_creep_zealot_attackspeed"
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsBuff"			"1"		
+				
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "%bonus_attack_speed"			  
+				}					
+			}	
+		}
+	
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_attack_speed"	"50"
+			}	
+			"01"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"hp_trigger_percent"	"20"
+			}				
 		}
 	}
 	"ability_open_page_one"
@@ -4155,6 +4349,7 @@
 	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 	    "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 	    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"    
+	    "AbilityUnitTargetFlags"        "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 	    "AbilityTextureName"            "tinker_laser"
 	
 	    "AbilityCooldown"               "3 2"
@@ -4208,7 +4403,6 @@
 	            "Damage"        "%damage"
 	            "Type"          "DAMAGE_TYPE_MAGICAL"
 	        }   
-	
 	    }
 	    
 	    "AbilitySpecial"

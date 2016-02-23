@@ -31,6 +31,7 @@ function LaserTowerLaserParticle(keys)
 	ParticleManager:SetParticleControl(particle, 9, keys.caster:GetAbsOrigin() + Vector(0,0,320))	
 
 	if keys.ability:GetLevel() > 2 then
+		print("purge")
 		keys.target:Purge(true, false, false, false, false)
 	end
 end

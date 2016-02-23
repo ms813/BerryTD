@@ -50,3 +50,62 @@
 		"particle"  "particles/units/heroes/hero_bloodseeker/bloodseeker_thirst_owner.vpcf"		
 	}
 }
+
+"ability_creep_zealot_attackspeed"
+{
+	"BaseClass"             "ability_datadriven"
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+    "AbilityType"           "DOTA_ABILITY_TYPE_BASIC"
+    "AbilityTextureName"    "troll_warlord_battle_trance"    
+
+	"Modifiers"
+	{
+		"modifier_creep_zealot_attackspeed_passive"
+		{
+			"Passive"			"1"
+			"IsHidden"			"1"
+			"IsBuff"			"1"		
+			
+			"OnTakeDamage"
+			// "%attack_damage" is set to the damage value after mitigation
+			{		
+				
+				"RunScript"
+				{
+					"ScriptFile"	"unit_scripts/creeps/zealot.lua"
+					"Function"		"ZealotUpdateAttackSpeed"
+					"AbilityContext"
+					{
+						"modifier"	"modifier_creep_zealot_attackspeed"
+					}
+				}	
+			}					
+		}		
+
+		"modifier_creep_zealot_attackspeed"
+		{
+			"Passive"			"0"
+			"IsHidden"			"0"
+			"IsBuff"			"1"		
+			
+			"Properties"
+			{
+				"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "%bonus_attack_speed"			  
+			}					
+		}	
+	}
+
+	"AbilitySpecial"
+	{
+		"01"
+		{
+			"var_type"				"FIELD_INTEGER"
+			"bonus_attack_speed"	"50"
+		}	
+		"01"
+		{
+			"var_type"		"FIELD_INTEGER"
+			"hp_trigger_percent"	"20"
+		}				
+	}
+}

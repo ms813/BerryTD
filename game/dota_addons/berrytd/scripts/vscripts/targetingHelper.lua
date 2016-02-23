@@ -43,8 +43,8 @@ function TargetingHelper.HighestLevelAllies(unit, radius)
 	--find the highest level
 	local highest_level = -1
 	for i, ally in pairs(allies) do		
-		local level = ally.upgrade_level
-		if level > highest_level then
+		local level = ally.upgrade_level or tonumber(string.sub(ally:GetUnitName(), -1))
+				if level > highest_level then
 			highest_level = level
 		end
 	end
@@ -52,11 +52,11 @@ function TargetingHelper.HighestLevelAllies(unit, radius)
 	--find nearby allies at this high level
 	local high_level_allies = {}	
 	for i, ally in pairs(allies) do
-		if ally.upgrade_level == highest_level then
+		local lvl = ally.upgrade_level or tonumber(string.sub(ally:GetUnitName(), -1))
+		if lvl == highest_level then
 			table.insert(high_level_allies, ally)
 		end
 	end
-
 	return high_level_allies
 end
 

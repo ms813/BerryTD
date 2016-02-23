@@ -1,6 +1,6 @@
-"creep_zealot_0"
+"creep_voidwalker_0"
 {                                       
-    "Model"                 "models/heroes/blood_seeker/blood_seeker.vmdl"
+    "Model"                 "models/items/enigma/eidolon/geodesic/geodesic.vmdl"
     "BaseClass"             "npc_dota_creature"
     "Level"                 "0"
     "ModelScale"            "0.8"
@@ -8,7 +8,7 @@
     //used in events:OnEntityKilled() to adjust lives if creeps leak
     "UnitLabel"             "creep"
 
-    "Ability1"              "ability_creep_zealot"
+    "Ability1"              "templar_assassin_refraction"
 
     "RingRadius"            "40"
     "HealthBarOffset"       "170"
@@ -19,7 +19,7 @@
     "BountyGoldMax"         "3"
 
     "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_GROUND"
-    "MovementSpeed"         "200"
+    "MovementSpeed"         "150"
 
     "StatusHealth"          "100"
     "StatusHealthRegen"     "0"
@@ -28,29 +28,25 @@
     "ArmorPhysical"         "5"
     "MagicalResistance"     "25"
 
-    "AttackCapabilities"        "DOTA_UNIT_CAP_NO_ATTACK"
+    "AttackCapabilities"        "DOTA_UNIT_CAP_MELEE_ATTACK"
+    "AttackAcquisitionRange"    "0"
+    "AttackRange"               "125"   
+    "AttackDamageMin"           "4"
+    "AttackDamageMax"           "6"
+    "AttackRate"                "1"   
+    "AttackAnimationPoint"      "0.433"
 
     "Creature"
     {
-        "DisableClumpingBehavior"   "1"
-
-        "AttachWearables"
-        {
-            "Wearable1"  {"ItemDef"  "69"}
-            "Wearable2"  {"ItemDef"  "70"}
-            "Wearable3"  {"ItemDef"  "71"}
-            "Wearable4"  {"ItemDef"  "72"}
-            "Wearable5"  {"ItemDef"  "73"}
-            "Wearable6"  {"ItemDef"  "74"}
-        }
+        "DisableClumpingBehavior"   "1"       
     } 
 
-    "vscripts"      "unit_scripts/creeps/zealot.lua"
+    "vscripts"      "unit_scripts/creeps/voidwalker.lua"
 }
 
-"creep_zealot_1"
+"creep_voidwalker_1"
 {                                       
-    "Model"                 "models/heroes/blood_seeker/blood_seeker.vmdl"
+    "Model"                 "models/items/enigma/eidolon/geodesic/geodesic.vmdl"
     "BaseClass"             "npc_dota_creature"
     "Level"                 "0"
     "ModelScale"            "1.1"
@@ -58,8 +54,7 @@
     //used in events:OnEntityKilled() to adjust lives if creeps leak
     "UnitLabel"             "creep"
 
-    "Ability1"              "ability_creep_zealot"
-    "Ability2"              "ability_creep_zealot_attackspeed"
+    "Ability1"              "templar_assassin_refraction"
 
     "RingRadius"            "40"
     "HealthBarOffset"       "170"
@@ -70,7 +65,7 @@
     "BountyGoldMax"         "3"
 
     "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_GROUND"
-    "MovementSpeed"         "200"
+    "MovementSpeed"         "180"
 
     "StatusHealth"          "200"
     "StatusHealthRegen"     "0"
@@ -89,18 +84,8 @@
 
     "Creature"
     {
-        "DisableClumpingBehavior"   "1"
-
-        "AttachWearables"
-        {
-            "Wearable1"  {"ItemDef"  "6651"}
-            "Wearable2"  {"ItemDef"  "6652"}
-            "Wearable3"  {"ItemDef"  "6653"}
-            "Wearable4"  {"ItemDef"  "6654"}
-            "Wearable5"  {"ItemDef"  "6655"}
-            "Wearable6"  {"ItemDef"  "6656"}
-        }
+        "DisableClumpingBehavior"   "1"       
     } 
 
-    "vscripts"      "unit_scripts/creeps/zealot.lua"
+    "vscripts"      "unit_scripts/creeps/voidwalker.lua"
 }
