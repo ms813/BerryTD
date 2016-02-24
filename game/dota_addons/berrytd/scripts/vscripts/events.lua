@@ -68,6 +68,7 @@ function GameMode:OnItemPickedUp(keys)
         unit.gem = itemEntity
         itemEntity.pickedUp = true
 
+        --switch to the reverse path by inverting the number of the current waypoint
         local waypoint_no = #self.WAYPOINTS - 1
         if unit.last_waypoint ~= nil then
             waypoint_no = tonumber(string.sub(unit.last_waypoint:GetName(), -1))
@@ -77,8 +78,7 @@ function GameMode:OnItemPickedUp(keys)
         -- minus one here is to make sure the creep doesnt skip a point on the way back
         local point_i = (max_waypoint - waypoint_no - 1)
         if point_i < 0 then point_i = 0 end
-        local reverse_path_waypoint = "creep_waypoint_reverse_"..point_i
-        print(reverse_path_waypoint)
+        local reverse_path_waypoint = "creep_waypoint_reverse_"..point_i        
         local exit = Entities:FindByName(nil, reverse_path_waypoint)
         
         unit:Stop()

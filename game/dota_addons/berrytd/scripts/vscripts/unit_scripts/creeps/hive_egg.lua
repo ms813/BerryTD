@@ -22,7 +22,7 @@ function HiveEggHatch(keys)
 	local ab = keys.ability
 	local babies = ab:GetLevelSpecialValueFor("babies", ab:GetLevel() - 1)
 	local next_waypoint = keys.caster.next_waypoint
-	for i = 0, babies do
+	for i = 1, babies do
 		local baby = CreateUnitByName(
 		"creep_hive_baby",
 		keys.caster:GetAbsOrigin() + RandomVector(50),

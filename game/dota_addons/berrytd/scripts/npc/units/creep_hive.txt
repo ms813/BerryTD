@@ -4,6 +4,7 @@
     "BaseClass"             "npc_dota_creature"
     "Level"                 "1"
     "ModelScale"            "1.2"
+    "HasInventory"          "1"
 
     //used in events:OnEntityKilled() to adjust lives if creeps leak
     "UnitLabel"             "creep"
@@ -67,7 +68,7 @@
 
     "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_NONE" 
     
-    "StatusHealth"          "6"
+    "StatusHealth"          "50"
     "ArmorPhysical"         "100"
     "MagicalResistance"     "75"
 
@@ -82,6 +83,7 @@
     "BaseClass"             "npc_dota_creature"
     "Level"                 "1"
     "ModelScale"            "0.5"
+    "HasInventory"          "1"
 
     //used in events:OnEntityKilled() to adjust lives if creeps leak
     "UnitLabel"             "creep"
