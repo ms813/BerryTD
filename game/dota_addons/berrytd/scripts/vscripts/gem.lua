@@ -9,8 +9,9 @@ function GemDrop(keys)
 		w_name = holder.last_waypoint:GetName()
 	end	
 	
-	--drop the gem on death, but not if the creep is escaping
-	if gem ~= nil and w_name ~= "creep_spawner" then		
+	--drop the gem on death, but not if the creep is escaping	
+	local last_waypoint = "creep_waypoint_reverse_"..#GameMode.WAYPOINTS - 1
+	if gem ~= nil and w_name ~= last_waypoint then		
 		holder:DropItemAtPositionImmediate(gem, holder:GetAbsOrigin())
 		gem.pickedUp = false
 		gem.position = holder:GetAbsOrigin()
