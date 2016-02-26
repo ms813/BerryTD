@@ -116,7 +116,7 @@ end
   ]]
   function GameMode:OnGameInProgress()  
     Timers:CreateTimer(function()
-   	    return GameMode:TimedTick()
+   	    return GameMode:CheckGems()
    	end)
 
    self.currentWave = 1
@@ -232,7 +232,7 @@ function GameMode:SpawnWave(waveIndex)
     end
 end
 
-function GameMode:TimedTick()
+function GameMode:CheckGems()
 	
     --check if creeps are near any of the gems
     local radius = 300
@@ -295,7 +295,8 @@ function GameMode:InitGems(spawnPos)
         gem:LaunchLoot(false, 300, 1, destination)
 
         gem.position = destination
-        gem.pickedUp = false
+        gem.initial_position = destination
+        gem.pickedUp = false        
 
         table.insert(self.gems, gem)        
     end

@@ -63,12 +63,22 @@ function GameMode:OnItemPickedUp(keys)
   local itemEntity = EntIndexToHScript(keys.ItemEntityIndex)
   
   --local itemname = keys.itemname
+
+
+    --check if the item picked up is one of the TD gems
     if itemEntity:GetName() == "item_berrytd_gem" then    
         unit.hasGem = true
         unit.gem = itemEntity
         itemEntity.pickedUp = true
 
-        --switch to the reverse path by inverting the number of the current waypoint
+        --cancel the return timer on the gem
+        if itemEntity.reset_timer ~= nil then
+          Timers:RemoveTimer(itemEntity.reset_timer)
+          itemEntity.reset_timer = nil
+        end
+
+        --make the creep carrying the gem follow the reverse path
+        --by inverting the number of the current waypoint
         local waypoint_no = #self.WAYPOINTS - 1
         if unit.last_waypoint ~= nil then
             waypoint_no = tonumber(string.sub(unit.last_waypoint:GetName(), -1))
@@ -282,35 +292,32 @@ function GameMode:OnEntityKilled( keys )
         end  
     end
 
-    --if killed unit has an owner then someone is selling a tower
-    if killedUnit:GetOwner() ~= nil then      
-
-   
-    --creep was killed by a tower
-    else        
+    --killed unit was a creep
+    --print("killed unit", killedUnit:GetUnitName(), killedUnit:GetUnitLabel())
+    if killedUnit:GetUnitLabel() == "creep"       then
         self.numCreepsAlive = self.numCreepsAlive - 1
-        --print("Creep killed," , self.numCreepsAlive , "remaining")  
-    end
+        --print("Creep killed," , self.numCreepsAlive , "remaining")      
 
-    if self.currentWave > 0 and self.numCreepsAlive == 0 then  
-      --no creeps are on the map, so lets give the reward for completing the wave
-      for i, player in pairs(self.players) do
-        player:ModifyGold(waveTable[self.currentWave].bonusEndGold, true, DOTA_ModifyGold_Unspecified)
-      end
-
-        --increment the wave number by one
-        self.currentWave = self.currentWave + 1                 
-        print("Starting wave", self.currentWave)
-
-        --check we are not on the last wave
-        if self.currentWave <= self.maxWave then        
-            --spawn the nextwave
-            self:SpawnWave(self.currentWave)                
-        else
-            --if there are no more waves then end the game with radiant victory
-            --GameRules:SetGameWinner( DOTA_TEAM_GOODGUYS )
+      if self.currentWave > 0 and self.numCreepsAlive == 0 then  
+        --no creeps are on the map, so lets give the reward for completing the wave
+        for i, player in pairs(self.players) do          
+          player:ModifyGold(waveTable[self.currentWave].bonusEndGold, true, DOTA_ModifyGold_Unspecified)
         end
-    end  
+
+          --increment the wave number by one
+          self.currentWave = self.currentWave + 1                 
+          print("Starting wave", self.currentWave)
+
+          --check we are not on the last wave
+          if self.currentWave <= self.maxWave then        
+              --spawn the nextwave
+              self:SpawnWave(self.currentWave)                
+          else
+              --if there are no more waves then end the game with radiant victory
+              --GameRules:SetGameWinner( DOTA_TEAM_GOODGUYS )
+          end
+      end  
+    end
 end
 
 

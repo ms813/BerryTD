@@ -41,4 +41,13 @@
             }
     	}
     }
+
+    "AbilitySpecial"
+    {
+        "01"
+        {
+            "var_type"          "FIELD_INTEGER"
+            "return_timeout"    "60"
+        }        
+    }
 }

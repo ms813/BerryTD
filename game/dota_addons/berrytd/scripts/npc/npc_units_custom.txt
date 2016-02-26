@@ -449,7 +449,7 @@
 	
 	    "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_NONE" 
 	    
-	    "StatusHealth"          "6"
+	    "StatusHealth"          "50"
 	    "ArmorPhysical"         "100"
 	    "MagicalResistance"     "75"
 	
