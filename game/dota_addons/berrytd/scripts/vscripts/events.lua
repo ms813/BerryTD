@@ -437,7 +437,9 @@ function GameMode:OnNPCGoalReached(keys)
 
             table.remove(self.gems, i)           
 
-            Notifications:TopToAll({text=npc:GetUnitName().. " escaped with a gem! Gems left: " ..#self.gems, duration=5.0})   
+            Notifications:TopToAll({text=npc:GetUnitName().. " escaped with a gem! Gems left: " ..#self.gems, duration=5.0})             
+            self.GemQuest:SetTextReplaceValue(QUEST_TEXT_REPLACE_VALUE_CURRENT_VALUE, #self.gems)
+            self.gemSubQuest:SetTextReplaceValue(QUEST_TEXT_REPLACE_VALUE_CURRENT_VALUE, #self.gems)
 
              if #self.gems == 0 then
                 GameRules:SetGameWinner( DOTA_TEAM_BADGUYS )

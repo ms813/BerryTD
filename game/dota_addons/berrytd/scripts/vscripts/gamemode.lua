@@ -114,13 +114,12 @@ end
   gold will begin to go up in ticks if configured, creeps will spawn, towers will become damageable etc.  This function
   is useful for starting any game logic timers/thinkers, beginning the first round, etc.
   ]]
-  function GameMode:OnGameInProgress()  
+function GameMode:OnGameInProgress()  
     Timers:CreateTimer(function()
    	    return GameMode:CheckGems()
-   	end)
+   	end)      
 
-   self.currentWave = 1
-   GameMode:SpawnWave(self.currentWave)
+    self:StartInterwaveTimeout(self.currentWave)
 end
 
 -- This function initializes the game mode and is called before anyone loads into the game
@@ -151,6 +150,7 @@ function GameMode:InitGameMode()
     self.currentWave = 0
     self.maxWave = #waveTable;  
     self.players = {}
+    self.time_between_waves = 5
 
     local gemSpawn = self.WAYPOINTS[#self.WAYPOINTS]:GetAbsOrigin()
     GameMode:InitGems(gemSpawn)
@@ -279,11 +279,13 @@ function GameMode:BuildTowerSpawn(pos, owner)
     return spawn
 end
 
+--initialises the gems, places them on the map and sets up the quest keeping track of how many are left
 function GameMode:InitGems(spawnPos)
     self.gems = {}
     local max_gems = 10
     local radius = 150
     for i=1, max_gems do
+        --create the item
         local gem = CreateItem("item_berrytd_gem", nil, nil)
         gem:SetPurchaseTime(0)
         
@@ -291,13 +293,76 @@ function GameMode:InitGems(spawnPos)
         local x = math.sin((i/max_gems) * 2 * math.pi) * radius
         local y = math.cos((i/max_gems) * 2 * math.pi) * radius
         local destination = spawnPos + Vector(x,y,0)
-        local drop = CreateItemOnPositionForLaunch(spawnPos, gem)
+        --actually create the physical item container
+        local drop = CreateItemOnPositionForLaunch(spawnPos, gem)        
         gem:LaunchLoot(false, 300, 1, destination)
 
+        --cache some values so we can reset the gem later
         gem.position = destination
         gem.initial_position = destination
         gem.pickedUp = false        
 
         table.insert(self.gems, gem)        
     end
+
+    --set up the quest bar keeping track of remaining gems
+    self.GemQuest = SpawnEntityFromTableSynchronous("quest", {name="QuestGems", title = "#QuestGemsRemaining"})    
+    self.gemSubQuest = SpawnEntityFromTableSynchronous(
+        "subquest_base",
+        {
+            show_progress_bar = true,
+            progress_bar_hue_shift = 50
+        }
+    )
+
+    self.GemQuest:AddSubquest(self.gemSubQuest)
+    self.GemQuest:SetTextReplaceValue(QUEST_TEXT_REPLACE_VALUE_CURRENT_VALUE, max_gems)
+    self.GemQuest:SetTextReplaceValue(QUEST_TEXT_REPLACE_VALUE_TARGET_VALUE, max_gems)
+    self.gemSubQuest:SetTextReplaceValue(QUEST_TEXT_REPLACE_VALUE_CURRENT_VALUE, max_gems)
+    self.gemSubQuest:SetTextReplaceValue(QUEST_TEXT_REPLACE_VALUE_TARGET_VALUE, max_gems)
+
+end
+
+--starts a countdown until the next wave spawns
+function GameMode:StartInterwaveTimeout(waveNumber)
+    self.Quest = SpawnEntityFromTableSynchronous("quest", {name="interwave", title = "#QuestWaveTimeout"})
+    
+    self.Quest.EndTime = self.time_between_waves
+    self.subQuest = SpawnEntityFromTableSynchronous(
+        "subquest_base",
+        {
+            show_progress_bar = true,
+            progress_bar_hue_shift = -119
+        }
+    )
+    self.Quest:AddSubquest(self.subQuest)
+
+    self.Quest:SetTextReplaceValue(QUEST_TEXT_REPLACE_VALUE_CURRENT_VALUE, self.time_between_waves)
+    self.Quest:SetTextReplaceValue(QUEST_TEXT_REPLACE_VALUE_TARGET_VALUE, self.time_between_waves)
+
+    --plus one is so the quest displays the next round
+    self.Quest:SetTextReplaceValue(QUEST_TEXT_REPLACE_VALUE_ROUND, waveNumber + 1)
+
+    self.subQuest:SetTextReplaceValue(QUEST_TEXT_REPLACE_VALUE_CURRENT_VALUE, self.time_between_waves)
+    self.subQuest:SetTextReplaceValue(QUEST_TEXT_REPLACE_VALUE_TARGET_VALUE, self.time_between_waves)
+
+    local interval = 1
+    Timers:CreateTimer(1, function()        
+        self.Quest.EndTime = self.Quest.EndTime - interval
+        self.Quest:SetTextReplaceValue(QUEST_TEXT_REPLACE_VALUE_CURRENT_VALUE, self.Quest.EndTime)
+        self.subQuest:SetTextReplaceValue(QUEST_TEXT_REPLACE_VALUE_CURRENT_VALUE, self.Quest.EndTime)
+
+        --finish timeout quest when countdown hits 0
+        if self.Quest.EndTime <= 0 then
+            EmitGlobalSound("Tutorial.Quest.complete_01")            
+            self.Quest:CompleteQuest()
+
+            --increment the current wave by one and start the next wave
+            self.currentWave = self.currentWave + 1
+            self:SpawnWave(self.currentWave)              
+            return nil
+        else
+            return interval
+        end
+    end) 
 end
