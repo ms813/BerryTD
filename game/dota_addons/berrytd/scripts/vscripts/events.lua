@@ -295,14 +295,21 @@ function GameMode:OnEntityKilled( keys )
     --killed unit was a creep
     --print("killed unit", killedUnit:GetUnitName(), killedUnit:GetUnitLabel())
     if killedUnit:GetUnitLabel() == "creep"       then
-        self.numCreepsAlive = self.numCreepsAlive - 1
-        --print("Creep killed," , self.numCreepsAlive , "remaining")      
+          self.numCreepsAlive = self.numCreepsAlive - 1          
+          --print("Creep killed," , self.numCreepsAlive , "remaining")  
+
+          --tick up the creep kill quest counter     
+          self.creep_kills = self.creep_kills + 1 
+          self.Quest:SetTextReplaceValue(QUEST_TEXT_REPLACE_VALUE_CURRENT_VALUE, self.creep_kills)
+          self.subQuest:SetTextReplaceValue(QUEST_TEXT_REPLACE_VALUE_CURRENT_VALUE, self.creep_kills)
 
       if self.currentWave > 0 and self.numCreepsAlive == 0 then  
         --no creeps are on the map, so lets give the reward for completing the wave
-        for i, player in pairs(self.players) do          
-          player:ModifyGold(waveTable[self.currentWave].bonusEndGold, true, DOTA_ModifyGold_Unspecified)
-        end
+          for i, player in pairs(self.players) do          
+            player:ModifyGold(waveTable[self.currentWave].bonusEndGold, true, DOTA_ModifyGold_Unspecified)
+          end
+
+          self.Quest:CompleteQuest()
 
           --increment the wave number by one
           self.currentWave = self.currentWave + 1                 
@@ -310,8 +317,8 @@ function GameMode:OnEntityKilled( keys )
 
           --check we are not on the last wave
           if self.currentWave <= self.maxWave then        
-              --spawn the nextwave
-              self:SpawnWave(self.currentWave)                
+              --start a timeout before the next wave
+              self:StartInterwaveTimeout(self.currentWave)                
           else
               --if there are no more waves then end the game with radiant victory
               --GameRules:SetGameWinner( DOTA_TEAM_GOODGUYS )

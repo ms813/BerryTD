@@ -16,21 +16,7 @@ function GemDrop(keys)
 		holder:DropItemAtPositionImmediate(gem, holder:GetAbsOrigin())
 		gem.pickedUp = false
 		gem.position = holder:GetAbsOrigin()	
-
-		local dummy = CreateUnitByName(
-			"npc_dummy_unit", 
-			holder:GetAbsOrigin(), 
-			false, 
-			nil, 
-			nil, 
-			DOTA_TEAM_NEUTRALS)
-
-		local speech_duration = 5
-		dummy:AddSpeechBubble(0, "Gem will return in "..return_timeout.." seconds", speech_duration, 0, 0)
-
-		Timers:CreateTimer(speech_duration, function()
-			dummy:ForceKill(false)
-		end)
+		
 		--start a timer on the gem
 		gem.reset_timer = Timers:CreateTimer(return_timeout, function()
 			print("Returning gem")			

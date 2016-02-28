@@ -151,6 +151,7 @@ function GameMode:InitGameMode()
     self.maxWave = #waveTable;  
     self.players = {}
     self.time_between_waves = 5
+    self.creep_spawner = Entities:FindByName(nil, "creep_spawner")
 
     local gemSpawn = self.WAYPOINTS[#self.WAYPOINTS]:GetAbsOrigin()
     GameMode:InitGems(gemSpawn)
@@ -173,18 +174,33 @@ function GameMode:ExampleConsoleCommand()
 print( '*********************************************' )
 end
 
-function GameMode:SpawnWave(waveIndex)
-  Notifications:TopToAll({text="Starting wave "..waveIndex, duration=5.0, color="yellow"})   
-	local spawnLocation = Entities:FindByName(nil, "creep_spawner")
+function GameMode:SpawnWave(waveIndex)	
     --waveTable is defined in waves.lua
-
     local wave = waveTable[waveIndex]
+    self.creep_kills = 0
 
     --calculate the total number of creeps in the wave
     for i, group in pairs(wave.creepGroups) do
         self.numCreepsAlive = self.numCreepsAlive + group.numTotal
     end
-    print ("total creeps this wave", self.numCreepsAlive)
+    
+    --set up a quest to keep track of kills
+    self.Quest = SpawnEntityFromTableSynchronous("quest", {name="wave", title= "#QuestWave"})    
+    self.subQuest = SpawnEntityFromTableSynchronous(
+        "subquest_base",
+        {
+            show_progress_bar = true,
+            progress_bar_hue_shift = -119
+        }
+    )
+    self.Quest.max_creeps = self.numCreepsAlive
+    self.Quest:AddSubquest(self.subQuest)    
+    self.Quest:SetTextReplaceValue(QUEST_TEXT_REPLACE_VALUE_CURRENT_VALUE, 0)
+    self.Quest:SetTextReplaceValue(QUEST_TEXT_REPLACE_VALUE_TARGET_VALUE, self.Quest.max_creeps)
+    self.Quest:SetTextReplaceValue(QUEST_TEXT_REPLACE_VALUE_ROUND, waveIndex)
+
+    self.subQuest:SetTextReplaceValue(QUEST_TEXT_REPLACE_VALUE_CURRENT_VALUE, 0)
+    self.subQuest:SetTextReplaceValue(QUEST_TEXT_REPLACE_VALUE_TARGET_VALUE, self.Quest.max_creeps)
 
     --start a timer for each group of creeps in the wave
     for i, group in pairs(wave.creepGroups) do       
@@ -196,7 +212,7 @@ function GameMode:SpawnWave(waveIndex)
             for i=0, group.spawnGroupSize -1 do
                 local creep = CreateUnitByName(
                     group.creep,
-                    spawnLocation:GetAbsOrigin(),
+                    self.creep_spawner:GetAbsOrigin(),
                     true,
                     nil,
                     nil,
