@@ -152,6 +152,7 @@ function GameMode:InitGameMode()
     self.players = {}
     self.time_between_waves = 5
     self.creep_spawner = Entities:FindByName(nil, "creep_spawner")
+    self.gem_return_timeout = 60
 
     local gemSpawn = self.WAYPOINTS[#self.WAYPOINTS]:GetAbsOrigin()
     GameMode:InitGems(gemSpawn)

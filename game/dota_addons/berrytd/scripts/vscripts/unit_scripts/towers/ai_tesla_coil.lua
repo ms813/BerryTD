@@ -11,6 +11,10 @@ function Spawn(keys)
 end
 
 function TeslaCoilThink(tower)
+	--stop the timer if the tower is removed
+	if tower:IsNull() or not tower:IsAlive() then
+		return nil
+	end
 
 	local ability = tower:GetAbilityByIndex(1)
 	if ability ~= nil then
@@ -65,8 +69,7 @@ function TeslaCoilLightningSingle(keys, target)
 	    if modifier ~= nil then	        
 	    	local duration = ab:GetLevelSpecialValueFor("duration", ab:GetLevel())
 	        modifier:IncrementStackCount()
-	        modifier:SetDuration(duration,true)
-	        print("derp")
+	        modifier:SetDuration(duration,true)	        
 	    else
 	        ab:ApplyDataDrivenModifier(caster, target, modifier_name, {})
 	        target:SetModifierStackCount(modifier_name, ab, 1)

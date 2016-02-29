@@ -367,6 +367,94 @@
 	        "soundfile" "soundevents/game_sounds_heroes/game_sounds_omniknight.vsndevts"
 	    }
 	}
+	//purge and speed up nearby allies
+	"ability_creep_sergeant"
+	{
+		"BaseClass"             "ability_datadriven"
+	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+	    "AbilityType"           "DOTA_ABILITY_TYPE_BASIC"
+	    "AbilityTextureName"    "legion_commander_press_the_attack"
+		
+	    "AbilityCooldown"		"12 8"
+	    "AbilityCastRange"      "%range"
+	    "AbilityCastPoint"      "0.5"
+	    "AbilityCastAnimation"  "ACT_DOTA_CAST_ABILITY_2"
+	
+	    "OnSpellStart"
+	    {
+	       "ApplyModifier"
+	        {
+	            "ModifierName"  "modifier_creep_sergeant_buff"
+	            "Target"
+	            {
+	                "Center"        "CASTER"
+	                "Radius"        "%radius"
+	                "Teams"         "DOTA_UNIT_TARGET_TEAM_FRIENDLY" 
+	                "Type"          "DOTA_UNIT_TARGET_ALL"                
+	            }
+	
+	            "Duration"      "%duration"
+	        }
+	
+	        //this script handles the AoE purge effect
+	        "RunScript"
+	        {
+	            "ScriptFile"    "unit_scripts/creeps/sergeant.lua"
+	            "Function"      "CreepSergeantPurge"
+	        }
+	    }
+	    
+	    "Modifiers"
+	    {
+	        //attack and move speed modifier
+	        "modifier_creep_sergeant_buff"
+	        {
+	            "Passive"           "0"
+	            "IsHidden"          "0"
+	            "IsPurgable"        "1"
+	            "IsBuff"            "1"           
+	    
+	            "EffectName"        "particles/units/heroes/hero_legion_commander/legion_commander_press.vpcf"
+	            "EffectAttachType"  "follow_origin"
+	    
+	            "Properties"
+	            {
+	                "MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "%bonus_attack_speed"
+	                "MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT" "%bonus_movement_speed" 
+	            }
+	        }
+	    }
+	
+	    "AbilitySpecial"
+	    {
+	        "01"
+	        {
+	            "var_type"  "FIELD_INTEGER"
+	            "duration"  "5 6"
+	        }    
+	        "02"
+	        {
+	            "var_type"  "FIELD_INTEGER"
+	            "radius"     "500"
+	        }  
+	        "03"
+	        {
+	            "var_type"  "FIELD_INTEGER"
+	            "bonus_attack_speed"    "50"
+	        } 
+	        "04"
+	        {
+	            "var_type"  "FIELD_INTEGER"
+	            "bonus_movement_speed"  "50 80"
+	        }       
+	    }    
+	
+	    "precache"
+	    {
+	        "particle"  "particles/units/heroes/hero_legion_commander/legion_commander_press.vpcf"
+	        "soundfile" "soundevents/game_sounds_heroes/game_sounds_legion_commander.vsndevts"
+	    }
+	}
 	"ability_creep_splitter_split"
 	{
 		"BaseClass"             "ability_datadriven"
@@ -4134,7 +4222,7 @@
 	"ability_iceberg_aoe_slow"
 	{
 	    "BaseClass"                     "ability_datadriven"
-	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 	    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"    
 	    "AbilityTextureName"            "lich_frost_nova"
 	
@@ -4228,6 +4316,9 @@
 	    {
 	        "modifier_iceberg_aoe_slow"
 	        {
+	            "IsPurgable"        "1"
+	            "IsDebuff"          "1"                         
+	
 	            "Duration"              "%duration"
 	            "EffectName"            "particles/generic_gameplay/generic_slowed_cold.vpcf"
 	            "StatusEffectName"      "particles/status_fx/status_effect_frost_lich.vpcf"
@@ -6331,6 +6422,7 @@
 	
 	    "AbilityCooldown"                "1 0.5 0.05"
 	    "AbilityManaCost"                "0"
+	    "AbilityCastRange"               "%range"    
 	    "AbilityDamage"                  "%damage"     
 	    
 	    "OnSpellStart"
@@ -6353,7 +6445,10 @@
 	        {
 	            "Passive"           "0"
 	            "IsHidden"          "0"
-	            "IsDebuff"          "1"    
+	            "IsDebuff"          "1"  
+	            "IsPurgable"        "1"
+	            
+	            //Purge(bool RemovePositiveBuffs, bool RemoveDebuffs, bool BuffsCreatedThisFrameOnly, bool RemoveStuns, bool RemoveExceptions)"       "1"  
 	
 	            "EffectName"    "particles/units/heroes/hero_slardar/slardar_amp_damage.vpcf"
 	            "EffectAttachType"  "follow_overhead"

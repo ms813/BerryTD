@@ -1,7 +1,7 @@
 "ability_iceberg_aoe_slow"
 {
     "BaseClass"                     "ability_datadriven"
-    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
     "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"    
     "AbilityTextureName"            "lich_frost_nova"
 
@@ -95,6 +95,9 @@
     {
         "modifier_iceberg_aoe_slow"
         {
+            "IsPurgable"        "1"
+            "IsDebuff"          "1"                         
+
             "Duration"              "%duration"
             "EffectName"            "particles/generic_gameplay/generic_slowed_cold.vpcf"
             "StatusEffectName"      "particles/status_fx/status_effect_frost_lich.vpcf"

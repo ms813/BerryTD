@@ -56,8 +56,8 @@ waveTable = {}
 waveTable[1] = {
 	bonusEndGold = 50,
 	creepGroups = {					
-		CreateCreepGroup("creep_hive_0", 1, 5, 1, 1),
-		CreateCreepGroup("creep_splitter_2", 1, 20, 1, 1),
+		CreateCreepGroup("creep_warrior_0", 10, 0, 1, 1),
+		CreateCreepGroup("creep_sergeant_1", 1, 4, 1, 1),
 	}	
 }
 

@@ -1,8 +1,7 @@
 function GemDrop(keys)
 
 	local holder = keys.caster	
-	local gem = holder:GetItemInSlot(0)
-	local return_timeout = keys.ability:GetLevelSpecialValueFor("return_timeout", 1)
+	local gem = holder:GetItemInSlot(0)	
 
 	local waypoint = holder.last_waypoint
 	local w_name = nil
@@ -17,8 +16,8 @@ function GemDrop(keys)
 		gem.pickedUp = false
 		gem.position = holder:GetAbsOrigin()	
 		
-		--start a timer on the gem
-		gem.reset_timer = Timers:CreateTimer(return_timeout, function()
+		--start a timer on the gem to return it if it is undisturbed
+		gem.reset_timer = Timers:CreateTimer(GameMode.gem_return_timeout, function()
 			print("Returning gem")			
 			gem:LaunchLoot(false, 300, 1, gem.initial_position)		
 			gem.position = gem.initial_position

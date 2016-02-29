@@ -79,20 +79,27 @@ function GameMode:OnItemPickedUp(keys)
 
         --make the creep carrying the gem follow the reverse path
         --by inverting the number of the current waypoint
-        local waypoint_no = #self.WAYPOINTS - 1
-        if unit.last_waypoint ~= nil then
-            waypoint_no = tonumber(string.sub(unit.last_waypoint:GetName(), -1))
-        end
-        local max_waypoint = #self.WAYPOINTS - 1    
 
-        -- minus one here is to make sure the creep doesnt skip a point on the way back
-        local point_i = (max_waypoint - waypoint_no - 1)
-        if point_i < 0 then point_i = 0 end
-        local reverse_path_waypoint = "creep_waypoint_reverse_"..point_i        
-        local exit = Entities:FindByName(nil, reverse_path_waypoint)
-        
-        unit:Stop()
-        unit:SetInitialGoalEntity(exit)
+        --check if unit is on the way back
+        --if they are, switch them to the reverse path, if not let them keep going
+        local isOnWayBack = string.find(unit.last_waypoint:GetName(), "reverse")
+        if isOnWayBack == nil then
+
+          local waypoint_no = #self.WAYPOINTS - 1
+          if unit.last_waypoint ~= nil then
+              waypoint_no = tonumber(string.sub(unit.last_waypoint:GetName(), -1))
+          end
+          local max_waypoint = #self.WAYPOINTS - 1    
+
+          -- minus one here is to make sure the creep doesnt skip a point on the way back
+          local point_i = (max_waypoint - waypoint_no - 1)
+          if point_i < 0 then point_i = 0 end
+          local reverse_path_waypoint = "creep_waypoint_reverse_"..point_i        
+          local exit = Entities:FindByName(nil, reverse_path_waypoint)
+          
+          unit:Stop()
+          unit:SetInitialGoalEntity(exit)
+        end
     end  
 end
 
@@ -294,7 +301,7 @@ function GameMode:OnEntityKilled( keys )
 
     --killed unit was a creep
     --print("killed unit", killedUnit:GetUnitName(), killedUnit:GetUnitLabel())
-    if killedUnit:GetUnitLabel() == "creep"       then
+    if killedUnit:GetUnitLabel() == "creep" then
           self.numCreepsAlive = self.numCreepsAlive - 1          
           --print("Creep killed," , self.numCreepsAlive , "remaining")  
 
