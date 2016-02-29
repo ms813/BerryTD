@@ -1,4 +1,4 @@
-//purge and speed up nearby allies
+//purge and speed up nearby allies, and add some hp regen
 "ability_creep_sergeant"
 {
 	"BaseClass"             "ability_datadriven"

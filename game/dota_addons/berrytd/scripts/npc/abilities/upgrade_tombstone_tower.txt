@@ -5,7 +5,7 @@
     "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
     "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
     "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"    
-    "AbilityTextureName"            "pudge_rot"
+    "AbilityTextureName"            "tombstone_decay_icon_1"
 
     "AbilityCooldown"               "3"
     "AbilityManaCost"               "0"
@@ -124,7 +124,7 @@
 {
     "BaseClass"             "ability_datadriven"
     "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"        
-    "AbilityTextureName"    "tombstone_decay_icon_1"
+    "AbilityTextureName"    "pudge_rot"
 
     "AbilityGoldCost"       "50"
 
@@ -167,7 +167,7 @@
 {
     "BaseClass"             "ability_datadriven"
     "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"        
-    "AbilityTextureName"    "tombstone_decay_icon_1"
+    "AbilityTextureName"    "undying_decay"
 
     "AbilityGoldCost"       "50"
 
