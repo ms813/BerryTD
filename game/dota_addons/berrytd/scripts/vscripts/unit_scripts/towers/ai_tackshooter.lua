@@ -223,7 +223,7 @@ function tackshooterPoisonTick(keys)
     local poison_stacks = keys.target:GetModifierStackCount(modifier,ab)
 
     local tick_dmg = keys.ability:GetLevelSpecialValueFor("tick_dmg", 1)
-    local dmg = tick_dmg * math.pow(2, poison_stacks - 1)
+    local dmg = tick_dmg * poison_stacks
 
     ApplyDamage({
         victim = keys.target,
