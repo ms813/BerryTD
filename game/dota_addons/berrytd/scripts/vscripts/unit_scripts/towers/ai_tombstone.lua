@@ -12,7 +12,7 @@ function TombstoneThink(tower)
 	end
 
 	local ability = tower:GetAbilityByIndex(1)
-	local range = ability:GetLevelSpecialValueFor("range",ability:GetLevel())
+	local range = ability:GetLevelSpecialValueFor("range",ability:GetLevel()-1)
 
 	local targets = TargetingHelper.FindDireInRadius(tower, range)
 
@@ -27,11 +27,11 @@ end
 
 function TombstoneDecay(keys)
 	local ab = keys.ability
-	local dist = ab:GetLevelSpecialValueFor("range", ab:GetLevel())
-	local width = ab:GetLevelSpecialValueFor("width", ab:GetLevel())
-	local tick = ab:GetLevelSpecialValueFor("tick", ab:GetLevel())
-	local dmg = ab:GetLevelSpecialValueFor("damage", ab:GetLevel())
-	local speed = ab:GetLevelSpecialValueFor("speed", ab:GetLevel())
+	local dist = ab:GetLevelSpecialValueFor("range", ab:GetLevel()-1)
+	local width = ab:GetLevelSpecialValueFor("width", ab:GetLevel()-1)
+	local tick = ab:GetLevelSpecialValueFor("tick", ab:GetLevel()-1)
+	local dmg = ab:GetLevelSpecialValueFor("damage", ab:GetLevel()-1)
+	local speed = ab:GetLevelSpecialValueFor("speed", ab:GetLevel()-1)
 	local caster = keys.caster
 	local mod_name = keys.AbilityContext.modifier
 
@@ -74,6 +74,11 @@ function TombstoneDecay(keys)
 		    --apply a slow
 		    if not unit:HasModifier(mod_name) then
 		    	ab:ApplyDataDrivenModifier(caster, unit, mod_name, {})
+		    end
+
+		    --if tower is level 2 or higher, apply the no heal debuff
+		    if ab:GetLevel() >= 2 then
+		    	ab:ApplyDataDrivenModifier(caster, unit, "modifier_tombstone_decay_no_heal", {})
 		    end
 		    --emit the decay sound
 			EmitSoundOn(keys.AbilityContext.sound, unit)

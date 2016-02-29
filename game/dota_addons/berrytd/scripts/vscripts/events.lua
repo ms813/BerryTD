@@ -84,7 +84,6 @@ function GameMode:OnItemPickedUp(keys)
         --if they are, switch them to the reverse path, if not let them keep going
         local isOnWayBack = string.find(unit.last_waypoint:GetName(), "reverse")
         if isOnWayBack == nil then
-
           local waypoint_no = #self.WAYPOINTS - 1
           if unit.last_waypoint ~= nil then
               waypoint_no = tonumber(string.sub(unit.last_waypoint:GetName(), -1))
@@ -99,6 +98,9 @@ function GameMode:OnItemPickedUp(keys)
           
           unit:Stop()
           unit:SetInitialGoalEntity(exit)
+        else
+          --if unit is already on the way out then just carry on
+          unit:SetInitialGoalEntity(unit.last_waypoint)
         end
     end  
 end

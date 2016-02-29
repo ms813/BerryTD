@@ -7,7 +7,7 @@
     "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"    
     "AbilityTextureName"            "pudge_rot"
 
-    "AbilityCooldown"               "3 2"
+    "AbilityCooldown"               "3"
     "AbilityManaCost"               "0"
     "AbilityDamage"                 "%damage" 
     "AbilityCastRange"              "%range"
@@ -35,31 +35,45 @@
     }
 
     "Modifiers"
-      {
-          "modifier_tombstone_decay_slow"
-          {
-              "Passive"             "0"
-              "IsHidden"            "0"
-              "IsDebuff"            "0"
-              "Duration"            "%slow_duration"
+    {
+        "modifier_tombstone_decay_slow"
+        {
+            "Passive"             "0"
+            "IsHidden"            "0"
+            "IsDebuff"            "1"
+            "IsPurgable"          "1"         
+            "Duration"            "%slow_duration"
 
-      
-              //"EffectName"          "particle_name"
-              //"EffectAttachType"    "follow_origin"
-      
-              "Properties"
-              {
-                  "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%slow"                  
-              }
-          }
-      }  
+            "Properties"
+            {
+                "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%slow"                                   
+            }
+        }
+
+        "modifier_tombstone_decay_no_heal"
+        {
+            "Passive"           "0"
+            "IsHidden"          "0"
+            "IsDebuff"          "1"
+            "IsPurgable"        "1"                        
+            "Duration"          "%no_heal_duration"
+
+            "StatusEffectName"        "particles/status_fx/status_effect_iceblast.vpcf"        
+            "StatusEffectPriority"    "10"
+          
+            "Properties"
+            {
+                "MODIFIER_PROPERTY_DISABLE_HEALING"   "1"
+            }
+        }
+    }  
     
     "AbilitySpecial"
     {
         "01"
         {
             "var_type"          "FIELD_INTEGER"
-            "damage"            "2"
+            "damage"            "2 4"
         }
         "02"
         {
@@ -84,12 +98,17 @@
         "06"
         {
             "var_type"          "FIELD_INTEGER"
-            "slow"              "-20"
+            "slow"              "-20 -40"
         }
         "06"
         {
             "var_type"          "FIELD_INTEGER"
             "slow_duration"     "1"
+        }
+        "07"
+        {
+            "var_type"          "FIELD_INTEGER"
+            "no_heal_duration"  "0 0 10"
         }
     }  
 
@@ -100,7 +119,7 @@
     }  
 }
 
-//level up to 2, reduce cooldown
+//level up to 2, more damage and slow
 "ability_upgrade_tombstone_tower_1"
 {
     "BaseClass"             "ability_datadriven"
@@ -136,6 +155,51 @@
     "Modifiers"
     {
         "modifier_upgrade_tombstone_tower_1"
+        {
+            "IsHidden"      "0"
+            "Passive"       "0"            
+        }
+    }
+}
+
+//level up to 3, applies debuff that stops healing
+"ability_upgrade_tombstone_tower_2"
+{
+    "BaseClass"             "ability_datadriven"
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"        
+    "AbilityTextureName"    "tombstone_decay_icon_1"
+
+    "AbilityGoldCost"       "50"
+
+    "OnSpellStart"
+    {          
+        "LevelUpAbility"
+        {
+            "Target"         "CASTER"
+            "AbilityName"    "ability_tombstone_tower_decay"
+        }
+
+        "ApplyModifier"
+        {
+            "ModifierName"    "modifier_upgrade_tombstone_tower_2"
+            "Target"          "CASTER"            
+        }
+
+        "RunScript"
+        {
+            "ScriptFile"    "scripts/vscripts/addon_game_mode.lua"
+            "Function"      "upgradeTower"
+            "AbilityContext"
+            {
+                "nextUpgrade"   "ability_upgrade_tombstone_tower_3"
+                "splitUpgrade"   "ability_upgrade_tombstone_tower_4"
+            }
+        }   
+    }
+
+    "Modifiers"
+    {
+        "modifier_upgrade_tombstone_tower_2"
         {
             "IsHidden"      "0"
             "Passive"       "0"            
