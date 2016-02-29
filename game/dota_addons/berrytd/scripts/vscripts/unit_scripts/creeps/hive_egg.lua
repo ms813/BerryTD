@@ -31,6 +31,9 @@ function HiveEggHatch(keys)
 		nil,
 		DOTA_TEAM_BADGUYS)
 
+		--make spiderling phased
+		baby:AddNewModifier(baby, nil, "modifier_phased", {})
+
 		--set the babies next waypoint
 		if next_waypoint ~= nil then
 			baby:SetInitialGoalEntity(next_waypoint)
