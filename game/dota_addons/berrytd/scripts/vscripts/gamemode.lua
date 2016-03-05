@@ -281,21 +281,16 @@ end
 function GameMode:InitTowerSpawns(owner)
     local spawns = Entities:FindAllByName("tower_spawn_site")
     for i, spawn_site in pairs(spawns) do        
-        local tower_stub = GameMode:BuildTowerSpawn(spawn_site:GetAbsOrigin(), owner)         
+        local tower_stub = CreateUnitByName(
+            "tower_spawn_site",
+            spawn_site:GetAbsOrigin(),
+            true,
+            owner,
+            owner,
+            DOTA_TEAM_GOODGUYS)
+        tower_stub:SetControllableByPlayer(owner:GetPlayerID(), false)
+        tower_stub:SetAngles(0, 270, 0)               
     end
-end
-
-function GameMode:BuildTowerSpawn(pos, owner)
-    local spawn = CreateUnitByName(
-        "tower_spawn_site",
-        pos,
-        true,
-        owner,
-        owner,
-        DOTA_TEAM_GOODGUYS)
-    spawn:SetControllableByPlayer(owner:GetPlayerID(), false)
-    spawn:SetAngles(0, 270, 0)
-    return spawn
 end
 
 --initialises the gems, places them on the map and sets up the quest keeping track of how many are left
