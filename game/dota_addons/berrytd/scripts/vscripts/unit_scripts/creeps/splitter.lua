@@ -21,7 +21,7 @@ function Split(keys)
 				DOTA_TEAM_BADGUYS) 
 
 			--make shard phased
-			shard:AddNewModifier(creep, nil, "modifier_phased", {})
+			shard:AddNewModifier(shard, nil, "modifier_phased", {})
 			
 			if next_waypoint ~= nil then
 				shard:SetInitialGoalEntity(next_waypoint)

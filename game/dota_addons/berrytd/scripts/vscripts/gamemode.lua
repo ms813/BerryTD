@@ -233,7 +233,8 @@ function GameMode:SpawnWave(waveIndex)
                 --apply phased modifier for a second so creeps can untangle themselves at the start
                 creep:AddNewModifier(creep, nil, "modifier_phased", {})
                 creep.next_waypoint = Entities:FindByName(nil, "creep_waypoint_0")
-                creep.hasGem = false                   
+                creep.hasGem = false  
+                creep:SetMustReachEachGoalEntity(true)                 
             end
             group.subGroupCount = group.subGroupCount + 1
 

@@ -56,13 +56,13 @@ end
 
 -- An item was picked up off the ground
 function GameMode:OnItemPickedUp(keys)
-  DebugPrint( '[BAREBONES] OnItemPickedUp' )
-  DebugPrintTable(keys) 
+    DebugPrint( '[BAREBONES] OnItemPickedUp' )
+    DebugPrintTable(keys) 
 
-  local unit = EntIndexToHScript(keys.UnitEntityIndex)
-  local itemEntity = EntIndexToHScript(keys.ItemEntityIndex)
-  
-  --local itemname = keys.itemname
+    local unit = EntIndexToHScript(keys.UnitEntityIndex)
+    local itemEntity = EntIndexToHScript(keys.ItemEntityIndex)
+    
+    --local itemname = keys.itemname
 
 
     --check if the item picked up is one of the TD gems
@@ -73,34 +73,35 @@ function GameMode:OnItemPickedUp(keys)
 
         --cancel the return timer on the gem
         if itemEntity.reset_timer ~= nil then
-          Timers:RemoveTimer(itemEntity.reset_timer)
-          itemEntity.reset_timer = nil
+            Timers:RemoveTimer(itemEntity.reset_timer)
+            itemEntity.reset_timer = nil
         end
 
         --make the creep carrying the gem follow the reverse path
         --by inverting the number of the current waypoint
 
         --check if unit is on the way back
-        --if they are, switch them to the reverse path, if not let them keep going
+        --if they are, switch them to the reverse path
         local isOnWayBack = string.find(unit.last_waypoint:GetName(), "reverse")
         if isOnWayBack == nil then
-          local waypoint_no = #self.WAYPOINTS - 1
-          if unit.last_waypoint ~= nil then
-              waypoint_no = tonumber(string.sub(unit.last_waypoint:GetName(), -1))
-          end
-          local max_waypoint = #self.WAYPOINTS - 1    
+            local max_waypoint = #self.WAYPOINTS - 1   
+            local waypoint_no = max_waypoint
+            if unit.last_waypoint ~= nil then
+                --creep_waypoint_
+              waypoint_no = tonumber(string.sub(unit.last_waypoint:GetName(), 16))              
+            end             
 
-          -- minus one here is to make sure the creep doesnt skip a point on the way back
-          local point_i = (max_waypoint - waypoint_no - 1)
-          if point_i < 0 then point_i = 0 end
-          local reverse_path_waypoint = "creep_waypoint_reverse_"..point_i        
-          local exit = Entities:FindByName(nil, reverse_path_waypoint)
-          
-          unit:Stop()
-          unit:SetInitialGoalEntity(exit)
+            -- minus one here is to make sure the creep doesnt skip a point on the way back
+            local point_i = (max_waypoint - waypoint_no - 1)
+            if point_i < 0 then point_i = 0 end
+            local reverse_path_waypoint = "creep_waypoint_reverse_"..point_i        
+            local exit = Entities:FindByName(nil, reverse_path_waypoint)            
+
+            unit:Stop()
+            unit:SetInitialGoalEntity(exit)
         else
-          --if unit is already on the way out then just carry on
-          unit:SetInitialGoalEntity(unit.last_waypoint)
+            --if unit is already on the way out then just carry on            
+            unit:SetInitialGoalEntity(unit.last_waypoint)
         end
     end  
 end
@@ -316,13 +317,9 @@ function GameMode:OnEntityKilled( keys )
         --no creeps are on the map, so lets give the reward for completing the wave
           for i, player in pairs(self.players) do          
             player:ModifyGold(waveTable[self.currentWave].bonusEndGold, true, DOTA_ModifyGold_Unspecified)
-          end
+          end        
 
-          self.Quest:CompleteQuest()
-
-          --increment the wave number by one
-          self.currentWave = self.currentWave + 1                 
-          print("Starting wave", self.currentWave)
+          self.Quest:CompleteQuest()           
 
           --check we are not on the last wave
           if self.currentWave <= self.maxWave then        
@@ -425,7 +422,7 @@ function GameMode:OnNPCGoalReached(keys)
 
   --cache the last/next waypoint on the creep
   npc.last_waypoint = goalEntity  
-  npc.next_waypoint = nextGoalEntity 
+  npc.next_waypoint = nextGoalEntity   
 
   local end_waypoint = self.WAYPOINTS[#self.WAYPOINTS]:GetName()
 
@@ -440,10 +437,11 @@ function GameMode:OnNPCGoalReached(keys)
 
     --check for creeps exiting the map carrying gems
     local max_waypoint = #self.WAYPOINTS - 1
+    
+
     if goalEntity:GetName() == "creep_waypoint_reverse_"..max_waypoint then
 
-        if npc.hasGem then
-        
+        if npc.hasGem then        
             local toRemove = nil
             for i, gem in pairs(self.gems) do
               if npc.gem == gem then
@@ -451,7 +449,7 @@ function GameMode:OnNPCGoalReached(keys)
               end
             end
 
-            table.remove(self.gems, i)           
+            table.remove(self.gems, toRemove)           
 
             Notifications:TopToAll({text=npc:GetUnitName().. " escaped with a gem! Gems left: " ..#self.gems, duration=5.0})             
             self.GemQuest:SetTextReplaceValue(QUEST_TEXT_REPLACE_VALUE_CURRENT_VALUE, #self.gems)
