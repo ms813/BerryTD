@@ -1,0 +1,113 @@
+﻿"lang"
+{
+	"Language"		"English"
+	"Tokens"
+	{		
+		"game_mode_15"				"BerryTD"
+		"addon_game_name"			"BerryTD"
+		
+		//"DOTA_Basics"							"ABILITIES"
+		//"DOTA_Upgrades"							"ITEMS"
+		//"DOTA_Shop_Category_Basics"				"ABILITIES"
+		//"DOTA_Shop_Category_Upgrades"			"ITEMS"
+		
+		//--------------------
+		//    Heroes
+		//--------------------    	
+
+    	"npc_dota_hero_alchemist"	"Berrybudden"
+
+    	// ******************** Creeps ********************
+		"creep_beaver"			"(yer maw's) Beaver"
+		"creep_cluckles"		"Cluckles the brave"
+		"creep_donkey"			"Mad Mental Donkey"
+		"creep_sheep"			"Fluffy Sheep"
+		"creep_facerex"			"Faceless Rex"
+		"creep_goldwight"		"Golden Zombie"
+		"creep_geodesic"		"Weird floaty orb shit"
+		"creep_crab"			"Stick stickley"
+
+
+    	//--------------------
+    	//    Ability page navigation
+    	//--------------------
+
+    	//-----  Back to main page -----
+    	"DOTA_Tooltip_ability_ability_return_to_start_page"	"Return to start page"
+
+    	//-----  Open page 1  -----
+    	"DOTA_Tooltip_ability_ability_open_page_one"		"Open page one"
+
+    	//-----  Open page 2  -----
+    	"DOTA_Tooltip_ability_ability_open_page_two"		"Open page two"
+
+    	//-----  Open page 3  -----
+    	"DOTA_Tooltip_ability_ability_open_page_three"		"Open page three"
+
+    	//-----  Open page 4  -----
+    	"DOTA_Tooltip_ability_ability_open_page_four"		"Open page four"
+
+    	//--------------------
+    	//	  Sell Tower
+    	//--------------------
+
+    	"DOTA_Tooltip_ability_ability_sell_tower"						"Sell Tower"   
+    	"DOTA_Tooltip_ability_ability_sell_tower_Description"			"Sell this tower for half of its base value plus half the value of all purchased upgrades"   
+
+    	
+    	//--------------------
+    	//    Sniper Tower
+    	//--------------------		
+
+		"DOTA_Tooltip_machine_gun"                                                        "Machine Gun"
+		"DOTA_Tooltip_machine_gun_Description"                                            ""
+
+    	//-----  General  -----
+    	"tower_sniper"		"Sniper Tower"    	
+
+    	//-----  Spawn  -----
+    	"DOTA_Tooltip_ability_ability_spawn_sniper_tower"				"Sniper Tower"
+    	"DOTA_Tooltip_ability_ability_spawn_sniper_tower_Description"	"Build a long range, slow firing tower"
+    	"DOTA_Tooltip_ability_ability_spawn_sniper_tower_damage"		"DAMAGE:"
+    	"DOTA_Tooltip_ability_ability_spawn_sniper_tower_range"			"RANGE:"
+    	"DOTA_Tooltip_ability_ability_upgrade_sniper_1_gold_cost"       "GOLD COST:"
+
+    	//-----  Upgrade 1  -----
+    	"DOTA_Tooltip_Ability_ability_upgrade_sniper_1"					"Damage upgrade"
+    	"DOTA_Tooltip_Ability_ability_upgrade_sniper_1_Description"		"Adds extra damage to this tower's basic attack"
+    	"DOTA_Tooltip_Ability_ability_upgrade_sniper_1_Lore"			"Baby steps..."
+    	"DOTA_Tooltip_Ability_ability_upgrade_sniper_1_damage"			"DAMAGE:"
+
+    	"DOTA_Tooltip_sniper_damage_buff"                               "Bonus Damage"
+		"DOTA_Tooltip_sniper_damage_buff_Description"                   "Extra physical damage"
+
+    	//-----  Upgrade 2  -----    	
+		"DOTA_Tooltip_ability_ability_upgrade_sniper_2"					"Headshot"
+    	"DOTA_Tooltip_ability_ability_upgrade_sniper_2_Description"		"Chance to slow and deal extra damage"
+    	"DOTA_Tooltip_ability_ability_upgrade_sniper_2_gold_cost"       "GOLD COST:"
+    	
+		//-----  Upgrade 3  -----
+		"DOTA_Tooltip_ability_ability_upgrade_sniper_3"					"True Sniper"
+		"DOTA_Tooltip_ability_ability_upgrade_sniper_3_Description"		"Sacrifice attack speed for a huge boost to range and damage"
+		"DOTA_Tooltip_ability_ability_upgrade_sniper_3_gold_cost"       "GOLD COST:"
+		"DOTA_Tooltip_ability_ability_upgrade_sniper_3_damage"			"DAMAGE:"
+		"DOTA_Tooltip_ability_ability_upgrade_sniper_3_range"			"RANGE"
+		"DOTA_Tooltip_ability_ability_upgrade_sniper_3_speed"			"ATTACK SPEED"
+
+		"DOTA_Tooltip_sniper_range_buff"                                "Speciality: Sniper"
+		"DOTA_Tooltip_sniper_range_buff_Description"                    "Increased range and damage, reduced attack speed"
+
+		//-----  Upgrade 4  -----
+		"DOTA_Tooltip_ability_ability_upgrade_sniper_4"					"Speciality: Machine Gunner"
+		"DOTA_Tooltip_ability_ability_upgrade_sniper_4_Description"		"Sacrifice range for a huge boost to attack speed"
+		"DOTA_Tooltip_ability_ability_upgrade_sniper_4_damage"			"DAMAGE"
+		"DOTA_Tooltip_ability_ability_upgrade_sniper_4_range"			"RANGE"
+		"DOTA_Tooltip_ability_ability_upgrade_sniper_4_speed"			"ATTACK SPEED"
+
+		"DOTA_Tooltip_sniper_machine_gun_buff"					"Machine Gunner"
+		"DOTA_Tooltip_sniper_machine_gun_buff_Description"		"This tower shoots really freakin' fast!"
+    	
+
+    	
+	}
+}

@@ -294,6 +294,7 @@ function GameMode:BuildTowerSpawn(pos, owner)
         owner,
         DOTA_TEAM_GOODGUYS)
     spawn:SetControllableByPlayer(owner:GetPlayerID(), false)
+    spawn:SetAngles(0, 270, 0)
     return spawn
 end
 
