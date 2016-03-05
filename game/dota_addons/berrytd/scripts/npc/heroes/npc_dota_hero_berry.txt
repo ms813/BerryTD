@@ -5,6 +5,7 @@
     "override_hero"             "npc_dota_hero_alchemist"
     "model"                     "models/creeps/neutral_creeps/n_creep_furbolg/n_creep_furbolg_disrupter.vmdl"
     "SoundSet"                  "0"    
+    "HasInventory"              "0"
 
     "AbilityLayout"             "6"  
     "Ability1"                  "hero_immunity"
