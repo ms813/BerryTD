@@ -2,7 +2,7 @@
 {
     "BaseClass"             "npc_dota_creature"
     "Model"                 "models/props_structures/bad_ancient001.vmdl"
-    "ModelScale"            "0.5"  
+    "ModelScale"            "0.4"  
 
     //this is used as a hook in events.lua OnEntityKilled()
     //to maintain the barracks spawn cap

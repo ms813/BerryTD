@@ -407,12 +407,30 @@ function GameMode:StartInterwaveTimeout(waveNumber)
 end
 
 function GameMode:CheckDefenderAggro()
+
+    --check for proximity - remove aggro target if creep too far from defender
+    --defenders with DOTA_UNIT_CAP_NO_ATTACK (i.e. magic and utility) keep aggro but dont chase
+    for i, defender in pairs(self.defenders) do
+        --if defender is utility or magic canAttack will be a number
+        local canAttack = string.find(defender:GetUnitName(), "magic") or string.find(defender:GetUnitName(), "utility")
+        if canAttack ~= nil and defender.aggro_target ~= nil then
+            local a = defender:GetAbsOrigin()            
+            local b = defender.aggro_target:GetAbsOrigin()
+            local dist = (a-b):Length2D()
+
+            --if creep is too far away then remove it as an aggro_target
+            --note it's attack capability will be reset below if nothing else has it aggroed
+            if dist > 800 then 
+                defender.aggro_target = nil                
+            end
+        end
+    end    
     
     --get a list of the current aggro targets
     local aggro_targets = {}
     for i, defender in pairs(self.defenders) do
         if defender.aggro_target ~= nil then
-            table.insert(aggro_targets, defender.aggro_target)
+            table.insert(aggro_targets, defender.aggro_target)          
         end
     end
 
@@ -425,8 +443,12 @@ function GameMode:CheckDefenderAggro()
             end
         end
 
-        --and set it's attack capability to default
-        if not found then
+        
+        if found then
+            --if creep is an aggro target ensure it is allowed to attack
+            creep:SetAttackCapability(creep.default_attack_capability)
+        else
+            --if creep is no longer an aggro target remove its attack capability
             local dac = creep.default_attack_capability
             local ac = creep:GetAttackCapability()
             if dac == DOTA_UNIT_CAP_MELEE_ATTACK and ac == DOTA_UNIT_CAP_MELEE_ATTACK then                
