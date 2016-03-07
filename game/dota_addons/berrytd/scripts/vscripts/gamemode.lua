@@ -50,7 +50,7 @@ require('abilities')
 
   This function should generally only be used if the Precache() function in addon_game_mode.lua is not working.
   ]]
-  function GameMode:PostLoadPrecache()    
+function GameMode:PostLoadPrecache()    
   	DebugPrint("[BAREBONES] Performing Post-Load precache")    
   --PrecacheItemByNameAsync("item_example_item", function(...) end)
   --PrecacheItemByNameAsync("example_ability", function(...) end)
@@ -64,17 +64,17 @@ end
   This function is called once and only once as soon as the first player (almost certain to be the server in local lobbies) loads in.
   It can be used to initialize state that isn't initializeable in InitGameMode() but needs to be done before everyone loads in.
   ]]
-  function GameMode:OnFirstPlayerLoaded()
-  	DebugPrint("[BAREBONES] First Player has loaded")    
-  end
+function GameMode:OnFirstPlayerLoaded()
+	 DebugPrint("[BAREBONES] First Player has loaded")    
+end
 
 --[[
   This function is called once and only once after all players have loaded into the game, right as the hero selection time begins.
   It can be used to initialize non-hero player state or adjust the hero selection (i.e. force random etc)
   ]]
-  function GameMode:OnAllPlayersLoaded()
-  	DebugPrint("[BAREBONES] All Players have loaded into the game")    
-  end
+function GameMode:OnAllPlayersLoaded()
+    DebugPrint("[BAREBONES] All Players have loaded into the game")    
+end
 
 --[[
   This function is called once and only once for every player when they spawn into the game for the first time.  It is also called
@@ -115,9 +115,15 @@ end
   is useful for starting any game logic timers/thinkers, beginning the first round, etc.
   ]]
 function GameMode:OnGameInProgress()  
+    --create a timer to check if creeps are near any gems
     Timers:CreateTimer(function()
    	    return GameMode:CheckGems()
    	end)      
+
+    --create a timer to manage defender aggro
+    Timers:CreateTimer(function()
+        return GameMode:CheckDefenderAggro()
+    end)
 
     self:StartInterwaveTimeout(self.currentWave)
 end
@@ -146,13 +152,18 @@ function GameMode:InitGameMode()
         waypoint = Entities:FindByName(nil, "creep_waypoint_"..i)
     end
 
-    self.numCreepsAlive = 0  
+    --initialise a bunch of global variables
+    self.creeps = {}
     self.currentWave = 0
     self.maxWave = #waveTable;  
     self.players = {}
     self.time_between_waves = 5
     self.creep_spawner = Entities:FindByName(nil, "creep_spawner")
     self.gem_return_timeout = 60
+    self.defenders = {}
+
+    --set this to false for production
+    self.debug = false
 
     local gemSpawn = self.WAYPOINTS[#self.WAYPOINTS]:GetAbsOrigin()
     GameMode:InitGems(gemSpawn)
@@ -181,8 +192,9 @@ function GameMode:SpawnWave(waveIndex)
     self.creep_kills = 0
 
     --calculate the total number of creeps in the wave
+    local total_creeps = 0
     for i, group in pairs(wave.creepGroups) do
-        self.numCreepsAlive = self.numCreepsAlive + group.numTotal
+        total_creeps = total_creeps + group.numTotal
     end
     
     --set up a quest to keep track of kills
@@ -194,7 +206,7 @@ function GameMode:SpawnWave(waveIndex)
             progress_bar_hue_shift = -119
         }
     )
-    self.Quest.max_creeps = self.numCreepsAlive
+    self.Quest.max_creeps = total_creeps
     self.Quest:AddSubquest(self.subQuest)    
     self.Quest:SetTextReplaceValue(QUEST_TEXT_REPLACE_VALUE_CURRENT_VALUE, 0)
     self.Quest:SetTextReplaceValue(QUEST_TEXT_REPLACE_VALUE_TARGET_VALUE, self.Quest.max_creeps)
@@ -234,7 +246,10 @@ function GameMode:SpawnWave(waveIndex)
                 creep:AddNewModifier(creep, nil, "modifier_phased", {})
                 creep.next_waypoint = Entities:FindByName(nil, "creep_waypoint_0")
                 creep.hasGem = false  
-                creep:SetMustReachEachGoalEntity(true)                 
+                creep:SetMustReachEachGoalEntity(true)     
+
+                --add the creep to the global list
+                table.insert(self.creeps, creep)            
             end
             group.subGroupCount = group.subGroupCount + 1
 
@@ -281,16 +296,20 @@ end
 function GameMode:InitTowerSpawns(owner)
     local spawns = Entities:FindAllByName("tower_spawn_site")
     for i, spawn_site in pairs(spawns) do        
-        local tower_stub = CreateUnitByName(
-            "tower_spawn_site",
-            spawn_site:GetAbsOrigin(),
-            true,
-            owner,
-            owner,
-            DOTA_TEAM_GOODGUYS)
-        tower_stub:SetControllableByPlayer(owner:GetPlayerID(), false)
-        tower_stub:SetAngles(0, 270, 0)               
+        self:BuildTowerSpawn(spawn_site:GetAbsOrigin(), owner)           
     end
+end
+
+function GameMode:BuildTowerSpawn(spawn_location, owner)
+    local tower_stub = CreateUnitByName(
+        "tower_spawn_site",
+        spawn_location,
+        true,
+        owner,
+        owner,
+        DOTA_TEAM_GOODGUYS)
+    tower_stub:SetControllableByPlayer(owner:GetPlayerID(), false)
+    tower_stub:SetAngles(0, 270, 0)    
 end
 
 --initialises the gems, places them on the map and sets up the quest keeping track of how many are left
@@ -379,4 +398,41 @@ function GameMode:StartInterwaveTimeout(waveNumber)
             return interval
         end
     end) 
+
+    for i, defender in pairs(self.defenders) do
+      defender:MoveToPosition(defender.parent_barracks.spawn_pos)
+    end
+end
+
+function GameMode:CheckDefenderAggro()
+    
+    --get a list of the current aggro targets
+    local aggro_targets = {}
+    for i, defender in pairs(self.defenders) do
+        if defender.aggro_target ~= nil then
+            table.insert(aggro_targets, defender.aggro_target)
+        end
+    end
+
+    --if a creep isnt on the list of aggro targets then find it
+    for i, creep in pairs(self.creeps) do
+        local found = false
+        for j, aggro_target in pairs(aggro_targets) do
+            if creep == aggro_target then
+                found = true
+            end
+        end
+
+        --and set it's attack capability to default
+        if not found then
+            local dac = creep.default_attack_capability
+            local ac = creep:GetAttackCapability()
+            if dac == DOTA_UNIT_CAP_MELEE_ATTACK and ac == DOTA_UNIT_CAP_MELEE_ATTACK then
+                print("Removing non-aggro target's attack")
+                creep:SetAttackCapability(DOTA_UNIT_CAP_NO_ATTACK)
+            end
+        end
+    end
+
+    return 0.1
 end

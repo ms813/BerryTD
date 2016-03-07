@@ -4,9 +4,6 @@ function Spawn(entityKeyValues)
 	thisEntity.defenders = {}
 	thisEntity.upgrade_level = 0	
 		
-	--pick a random spawn location when this racks is placed
-	thisEntity.spawn_pos = thisEntity:GetAbsOrigin() + RandomVector(1)*500
-
 	--determine the type of barracks by getting a substring from the unit name
 	--"barracks_melee" -> "melee"
 	thisEntity.barracks_type = string.sub(thisEntity:GetUnitName(),10)
@@ -42,11 +39,16 @@ function BarracksThink(tower)
 		end
 	end	
 
+	--if spawn flag hasnt been set then spawn creeps randomly near the rax
+	if tower.spawn_pos == nil then		
+		thisEntity.spawn_pos = thisEntity:GetAbsOrigin() + RandomVector(1)*500
+	end
+
 	--some AI for the defenders in this barracks
 	for i, defender in pairs (tower.defenders) do
 
 		--this checks that the defenders are not dead
-		if not defender:IsNull() then
+		if not defender:IsNull() and defender:IsAlive() then
 
 			--try toggling on any toggle abilties if the cooldowns are ready
 			local regen_ability = defender:FindAbilityByName("ability_melee_defender_regen")
@@ -67,7 +69,7 @@ function BarracksThink(tower)
 				--print("defender too far from spawn, trying to move back")
 				defender:MoveToPosition(tower.spawn_pos)
 
-				--reset aggro
+				--remove aggro target's ability to attack
 				local creep = defender.aggro_target
 				if creep ~= nil then
 					creep:SetAttackCapability(creep.default_attack_capability)
@@ -136,7 +138,6 @@ function SetDefenderSpawn(keys)
  	--get rid of the old flag if there is one
 	if rax.flag ~= nil and IsValidEntity(rax.flag) then
 		--make the flag invisible as soon as a new one is placed
-		rax:AddSpeechBubble(0, "New spawn point set", 5, 0, 0)
 		rax.flag:AddNoDraw()
 		rax.flag:ForceKill(false)
 		rax.flag = nil	
@@ -144,12 +145,13 @@ function SetDefenderSpawn(keys)
 	end
 
 	rax.flag = CreateUnitByName("barracks_spawn_flag",
-										target_pos,
-										true,
-										rax,
-										rax,
-										rax:GetTeamNumber())  
+		target_pos,
+		true,
+		rax,
+		rax,
+		rax:GetTeamNumber())  
 	rax.flag:SetHullRadius(0.1)
+	rax.flag:SetAngles(0, 270, 0)
 	rax.spawn_pos = rax.flag:GetAbsOrigin()
 end
 
@@ -159,11 +161,11 @@ function SpawnDefender(keys)
 
 	if #rax.defenders < rax.defender_cap then
 		local defender = CreateUnitByName(rax.defender_name,
-											 rax.spawn_pos, 
-											 true,
-											 rax:GetOwner(),
-											 rax:GetOwner(),
-											 DOTA_TEAM_GOODGUYS)	
+			rax.spawn_pos, 
+			true,
+			rax:GetOwner(),
+			rax:GetOwner(),
+			DOTA_TEAM_GOODGUYS)	
 
 		defender.parent_barracks = rax		
 
@@ -175,6 +177,7 @@ function SpawnDefender(keys)
 		
 		--finally add this defender to this racks' table
 		table.insert(rax.defenders, defender)
+		table.insert(GameMode.defenders, defender)
 	end		
 end
 

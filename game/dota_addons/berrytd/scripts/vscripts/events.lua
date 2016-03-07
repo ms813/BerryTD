@@ -284,41 +284,53 @@ function GameMode:OnEntityKilled( keys )
 
     -- Put code here to handle when an entity gets killed   
 
-    --this is used to make sure barracks can only spawn up to their unit cap
-    --see ai_melee_barracks.lua for example
-
+    --if killed unit was a defender
     if killedUnit:GetUnitLabel() == "defender" then
         local rax = killedUnit.parent_barracks
 
-        --reset the killing unit's attack capabilities
-        if killedUnit.aggro_target ~= nil then
+        --if the aggro target was melee then remove it's attack capability
+        local attack_capability = killedUnit.aggro_target.default_attack_capability
+        if killedUnit.aggro_target ~= nil and attack_capability == DOTA_UNIT_CAP_MELEE_ATTACK then
             killedUnit.aggro_target:SetAttackCapability(DOTA_UNIT_CAP_NO_ATTACK)
         end
+
+        --remove killed defenders from barrack's list
         for k, defender in pairs(rax.defenders) do
             if defender == killedUnit then
-              table.remove(rax.defenders, k)
-              --print("defender died, # remaning at this racks:", #rax.defenders)
+              table.remove(rax.defenders, k)              
             end
         end  
+
+        --remove killed defenders from global list
+        for k, defender in pairs(self.defenders) do
+            if defender == killedUnit then
+              table.remove(self.defenders, k)              
+            end
+        end          
     end
 
-    --killed unit was a creep
-    --print("killed unit", killedUnit:GetUnitName(), killedUnit:GetUnitLabel())
-    if killedUnit:GetUnitLabel() == "creep" then
-          self.numCreepsAlive = self.numCreepsAlive - 1          
-          --print("Creep killed," , self.numCreepsAlive , "remaining")  
+    --if killed unit was a creep    
+    if killedUnit:GetUnitLabel() == "creep" then         
+
+          --remove killed creep from global list
+          for k, creep in pairs(self.creeps) do
+              if creep == killedUnit then
+                table.remove(self.creeps, k)              
+              end
+          end  
 
           --tick up the creep kill quest counter     
           self.creep_kills = self.creep_kills + 1 
           self.Quest:SetTextReplaceValue(QUEST_TEXT_REPLACE_VALUE_CURRENT_VALUE, self.creep_kills)
           self.subQuest:SetTextReplaceValue(QUEST_TEXT_REPLACE_VALUE_CURRENT_VALUE, self.creep_kills)
 
-      if self.currentWave > 0 and self.numCreepsAlive == 0 then  
+      if self.currentWave > 0 and #self.creeps == 0 then  
         --no creeps are on the map, so lets give the reward for completing the wave
           for i, player in pairs(self.players) do          
             player:ModifyGold(waveTable[self.currentWave].bonusEndGold, true, DOTA_ModifyGold_Unspecified)
           end        
 
+          --mark the creep killing quest as done
           self.Quest:CompleteQuest()           
 
           --check we are not on the last wave

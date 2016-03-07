@@ -1,6 +1,6 @@
 "barracks_spawn_flag"
 {                                       
-    "Model"                 "models/props_teams/banner_radiant.vmdl"    
+    "Model"                 "models/particle/legion_duel_arcana_banner.vmdl"    
     "BaseClass"             "npc_dota_creature"
     "Level"                 "1"
     "ModelScale"            "0.6"    

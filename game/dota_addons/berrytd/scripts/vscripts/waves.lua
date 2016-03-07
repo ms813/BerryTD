@@ -14,19 +14,6 @@
 
   ]]
 
-
-function CreateEmptyWave(bonusEndGold)
-	local wave = {}
-	wave.bonusEndGold = bonusEndGold
-	wave.creepGroups = {}
-	return wave
-end
-
-function AddCreepGroup(wave, creepGroup)
-	wave.creepGroups = wave.creepGroups or {}
-	table.insert(wave.creepGroups, creepGroup)	
-end
-
 function CreateCreepGroup(creep, numTotal, spawnDelay, groupSize, groupInterval)
 	local cg = {}
 	cg.creep = creep
@@ -34,47 +21,111 @@ function CreateCreepGroup(creep, numTotal, spawnDelay, groupSize, groupInterval)
 	cg.spawnDelay = spawnDelay
 	cg.spawnGroupSize = groupSize
 	cg.spawnGroupInterval = groupInterval
-
 	return cg	
 end
 
-
-function CreepExampleWaveBuilder()
-	--make an empty wave with 
-	local wave = CreateEmptyWave(100)
-
-	AddCreepGroup(wave, CreateCreepGroup("creep_sheep", 6, 0, 1, 3))
-	AddCreepGroup(wave, CreateCreepGroup("creep_geodesic", 2, 3, 2, 1))
-	AddCreepGroup(wave, CreateCreepGroup("creep_constructradiant", 4, 3, 1, 2))
-	AddCreepGroup(wave, CreateCreepGroup("creep_cluckles", 6, 0, 1, 3))
-
-	return wave
-end
-
+--initialise an empty list of waves
 waveTable = {}
 
-waveTable[1] = {
-	bonusEndGold = 50,
-	creepGroups = {					
-		CreateCreepGroup("creep_zealot_1", 1, 0, 1, 1),
-	}	
-}
-
-waveTable[2] = {
-	bonusEndGold = 50,
-	creepGroups = {					
-		CreateCreepGroup("creep_zealot_1", 2, 0, 1, 1),
-	}	
-}
-
 --[[
-waveTable[2] = CreepExampleWaveBuilder()
-
-waveTable[3] = {
-	bonusEndGold = 200,
-	creepGroups = {
-		CreateCreepGroup("creep_donkey", 10, 0, 2, 2),
-		CreateCreepGroup("creep_sheep", 100, 0, 5, 1)
-	}
-}
+	GameMode.debug lives in GameMode:InitGameMode() near line ~158
+	Switch it to true when debugging, put it on false when designing balance for launch
 ]]
+if GameMode.debug then
+	--put waves used in testing here
+	waveTable[1] = {
+		bonusEndGold = 50,
+		creepGroups = {					
+			CreateCreepGroup("creep_warrior_0", 10, 0, 1, 3),		
+		}	
+	}
+
+else
+	--put waves used in production here
+
+	--[[
+		WAVE 1
+		10 warrior creeps one a time
+
+		Easy intro
+	]]
+	waveTable[1] = {
+		bonusEndGold = 50,
+		creepGroups = {					
+			CreateCreepGroup("creep_warrior_0", 10, 0, 1, 3)	
+		}	
+	}
+
+	--[[
+		WAVE 2
+		12 warrior creeps in groups of 3
+
+		Still easy but highlighting creeps can come bunched together
+	]]
+	waveTable[2] = {
+		bonusEndGold = 50,
+		creepGroups = {					
+			CreateCreepGroup("creep_warrior_0", 12, 0, 3, 3)
+		}	
+	}	
+
+	--[[
+		WAVE 3
+		8 warriors,	8 archers, come in pairs
+
+		Archers sit behind warriors and kill defenders
+		Demonstrate early multiple creep types per wave
+	]]
+	waveTable[3] = {
+		bonusEndGold = 50,
+		creepGroups = {					
+			CreateCreepGroup("creep_warrior_0", 8, 0, 1, 4),
+			CreateCreepGroup("creep_archer_0", 8, 0, 1, 4)
+		}	
+	}
+
+	--[[
+		WAVE 4
+		10 sprinter creeps, spaced well apart
+
+		Sprinters move fast and ignore defenders, let player understand that units
+		can ignore defenders early
+	]]
+	waveTable[4] = {
+		bonusEndGold = 50,
+		creepGroups = {					
+			CreateCreepGroup("creep_sprinter_0", 10, 0, 1, 4)
+		}	
+	}
+
+	--[[
+		WAVE 5
+		12 warriors, 12 archers, come in groups of 4
+		1 knight
+
+		Larger groups to try and punch through
+		Mini-boss knight at the end (should be quite tough at this stage)
+	]]
+	waveTable[5] = {
+		bonusEndGold = 50,
+		creepGroups = {					
+			CreateCreepGroup("creep_warrior_0", 12, 0, 2, 5),
+			CreateCreepGroup("creep_archer_0", 12, 0, 2, 5),
+			CreateCreepGroup("creep_knight_0", 1, 35, 1, 1)
+		}	
+	}
+
+	--[[
+		WAVE 6
+		100 critters
+
+		Really weak but need AoE
+	]]
+	waveTable[6] = {
+		bonusEndGold = 50,
+		creepGroups = {					
+			CreateCreepGroup("creep_critter_0", 100, 0, 4, 2),			
+		}	
+	}
+
+end
