@@ -8,6 +8,11 @@ function Spawn(entityKeyValues)
 	--"barracks_melee" -> "melee"
 	thisEntity.barracks_type = string.sub(thisEntity:GetUnitName(),10)
 
+	--rotate magic racks so you cant see the glitchy back of the model
+	if thisEntity.barracks_type == "utility" then
+		thisEntity:SetAngles(0, 270, 0)
+	end
+
 	local ab_name = "ability_barracks_spawn_"..thisEntity.barracks_type.."_defender"
 	thisEntity.spawn_ability = thisEntity:FindAbilityByName(ab_name)
 	thisEntity.defender_name = "defender_"..thisEntity.barracks_type.."_0"
@@ -38,12 +43,7 @@ function BarracksThink(tower)
 			end
 		end
 	end	
-
-	--if spawn flag hasnt been set then spawn creeps randomly near the rax
-	if tower.spawn_pos == nil then		
-		thisEntity.spawn_pos = thisEntity:GetAbsOrigin() + RandomVector(1)*500
-	end
-
+	
 	--some AI for the defenders in this barracks
 	for i, defender in pairs (tower.defenders) do
 
@@ -66,7 +66,8 @@ function BarracksThink(tower)
 				
 			--if they are too far from the spawn then deaggro and move back
 			if dist > tower.max_aggro_dist then
-				--print("defender too far from spawn, trying to move back")
+				--stop the defender attacking so it can move back to position				
+				defender:SetAttackCapability(DOTA_UNIT_CAP_NO_ATTACK)				
 				defender:MoveToPosition(tower.spawn_pos)
 
 				--remove aggro target's ability to attack
@@ -76,6 +77,11 @@ function BarracksThink(tower)
 				end
 				defender.aggro_target = nil
 			end	
+
+			if dist < 150 then
+				--defender is back near the spawn flag so let it attack again				
+				defender:SetAttackCapability(defender.default_attack_capability)	
+			end
 
 			--defender aggro AI
 			if defender.aggro_target ~= nil and not defender.aggro_target:IsAlive() then
@@ -159,6 +165,19 @@ function SpawnDefender(keys)
 	local rax = keys.caster	
 	local ability = keys.ability
 
+	--if spawn flag hasnt been set then spawn creeps randomly near the rax
+	if rax.spawn_pos == nil then		
+		local spawn_pos = rax:GetAbsOrigin() + RandomVector(1)*500
+		local args = {
+				caster = rax,
+				ability = rax:FindAbilityByName("ability_barracks_set_spawn"),
+				target_points = {spawn_pos}
+			}
+		SetDefenderSpawn(args)
+			
+	end
+
+
 	if #rax.defenders < rax.defender_cap then
 		local defender = CreateUnitByName(rax.defender_name,
 			rax.spawn_pos, 
@@ -169,11 +188,13 @@ function SpawnDefender(keys)
 
 		defender.parent_barracks = rax		
 
-		--make our defender phased
-		defender:AddNewModifier(defender, nil, "modifier_phased", {})
+		--make our defender phased for a second
+		defender:AddNewModifier(defender, nil, "modifier_phased", {duration = 1})
 
 		--assign an upgrade level to this defender (used in spell targeting)
 		defender.upgrade_level = rax.upgrade_level
+
+		defender.default_attack_capability = defender:GetAttackCapability()
 		
 		--finally add this defender to this racks' table
 		table.insert(rax.defenders, defender)

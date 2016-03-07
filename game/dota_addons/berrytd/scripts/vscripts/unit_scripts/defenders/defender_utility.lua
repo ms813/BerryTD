@@ -72,8 +72,10 @@ function DefenderUtilityThink(defender)
 	if heal_ab_0 ~= nil and heal_ab_0:IsCooldownReady() then	
 		local range = heal_ab_0:GetLevelSpecialValueFor("range", 1)
 		local target = TargetingHelper.LowestHPPercentAlly(defender, range)
-		defender:CastAbilityOnTarget(target, heal_ab_0, defender:GetPlayerOwnerID())	
-		return 1
+		if target:GetHealth() < target:GetMaxHealth() then
+			defender:CastAbilityOnTarget(target, heal_ab_0, defender:GetPlayerOwnerID())	
+			return 1
+		end		
 	end
 
 	return 0.5

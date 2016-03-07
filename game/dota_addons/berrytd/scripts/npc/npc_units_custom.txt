@@ -3,8 +3,8 @@
 	"barracks_magic"
 	{
 	    "BaseClass"             "npc_dota_creature"
-	    "Model"                 "models/props_structures/tent_dk_med.vmdl"
-	    "ModelScale"            "0.8"  
+	    "Model"                 "models/props_structures/bad_ancient001.vmdl"
+	    "ModelScale"            "0.5"  
 	
 	    //this is used as a hook in events.lua OnEntityKilled()
 	    //to maintain the barracks spawn cap
@@ -106,7 +106,7 @@
 	{
 	    "BaseClass"             "npc_dota_creature"
 	    "Model"                 "models/props_structures/sniper_hut.vmdl"
-	    "ModelScale"            "0.8"  
+	    "ModelScale"            "0.6"  
 	
 	    //this is used as a hook in events.lua OnEntityKilled()
 	    //to maintain the barracks spawn cap
@@ -724,6 +724,7 @@
 	    "AttackRate"                "1"   
 	    "AttackAnimationPoint"      "0.5"  
 	    "ProjectileSpeed"           "900"  
+	    "ProjectileModel"           "particles/base_attacks/ranged_badguy.vpcf"
 	
 	    "Creature"
 	    {
@@ -768,6 +769,7 @@
 	    "AttackRate"                "0.8"   
 	    "AttackAnimationPoint"      "0.5" 
 	    "ProjectileSpeed"           "900"
+	    "ProjectileModel"           "particles/base_attacks/ranged_badguy.vpcf"
 	
 	    "Creature"
 	    {

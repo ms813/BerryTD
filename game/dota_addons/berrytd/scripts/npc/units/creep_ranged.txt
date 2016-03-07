@@ -35,6 +35,7 @@
     "AttackRate"                "1"   
     "AttackAnimationPoint"      "0.5"  
     "ProjectileSpeed"           "900"  
+    "ProjectileModel"           "particles/base_attacks/ranged_badguy.vpcf"
 
     "Creature"
     {
@@ -79,6 +80,7 @@
     "AttackRate"                "0.8"   
     "AttackAnimationPoint"      "0.5" 
     "ProjectileSpeed"           "900"
+    "ProjectileModel"           "particles/base_attacks/ranged_badguy.vpcf"
 
     "Creature"
     {

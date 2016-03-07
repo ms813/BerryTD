@@ -25,8 +25,7 @@ function Spawn(keys)
 	local model = CritterModels[rnd]
 	
 	Timers:CreateTimer(0.1, function()
-		if model == nil then print(rnd) end
-		print("critter spawned with model", model)
+		if model == nil then print(rnd) end		
 		thisEntity:SetOriginalModel(model)
 		thisEntity:SetModel(model)	
 		thisEntity:SetModelScale(1.0)			

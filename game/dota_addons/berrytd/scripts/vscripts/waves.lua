@@ -14,6 +14,12 @@
 
   ]]
 
+--initialise an empty list of waves
+waveTable = {}
+
+--set this to false when working on production waves
+waveTable.debug = false
+
 function CreateCreepGroup(creep, numTotal, spawnDelay, groupSize, groupInterval)
 	local cg = {}
 	cg.creep = creep
@@ -24,19 +30,12 @@ function CreateCreepGroup(creep, numTotal, spawnDelay, groupSize, groupInterval)
 	return cg	
 end
 
---initialise an empty list of waves
-waveTable = {}
-
---[[
-	GameMode.debug lives in GameMode:InitGameMode() near line ~158
-	Switch it to true when debugging, put it on false when designing balance for launch
-]]
-if GameMode.debug then
+if waveTable.debug then
 	--put waves used in testing here
 	waveTable[1] = {
 		bonusEndGold = 50,
 		creepGroups = {					
-			CreateCreepGroup("creep_warrior_0", 10, 0, 1, 3),		
+			CreateCreepGroup("creep_archer_0", 10, 0, 1, 3),		
 		}	
 	}
 

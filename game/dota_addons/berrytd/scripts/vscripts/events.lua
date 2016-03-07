@@ -288,10 +288,12 @@ function GameMode:OnEntityKilled( keys )
     if killedUnit:GetUnitLabel() == "defender" then
         local rax = killedUnit.parent_barracks
 
-        --if the aggro target was melee then remove it's attack capability
-        local attack_capability = killedUnit.aggro_target.default_attack_capability
-        if killedUnit.aggro_target ~= nil and attack_capability == DOTA_UNIT_CAP_MELEE_ATTACK then
-            killedUnit.aggro_target:SetAttackCapability(DOTA_UNIT_CAP_NO_ATTACK)
+        --if the aggro target was melee then remove it's attack capability      
+        if killedUnit.aggro_target ~= nil then
+            local attack_capability = killedUnit.aggro_target.default_attack_capability
+            if attack_capability == DOTA_UNIT_CAP_MELEE_ATTACK then
+              killedUnit.aggro_target:SetAttackCapability(DOTA_UNIT_CAP_NO_ATTACK)
+            end
         end
 
         --remove killed defenders from barrack's list
@@ -431,7 +433,7 @@ function GameMode:OnNPCGoalReached(keys)
   local goalEntity = EntIndexToHScript(keys.goal_entindex)
   local nextGoalEntity = EntIndexToHScript(keys.next_goal_entindex)
   local npc = EntIndexToHScript(keys.npc_entindex)
-
+  
   --cache the last/next waypoint on the creep
   npc.last_waypoint = goalEntity  
   npc.next_waypoint = nextGoalEntity   

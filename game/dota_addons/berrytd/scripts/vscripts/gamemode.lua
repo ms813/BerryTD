@@ -163,7 +163,7 @@ function GameMode:InitGameMode()
     self.defenders = {}
 
     --set this to false for production
-    self.debug = false
+    self.debug = true
 
     local gemSpawn = self.WAYPOINTS[#self.WAYPOINTS]:GetAbsOrigin()
     GameMode:InitGems(gemSpawn)
@@ -400,7 +400,9 @@ function GameMode:StartInterwaveTimeout(waveNumber)
     end) 
 
     for i, defender in pairs(self.defenders) do
-      defender:MoveToPosition(defender.parent_barracks.spawn_pos)
+        if not defender:IsNull() and defender:IsAlive() then
+            defender:MoveToPosition(defender.parent_barracks.spawn_pos)
+        end
     end
 end
 
@@ -427,8 +429,7 @@ function GameMode:CheckDefenderAggro()
         if not found then
             local dac = creep.default_attack_capability
             local ac = creep:GetAttackCapability()
-            if dac == DOTA_UNIT_CAP_MELEE_ATTACK and ac == DOTA_UNIT_CAP_MELEE_ATTACK then
-                print("Removing non-aggro target's attack")
+            if dac == DOTA_UNIT_CAP_MELEE_ATTACK and ac == DOTA_UNIT_CAP_MELEE_ATTACK then                
                 creep:SetAttackCapability(DOTA_UNIT_CAP_NO_ATTACK)
             end
         end
