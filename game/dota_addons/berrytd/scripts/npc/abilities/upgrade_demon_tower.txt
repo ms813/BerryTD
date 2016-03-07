@@ -106,12 +106,12 @@
     }
 }
 
-//upgrade number of pierce targets
+//upgrade projectile speed and damage
 "ability_upgrade_demon_tower_1"
 {
     "BaseClass"             "ability_datadriven"
     "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"        
-    "AbilityTextureName"    "phoenix_sun_ray_toggle_move"
+    "AbilityTextureName"    "demon_upgrade_1_icon"
 
     "AbilityGoldCost"       "50"
 
@@ -135,7 +135,7 @@
             "Function"      "upgradeTower"
             "AbilityContext"
             {
-                "nextUpgrade"   "ability_upgrade_demon_tower_2"                
+                "nextUpgrade"   "ability_upgrade_demon_tower_2"  
             }
         }   
     }
@@ -150,12 +150,12 @@
     }
 }
 
-//upgrade projectile speed and damage
+//upgrade number of pierce targets
 "ability_upgrade_demon_tower_2"
 {
     "BaseClass"             "ability_datadriven"
     "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"        
-    "AbilityTextureName"    "demon_upgrade_1_icon"
+    "AbilityTextureName"    "phoenix_sun_ray_toggle_move"
 
     "AbilityGoldCost"       "50"
 
@@ -179,8 +179,8 @@
             "Function"      "upgradeTower"
             "AbilityContext"
             {
-                "nextUpgrade"   "ability_upgrade_demon_tower_3"  
-                "splitUpgrade"  "ability_upgrade_demon_tower_4"              
+                "nextUpgrade"   "ability_upgrade_demon_tower_3"      
+                "splitUpgrade"  "ability_upgrade_demon_tower_4"                        
             }
         }   
     }

@@ -192,9 +192,9 @@ function GameMode:SpawnWave(waveIndex)
     self.creep_kills = 0
 
     --calculate the total number of creeps in the wave
-    local total_creeps = 0
+    self.total_creeps = 0
     for i, group in pairs(wave.creepGroups) do
-        total_creeps = total_creeps + group.numTotal
+        self.total_creeps = self.total_creeps + group.numTotal
     end
     
     --set up a quest to keep track of kills

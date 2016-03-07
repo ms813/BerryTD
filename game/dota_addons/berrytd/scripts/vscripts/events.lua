@@ -326,7 +326,7 @@ function GameMode:OnEntityKilled( keys )
           self.Quest:SetTextReplaceValue(QUEST_TEXT_REPLACE_VALUE_CURRENT_VALUE, self.creep_kills)
           self.subQuest:SetTextReplaceValue(QUEST_TEXT_REPLACE_VALUE_CURRENT_VALUE, self.creep_kills)
 
-      if self.currentWave > 0 and #self.creeps == 0 then  
+      if self.currentWave > 0 and self.total_creeps == 0 then  
         --no creeps are on the map, so lets give the reward for completing the wave
           for i, player in pairs(self.players) do          
             player:ModifyGold(waveTable[self.currentWave].bonusEndGold, true, DOTA_ModifyGold_Unspecified)
@@ -433,7 +433,7 @@ function GameMode:OnNPCGoalReached(keys)
   local goalEntity = EntIndexToHScript(keys.goal_entindex)
   local nextGoalEntity = EntIndexToHScript(keys.next_goal_entindex)
   local npc = EntIndexToHScript(keys.npc_entindex)
-  
+
   --cache the last/next waypoint on the creep
   npc.last_waypoint = goalEntity  
   npc.next_waypoint = nextGoalEntity   

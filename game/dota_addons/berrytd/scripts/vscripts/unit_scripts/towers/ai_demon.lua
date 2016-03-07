@@ -102,28 +102,48 @@ function DemonOnBounce(keys)
 	keys.caster.pierce = keys.caster.pierce - 1	
     if keys.caster.pierce > 0 then   	    
 		local targets = TargetingHelper.FindDireInRadius(keys.caster.prev_target, 500)    	
-		
-    	--find the nearest target without a low bounce priority modifier
-    	local new_target = keys.caster.prev_target
-    	if #targets > 1 then    
+		print("#### start ####")
+		for k,v in pairs(targets) do print(k,v:GetUnitName()) end
+    	--find the nearest target
+    	local new_target = keys.caster.prev_target    	
+
+    	--remove prev target from targets list
+    	local toRemove = nil
+    	for i, target in pairs(targets) do
+    		if target == keys.caster.prev_target then
+    			toRemove = i
+    		end
+    	end
+
+    	if toRemove ~= nil then
+    		table.remove(targets, toRemove)
+    	end
+
+    	if #targets > 0 then    
     		--choose a random target that is not the current target
-    		--i.e. can't hit same target twice in a row			    
-    		while new_target == keys.caster.prev_target do
-    			new_target = targets[math.random(1, #targets)]
-    		end	    	
-	    end
-    	
-    	if new_target ~= nil then    		
-    		local ab = keys.ability
-    		DemonTrackingProj{
-				target = new_target,
-				source = keys.caster.prev_target,
-				ability = ab,
-				particle = "",
-				speed = ab:GetLevelSpecialValueFor("speed",ab:GetLevel()-1)				
-			}			
-		keys.caster.prev_target = new_target					
-    	end 	    	   	    			
+    		--i.e. can't hit same target twice in a row		
+    		if #targets == 0 then 
+    			new_target = targets[1]
+    		else     			    
+	    		while new_target == keys.caster.prev_target do
+	    			new_target = targets[math.random(1, #targets)]
+	    		end	   
+	    	end
+
+    		if new_target ~= nil then    		
+	    		local ab = keys.ability
+	    		DemonTrackingProj{
+					target = new_target,
+					source = keys.caster.prev_target,
+					ability = ab,
+					particle = "",
+					speed = ab:GetLevelSpecialValueFor("speed",ab:GetLevel()-1)				
+				}			
+				keys.caster.prev_target = new_target					
+	    	end 
+    	end  
+
+    		   	    			
     end
 end
 

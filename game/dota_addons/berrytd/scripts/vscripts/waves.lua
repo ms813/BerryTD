@@ -35,7 +35,7 @@ if waveTable.debug then
 	waveTable[1] = {
 		bonusEndGold = 50,
 		creepGroups = {					
-			CreateCreepGroup("creep_archer_0", 10, 0, 1, 3),		
+			CreateCreepGroup("creep_archer_0", 10, 0, 2, 5),		
 		}	
 	}
 
@@ -70,7 +70,7 @@ else
 
 	--[[
 		WAVE 3
-		8 warriors,	8 archers, come in pairs
+		8 warriors,	8 archers, come in alternating pairs
 
 		Archers sit behind warriors and kill defenders
 		Demonstrate early multiple creep types per wave
@@ -78,8 +78,8 @@ else
 	waveTable[3] = {
 		bonusEndGold = 50,
 		creepGroups = {					
-			CreateCreepGroup("creep_warrior_0", 8, 0, 1, 4),
-			CreateCreepGroup("creep_archer_0", 8, 0, 1, 4)
+			CreateCreepGroup("creep_warrior_0", 8, 0, 2, 4),
+			CreateCreepGroup("creep_archer_0", 8, 2, 2, 4)
 		}	
 	}
 
@@ -110,7 +110,7 @@ else
 		creepGroups = {					
 			CreateCreepGroup("creep_warrior_0", 12, 0, 2, 5),
 			CreateCreepGroup("creep_archer_0", 12, 0, 2, 5),
-			CreateCreepGroup("creep_knight_0", 1, 35, 1, 1)
+			CreateCreepGroup("creep_knight_0", 1, 30, 1, 1)
 		}	
 	}
 
@@ -123,7 +123,7 @@ else
 	waveTable[6] = {
 		bonusEndGold = 50,
 		creepGroups = {					
-			CreateCreepGroup("creep_critter_0", 100, 0, 4, 2),			
+			CreateCreepGroup("creep_critter_0", 100, 0, 5, 1),			
 		}	
 	}
 
