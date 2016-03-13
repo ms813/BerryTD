@@ -323,9 +323,11 @@ function GameMode:OnEntityKilled( keys )
 
           --tick up the creep kill quest counter     
           self.creep_kills = self.creep_kills + 1 
+          self.total_creeps = self.total_creeps - 1
           self.Quest:SetTextReplaceValue(QUEST_TEXT_REPLACE_VALUE_CURRENT_VALUE, self.creep_kills)
           self.subQuest:SetTextReplaceValue(QUEST_TEXT_REPLACE_VALUE_CURRENT_VALUE, self.creep_kills)
 
+          print("creep died, total creeps")
       if self.currentWave > 0 and self.total_creeps == 0 then  
         --no creeps are on the map, so lets give the reward for completing the wave
           for i, player in pairs(self.players) do          
