@@ -206,7 +206,7 @@ function GameMode:SpawnWave(waveIndex)
             progress_bar_hue_shift = -119
         }
     )
-    self.Quest.max_creeps = total_creeps
+    self.Quest.max_creeps = self.total_creeps
     self.Quest:AddSubquest(self.subQuest)    
     self.Quest:SetTextReplaceValue(QUEST_TEXT_REPLACE_VALUE_CURRENT_VALUE, 0)
     self.Quest:SetTextReplaceValue(QUEST_TEXT_REPLACE_VALUE_TARGET_VALUE, self.Quest.max_creeps)
