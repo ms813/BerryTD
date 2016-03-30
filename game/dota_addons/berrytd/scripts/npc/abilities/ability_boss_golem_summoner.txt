@@ -1,14 +1,18 @@
+//Increases boss golem's max hp every second depending on number of GolemSummonerCast
+//Also provides damage reduction per stack
 "ability_boss_golem_summoner"
 {
 	"BaseClass"             "ability_datadriven"
 	"AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 	"AbilityType"           "DOTA_ABILITY_TYPE_BASIC"
 	"AbilityTextureName"    "warlock_fatal_bonds"	
+	"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 	
 	"AbilityManaCost"		"0"
-	"AbilityCooldown"		"5"
-
+	"AbilityCooldown"		"600"
+	"AbilityCastRange"		"10000"
 	
+	//this script applies a stack of the ability
 	"OnSpellStart"
 	{
 		"RunScript"
@@ -24,14 +28,35 @@
 
 	"Modifiers"
 	{	
+		//This modifier is hidden on the summmoner
+		//When the summoner dies, a stack is removed from the golem
+		"modifier_boss_golem_summoner_death"
+		{
+			"Passive"			"1"
+			"IsHidden"			"1"
+			"IsPurgable"		"0"		
+		
+			"OnDeath"
+			{
+				"RunScript"
+				{
+					"ScriptFile"	"unit_scripts/bosses/golem_summoner.lua"
+					"Function"		"GolemSummonerOnDeath"
+					"AbilityContext"
+					{						
+						"modifier"		"modifier_boss_golem_summoner"
+					}
+				}
+			}
+		}
+
+		//This modifier increases the golem's hp per sec and provides damage reduction
 		"modifier_boss_golem_summoner"
 		{
 			"Passive"			"0"
 			"IsHidden"			"0"
 			"IsBuff"			"1"
 			"IsPurgable"		"0"			
-
-			"Duration"			"%duration"
 
 			"ThinkInterval"  	"%tick"
 			"OnIntervalThink"
@@ -42,11 +67,11 @@
 					"Function"		"GolemSummonerTick"
 					"AbilityContext"
 					{
-						"hp_increase"	"(%heal_per_second * %tick)"
+						"hp_increase"	"%hp_per_second * %tick"
 						"modifier"		"modifier_boss_golem_summoner"
 					}
 				}				
-			}
+			}					
 
 			//reduce damage by 25% for each stack of the summoner's modifier on the boss
 			"Properties"
@@ -66,17 +91,12 @@
 		"02"
 		{
 			"var_type"		"FIELD_INTEGER"
-			"hp_per_second"	"5 10"
-		}
+			"hp_per_second"	"10"
+		}		
 		"03"
 		{
-			"var_type"		"FIELD_INTEGER"
-			"duration"		"5"
-		}
-		"04"
-		{
-			"var_type"		"FIELD_INTEGER"
-			"duration"		"-25"
+			"var_type"		"FIELD_FLOAT"
+			"damage_reduction"		"25.0"
 		}
 	}	
 }

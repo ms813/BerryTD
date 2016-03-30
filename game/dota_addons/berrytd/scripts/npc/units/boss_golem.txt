@@ -1,15 +1,13 @@
 "boss_golem"
 {                                       
-    "Model"                 "models/items/warlock/golem/ahmhedoq/ahmhedoq.vmdl"
+    "Model"                 "models/items/warlock/golem/hellsworn_golem/hellsworn_golem.vmdl"
     "BaseClass"             "npc_dota_creature"
     "Level"                 "1"
     "ModelScale"            "1.0"    
     "HasInventory"          "1"
 
     //used in events:OnEntityKilled() to adjust lives if creeps leak
-    "UnitLabel"             "creep"
-
-    "Ability1"              "ability_boss_golem_burn"
+    "UnitLabel"             "creep"  
 
     "RingRadius"            "40"
     "HealthBarOffset"       "170"

@@ -1,6 +1,6 @@
 "boss_golem_summoner"
 {                                       
-    "Model"                 "models/heroes/witchdoctor/witchdoctor.vmdl"
+    "Model"                 "models/heroes/warlock/warlock.vmdl"
     "BaseClass"             "npc_dota_creature"
     "Level"                 "1"
     "ModelScale"            "1.0"    
@@ -34,6 +34,17 @@
     "Creature"
     {
         "DisableClumpingBehavior"   "1"        
+
+        "AttachWearables"
+        {
+            "Wearable1"  {"ItemDef"  "239"}
+            "Wearable2"  {"ItemDef"  "240"}
+            "Wearable3"  {"ItemDef"  "241"}
+            "Wearable4"  {"ItemDef"  "242"}
+            "Wearable4"  {"ItemDef"  "243"}
+            "Wearable4"  {"ItemDef"  "244"}
+            "Wearable5"  {"ItemDef"  "245"}
+        }
     } 
 
     "vscripts"      "unit_scripts/bosses/golem_summoner.lua"

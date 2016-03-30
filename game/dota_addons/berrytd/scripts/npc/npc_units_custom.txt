@@ -4,7 +4,7 @@
 	{
 	    "BaseClass"             "npc_dota_creature"
 	    "Model"                 "models/props_structures/bad_ancient001.vmdl"
-	    "ModelScale"            "0.5"  
+	    "ModelScale"            "0.4"  
 	
 	    //this is used as a hook in events.lua OnEntityKilled()
 	    //to maintain the barracks spawn cap
@@ -233,6 +233,99 @@
 	
 	    "vscripts"              "unit_scripts/towers/ai_barracks.lua"
 	}
+	"boss_golem"
+	{                                       
+	    "Model"                 "models/items/warlock/golem/hellsworn_golem/hellsworn_golem.vmdl"
+	    "BaseClass"             "npc_dota_creature"
+	    "Level"                 "1"
+	    "ModelScale"            "1.0"    
+	    "HasInventory"          "1"
+	
+	    //used in events:OnEntityKilled() to adjust lives if creeps leak
+	    "UnitLabel"             "creep"  
+	
+	    "RingRadius"            "40"
+	    "HealthBarOffset"       "170"
+	    "BoundsHullName"        "DOTA_HULL_SIZE_REGULAR"
+	
+	    "BountyXP"              "0"
+	    "BountyGoldMin"         "100"
+	    "BountyGoldMax"         "100"
+	
+	    "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_GROUND"
+	    "MovementSpeed"         "180"
+	
+	    "StatusHealth"          "100"
+	    "StatusHealthRegen"     "0"
+	    "StatusMana"            "0"
+	    "StatusManaRegen"       "0.0"
+	    "ArmorPhysical"         "5"
+	    "MagicalResistance"     "25"
+	
+	    "AttackCapabilities"        "DOTA_UNIT_CAP_MELEE_ATTACK"
+	    "AttackAcquisitionRange"    "0"
+	    "AttackRange"               "175"   
+	    "AttackDamageMin"           "10000"
+	    "AttackDamageMax"           "10000"
+	    "AttackRate"                "1"   
+	    "AttackAnimationPoint"      "0.4"      
+	
+	    "Creature"
+	    {
+	        "DisableClumpingBehavior"   "1"        
+	    } 
+	}
+	"boss_golem_summoner"
+	{                                       
+	    "Model"                 "models/heroes/warlock/warlock.vmdl"
+	    "BaseClass"             "npc_dota_creature"
+	    "Level"                 "1"
+	    "ModelScale"            "1.0"    
+	    "HasInventory"          "1"
+	
+	    //used in events:OnEntityKilled() to adjust lives if creeps leak
+	    "UnitLabel"             "creep"
+	
+	    "Ability1"              "ability_boss_golem_summoner"    
+	
+	    "RingRadius"            "40"
+	    "HealthBarOffset"       "170"
+	    "BoundsHullName"        "DOTA_HULL_SIZE_REGULAR"
+	
+	    "BountyXP"              "0"
+	    "BountyGoldMin"         "5"
+	    "BountyGoldMax"         "5"
+	
+	    "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_GROUND"
+	    "MovementSpeed"         "180"
+	
+	    "StatusHealth"          "100"
+	    "StatusHealthRegen"     "0"
+	    "StatusMana"            "0"
+	    "StatusManaRegen"       "0.0"
+	    "ArmorPhysical"         "5"
+	    "MagicalResistance"     "25"
+	
+	    "AttackCapabilities"        "DOTA_UNIT_CAP_NO_ATTACK"   
+	
+	    "Creature"
+	    {
+	        "DisableClumpingBehavior"   "1"        
+	
+	        "AttachWearables"
+	        {
+	            "Wearable1"  {"ItemDef"  "239"}
+	            "Wearable2"  {"ItemDef"  "240"}
+	            "Wearable3"  {"ItemDef"  "241"}
+	            "Wearable4"  {"ItemDef"  "242"}
+	            "Wearable4"  {"ItemDef"  "243"}
+	            "Wearable4"  {"ItemDef"  "244"}
+	            "Wearable5"  {"ItemDef"  "245"}
+	        }
+	    } 
+	
+	    "vscripts"      "unit_scripts/bosses/golem_summoner.lua"
+	}
 	"creep_critter_0"
 	{                                       
 	    "Model"                 "models/props_gameplay/pig.vmdl"
@@ -268,8 +361,7 @@
 	"creep_healer_0"
 	{                                       
 	    "Model"                 "models/heroes/witchdoctor/witchdoctor.vmdl"
-	    "BaseClass"             "npc_dota_creature"
-	    "Level"                 "1"
+	    "BaseClass"             "npc_dota_creature"    
 	    "ModelScale"            "0.8"
 	    "Level"                 "0"
 	    "HasInventory"          "1"
