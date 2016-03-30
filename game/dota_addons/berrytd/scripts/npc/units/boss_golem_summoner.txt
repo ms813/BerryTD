@@ -1,0 +1,40 @@
+"boss_golem_summoner"
+{                                       
+    "Model"                 "models/heroes/witchdoctor/witchdoctor.vmdl"
+    "BaseClass"             "npc_dota_creature"
+    "Level"                 "1"
+    "ModelScale"            "1.0"    
+    "HasInventory"          "1"
+
+    //used in events:OnEntityKilled() to adjust lives if creeps leak
+    "UnitLabel"             "creep"
+
+    "Ability1"              "ability_boss_golem_summoner"    
+
+    "RingRadius"            "40"
+    "HealthBarOffset"       "170"
+    "BoundsHullName"        "DOTA_HULL_SIZE_REGULAR"
+
+    "BountyXP"              "0"
+    "BountyGoldMin"         "5"
+    "BountyGoldMax"         "5"
+
+    "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_GROUND"
+    "MovementSpeed"         "180"
+
+    "StatusHealth"          "100"
+    "StatusHealthRegen"     "0"
+    "StatusMana"            "0"
+    "StatusManaRegen"       "0.0"
+    "ArmorPhysical"         "5"
+    "MagicalResistance"     "25"
+
+    "AttackCapabilities"        "DOTA_UNIT_CAP_NO_ATTACK"   
+
+    "Creature"
+    {
+        "DisableClumpingBehavior"   "1"        
+    } 
+
+    "vscripts"      "unit_scripts/bosses/golem_summoner.lua"
+}

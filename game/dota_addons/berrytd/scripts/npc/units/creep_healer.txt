@@ -1,8 +1,7 @@
 "creep_healer_0"
 {                                       
     "Model"                 "models/heroes/witchdoctor/witchdoctor.vmdl"
-    "BaseClass"             "npc_dota_creature"
-    "Level"                 "1"
+    "BaseClass"             "npc_dota_creature"    
     "ModelScale"            "0.8"
     "Level"                 "0"
     "HasInventory"          "1"
