@@ -34,8 +34,10 @@ if waveTable.debug then
 	--put waves used in testing here
 	waveTable[1] = {
 		bonusEndGold = 50,
-		creepGroups = {					
-			CreateCreepGroup("creep_saint_0", 10, 0, 2, 5),		
+		creepGroups = {			
+			CreateCreepGroup("boss_golem_summoner", 2, 0, 2, 0),	
+			CreateCreepGroup("boss_golem", 1, 1, 1, 0),						
+			CreateCreepGroup("boss_golem_summoner", 2, 2, 2, 0),	
 		}	
 	}
 
@@ -171,7 +173,9 @@ else
 	waveTable[10] = {
 		bonusEndGold = 50,
 		creepGroups = {					
-			CreateCreepGroup("creep_knight_1", 1, 0, 1, 1),								
+			CreateCreepGroup("boss_golem_summoner", 2, 0, 2, 0),	
+			CreateCreepGroup("boss_golem", 1, 1, 1, 0),						
+			CreateCreepGroup("boss_golem_summoner", 2, 2, 2, 0),		
 		}	
 	}
 

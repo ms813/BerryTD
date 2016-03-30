@@ -115,6 +115,10 @@ end
   is useful for starting any game logic timers/thinkers, beginning the first round, etc.
   ]]
 function GameMode:OnGameInProgress()  
+
+    local gemSpawn = self.WAYPOINTS[#self.WAYPOINTS]:GetAbsOrigin()
+    GameMode:InitGems(gemSpawn)
+
     --create a timer to check if creeps are near any gems
     Timers:CreateTimer(function()
    	    return GameMode:CheckGems()
@@ -161,12 +165,6 @@ function GameMode:InitGameMode()
     self.creep_spawner = Entities:FindByName(nil, "creep_spawner")
     self.gem_return_timeout = 60
     self.defenders = {}
-
-    --set this to false for production
-    self.debug = true
-
-    local gemSpawn = self.WAYPOINTS[#self.WAYPOINTS]:GetAbsOrigin()
-    GameMode:InitGems(gemSpawn)
 
     DebugPrint('[BAREBONES] Done loading Barebones gamemode!\n\n')
 end
