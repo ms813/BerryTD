@@ -18,7 +18,7 @@
 waveTable = {}
 
 --set this to false when working on production waves
-waveTable.debug = false
+waveTable.debug = true
 
 function CreateCreepGroup(creep, numTotal, spawnDelay, groupSize, groupInterval)
 	local cg = {}
@@ -35,7 +35,7 @@ if waveTable.debug then
 	waveTable[1] = {
 		bonusEndGold = 50,
 		creepGroups = {					
-			CreateCreepGroup("creep_archer_0", 10, 0, 2, 5),		
+			CreateCreepGroup("creep_saint_0", 10, 0, 2, 5),		
 		}	
 	}
 

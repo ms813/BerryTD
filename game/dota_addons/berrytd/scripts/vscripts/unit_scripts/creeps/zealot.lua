@@ -5,8 +5,13 @@ function Spawn(keys)
 	local attack_speed = thisEntity:FindAbilityByName("ability_creep_zealot_attackspeed")
 	--get the creeps level by trimming the last digit of the name
 	thisEntity.creep_level = tonumber(string.sub(thisEntity:GetUnitName(), -1))
-	speed:SetLevel(thisEntity.creep_level + 1)
-	attack_speed:SetLevel(thisEntity.creep_level + 1)
+	if speed ~= nil then	
+		speed:SetLevel(thisEntity.creep_level + 1)
+	end
+
+	if attack_speed ~= nil then
+		attack_speed:SetLevel(thisEntity.creep_level + 1)
+	end
 
 	--add a modifier that raises the movespeed cap
 	thisEntity:AddNewModifier(thisEntity, nil, "modifier_movespeed_cap", nil)
