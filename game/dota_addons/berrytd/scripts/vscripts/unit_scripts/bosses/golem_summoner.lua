@@ -56,6 +56,14 @@ function GolemSummonerCast(keys)
         ab:ApplyDataDrivenModifier(caster, target, modifier, {})
         target:SetModifierStackCount(modifier, ab, 1)
     end
+
+    local particle_name = "particles/units/heroes/hero_wisp/wisp_tether.vpcf"
+    local particle = ParticleManager:CreateParticle(particle_name, PATTACH_ABSORIGIN_FOLLOW, caster)
+    local golem_height = target:GetBoundingMaxs().z
+    -- Vector(0,0,golem_height/2))end
+        ParticleManager:SetParticleControlEnt(particle, 0, caster, PATTACH_POINT_FOLLOW, "attach_attack1", caster:GetAbsOrigin(), true)
+    ParticleManager:SetParticleControlEnt(particle, 1, target, PATTACH_POINT_FOLLOW, "attach_mane1", target:GetAbsOrigin(), true)
+    caster.tether_particle = particle
 end
 
 --[[
@@ -71,6 +79,10 @@ function GolemSummonerTick(keys)
 	local hp_per_tick = tonumber(keys.AbilityContext.hp_increase)	
 
 	local new_max_hp = max_hp + hp_per_tick * stacks
+
+	local size_multiplier = math.log10(new_max_hp/100)
+	golem:SetModelScale(1 + size_multiplier)
+	
 
 	--increase MaxHealth then BaseMaxHealth as weird things happen if you only use one or the other	
 	golem:SetMaxHealth(new_max_hp)	
@@ -90,5 +102,5 @@ function GolemSummonerOnDeath(keys)
 	        target:SetModifierStackCount(modifier, ab, stack_count - 1)
 	    end
 	end
-    
+	ParticleManager:DestroyParticle(caster.tether_particle, true)    
 end

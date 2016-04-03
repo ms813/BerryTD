@@ -174,8 +174,8 @@ else
 		bonusEndGold = 50,
 		creepGroups = {					
 			CreateCreepGroup("boss_golem_summoner", 2, 0, 2, 0),	
-			CreateCreepGroup("boss_golem", 1, 1, 1, 0),						
-			CreateCreepGroup("boss_golem_summoner", 2, 2, 2, 0),		
+			CreateCreepGroup("boss_golem", 1, 1.5, 1, 0),						
+			CreateCreepGroup("boss_golem_summoner", 2, 3, 2, 0),		
 		}	
 	}
 
