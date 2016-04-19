@@ -7,11 +7,12 @@
     "AbilityUnitTargetType"     "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
     "AbilityUnitDamageType"     "DAMAGE_TYPE_MAGICAL"     
 
-    "AbilityCastRange"          "800 1500 1500"
+    "AbilityCastRange"          "800 1200 1500"
     "AbilityCastPoint"          "0"
-    "AbilityCooldown"           "5"
 
+    "AbilityCooldown"           "4"
     "AbilityDamage"             "%damage"
+
     "AbilityManaCost"           "0"
 
     "OnSpellStart"
@@ -104,7 +105,7 @@
         "03"
         {
             "var_type"          "FIELD_INTEGER"
-            "damage"            "25 50 50"
+            "damage"            "10 20 50"
         }
         "04"
         {
@@ -412,7 +413,7 @@
     "AbilityType"           "DOTA_ABILITY_TYPE_BASIC"
     "AbilityTextureName"    "jakiro_macropyre"
 
-    "AbilityGoldCost"       "50"
+    "AbilityGoldCost"       "200"
    
     "OnSpellStart"
     {

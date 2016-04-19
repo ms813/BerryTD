@@ -958,7 +958,7 @@
 	    // Cost
 	    //-------------------------------------------------------------------------------------------------------------
 	    "AbilityManaCost"               "0" 
-	    "AbilityGoldCost"               "100"
+	    "AbilityGoldCost"               "200"
 	 
 	    // Special
 	    //-------------------------------------------------------------------------------------------------------------
@@ -982,7 +982,7 @@
 	        "01"
 	        {
 	            "var_type"          "FIELD_INTEGER"
-	            "damage"            "5"
+	            "damage"            "100"
 	        }
 	        "02"
 	        {
@@ -1332,7 +1332,7 @@
 	    // Cost
 	    //-------------------------------------------------------------------------------------------------------------
 	    "AbilityManaCost"       "0" 
-	    "AbilityGoldCost"       "40"
+	    "AbilityGoldCost"       "100"
 	 
 	    // Special
 	    //-------------------------------------------------------------------------------------------------------------
@@ -1357,7 +1357,7 @@
 	        "01"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "damage"        "10"
+	            "damage"        "20"
 	        }
 	        "02"
 	        {
@@ -1469,7 +1469,7 @@
 	        "01"
 	        {
 	            "var_type"          "FIELD_INTEGER"
-	            "damage"            "10"
+	            "damage"            "15"
 	        }
 	        "02"
 	        {
@@ -3437,7 +3437,7 @@
 	        "05"
 	        {
 	            "var_type"          "FIELD_INTEGER"
-	            "damage"            "10 10 20"
+	            "damage"            "50 100 200"
 	        }
 	        //Number of pierce targets    
 	        "06"
@@ -3690,11 +3690,12 @@
 	    "AbilityUnitTargetType"     "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 	    "AbilityUnitDamageType"     "DAMAGE_TYPE_MAGICAL"     
 	
-	    "AbilityCastRange"          "800 1500 1500"
+	    "AbilityCastRange"          "800 1200 1500"
 	    "AbilityCastPoint"          "0"
-	    "AbilityCooldown"           "5"
 	
+	    "AbilityCooldown"           "4"
 	    "AbilityDamage"             "%damage"
+	
 	    "AbilityManaCost"           "0"
 	
 	    "OnSpellStart"
@@ -3787,7 +3788,7 @@
 	        "03"
 	        {
 	            "var_type"          "FIELD_INTEGER"
-	            "damage"            "25 50 50"
+	            "damage"            "10 20 50"
 	        }
 	        "04"
 	        {
@@ -4095,7 +4096,7 @@
 	    "AbilityType"           "DOTA_ABILITY_TYPE_BASIC"
 	    "AbilityTextureName"    "jakiro_macropyre"
 	
-	    "AbilityGoldCost"       "50"
+	    "AbilityGoldCost"       "200"
 	   
 	    "OnSpellStart"
 	    {
@@ -4566,7 +4567,7 @@
 	        "01"
 	        {
 	            "var_type"          "FIELD_INTEGER"
-	            "damage"            "20"
+	            "damage"            "30"
 	        }
 	        "02"
 	        {
@@ -4594,7 +4595,7 @@
 	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"        
 	    "AbilityTextureName"    "red_laser_icon"
 	
-	    "AbilityGoldCost"       "50"
+	    "AbilityGoldCost"       "200"
 	
 	    "OnSpellStart"
 	    {          
@@ -4637,7 +4638,7 @@
 	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"        
 	    "AbilityTextureName"    "oracle_fortunes_end"
 	
-	    "AbilityGoldCost"       "50"
+	    "AbilityGoldCost"       "500"
 	
 	    "OnSpellStart"
 	    {          
@@ -4741,7 +4742,7 @@
 	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"        
 	    "AbilityTextureName"            "satyr_trickster_purge"
 	
-	    "AbilityGoldCost"       "50"
+	    "AbilityGoldCost"       "200"
 	
 	    "OnSpellStart"
 	    {   
@@ -4948,7 +4949,7 @@
 	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"        
 	    "AbilityTextureName"            "necronomicon_warrior_mana_burn"
 	
-	    "AbilityGoldCost"       "50"
+	    "AbilityGoldCost"       "200"
 	
 	    "OnSpellStart"
 	    {   
@@ -5270,7 +5271,7 @@
 	    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"    
 	    "AbilityTextureName"            "necronomicon_archer_mana_burn"
 	
-	    "AbilityGoldCost"       "50"
+	    "AbilityGoldCost"       "200"
 	
 	    "OnSpellStart"
 	    {
@@ -5474,7 +5475,7 @@
 	    "AbilityType"           "DOTA_ABILITY_TYPE_BASIC"
 	    "AbilityTextureName"    "phantom_assassin_coup_de_grace"
 	
-	    "AbilityGoldCost"       "70"
+	    "AbilityGoldCost"       "200"
 	   
 	    "OnSpellStart"
 	    {
@@ -5519,13 +5520,13 @@
 	        "01"
 	        {
 	            "var_type"  "FIELD_INTEGER"
-	            "damage"    "10"
+	            "damage"    "40"
 	        }
 	
 	        "02"
 	        {
 	            "var_type"            "FIELD_INTEGER"
-	            "gold_cost"            "50"
+	            "gold_cost"            "100"
 	        } 
 	    }
 	}
@@ -5537,7 +5538,7 @@
 	    "AbilityType"           "DOTA_ABILITY_TYPE_BASIC"
 	    "AbilityTextureName"    "sniper_headshot"
 	
-	    "AbilityGoldCost"       "80"   
+	    "AbilityGoldCost"       "100"   
 	
 	    "OnSpellStart"
 	    {
@@ -5576,7 +5577,7 @@
 	    "AbilityType"           "DOTA_ABILITY_TYPE_BASIC"
 	    "AbilityTextureName"    "sniper_assassinate"
 	
-	    "AbilityGoldCost"       "50" 
+	    "AbilityGoldCost"       "500" 
 	
 	    "OnSpellStart"
 	    {
@@ -5650,7 +5651,7 @@
 	    "AbilityType"           "DOTA_ABILITY_TYPE_BASIC"
 	    "AbilityTextureName"    "sniper_machine_gun_icon"
 	
-	    "AbilityGoldCost"       "50"
+	    "AbilityGoldCost"       "500"
 	
 	    "OnSpellStart"
 	    {
@@ -5972,7 +5973,7 @@
 	        "04"
 	        {
 	            "var_type"    "FIELD_INTEGER"
-	            "damage"      "20"
+	            "damage"      "30"
 	        }       
 	    }   
 	}
@@ -6553,7 +6554,7 @@
 	        "04"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "damage"        "1"
+	            "damage"        "3"
 	        }  
 	    }
 	
@@ -6906,7 +6907,7 @@
 	    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"        
 	    "AbilityTextureName"    "pudge_rot"
 	
-	    "AbilityGoldCost"       "50"
+	    "AbilityGoldCost"       "200"
 	
 	    "OnSpellStart"
 	    {          

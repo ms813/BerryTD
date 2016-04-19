@@ -53,7 +53,7 @@
 
     "WakesNeutrals"         "0"
 
-    "StatusHealth"          "80"
+    "StatusHealth"          "50"
     "StatusHealthRegen"     "0"
     "StatusMana"            "0"
     "StatusManaRegen"       "0"

@@ -188,7 +188,7 @@ end
 function tackshooterSetSplit(keys)   
     keys.caster.split = {}
     keys.caster.split.radius = keys.ability:GetLevelSpecialValueFor("split_radius", 1)
-    keys.caster.split.damage = keys.ability:GetLevelSpecialValueFor("split_dmg", 1)
+    keys.caster.split.damage = keys.ability:GetLevelSpecialValueFor("split_dmg", 10)
     keys.caster.split.distance = keys.ability:GetLevelSpecialValueFor("split_dist", 1)
     keys.caster.split.speed = keys.ability:GetLevelSpecialValueFor("split_speed", 1)
 end

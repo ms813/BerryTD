@@ -51,9 +51,9 @@ else
 		Easy intro
 	]]
 	waveTable[1] = {
-		bonusEndGold = 50,
+		bonusEndGold = 200,
 		creepGroups = {					
-			CreateCreepGroup("creep_warrior_0", 10, 0, 1, 3)	
+			CreateCreepGroup("creep_warrior_0", 8, 0, 1, 3)	
 		}	
 	}
 
@@ -64,9 +64,9 @@ else
 		Still easy but highlighting creeps can come bunched together
 	]]
 	waveTable[2] = {
-		bonusEndGold = 50,
+		bonusEndGold = 200,
 		creepGroups = {					
-			CreateCreepGroup("creep_warrior_0", 12, 0, 3, 3)
+			CreateCreepGroup("creep_warrior_0", 10, 0, 3, 3)
 		}	
 	}	
 
@@ -78,10 +78,10 @@ else
 		Demonstrate early multiple creep types per wave
 	]]
 	waveTable[3] = {
-		bonusEndGold = 50,
+		bonusEndGold = 200,
 		creepGroups = {					
-			CreateCreepGroup("creep_warrior_0", 8, 0, 2, 4),
-			CreateCreepGroup("creep_archer_0", 8, 2, 2, 4)
+			CreateCreepGroup("creep_warrior_0", 16, 0, 2, 3),
+			CreateCreepGroup("creep_archer_0", 16, 2, 2, 3)
 		}	
 	}
 
@@ -93,7 +93,7 @@ else
 		can ignore defenders early
 	]]
 	waveTable[4] = {
-		bonusEndGold = 50,
+		bonusEndGold = 200,
 		creepGroups = {					
 			CreateCreepGroup("creep_sprinter_0", 10, 0, 1, 4)
 		}	
@@ -108,7 +108,7 @@ else
 		Mini-boss knight at the end (should be quite tough at this stage)
 	]]
 	waveTable[5] = {
-		bonusEndGold = 50,
+		bonusEndGold = 200,
 		creepGroups = {					
 			CreateCreepGroup("creep_warrior_0", 12, 0, 2, 5),
 			CreateCreepGroup("creep_archer_0", 12, 0, 2, 5),
@@ -123,9 +123,9 @@ else
 		Really weak but need AoE
 	]]
 	waveTable[6] = {
-		bonusEndGold = 50,
+		bonusEndGold = 150,
 		creepGroups = {					
-			CreateCreepGroup("creep_critter_0", 100, 0, 5, 1),			
+			CreateCreepGroup("creep_critter_0", 50, 0, 5, 1),			
 		}	
 	}
 
@@ -134,9 +134,9 @@ else
 		Sprinters and warriors staggered		
 	]]
 	waveTable[7] = {
-		bonusEndGold = 50,
+		bonusEndGold = 200,
 		creepGroups = {					
-			CreateCreepGroup("creep_sprinter_0", 20, 0, 2, 2),			
+			CreateCreepGroup("creep_sprinter_0", 18, 0, 2, 2),			
 			CreateCreepGroup("creep_warrior_0", 27, 1, 3, 2),			
 		}	
 	}
@@ -147,11 +147,11 @@ else
 		Trying to break through defenders
 	]]
 	waveTable[8] = {
-		bonusEndGold = 50,
+		bonusEndGold = 200,
 		creepGroups = {		
-			CreateCreepGroup("creep_archer_0", 24, 0, 3, 3),			
-			CreateCreepGroup("creep_warrior_0", 16, 0.5, 2, 3),								
-			CreateCreepGroup("creep_archer_0", 24, 1, 3, 3),
+			CreateCreepGroup("creep_archer_0", 20, 0, 3, 3),			
+			CreateCreepGroup("creep_warrior_1", 12, 0.5, 2, 3),								
+			CreateCreepGroup("creep_archer_0", 20, 1, 3, 3),
 		}	
 	}
 
@@ -160,9 +160,10 @@ else
 		Warrior rush wave
 	]]
 	waveTable[9] = {
-		bonusEndGold = 50,
+		bonusEndGold = 200,
 		creepGroups = {					
-			CreateCreepGroup("creep_warrior_0", 40, 0, 5, 1),								
+			CreateCreepGroup("creep_warrior_0", 20, 0, 5, 1),
+			CreateCreepGroup("creep_warrior_1", 10, 0, 5, 1),								
 		}	
 	}
 
@@ -171,7 +172,7 @@ else
 		Placeholder boss wave
 	]]
 	waveTable[10] = {
-		bonusEndGold = 50,
+		bonusEndGold = 200,
 		creepGroups = {					
 			CreateCreepGroup("boss_golem_summoner", 2, 0, 2, 0),	
 			CreateCreepGroup("boss_golem", 1, 1.5, 1, 0),						
@@ -184,7 +185,7 @@ else
 		Simple healer wave, surrounded by warriors
 	]]
 	waveTable[11] = {
-		bonusEndGold = 50,
+		bonusEndGold = 200,
 		creepGroups = {					
 			CreateCreepGroup("creep_warrior_0", 20, 0, 2, 3),								
 			CreateCreepGroup("creep_healer_0", 10, 0.5, 1, 3),								
@@ -197,7 +198,7 @@ else
 		Healer with archers and warriors
 	]]
 	waveTable[12] = {
-		bonusEndGold = 50,
+		bonusEndGold = 200,
 		creepGroups = {					
 			CreateCreepGroup("creep_warrior_0", 10, 0, 2, 3),								
 			CreateCreepGroup("creep_healer_0", 10, 0.5, 1, 3),								
@@ -210,7 +211,7 @@ else
 		Knights
 	]]
 	waveTable[13] = {
-		bonusEndGold = 50,
+		bonusEndGold = 200,
 		creepGroups = {					
 			CreateCreepGroup("creep_knight_0", 10, 0, 1, 3),										
 		}	
@@ -221,7 +222,7 @@ else
 		Knights surrounded by warriors
 	]]
 	waveTable[14] = {
-		bonusEndGold = 50,
+		bonusEndGold = 200,
 		creepGroups = {							
 			CreateCreepGroup("creep_warrior_0", 16, 0, 2, 4),	
 			CreateCreepGroup("creep_knight_0", 8, 0.5, 1, 4),										
@@ -237,7 +238,7 @@ else
 		but so that there can be waves of these later
 	]]
 	waveTable[15] = {
-		bonusEndGold = 50,
+		bonusEndGold = 200,
 		creepGroups = {					
 			CreateCreepGroup("creep_zealot_0", 1, 0, 1, 1),		
 			CreateCreepGroup("creep_saint_0", 1, 0.5, 1, 1),					
@@ -250,7 +251,7 @@ else
 		note: splitter_2 -> 2x splitter_1 -> 2x splitter_0
 	]]
 	waveTable[16] = {
-		bonusEndGold = 50,
+		bonusEndGold = 200,
 		creepGroups = {							
 			CreateCreepGroup("creep_splitter_2", 5, 0, 1, 5),										
 		}	
@@ -261,7 +262,7 @@ else
 		Knights, archers, healers
 	]]
 	waveTable[17] = {
-		bonusEndGold = 50,
+		bonusEndGold = 200,
 		creepGroups = {							
 			CreateCreepGroup("creep_knight_0", 10, 0, 1, 4),	
 			CreateCreepGroup("creep_healer_0", 10, 0.25, 1, 4),										
@@ -274,7 +275,7 @@ else
 		Splitters surrounded by archers
 	]]
 	waveTable[18] = {
-		bonusEndGold = 50,
+		bonusEndGold = 200,
 		creepGroups = {					
 			CreateCreepGroup("creep_archer_0", 15, 0, 3, 4),		
 			CreateCreepGroup("creep_splitter_2", 5, 0.5, 1, 4),										
@@ -287,7 +288,7 @@ else
 		Sprinters + healers
 	]]
 	waveTable[19] = {
-		bonusEndGold = 50,
+		bonusEndGold = 200,
 		creepGroups = {					
 			CreateCreepGroup("creep_sprinter_0", 24, 0, 3, 4),	
 			CreateCreepGroup("creep_healer_0", 10, 0.5, 1, 4),									
@@ -300,7 +301,7 @@ else
 		Placeholder boss wave
 	]]
 	waveTable[20] = {
-		bonusEndGold = 50,
+		bonusEndGold = 200,
 		creepGroups = {					
 			CreateCreepGroup("creep_knight_1", 1, 0, 1, 1),								
 		}	

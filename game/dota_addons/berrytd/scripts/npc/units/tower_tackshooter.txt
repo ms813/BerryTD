@@ -2,7 +2,7 @@
 {
 	"BaseClass"             "npc_dota_creature"
 	"Model"                 "models/heroes/disruptor/disruptor_thunderator.vmdl"
-	"ModelScale"			"8"
+	"ModelScale"			"6"
 	"GameSoundsFile"		""
     "ConsideredHero"        "1"
     "UnitLabel"             "tower"

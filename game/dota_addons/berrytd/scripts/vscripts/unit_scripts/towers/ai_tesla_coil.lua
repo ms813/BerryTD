@@ -75,7 +75,7 @@ function TeslaCoilLightningSingle(keys, target)
 	        target:SetModifierStackCount(modifier_name, ab, 1)
 	    end
 
-	    local dmg = ab:GetLevelSpecialValueFor("damage", 1)
+	    local dmg = ab:GetLevelSpecialValueFor("damage", 10)
 	    ApplyDamage({
 	    	victim = target,
 	    	attacker = caster,

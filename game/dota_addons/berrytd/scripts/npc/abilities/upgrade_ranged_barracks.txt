@@ -69,7 +69,7 @@
     "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"    
     "AbilityTextureName"            "necronomicon_archer_mana_burn"
 
-    "AbilityGoldCost"       "50"
+    "AbilityGoldCost"       "200"
 
     "OnSpellStart"
     {

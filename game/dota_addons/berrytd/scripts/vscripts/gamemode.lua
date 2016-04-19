@@ -87,7 +87,7 @@ end
   	DebugPrint("[BAREBONES] Hero spawned in game for first time -- " .. hero:GetUnitName())
 
   -- This line for example will set the starting gold of every hero to the specified amount of unreliable gold
-  hero:SetGold(10000, false)
+  hero:SetGold(200, false)
 
   -- These lines will create an item and add it to the player, effectively ensuring they start with the item
   --local item = CreateItem("item_example_item", hero, hero)
