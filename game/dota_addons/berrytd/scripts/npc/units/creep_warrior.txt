@@ -14,13 +14,13 @@
     "BoundsHullName"        "DOTA_HULL_SIZE_SMALL"
 
     "BountyXP"              "0"
-    "BountyGoldMin"         "1"
-    "BountyGoldMax"         "3"
+    "BountyGoldMin"         "6"
+    "BountyGoldMax"         "6"
 
     "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_GROUND"
     "MovementSpeed"         "300"
 
-    "StatusHealth"          "30"
+    "StatusHealth"          "60"
     "StatusHealthRegen"     "0"
     "StatusMana"            "0"
     "StatusManaRegen"       "0.0"
@@ -32,8 +32,8 @@
     "AttackCapabilities"        "DOTA_UNIT_CAP_MELEE_ATTACK"
     "AttackAcquisitionRange"    "0"
     "AttackRange"               "125"   
-    "AttackDamageMin"           "4"
-    "AttackDamageMax"           "6"
+    "AttackDamageMin"           "10"
+    "AttackDamageMax"           "10"
     "AttackRate"                "1"   
     "AttackAnimationPoint"      "0.467"
 
@@ -65,7 +65,7 @@
     "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_GROUND"
     "MovementSpeed"         "300"
 
-    "StatusHealth"          "100"
+    "StatusHealth"          "160"
     "StatusHealthRegen"     "0"
     "StatusMana"            "0"
     "StatusManaRegen"       "0.0"

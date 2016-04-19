@@ -111,7 +111,7 @@
     "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"        
     "AbilityTextureName"            "necronomicon_warrior_mana_burn"
 
-    "AbilityGoldCost"       "50"
+    "AbilityGoldCost"       "200"
 
     "OnSpellStart"
     {   

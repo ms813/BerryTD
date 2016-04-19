@@ -14,7 +14,7 @@
 
     "WakesNeutrals"         "0"
 
-    "StatusHealth"          "20"
+    "StatusHealth"          "15"
     "StatusHealthRegen"     "0"
     "StatusMana"            "0"
     "StatusManaRegen"       "0"
@@ -22,8 +22,8 @@
     "MagicalResistance"     "25"
 
     "AttackCapabilities"    "DOTA_UNIT_CAP_RANGED_ATTACK"
-    "AttackDamageMin"       "6"
-    "AttackDamageMax"       "6"
+    "AttackDamageMin"       "10"
+    "AttackDamageMax"       "10"
     "AttackRate"            "1.0"
     "AttackRange"           "400"
     "AttackAcquisitionRange"    "1200"
@@ -62,8 +62,8 @@
     "MagicalResistance"     "25"
 
     "AttackCapabilities"    "DOTA_UNIT_CAP_RANGED_ATTACK"
-    "AttackDamageMin"       "15"
-    "AttackDamageMax"       "15"
+    "AttackDamageMin"       "20"
+    "AttackDamageMax"       "20"
     "AttackRate"            "0.9"
     "AttackRange"           "500"
     "AttackAcquisitionRange"    "1200"

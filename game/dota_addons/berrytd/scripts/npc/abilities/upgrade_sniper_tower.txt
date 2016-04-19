@@ -5,7 +5,7 @@
     "AbilityType"           "DOTA_ABILITY_TYPE_BASIC"
     "AbilityTextureName"    "phantom_assassin_coup_de_grace"
 
-    "AbilityGoldCost"       "70"
+    "AbilityGoldCost"       "200"
    
     "OnSpellStart"
     {
@@ -50,13 +50,13 @@
         "01"
         {
             "var_type"  "FIELD_INTEGER"
-            "damage"    "10"
+            "damage"    "40"
         }
 
         "02"
         {
             "var_type"            "FIELD_INTEGER"
-            "gold_cost"            "50"
+            "gold_cost"            "100"
         } 
     }
 }
@@ -68,7 +68,7 @@
     "AbilityType"           "DOTA_ABILITY_TYPE_BASIC"
     "AbilityTextureName"    "sniper_headshot"
 
-    "AbilityGoldCost"       "80"   
+    "AbilityGoldCost"       "100"   
 
     "OnSpellStart"
     {
@@ -107,7 +107,7 @@
     "AbilityType"           "DOTA_ABILITY_TYPE_BASIC"
     "AbilityTextureName"    "sniper_assassinate"
 
-    "AbilityGoldCost"       "50" 
+    "AbilityGoldCost"       "500" 
 
     "OnSpellStart"
     {
@@ -181,7 +181,7 @@
     "AbilityType"           "DOTA_ABILITY_TYPE_BASIC"
     "AbilityTextureName"    "sniper_machine_gun_icon"
 
-    "AbilityGoldCost"       "50"
+    "AbilityGoldCost"       "500"
 
     "OnSpellStart"
     {
