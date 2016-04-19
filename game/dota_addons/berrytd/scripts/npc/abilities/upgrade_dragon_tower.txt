@@ -11,7 +11,7 @@
     "AbilityCastPoint"          "0"
     "AbilityCooldown"           "5"
 
-    "AbilityDamage"             "25 60 60"
+    "AbilityDamage"             "%damage"
     "AbilityManaCost"           "0"
 
     "OnSpellStart"
@@ -450,28 +450,6 @@
             "IsDebuff"      "0"             
         }
     }
-
-    //this value appears in the tooltip
-    "AbilitySpecial"
-    {
-        "01"
-        {
-            "var_type"      "FIELD_INTEGER"
-            "new_width"     "400"
-        }
-
-        "02"
-        {
-            "var_type"       "FIELD_INTEGER"
-            "new_damage"     "60"
-        } 
-
-        "03"
-        {
-            "var_type"      "FIELD_INTEGER"
-            "new_range"     "1500"
-        } 
-    }
 }
 
 
@@ -521,22 +499,6 @@
             "IsHidden"      "0"
             "IsDebuff"      "0"             
         }
-    }
-
-    //this value appears in the tooltip
-    "AbilitySpecial"
-    {
-        "01"
-        {
-            "var_type"          "FIELD_INTEGER"
-            "burn_damage"       "0.15"
-        }
-
-        "02"
-        {
-            "var_type"          "FIELD_INTEGER"
-            "burn_duration"     "4"
-        } 
     }
 }
 

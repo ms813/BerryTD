@@ -75,24 +75,26 @@ function upgradeTower(keys)
 	keys.ability:SetHidden(true)
 	local new_ab = caster:AddAbility(next_upgrade)
 
-	--not all upgrades are implemented yet so defend here
+	--not all upgrades are implemented yet so check for nil
+	--set the new ability to level 1
 	if new_ab ~= nil then new_ab:SetLevel(1) end
 
+	--if there are 2 upgrades then add the second one and level it up
 	if split_upgrade ~= nil then		
 		local ab = caster:AddAbility(split_upgrade)
-		--not all upgrades are implemented yet so defend here
+		--not all upgrades are implemented yet so check for nil
 		if ab ~= nil then ab:SetLevel(1) end 
 	end
 
 	--grab the upgrade number from the ability name
 	local upgrade_number = tonumber(string.sub(ability_name, -1))	
 
+	--remove the non-upgraded branch
 	if upgrade_number == 3 then
 		caster:RemoveAbility(string.sub(ability_name,0,-2).."4")
 	else if upgrade_number == 4 then
 		caster:RemoveAbility(string.sub(ability_name,0,-2).."3")
-	end
-		
+	end		
 
 	--this adds half the upgrade cost to the sell value using the mana regen hack
 	caster:SetBaseManaRegen(caster:GetManaRegen() + (ability_gold_cost / 2))

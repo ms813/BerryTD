@@ -244,8 +244,7 @@
 	    //used in events:OnEntityKilled() to adjust lives if creeps leak
 	    "UnitLabel"             "creep"  
 	
-	    "RingRadius"            "40"
-	    "HealthBarOffset"       "170"
+	    "RingRadius"            "40"    
 	    "BoundsHullName"        "DOTA_HULL_SIZE_REGULAR"
 	
 	    "BountyXP"              "0"
