@@ -106,9 +106,9 @@
             "EffectName"        "particles/units/heroes/hero_omniknight/omniknight_guardian_angel_omni.vpcf"
             "EffectAttachType"  "follow_origin"
     
-            "States"
+            "Properties"
             {
-                "MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PHYSICAL"        "MODIFIER_STATE_VALUE_ENABLED"
+                "MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PHYSICAL"        "1"
             }
         }
     }
