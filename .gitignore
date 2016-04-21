@@ -7,6 +7,7 @@ platform
 gcfscape185.exe
 steam_appid.txt
 .gitignore
+*Thumbs.db
 
 /content/*
 !content/dota_addons

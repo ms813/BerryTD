@@ -5,7 +5,7 @@
     "AbilityType"           "DOTA_ABILITY_TYPE_BASIC"
     "AbilityTextureName"    "riki_permanent_invisibility"
 
-    "AbilityCooldown"		"10 5 2"
+    "AbilityCooldown"		"10"
 
 	"Modifiers"
 	{
