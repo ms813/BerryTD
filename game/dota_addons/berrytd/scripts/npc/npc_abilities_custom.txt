@@ -1083,20 +1083,6 @@
 	            }
 	        }  
 	    }
-	
-	    "AbilitySpecial"
-	    {
-	        "01"
-	        {
-	            "var_type"          "FIELD_INTEGER"
-	            "damage"            "5"
-	        }
-	        "02"
-	        {
-	            "var_type"          "FIELD_FLOAT"
-	            "cooldown"          "5"
-	        }
-	    }
 	}
 	
 	
@@ -1339,21 +1325,7 @@
 	                "tower_name"    "tower_soul_siphon"
 	            }
 	        }  
-	    }
-	
-	    "AbilitySpecial"
-	    {
-	        "01"
-	        {
-	            "var_type"          "FIELD_INTEGER"
-	            "damage"            "5"
-	        }
-	        "02"
-	        {
-	            "var_type"          "FIELD_FLOAT"
-	            "cooldown"          "5"
-	        }
-	    }
+	    } 
 	}
 	
 	
@@ -1392,21 +1364,7 @@
 	                "tower_name"    "tower_tackshooter"
 	            }
 	        }   
-	    }
-	
-	    "AbilitySpecial"
-	    {
-	        "01"
-	        {
-	            "var_type"          "FIELD_INTEGER"
-	            "damage"            "15"
-	        }
-	        "02"
-	        {
-	            "var_type"          "FIELD_FLOAT"
-	            "shot_count"        "8"
-	        }
-	    }
+	    }    
 	}
 	
 	"ability_spawn_tesla_coil_tower"
@@ -1444,21 +1402,7 @@
 	                "tower_name"    "tower_tesla_coil"
 	            }
 	        }  
-	    }
-	
-	    "AbilitySpecial"
-	    {
-	        "01"
-	        {
-	            "var_type"          "FIELD_INTEGER"
-	            "damage"            "5"
-	        }
-	        "02"
-	        {
-	            "var_type"          "FIELD_FLOAT"
-	            "cooldown"          "5"
-	        }
-	    }
+	    }   
 	}
 	
 	
@@ -5759,7 +5703,7 @@
 	        "particle"  "particles/status_fx/status_effect_veil.vpcf"
 	    }
 	}
-	
+	//increase range and number of targets 
 	"ability_upgrade_soul_siphon_1"
 	{
 	    "BaseClass"             "ability_datadriven"
@@ -5803,6 +5747,7 @@
 	    }
 	}
 	
+	//stacking mr debuff
 	"ability_upgrade_soul_siphon_2"
 	{
 	    "BaseClass"             "ability_datadriven"
@@ -5857,7 +5802,7 @@
 	    "AbilityManaCost"                "0"
 	    "AbilityDamage"                  "%damage" 
 	
-	    "MaxLevel"                       "2"   
+	    "MaxLevel"                       "3"   
 	
 	    "OnSpellStart"
 	    {  
@@ -5881,7 +5826,8 @@
 	            "speed"       "900"
 	        }
 	        "02"
-	        {
+	        {   
+	            //width of the missile
 	            "var_type"    "FIELD_INTEGER"
 	            "radius"      "100"
 	        }
@@ -5894,7 +5840,12 @@
 	        {
 	            "var_type"    "FIELD_INTEGER"
 	            "damage"      "30"
-	        }       
+	        }   
+	        "05"
+	        {
+	            "var_type"    "FIELD_INTEGER"
+	            "tacks"      "8 8 16"
+	        }     
 	    }   
 	}
 	
@@ -6183,6 +6134,12 @@
 	            "Target"                "CASTER"
 	        }
 	
+	        "LevelUpAbility"
+	        {
+	            "Target"                "CASTER"
+	            "AbilityName"           "ability_shoot_tacks"
+	        }
+	
 	        "RunScript"
 	        {
 	            "ScriptFile"            "scripts/vscripts/addon_game_mode.lua"
@@ -6403,6 +6360,7 @@
 	        }               
 	    }  
 	}
+	//hits a single random nearby enemy and reduces armour
 	"ability_tesla_coil_lightning_single"
 	{
 	    "BaseClass"                     "ability_datadriven"
@@ -6486,6 +6444,7 @@
 	    }   
 	}
 	
+	//hits all nearby enemies and reduces armour
 	"ability_tesla_coil_lightning_multi"
 	{
 	    "BaseClass"                     "ability_datadriven"
@@ -6552,7 +6511,7 @@
 	        "04"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "damage"        "12"
+	            "damage"        "3"
 	        }  
 	    }
 	
@@ -6563,6 +6522,7 @@
 	    }  
 	}
 	
+	//faster firing
 	"ability_upgrade_tesla_coil_1"
 	{
 	    "BaseClass"             "ability_datadriven"
@@ -6606,6 +6566,7 @@
 	    }
 	}
 	
+	//insanely fast firing 
 	"ability_upgrade_tesla_coil_2"
 	{
 	    "BaseClass"             "ability_datadriven"
@@ -6650,6 +6611,7 @@
 	    }
 	}
 	
+	//hit multiple targets at once
 	"ability_upgrade_tesla_coil_3"
 	{
 	    "BaseClass"             "ability_datadriven"

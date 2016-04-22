@@ -1,3 +1,4 @@
+//hits a single random nearby enemy and reduces armour
 "ability_tesla_coil_lightning_single"
 {
     "BaseClass"                     "ability_datadriven"
@@ -81,6 +82,7 @@
     }   
 }
 
+//hits all nearby enemies and reduces armour
 "ability_tesla_coil_lightning_multi"
 {
     "BaseClass"                     "ability_datadriven"
@@ -147,7 +149,7 @@
         "04"
         {
             "var_type"      "FIELD_INTEGER"
-            "damage"        "12"
+            "damage"        "3"
         }  
     }
 
@@ -158,6 +160,7 @@
     }  
 }
 
+//faster firing
 "ability_upgrade_tesla_coil_1"
 {
     "BaseClass"             "ability_datadriven"
@@ -201,6 +204,7 @@
     }
 }
 
+//insanely fast firing 
 "ability_upgrade_tesla_coil_2"
 {
     "BaseClass"             "ability_datadriven"
@@ -245,6 +249,7 @@
     }
 }
 
+//hit multiple targets at once
 "ability_upgrade_tesla_coil_3"
 {
     "BaseClass"             "ability_datadriven"

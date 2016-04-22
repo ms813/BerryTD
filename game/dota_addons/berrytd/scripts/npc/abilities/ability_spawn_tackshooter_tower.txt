@@ -33,20 +33,6 @@
                 "tower_name"    "tower_tackshooter"
             }
         }   
-    }
-
-    "AbilitySpecial"
-    {
-        "01"
-        {
-            "var_type"          "FIELD_INTEGER"
-            "damage"            "15"
-        }
-        "02"
-        {
-            "var_type"          "FIELD_FLOAT"
-            "shot_count"        "8"
-        }
-    }
+    }    
 }
 

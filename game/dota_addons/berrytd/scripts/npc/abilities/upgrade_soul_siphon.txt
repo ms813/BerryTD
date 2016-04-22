@@ -117,7 +117,7 @@
         "particle"  "particles/status_fx/status_effect_veil.vpcf"
     }
 }
-
+//increase range and number of targets 
 "ability_upgrade_soul_siphon_1"
 {
     "BaseClass"             "ability_datadriven"
@@ -161,6 +161,7 @@
     }
 }
 
+//stacking mr debuff
 "ability_upgrade_soul_siphon_2"
 {
     "BaseClass"             "ability_datadriven"
