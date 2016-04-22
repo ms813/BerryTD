@@ -35,18 +35,13 @@
     }
 
     "AbilitySpecial"
-    {        
+    {       
         "01"
-        {
-            "var_type"      "FIELD_INTEGER"
-            "health"        "25"
-        }
-        "02"
         {
             "var_type"      "FIELD_INTEGER"
             "defender_cap"  "3"
         }   
-        "03"
+        "02"
         {
             "var_type"      "FIELD_FLOAT"
             "max_aggro_dist"        "800"

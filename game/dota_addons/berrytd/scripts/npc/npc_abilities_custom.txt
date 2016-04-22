@@ -1122,21 +1122,7 @@
 	                "tower_name"    "barracks_magic"
 	            }
 	        } 
-	    }
-	
-	    "AbilitySpecial"
-	    {
-	        "01"
-	        {
-	            "var_type"      "FIELD_INTEGER"
-	            "creep_dmg"        "5"
-	        }
-	        "02"
-	        {
-	            "var_type"      "FIELD_FLOAT"
-	            "creep_hp"        "25"
-	        }        
-	    }
+	    }   
 	}
 	
 	"ability_spawn_melee_barracks"
@@ -1175,21 +1161,7 @@
 	                "tower_name"    "barracks_melee"
 	            }
 	        } 
-	    }
-	
-	    "AbilitySpecial"
-	    {
-	        "01"
-	        {
-	            "var_type"      "FIELD_INTEGER"
-	            "creep_dmg"        "5"
-	        }
-	        "02"
-	        {
-	            "var_type"      "FIELD_FLOAT"
-	            "creep_hp"        "100"
-	        }        
-	    }
+	    }    
 	}
 	
 	"ability_spawn_ranged_barracks"
@@ -1228,21 +1200,7 @@
 	                "tower_name"    "barracks_ranged"
 	            }
 	        }   
-	    }
-	
-	    "AbilitySpecial"
-	    {
-	        "01"
-	        {
-	            "var_type"      "FIELD_INTEGER"
-	            "creep_dmg"        "5"
-	        }
-	        "02"
-	        {
-	            "var_type"      "FIELD_FLOAT"
-	            "creep_hp"        "100"
-	        }        
-	    }
+	    }   
 	}
 	
 	"ability_spawn_sniper_tower"
@@ -1262,7 +1220,7 @@
 	    // Cost
 	    //-------------------------------------------------------------------------------------------------------------
 	    "AbilityManaCost"       "0" 
-	    "AbilityGoldCost"       "%gold_cost"
+	    "AbilityGoldCost"       "100"
 	 
 	    // Special
 	    //-------------------------------------------------------------------------------------------------------------
@@ -4576,23 +4534,13 @@
 	    }
 	
 	    "AbilitySpecial"
-	    {
+	    {       
 	        "01"
-	        {
-	            "var_type"      "FIELD_INTEGER"
-	            "damage"        "4"
-	        }
-	        "02"
-	        {
-	            "var_type"      "FIELD_INTEGER"
-	            "health"        "50"
-	        }
-	        "03"
 	        {
 	            "var_type"      "FIELD_INTEGER"
 	            "defender_cap"  "3"
 	        }   
-	        "04"
+	        "02"
 	        {
 	            "var_type"      "FIELD_FLOAT"
 	            "max_aggro_dist"        "800"
@@ -4718,7 +4666,7 @@
 	    //-------------------------------------------------------------------------------------------------------------
 	    "AbilityManaCost"       "0" 
 	    "AbilityGoldCost"       "0"
-	 
+	
 	    // Special
 	    //-------------------------------------------------------------------------------------------------------------
 	
@@ -4737,23 +4685,13 @@
 	    }
 	
 	    "AbilitySpecial"
-	    {
+	    {       
 	        "01"
-	        {
-	            "var_type"      "FIELD_INTEGER"
-	            "damage"        "4"
-	        }
-	        "02"
-	        {
-	            "var_type"      "FIELD_INTEGER"
-	            "health"        "50"
-	        }
-	        "03"
 	        {
 	            "var_type"      "FIELD_INTEGER"
 	            "defender_cap"  "3"
 	        }   
-	        "04"
+	        "02"
 	        {
 	            "var_type"      "FIELD_FLOAT"
 	            "max_aggro_dist"        "800"
@@ -4780,7 +4718,7 @@
 	    //-------------------------------------------------------------------------------------------------------------
 	    "AbilityManaCost"       "0" 
 	    "AbilityGoldCost"       "0"
-	 
+	
 	    // Special
 	    //-------------------------------------------------------------------------------------------------------------
 	
@@ -4806,7 +4744,7 @@
 	    }
 	}
 	
-	
+	//increase health and damage
 	"ability_upgrade_melee_barracks_1"
 	{
 	    "BaseClass"                     "ability_datadriven"
@@ -4902,7 +4840,7 @@
 	        } 
 	    }
 	
-	     "Modifiers"
+	    "Modifiers"
 	    {
 	        "modifier_upgrade_melee_barracks_2"
 	        {
@@ -4952,7 +4890,7 @@
 	            "AbilityContext"
 	            {
 	                "defender_name" "defender_melee_3"
-	            
+	
 	
 	            }
 	        } 
@@ -5038,23 +4976,7 @@
 	            }
 	        } 
 	    }
-	
-	    "AbilitySpecial"
-	    {
-	        "01"
-	        {
-	            "var_type"          "FIELD_INTEGER"
-	            "fear_duration"     "8"
-	        } 
-	
-	        "02"
-	        {
-	            "var_type"          "FIELD_INTEGER"
-	            "fear_radius"    "40"
-	        } 
-	
-	    }
-	
+	   
 	    "Modifiers"
 	    {
 	        "modifier_upgrade_melee_barracks_5"
@@ -5100,30 +5022,20 @@
 	                "defender_name"     "defender_ranged_0"
 	            }
 	        }
-	    }
+	    }    
 	
 	    "AbilitySpecial"
-	    {
+	    {       
 	        "01"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "damage"        "8"
-	        }
-	        "02"
-	        {
-	            "var_type"      "FIELD_INTEGER"
-	            "health"        "25"
-	        }
-	        "03"
-	        {
-	            "var_type"      "FIELD_INTEGER"
 	            "defender_cap"  "3"
-	        }     
-	        "04"
+	        }   
+	        "02"
 	        {
 	            "var_type"      "FIELD_FLOAT"
 	            "max_aggro_dist"        "800"
-	        }   
+	        }     
 	    }
 	}
 	
@@ -6906,18 +6818,13 @@
 	    }
 	
 	    "AbilitySpecial"
-	    {        
+	    {       
 	        "01"
-	        {
-	            "var_type"      "FIELD_INTEGER"
-	            "health"        "25"
-	        }
-	        "02"
 	        {
 	            "var_type"      "FIELD_INTEGER"
 	            "defender_cap"  "3"
 	        }   
-	        "03"
+	        "02"
 	        {
 	            "var_type"      "FIELD_FLOAT"
 	            "max_aggro_dist"        "800"

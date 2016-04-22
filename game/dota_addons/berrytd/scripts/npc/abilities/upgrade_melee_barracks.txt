@@ -16,7 +16,7 @@
     //-------------------------------------------------------------------------------------------------------------
     "AbilityManaCost"       "0" 
     "AbilityGoldCost"       "0"
- 
+
     // Special
     //-------------------------------------------------------------------------------------------------------------
 
@@ -35,23 +35,13 @@
     }
 
     "AbilitySpecial"
-    {
+    {       
         "01"
-        {
-            "var_type"      "FIELD_INTEGER"
-            "damage"        "4"
-        }
-        "02"
-        {
-            "var_type"      "FIELD_INTEGER"
-            "health"        "50"
-        }
-        "03"
         {
             "var_type"      "FIELD_INTEGER"
             "defender_cap"  "3"
         }   
-        "04"
+        "02"
         {
             "var_type"      "FIELD_FLOAT"
             "max_aggro_dist"        "800"
@@ -78,7 +68,7 @@
     //-------------------------------------------------------------------------------------------------------------
     "AbilityManaCost"       "0" 
     "AbilityGoldCost"       "0"
- 
+
     // Special
     //-------------------------------------------------------------------------------------------------------------
 
@@ -104,7 +94,7 @@
     }
 }
 
-
+//increase health and damage
 "ability_upgrade_melee_barracks_1"
 {
     "BaseClass"                     "ability_datadriven"
@@ -200,7 +190,7 @@
         } 
     }
 
-     "Modifiers"
+    "Modifiers"
     {
         "modifier_upgrade_melee_barracks_2"
         {
@@ -250,7 +240,7 @@
             "AbilityContext"
             {
                 "defender_name" "defender_melee_3"
-            
+
 
             }
         } 
@@ -336,23 +326,7 @@
             }
         } 
     }
-
-    "AbilitySpecial"
-    {
-        "01"
-        {
-            "var_type"          "FIELD_INTEGER"
-            "fear_duration"     "8"
-        } 
-
-        "02"
-        {
-            "var_type"          "FIELD_INTEGER"
-            "fear_radius"    "40"
-        } 
-
-    }
-
+   
     "Modifiers"
     {
         "modifier_upgrade_melee_barracks_5"

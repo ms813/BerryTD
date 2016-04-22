@@ -34,30 +34,20 @@
                 "defender_name"     "defender_ranged_0"
             }
         }
-    }
+    }    
 
     "AbilitySpecial"
-    {
+    {       
         "01"
         {
             "var_type"      "FIELD_INTEGER"
-            "damage"        "8"
-        }
-        "02"
-        {
-            "var_type"      "FIELD_INTEGER"
-            "health"        "25"
-        }
-        "03"
-        {
-            "var_type"      "FIELD_INTEGER"
             "defender_cap"  "3"
-        }     
-        "04"
+        }   
+        "02"
         {
             "var_type"      "FIELD_FLOAT"
             "max_aggro_dist"        "800"
-        }   
+        }     
     }
 }
 

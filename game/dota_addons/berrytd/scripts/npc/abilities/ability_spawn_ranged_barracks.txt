@@ -34,20 +34,6 @@
                 "tower_name"    "barracks_ranged"
             }
         }   
-    }
-
-    "AbilitySpecial"
-    {
-        "01"
-        {
-            "var_type"      "FIELD_INTEGER"
-            "creep_dmg"        "5"
-        }
-        "02"
-        {
-            "var_type"      "FIELD_FLOAT"
-            "creep_hp"        "100"
-        }        
-    }
+    }   
 }
 

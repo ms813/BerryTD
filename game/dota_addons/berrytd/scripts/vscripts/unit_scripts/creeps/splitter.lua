@@ -30,7 +30,7 @@ function Split(keys)
 			end
 
 			--increase the total number of creeps for this wave and update the quest counter
-			GameMode.numCreepsAlive = GameMode.numCreepsAlive + 1
+			GameMode.total_creeps = GameMode.total_creeps + 1
 			GameMode.Quest.max_creeps = GameMode.Quest.max_creeps + 1
 			GameMode.Quest:SetTextReplaceValue(QUEST_TEXT_REPLACE_VALUE_CURRENT_VALUE, GameMode.creep_kills)
 			GameMode.Quest:SetTextReplaceValue(QUEST_TEXT_REPLACE_VALUE_TARGET_VALUE, GameMode.Quest.max_creeps)
