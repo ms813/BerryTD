@@ -1513,7 +1513,6 @@
 		"AbilityType" 					"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityCastPoint"				"0.3"
 		
-		"AbilityDamage"					"20"
 		"AbilityManaCost"				"0"
 		"AbilityCastRange"				"600"
 		"AbilityCooldown"				"4"
@@ -1565,7 +1564,7 @@
 				"var_type"	"FIELD_INTEGER"
 				"range"		"600"
 			}
-			"03"
+			"04"
 			{
 				"var_type"	"FIELD_INTEGER"
 				"width"		"200"
@@ -1594,8 +1593,7 @@
 	
 		"AbilityType" 					"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityCastPoint"				"0.5"
-		
-		"AbilityDamage"					"20"
+			
 		"AbilityManaCost"				"0"
 		"AbilityCastRange"				"600"
 		"AbilityCooldown"				"4"
@@ -1675,7 +1673,6 @@
 		"AbilityType" 					"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityCastPoint"				"0.5"
 		
-		"AbilityDamage"					"20"
 		"AbilityManaCost"				"0"
 		"AbilityCastRange"				"600"
 		"AbilityCooldown"				"4"
@@ -1698,7 +1695,7 @@
 		{
 			"01"
 			{
-				"var_type"				"FIELD_INTEGER"
+				"var_type"	"FIELD_INTEGER"
 				"speed"		"900"
 			}
 			"02"
@@ -1725,7 +1722,6 @@
 	
 		"precache"
 		{
-			"particle"  "particle_name"
 			"soundfile" "soundevents/game_sounds_creeps.vsndevts"
 		}
 	}	
@@ -5706,7 +5702,7 @@
 	"ability_shoot_tacks"
 	{
 	    "BaseClass"                     "ability_datadriven"
-	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 	    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"    
 	    "AbilityTextureName"            "bristleback_quill_spray"
 	
@@ -5765,7 +5761,7 @@
 	"ability_ring_of_poison"
 	{
 	    "BaseClass"                     "ability_datadriven"
-	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 	    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"    
 	    "AbilityTextureName"            "venomancer_venomous_gale"
 	

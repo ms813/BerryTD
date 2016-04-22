@@ -13,7 +13,6 @@
 	"AbilityType" 					"DOTA_ABILITY_TYPE_BASIC"
 	"AbilityCastPoint"				"0.3"
 	
-	"AbilityDamage"					"20"
 	"AbilityManaCost"				"0"
 	"AbilityCastRange"				"600"
 	"AbilityCooldown"				"4"
@@ -65,7 +64,7 @@
 			"var_type"	"FIELD_INTEGER"
 			"range"		"600"
 		}
-		"03"
+		"04"
 		{
 			"var_type"	"FIELD_INTEGER"
 			"width"		"200"
@@ -94,8 +93,7 @@
 
 	"AbilityType" 					"DOTA_ABILITY_TYPE_BASIC"
 	"AbilityCastPoint"				"0.5"
-	
-	"AbilityDamage"					"20"
+		
 	"AbilityManaCost"				"0"
 	"AbilityCastRange"				"600"
 	"AbilityCooldown"				"4"
@@ -175,7 +173,6 @@
 	"AbilityType" 					"DOTA_ABILITY_TYPE_BASIC"
 	"AbilityCastPoint"				"0.5"
 	
-	"AbilityDamage"					"20"
 	"AbilityManaCost"				"0"
 	"AbilityCastRange"				"600"
 	"AbilityCooldown"				"4"
@@ -198,7 +195,7 @@
 	{
 		"01"
 		{
-			"var_type"				"FIELD_INTEGER"
+			"var_type"	"FIELD_INTEGER"
 			"speed"		"900"
 		}
 		"02"
@@ -225,7 +222,6 @@
 
 	"precache"
 	{
-		"particle"  "particle_name"
 		"soundfile" "soundevents/game_sounds_creeps.vsndevts"
 	}
 }	
