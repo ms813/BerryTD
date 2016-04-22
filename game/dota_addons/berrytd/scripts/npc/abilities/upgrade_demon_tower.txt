@@ -106,7 +106,7 @@
     }
 }
 
-//upgrade projectile speed and damage
+//upgrade projectile damage and number of pierce targets
 "ability_upgrade_demon_tower_1"
 {
     "BaseClass"             "ability_datadriven"
@@ -150,7 +150,7 @@
     }
 }
 
-//upgrade number of pierce targets
+//upgrade projectile speed
 "ability_upgrade_demon_tower_2"
 {
     "BaseClass"             "ability_datadriven"

@@ -2,50 +2,250 @@
 {
 	"Language"		"English"
 	"Tokens"
-	{		
+	{	
+        //******************** General ******************** 	
 		"game_mode_15"				"BerryTD"
 		"addon_game_name"			"BerryTD"
 		
+        //-----  Quests  -----
+		"QuestWaveTimeout"			"%quest_current_value% seconds until wave %quest_round% spawns"
+		"QuestGemsRemaining"		"Gems remaining: %quest_current_value%/%quest_target_value%"
+		"QuestWave"					"Wave %quest_round% creeps killed: %quest_current_value%/%quest_target_value%"
+
+		
 		//"DOTA_Basics"							"ABILITIES"
-		//"DOTA_Upgrades"							"ITEMS"
-		//"DOTA_Shop_Category_Basics"				"ABILITIES"
+		//"DOTA_Upgrades"						"ITEMS"
+		//"DOTA_Shop_Category_Basics"			"ABILITIES"
 		//"DOTA_Shop_Category_Upgrades"			"ITEMS"
 		
+        //******************** Units ******************** 
 		//--------------------
 		//    Heroes
 		//--------------------    	
 
     	"npc_dota_hero_alchemist"	"Berrybudden"
 
-    	// ******************** Creeps ********************
-		"creep_beaver"			"(yer maw's) Beaver"
-		"creep_cluckles"		"Cluckles the brave"
-		"creep_donkey"			"Mad Mental Donkey"
-		"creep_sheep"			"Fluffy Sheep"
-		"creep_facerex"			"Faceless Rex"
-		"creep_goldwight"		"Golden Zombie"
-		"creep_geodesic"		"Weird floaty orb shit"
-		"creep_crab"			"Stick stickley"
+    	//--------------------
+        //    Creeps
+        //--------------------    
+            //-----  Warrior  -----
+		    "creep_warrior_0"	    "Young Warrior"
+            "creep_warrior_1"       "Warrior"
+            "creep_warrior_2"       "Champion Warrior"
 
 
+            //-----  Archer  -----
+            "creep_archer_0"        "Frail Archer"
+            "creep_archer_1"        "Archer"
+            "creep_archer_2"        "Legendary Archer"
+
+
+            //-----  Knight  -----
+            "creep_knight_0"        "Starving Meatshield"
+            "creep_knight_1"        "Meatshield"
+            "creep_knight_2"        "Stalwart Meatshield"
+
+
+            //-----  Sprinter  -----
+            "creep_sprinter_0"      "Pathetic sprinter"
+            "creep_sprinter_1"      "Sprinter"
+            "creep_sprinter_2"      "Blazing sprinter"
+
+                //Sprint ability
+                "DOTA_Tooltip_ability_ability_creep_sprinter"               "Sprint"
+                "DOTA_Tooltip_ability_ability_creep_sprinter_Description"   "Unit moves quickly and cannot be slowed, ignoring defender aggro and unit collision"                
+                "DOTA_Tooltip_ability_ability_creep_sprinter_Lore"          "These enemies are trained to sprint past defences and loot treaure from behind enemy lines"
+                "DOTA_Tooltip_ability_ability_creep_sprinter_movespeed"     "Bonus movespeed:"
+                "DOTA_Tooltip_modifier_creep_sprinter"                      "Sprint"
+                "DOTA_Tooltip_modifier_creep_sprinter_Description"          "This unit is moving quickly, cannot be slowed and is ignoring unit collision"
+                
+
+            //-----  Critter  -----
+            "creep_critter_0"       "Critter"
+
+
+            //-----  Hive  -----            
+            "creep_hive_0"          "Malnourished Hive"
+            "creep_hive_1"          "Hive"
+            "creep_hive_1"          "Virulent Hive"
+            "creep_hive_egg"        "Hive egg"
+            "creep_hive_baby"       "Hive Spawn"
+
+                //Lay egg ability
+                "DOTA_Tooltip_ability_ability_creep_hive_lay_egg"               "Lay Egg"
+                "DOTA_Tooltip_ability_ability_creep_hive_lay_egg_Description"   "The mother lays an egg full of young itching to burst free"
+                "DOTA_Tooltip_ability_ability_creep_hive_lay_egg_Lore"          "These fell spiders can quickly overrun the unprepared with their ability to rapidly reproduce"
+
+                //Egg hatch ability
+                "DOTA_Tooltip_ability_ability_creep_hive_egg_hatch"             "Hatch"
+                "DOTA_Tooltip_ability_ability_creep_hive_egg_hatch_Description" "After a few seconds, babies are released from their egg"
+                "DOTA_Tooltip_ability_ability_creep_hive_egg_hatch_Lore" "The babies hunger is voracious"
+                "DOTA_Tooltip_ability_ability_creep_hive_egg_hatch_babies"      "Number of babies:"
+
+
+            //-----  Splitter  -----
+            "creep_splitter_0"      "Pebble"
+            "creep_splitter_1"      "Rock"
+            "creep_splitter_2"      "Boulder"
+            "creep_splitter_3"      "Monolith"
+
+                //Split ability
+                "DOTA_Tooltip_ability_ability_creep_splitter_split"             "Split"
+                "DOTA_Tooltip_ability_ability_creep_splitter_split_Description" "When this unit dies, two smaller units will spawn in its place"
+                "DOTA_Tooltip_ability_ability_creep_splitter_split_Lore"        "As long as enough mass remains, from the crumbling wreckage of a dying golem comes new life"
+                "DOTA_Tooltip_ability_ability_creep_splitter_split_splits"      "Remaining Splits:"
+                "DOTA_Tooltip_modifier_creep_split"                             "Split"
+                "DOTA_Tooltip_modifier_creep_split_Description"                 "This unit will spawn two smaller units on death"
+                
+
+            //-----  Saint  -----
+            "creep_saint_0"         "Minor Saint"
+            "creep_saint_0"         "Saint"
+            "creep_saint_0"         "Major Saint"
+
+                //Repel ability
+                "DOTA_Tooltip_ability_ability_creep_saint_repel"                "Repel"
+                "DOTA_Tooltip_ability_ability_creep_saint_repel_Description"    "Grants magic immunity to a single target"
+                "DOTA_Tooltip_ability_ability_creep_saint_repel_Lore"           "The saint invokes divine protection on a worthy individual"
+                "DOTA_Tooltip_ability_ability_creep_saint_repel_duration"       "Duration:"
+                "DOTA_Tooltip_modifier_creep_saint_repel"                       "Repel"
+                "DOTA_Tooltip_modifier_creep_saint_repel_Description"           "This unit is magic immune"
+
+                //Guardian Angel ability
+                "DOTA_Tooltip_ability_ability_creep_saint_guardian_angel"               "Guardian Angel"       
+                "DOTA_Tooltip_ability_ability_creep_saint_guardian_angel_Description"   "Grants a single target immunity to physical damage"   
+                "DOTA_Tooltip_ability_ability_creep_saint_guardian_angel_Lore"          "Would be attackers cannot bring themselves to harm one protected by the gods"
+                "DOTA_Tooltip_ability_ability_creep_saint_guardian_angel_duration"      "Duration:"
+                "DOTA_Tooltip_modifier_creep_saint_guardian_angel"                      "Guardian Angel"
+                "DOTA_Tooltip_modifier_creep_saint_guardian_angel_Description"          "This unit is immune to physical damage"
+
+
+            //-----  Healer  -----
+            "creep_healer_0"        "Village Healer"
+            "creep_healer_1"        "Doctor"
+            "creep_healer_2"        "Surgeon"
+
+                //Heal ability
+                "DOTA_Tooltip_ability_ability_creep_heal"               "Heal"
+                "DOTA_Tooltip_ability_ability_creep_heal_Description"   "Units near the healer constantly rejuvenate their health"
+                "DOTA_Tooltip_ability_ability_creep_heal_Lore"          "Trained medical practitioners were recruited to support wounded frontline troops in the endless quest for gems"                
+                "DOTA_Tooltip_modifier_creep_heal"                      "Healing"
+                "DOTA_Tooltip_modifier_creep_heal_Description"          "This unit is being healed by a nearby doctor"
+
+
+            //-----  Void Walker  -----
+            "creep_voidwalker_0"    "Lesser Voidwalker"
+            "creep_voidwalker_1"    "Voidwalker"
+            "creep_voidwalker_2"    "Greater Voidwalker"
+
+                //Refraction ability
+                "DOTA_Tooltip_ability_templar_assassin_refraction"              "Refraction"
+                "DOTA_Tooltip_ability_templar_assassin_refraction_Description"  "The voidwalker gains a limited number of instances of boosted attack and defence"
+                "DOTA_Tooltip_ability_templar_assassin_refraction_Lore"         "When one has faced the void, manipulation of the fabric of time itself somehow seems trivial"               
+
+
+            //-----  Sergeant  -----
+            "creep_sergeant_0"      "Weary Sergeant"
+            "creep_sergeant_1"      "Sergeant"
+            "creep_sergeant_2"      "Veteran Sergeant"
+
+                //Press the attack ability (purge + regen)
+                "DOTA_Tooltip_ability_ability_creep_sergeant"                       "Press the attack"
+                "DOTA_Tooltip_ability_ability_creep_sergeant_Description"           "The sergeant encourages nearby units, purging, speeding them up, and increasing their health regen for a short time"
+                "DOTA_Tooltip_ability_ability_creep_sergeant_Lore"                  "A sergeant's wrath is a far greater motivator than impending death!"
+                "DOTA_Tooltip_ability_ability_creep_sergeant_duration"              "Duration:"
+                "DOTA_Tooltip_ability_ability_creep_sergeant_radius"                "Radius:"
+                "DOTA_Tooltip_ability_ability_creep_sergeant_bonus_attack_speed"    "Attack speed bonus:"
+                "DOTA_Tooltip_ability_ability_creep_sergeant_bonus_movement_speed"  "Movement speed bonus:"
+                "DOTA_Tooltip_ability_ability_creep_sergeant_bonus_hp_regen"        "Regen bonus:"
+                "DOTA_Tooltip_modifier_creep_sergeant_buff"                         "Press the attack"                   
+                "DOTA_Tooltip_modifier_creep_sergeant_buff_Description"             "This unit is moving and attacking faster, and has increased health regen"                   
+
+
+            //-----  Ninja  -----
+            "creep_ninja_0"         "Grasshopper"
+            "creep_ninja_1"         "Ninja"
+            "creep_ninja_2"         "Kage"
+
+                //Ninja on-hit invisibility ability
+                "DOTA_Tooltip_ability_ability_creep_ninja_invis"                        "Deception"
+                "DOTA_Tooltip_ability_ability_creep_ninja_invis_Description"            "When this unit takes damage, it will become invisible for a short duration"
+                "DOTA_Tooltip_ability_ability_creep_ninja_invis_Lore"                   "Bypassing the front line of defence is an effective strategy the ninja understand well"
+                "DOTA_Tooltip_ability_ability_creep_ninja_invis_invis_duration"         "Invisibility Duration:"                
+                "DOTA_Tooltip_ability_ability_creep_ninja_invis_bonus_movement_speed"   "Movement speed bonus:"
+                "DOTA_Tooltip_modifier_creep_ninja_invis"                               "Deception"
+                "DOTA_Tooltip_modifier_creep_ninja_invis_Description"                   "This unit is invisible and has increased movement speed"
+                
+
+            //-----  Zealot  -----
+            "creep_zealot_0"        "Rambling Zealot"
+            "creep_zealot_1"        "Zealot"
+            "creep_zealot_2"        "Entranced Zealot"
+
+                //Zealot increased movement speed ability 
+                "DOTA_Tooltip_ability_ability_creep_zealot"             "Zeal"
+                "DOTA_Tooltip_ability_ability_creep_zealot_Description" "The zealot gains additional movemment speed as its health decreases"
+                "DOTA_Tooltip_ability_ability_creep_zealot_Lore"        "The harder they get hit, the more determined the zealot is to steal the gems!"
+                "DOTA_Tooltip_ability_ability_creep_zealot_max_speed"   "Maximum movement speed:"
+                "DOTA_Tooltip_modifier_creep_zealot"                    "Zeal"
+                "DOTA_Tooltip_modifier_creep_zealot_Description"        "This unit gets faster as its health decreases"
+                
+                //Zealot increased attack speed ability 
+                "DOTA_Tooltip_ability_ability_creep_zealot_attackspeed"                     "Fury"
+                "DOTA_Tooltip_ability_ability_creep_zealot_attackspeed_Description"         "As the zealot's health decreases past certain thresholds, it gains increased attack speed"
+                "DOTA_Tooltip_ability_ability_creep_zealot_attackspeed_Lore"                "Knowing that they will soon be reunited with their deity inspires the zealot to push their mortal vessels to the limit"
+                "DOTA_Tooltip_ability_ability_creep_zealot_attackspeed_bonus_attack_speed"  "Attack speed bonus per stack:"
+                "DOTA_Tooltip_ability_ability_creep_zealot_attackspeed_hp_trigger_percent"  "Health threshold (%):"
+                "DOTA_Tooltip_modifier_creep_zealot_attackspeed"                            "Fury"
+                "DOTA_Tooltip_modifier_creep_zealot_attackspeed_Description"                "This unit is attacking at blinding speed as they approach their demise"
+
+                
+            //-----  Old Creeps -----
+    		"creep_cluckles"		"Cluckles the brave"
+    		"creep_donkey"			"Mad Mental Donkey"
+    		"creep_sheep"			"Fluffy Sheep"
+    		"creep_facerex"			"Faceless Rex"
+    		"creep_goldwight"		"Golden Zombie"
+    		"creep_geodesic"		"Weird floaty orb shit"
+    		"creep_crab"			"Stick stickley"
+
+        //--------------------
+        //    Bosses
+        //--------------------    
+            //-----  Golem -----
+            "boss_golem"            "Demogorgon"
+            "boss_golem_summoner"   "Priest of Gehennom"
+
+                //Summoner increase max health ability
+                "DOTA_Tooltip_ability_ability_boss_golem_summoner"                  "Malign Gateway"
+                "DOTA_Tooltip_ability_ability_boss_golem_summoner_Description"      "As long as the summoner lives the demonic golem continues to grow in strength, gaining permanent maximum hp and damage resistance"
+                "DOTA_Tooltip_ability_ability_boss_golem_summoner_Lore"             "Decades of preparation by the secret demonic cult has culminated in the summoning of arch-demon Prince Demogorgon"
+                "DOTA_Tooltip_ability_ability_boss_golem_summoner_hp_per_second"    "Max health gain per second:"
+                "DOTA_Tooltip_ability_ability_boss_golem_summoner_damage_reduction" "Damage reduction per stack (%):"
+                "DOTA_Tooltip_modifier_boss_golem_summoner"                         "Malign Gateway"
+                "DOTA_Tooltip_modifier_boss_golem_summoner_Description"             "This unit is gaining permanent maximum health and takes reduced incoming damage from all sources"
+
+        //******************** Abilities ******************** 
     	//--------------------
     	//    Ability page navigation
     	//--------------------
+
 
     	//-----  Back to main page -----
     	"DOTA_Tooltip_ability_ability_return_to_start_page"	"Return to start page"
 
     	//-----  Open page 1  -----
-    	"DOTA_Tooltip_ability_ability_open_page_one"		"Open page one"
+    	"DOTA_Tooltip_ability_ability_open_page_one"		"Physical Damage Towers"
+
 
     	//-----  Open page 2  -----
-    	"DOTA_Tooltip_ability_ability_open_page_two"		"Open page two"
+    	"DOTA_Tooltip_ability_ability_open_page_two"		"Magic Damage Towers"
 
     	//-----  Open page 3  -----
-    	"DOTA_Tooltip_ability_ability_open_page_three"		"Open page three"
+    	"DOTA_Tooltip_ability_ability_open_page_three"		"Creep Spawning Towers"
 
     	//-----  Open page 4  -----
-    	"DOTA_Tooltip_ability_ability_open_page_four"		"Open page four"
+    	"DOTA_Tooltip_ability_ability_open_page_four"		"Utility Towers"
 
     	//--------------------
     	//	  Sell Tower
@@ -54,32 +254,30 @@
     	"DOTA_Tooltip_ability_ability_sell_tower"						"Sell Tower"   
     	"DOTA_Tooltip_ability_ability_sell_tower_Description"			"Sell this tower for half of its base value plus half the value of all purchased upgrades"   
 
-    	
+    	//******************** Towers ******************** 
+
     	//--------------------
     	//    Sniper Tower
     	//--------------------		
-
-		"DOTA_Tooltip_machine_gun"                                                        "Machine Gun"
-		"DOTA_Tooltip_machine_gun_Description"                                            ""
-
-    	//-----  General  -----
-    	"tower_sniper"		"Sniper Tower"    	
+   	
+    	"tower_sniper"		"Sniper"    	
 
     	//-----  Spawn  -----
-    	"DOTA_Tooltip_ability_ability_spawn_sniper_tower"				"Sniper Tower"
-    	"DOTA_Tooltip_ability_ability_spawn_sniper_tower_Description"	"Build a long range, slow firing tower"
-    	"DOTA_Tooltip_ability_ability_spawn_sniper_tower_damage"		"DAMAGE:"
-    	"DOTA_Tooltip_ability_ability_spawn_sniper_tower_range"			"RANGE:"
-    	"DOTA_Tooltip_ability_ability_upgrade_sniper_1_gold_cost"       "GOLD COST:"
+    	"DOTA_Tooltip_ability_ability_spawn_sniper_tower"              "Hire Sniper"
+    	"DOTA_Tooltip_ability_ability_spawn_sniper_tower_Description"  "Hire a long range, slow firing sniper. Can eventually be upgraded into a powerful slow firing artillery, or a short range machine gun"
+    	"DOTA_Tooltip_ability_ability_spawn_sniper_tower_damage"       "DAMAGE:"
+    	"DOTA_Tooltip_ability_ability_spawn_sniper_tower_range"        "RANGE:"    	
+        "DOTA_Tooltip_ability_ability_spawn_sniper_tower_gold_cost"    "GOLD COST:"
 
     	//-----  Upgrade 1  -----
-    	"DOTA_Tooltip_Ability_ability_upgrade_sniper_1"					"Damage upgrade"
-    	"DOTA_Tooltip_Ability_ability_upgrade_sniper_1_Description"		"Adds extra damage to this tower's basic attack"
-    	"DOTA_Tooltip_Ability_ability_upgrade_sniper_1_Lore"			"Baby steps..."
-    	"DOTA_Tooltip_Ability_ability_upgrade_sniper_1_damage"			"DAMAGE:"
+    	"DOTA_Tooltip_Ability_ability_upgrade_sniper_1"                "High caliber rifle"
+    	"DOTA_Tooltip_Ability_ability_upgrade_sniper_1_Description"	   "Adds extra damage to this tower's basic attack"
+    	"DOTA_Tooltip_Ability_ability_upgrade_sniper_1_Lore"           "Bigger bullets for a punchier shot"
+    	"DOTA_Tooltip_Ability_ability_upgrade_sniper_1_damage"         "DAMAGE:"
+        "DOTA_Tooltip_ability_ability_upgrade_sniper_1_gold_cost"      "GOLD COST:"
 
-    	"DOTA_Tooltip_sniper_damage_buff"                               "Bonus Damage"
-		"DOTA_Tooltip_sniper_damage_buff_Description"                   "Extra physical damage"
+    	"DOTA_Tooltip_sniper_damage_buff"                               "High caliber rifle"
+		"DOTA_Tooltip_sniper_damage_buff_Description"                   "This unit has increased physical damage"
 
     	//-----  Upgrade 2  -----    	
 		"DOTA_Tooltip_ability_ability_upgrade_sniper_2"					"Headshot"
@@ -91,23 +289,59 @@
 		"DOTA_Tooltip_ability_ability_upgrade_sniper_3_Description"		"Sacrifice attack speed for a huge boost to range and damage"
 		"DOTA_Tooltip_ability_ability_upgrade_sniper_3_gold_cost"       "GOLD COST:"
 		"DOTA_Tooltip_ability_ability_upgrade_sniper_3_damage"			"DAMAGE:"
-		"DOTA_Tooltip_ability_ability_upgrade_sniper_3_range"			"RANGE"
-		"DOTA_Tooltip_ability_ability_upgrade_sniper_3_speed"			"ATTACK SPEED"
-
+		"DOTA_Tooltip_ability_ability_upgrade_sniper_3_range"			"RANGE:"
+		"DOTA_Tooltip_ability_ability_upgrade_sniper_3_speed"			"ATTACK SPEED:"
 		"DOTA_Tooltip_sniper_range_buff"                                "Speciality: Sniper"
 		"DOTA_Tooltip_sniper_range_buff_Description"                    "Increased range and damage, reduced attack speed"
 
 		//-----  Upgrade 4  -----
 		"DOTA_Tooltip_ability_ability_upgrade_sniper_4"					"Speciality: Machine Gunner"
 		"DOTA_Tooltip_ability_ability_upgrade_sniper_4_Description"		"Sacrifice range for a huge boost to attack speed"
-		"DOTA_Tooltip_ability_ability_upgrade_sniper_4_damage"			"DAMAGE"
-		"DOTA_Tooltip_ability_ability_upgrade_sniper_4_range"			"RANGE"
-		"DOTA_Tooltip_ability_ability_upgrade_sniper_4_speed"			"ATTACK SPEED"
-
-		"DOTA_Tooltip_sniper_machine_gun_buff"					"Machine Gunner"
-		"DOTA_Tooltip_sniper_machine_gun_buff_Description"		"This tower shoots really freakin' fast!"
+		"DOTA_Tooltip_ability_ability_upgrade_sniper_4_damage"			"DAMAGE:"
+		"DOTA_Tooltip_ability_ability_upgrade_sniper_4_range"			"RANGE:"
+		"DOTA_Tooltip_ability_ability_upgrade_sniper_4_speed"			"ATTACK SPEED:"
+		"DOTA_Tooltip_sniper_machine_gun_buff"					        "Machine Gunner"
+		"DOTA_Tooltip_sniper_machine_gun_buff_Description"              "This tower shoots really freakin' fast!"
     	
+        //-----  Upgrade 5  -----
+        //-----  Upgrade 6  -----
 
-    	
-	}
-}
+        //--------------------
+        //    Demon Tower
+        //--------------------  
+
+        "tower_demon"       "Demon"
+
+        //-----  Spawn  -----
+        "DOTA_Tooltip_ability_ability_spawn_demon_tower"                "Summon Demon"
+        "DOTA_Tooltip_ability_ability_spawn_demon_tower_Description"	"Summon a Demon that fires hellish arrows. Can be upgraded to throw loads of piercing arrows at once, or a bouncing demonic bolt"
+        
+        //-----  Upgrade 1  -----
+        //-----  Upgrade 2  -----
+        //-----  Upgrade 3  -----
+        //-----  Upgrade 4  -----
+        //-----  Upgrade 5  -----
+        //-----  Upgrade 6  -----
+
+
+        //--------------------
+        //    #### Tower
+        //--------------------
+        //-----  Spawn  -----
+        //-----  Upgrade 1  -----
+        //-----  Upgrade 2  -----
+        //-----  Upgrade 3  -----
+        //-----  Upgrade 4  -----
+        //-----  Upgrade 5  -----
+        //-----  Upgrade 6  -----
+
+
+       "DOTA_Tooltip_ability_ability_spawn_tackshooter_tower"           "Tackshooter Tower"
+
+
+
+
+
+       "DOTA_Tooltip_ability_ability_spawn_melee_barracks"              "Melee Barracks"
+	}  
+}   

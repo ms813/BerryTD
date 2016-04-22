@@ -34,21 +34,7 @@
             }
         }  
     }
-
-    "AbilitySpecial"
-    {
-        "01"
-        {
-            "var_type"      "FIELD_INTEGER"
-            "slow"          "25 25 50"
-        }
-        "02"
-        {
-            "var_type"      "FIELD_FLOAT"
-            "range"         "500 800 800"
-        }
-    }
-
+      
     "precache"
     {
         "model"  "models/particle/ice_shards.vmdl"       

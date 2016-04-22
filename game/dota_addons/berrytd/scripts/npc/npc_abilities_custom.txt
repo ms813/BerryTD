@@ -257,7 +257,7 @@
 	    "AbilityType"           "DOTA_ABILITY_TYPE_BASIC"
 	    "AbilityTextureName"    "riki_permanent_invisibility"
 	
-	    "AbilityCooldown"		"10 5 2"
+	    "AbilityCooldown"		"10"
 	
 		"Modifiers"
 		{
@@ -442,9 +442,9 @@
 	            "EffectName"        "particles/units/heroes/hero_omniknight/omniknight_guardian_angel_omni.vpcf"
 	            "EffectAttachType"  "follow_origin"
 	    
-	            "States"
+	            "Properties"
 	            {
-	                "MODIFIER_STATE_ATTACK_IMMUNE"        "MODIFIER_STATE_VALUE_ENABLED"
+	                "MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PHYSICAL"        "1"
 	            }
 	        }
 	    }
@@ -923,20 +923,6 @@
 	            }
 	        }  
 	    }
-	
-	    "AbilitySpecial"
-	    {
-	        "01"
-	        {
-	            "var_type"          "FIELD_INTEGER"
-	            "damage"            "5"
-	        }
-	        "02"
-	        {
-	            "var_type"          "FIELD_FLOAT"
-	            "cooldown"          "5"
-	        }
-	    }
 	}
 	
 	
@@ -975,21 +961,7 @@
 	                "tower_name"    "tower_demon"
 	            }
 	        }  
-	    }
-	
-	    "AbilitySpecial"
-	    {
-	        "01"
-	        {
-	            "var_type"          "FIELD_INTEGER"
-	            "damage"            "100"
-	        }
-	        "02"
-	        {
-	            "var_type"          "FIELD_FLOAT"
-	            "cooldown"          "5"
-	        }
-	    }
+	    }    
 	}
 	
 	
@@ -1028,21 +1000,7 @@
 	                "tower_name"    "tower_dragon"
 	            }
 	        }  
-	    }
-	
-	    "AbilitySpecial"
-	    {
-	        "01"
-	        {
-	            "var_type"          "FIELD_INTEGER"
-	            "damage"            "5"
-	        }
-	        "02"
-	        {
-	            "var_type"          "FIELD_FLOAT"
-	            "cooldown"          "5"
-	        }
-	    }
+	    }  
 	}
 	
 	
@@ -1082,21 +1040,7 @@
 	            }
 	        }  
 	    }
-	
-	    "AbilitySpecial"
-	    {
-	        "01"
-	        {
-	            "var_type"      "FIELD_INTEGER"
-	            "slow"          "25 25 50"
-	        }
-	        "02"
-	        {
-	            "var_type"      "FIELD_FLOAT"
-	            "range"         "500 800 800"
-	        }
-	    }
-	
+	      
 	    "precache"
 	    {
 	        "model"  "models/particle/ice_shards.vmdl"       
@@ -1332,7 +1276,7 @@
 	    // Cost
 	    //-------------------------------------------------------------------------------------------------------------
 	    "AbilityManaCost"       "0" 
-	    "AbilityGoldCost"       "100"
+	    "AbilityGoldCost"       "%gold_cost"
 	 
 	    // Special
 	    //-------------------------------------------------------------------------------------------------------------
@@ -1350,20 +1294,6 @@
 	                "tower_name"    "tower_sniper"
 	            }
 	        }        
-	    }
-	
-	    "AbilitySpecial"
-	    {
-	        "01"
-	        {
-	            "var_type"      "FIELD_INTEGER"
-	            "damage"        "20"
-	        }
-	        "02"
-	        {
-	            "var_type"      "FIELD_FLOAT"
-	            "range"         "1000"
-	        }
 	    }
 	
 	    "precache"
@@ -2828,17 +2758,7 @@
 	        {
 	            "var_type"      "FIELD_INTEGER"
 	            "aoe_damage"    "10"
-	        }
-	        "03"
-	        {
-	            "var_type"      "FIELD_INTEGER"
-	            "bonus_attack_speed"    "100"
-	        }
-	        "04"
-	        {
-	            "var_type"      "FIELD_INTEGER"
-	            "bonus_range"    "450"
-	        }
+	        }        
 	    }
 	
 	    "precache"
@@ -3459,7 +3379,7 @@
 	    }
 	}
 	
-	//upgrade projectile speed and damage
+	//upgrade projectile damage and number of pierce targets
 	"ability_upgrade_demon_tower_1"
 	{
 	    "BaseClass"             "ability_datadriven"
@@ -3503,7 +3423,7 @@
 	    }
 	}
 	
-	//upgrade number of pierce targets
+	//upgrade projectile speed
 	"ability_upgrade_demon_tower_2"
 	{
 	    "BaseClass"             "ability_datadriven"
@@ -5711,7 +5631,7 @@
 	        "03"
 	        {
 	          "var_type"            "FIELD_FLOAT"
-	          "damage_bonus"        "20"
+	          "damage_bonus"        "0"
 	        }
 	        "04"
 	        {

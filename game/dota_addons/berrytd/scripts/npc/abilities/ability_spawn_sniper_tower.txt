@@ -35,25 +35,6 @@
         }        
     }
 
-    "AbilitySpecial"
-    {
-        "01"
-        {
-            "var_type"      "FIELD_INTEGER"
-            "damage"        "20"
-        }
-        "02"
-        {
-            "var_type"      "FIELD_INTEGER"
-            "range"         "1000"
-        }
-        "03"        
-        {
-            "var_type"      "FIELD_INTEGER"
-            "gold_cost"     "100"
-        }
-    }
-
     "precache"
     {
         "particle"      "particles/units/heroes/hero_sniper/sniper_base_attack.vpcf"

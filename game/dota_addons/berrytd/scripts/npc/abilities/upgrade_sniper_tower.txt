@@ -241,7 +241,7 @@
         "03"
         {
           "var_type"            "FIELD_FLOAT"
-          "damage_bonus"        "20"
+          "damage_bonus"        "0"
         }
         "04"
         {

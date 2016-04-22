@@ -81,17 +81,7 @@
         {
             "var_type"      "FIELD_INTEGER"
             "aoe_damage"    "10"
-        }
-        "03"
-        {
-            "var_type"      "FIELD_INTEGER"
-            "bonus_attack_speed"    "100"
-        }
-        "04"
-        {
-            "var_type"      "FIELD_INTEGER"
-            "bonus_range"    "450"
-        }
+        }        
     }
 
     "precache"
